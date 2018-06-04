@@ -68,8 +68,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 1024-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity rsa2048 {
@@ -77,8 +77,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 2048-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity rsa3072 {
@@ -86,8 +86,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 3072-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity rsa4096 {
@@ -95,8 +95,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 4096-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity rsa7680 {
@@ -104,8 +104,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 7680-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity rsa15360 {
@@ -113,8 +113,8 @@ module ietf-crypto-types {
     description
       "The RSA algorithm using a 15360-bit key.";
     reference
-      "RFC 3447: Public-Key Cryptography Standards (PKCS) #1:
-                 RSA Cryptography Specifications Version 2.1.";
+      "RFC 8017:
+         PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
   identity secp192r1 {
@@ -375,7 +375,7 @@ module ietf-crypto-types {
        MAY be included as well.
 
        The CMS MUST contain a single end entity certificate.
-       The CMS MUST not contain any spurious certificates.
+       The CMS MUST NOT contain any spurious certificates.
 
        This CMS structure MAY (as applicable where this type is
        used) also contain suitably fresh (as defined by local
