@@ -1,6 +1,6 @@
 
 echo "Testing ietf-crypto-types.yang (pyang)..."
-pyang --ietf --max-line-length=70 -p ../ ../ietf-crypto-types\@*.yang
+pyang --ietf --max-line-length=69 -p ../ ../ietf-crypto-types\@*.yang
 pyang --canonical -p ../ ../ietf-crypto-types\@*.yang
 
 echo "Testing ietf-crypto-types.yang (yanglint)..."

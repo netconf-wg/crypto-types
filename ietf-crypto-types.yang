@@ -8,7 +8,7 @@ module ietf-crypto-types {
    "IETF NETCONF (Network Configuration) Working Group";
 
   contact
-   "WG Web:   <http://tools.ietf.org/wg/netconf/>
+   "WG Web:   <http://datatracker.ietf.org/wg/netconf/>
     WG List:  <mailto:netconf@ietf.org>
 
     Author:   Kent Watsen
@@ -122,8 +122,8 @@ module ietf-crypto-types {
     description
       "The secp192r1 algorithm.";
     reference
-      "RFC 5480: 
-         Elliptic Curve Cryptography Subject Public Key Information.";
+      "RFC 5480: Elliptic Curve Cryptography Subject Public
+                 Key Information.";
   }
 
   identity secp256r1 {
@@ -131,8 +131,8 @@ module ietf-crypto-types {
     description
       "The secp256r1 algorithm.";
     reference
-      "RFC 5480: 
-         Elliptic Curve Cryptography Subject Public Key Information.";
+      "RFC 5480: Elliptic Curve Cryptography Subject Public
+                 Key Information.";
   }
 
   identity secp384r1 {
@@ -140,8 +140,8 @@ module ietf-crypto-types {
     description
       "The secp384r1 algorithm.";
     reference
-      "RFC 5480: 
-         Elliptic Curve Cryptography Subject Public Key Information.";
+      "RFC 5480: Elliptic Curve Cryptography Subject Public
+                 Key Information.";
   }
 
   identity secp521r1 {
@@ -149,8 +149,8 @@ module ietf-crypto-types {
     description
       "The secp521r1 algorithm.";
     reference
-      "RFC 5480: 
-         Elliptic Curve Cryptography Subject Public Key Information.";
+      "RFC 5480: Elliptic Curve Cryptography Subject Public
+                 Key Information.";
   }
 
 
@@ -294,19 +294,48 @@ module ietf-crypto-types {
       "RFC 5652: Cryptographic Message Syntax (CMS)";
   }
 
+  /***************************************************/
+  /*   Typedefs for structures related to RFC 4253   */
+  /***************************************************/
+
+  typedef ssh-host-key {
+    type binary;
+    description
+      "The binary public key data for this SSH key, as
+       specified by RFC 4253, Section 6.6, i.e.:
+
+         string    certificate or public key format
+                   identifier
+         byte[n]   key/certificate data.";
+    reference
+      "RFC 4253: The Secure Shell (SSH) Transport Layer
+                 Protocol";
+  }
+
+  /*********************************************************/
+  /*   Typedefs for ASN.1 structures related to RFC 5280   */
+  /*********************************************************/
+
+  typedef trust-anchor-cert-x509 {
+    type x509;
+    description
+      "A Certificate structure that MUST encode a self-signed
+       root certificate.";
+  }
+
+  typedef end-entity-cert-x509 {
+    type x509;
+    description
+      "A Certificate structure that MUST encode a certificate
+       that is neither self-signed nor having Basic constraint
+       CA true.";
+  }
 
   /*********************************************************/
   /*   Typedefs for ASN.1 structures related to RFC 5652   */
   /*********************************************************/
 
-  typedef trust-anchor-x509 {
-    type cms;
-    description
-      "A Certificate stucture that MUST encode a self-signed
-       root certificate.";
-  }
-
-  typedef trust-anchor-cms {
+  typedef trust-anchor-cert-cms {
     type signed-data-cms;
     description
       "A CMS SignedData structure that MUST contain the chain of
@@ -321,6 +350,32 @@ module ietf-crypto-types {
        certificate.  In the case where the root certificate is
        itself the issuer of the client or end-entity certificate,
        only one certificate is present.
+
+       This CMS structure MAY (as applicable where this type is
+       used) also contain suitably fresh (as defined by local
+       policy) revocation objects with which the device can
+       verify the revocation status of the certificates.
+
+       This CMS encodes the degenerate form of the SignedData
+       structure that is commonly used to disseminate X.509
+       certificates and revocation objects (RFC 5280).";
+    reference
+      "RFC 5280:
+         Internet X.509 Public Key Infrastructure Certificate
+         and Certificate Revocation List (CRL) Profile.";
+  }
+
+  typedef end-entity-cert-cms {
+    type signed-data-cms;
+    description
+      "A CMS SignedData structure that MUST contain the end
+       entity certificate itself, and MAY contain any number
+       of intermediate certificates leading up to a trust
+       anchor certificate.  The trust anchor certificate
+       MAY be included as well.
+
+       The CMS MUST contain a single end entity certificate.
+       The CMS MUST not contain any spurious certificates.
 
        This CMS structure MAY (as applicable where this type is
        used) also contain suitably fresh (as defined by local
