@@ -64,10 +64,6 @@
         <t>This document defines a YANG 1.1 <xref target="RFC7950"/> module
         specifying identities and typedefs useful for cryptography.</t>
 
-        <t>As the YANG module only defines identities and typedefs, this
-        draft does not present a YANG tree diagram <xref target="RFC8340"/> 
-        or any examples illustrating usage of the module.</t>
-
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
         "MAY", and "OPTIONAL" in this document are to be interpreted as
@@ -75,21 +71,41 @@
         when, and only when, they appear in all capitals, as shown here.</t>
       </section>
 
-      <section title="YANG Module" anchor="yang-module">
-        <t>This module has normartive references for
-        <xref target="RFC4253"/>, <xref target="RFC5280"/>,
-        <xref target="RFC5480"/>, <xref target="RFC5652"/>,
-        and <xref target="ITU.X690.2015"/>
-        and has informational references to <xref target="RFC6234"/> and <xref target="RFC8017"/></t>
-        <t>
-          <figure>
-            <artwork><![CDATA[
+      <section title="The Crypto Types Module">
+
+        <section title="Tree Diagram">
+          <t>This section provides a tree diagrams <xref target="RFC8340"/> for
+          the "ietf-crypto-types" module that, in addition to typedefs and identities,
+          also presents groupings intended for external usage.</t>
+
+          <t><!--The following tree diagram has used groupings expanded:-->
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+ 
+        <section title="YANG Module" anchor="keystore-yang-module">
+          <t>This module has normative references to 
+          <xref target="RFC4253"/>, <xref target="RFC5280"/>, <xref target="RFC5480"/>,
+          <xref target="RFC5652"/>, <xref target="RFC6991"/>, <xref target="RFC8341"/>
+          and <xref target="ITU.X690.2015"/>.</t>
+          <t>This module has informational references to <xref target="RFC2986"/>,
+          <xref target="RFC5915"/>, <xref target="RFC6125"/>,
+          <xref target="RFC6234"/>, and <xref target="RFC8017"/></t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
 <CODE BEGINS> file "ietf-crypto-types@YYYY-MM-DD.yang"
 INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
 <CODE ENDS>
-]]></artwork>
-          </figure>
-        </t>
+  ]]></artwork>
+            </figure>
+          </t>
+        </section>
       </section>
 
       <section title="Security Considerations">
@@ -153,8 +169,10 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.5280.xml"?>
         <?rfc include="reference.RFC.5480.xml"?>
         <?rfc include="reference.RFC.5652.xml"?>
+        <?rfc include="reference.RFC.6991.xml"?>
         <?rfc include="reference.RFC.7950.xml"?>
         <?rfc include="reference.RFC.8174.xml"?>
+        <?rfc include="reference.RFC.8341.xml"?>
         <!-- THE FOLLOWING LINE DOESN'T RESOLVE FOR SOME REASON:
              <?rfc include="_reference.ITU.X690.2015.xml"?> -->
         <!-- THE FOLLOWING IS COPYIED FROM RFC 8366 -->
@@ -172,12 +190,115 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
 	</reference>
       </references>
       <references title="Informative References">
+        <?rfc include="reference.RFC.2986.xml"?>
         <?rfc include="reference.RFC.3688.xml"?>
+        <?rfc include="reference.RFC.5915.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
+        <?rfc include="reference.RFC.6125.xml"?>
         <?rfc include="reference.RFC.6234.xml"?>
         <?rfc include="reference.RFC.8017.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
       </references>
+
+      <section title="Examples">
+        <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping">
+          <t>The following example module has been constructed to illustrate
+          use of the "asymmetric-key-pair-with-certs-grouping" grouping defined
+          in the "ietf-crypto-types" module.</t>
+          <t>Note that the "asymmetric-key-pair-with-certs-grouping" grouping uses both
+          the "asymmetric-key-pair-grouping" and "end-entity-cert-grouping" groupings,
+          and that the "asymmetric-key-pair-grouping" grouping uses the 
+          "public-key-grouping" grouping.  Thus, a total of four of the five groupings
+          defined in the "ietf-crypto-types" module are illustrated through the
+          use of this one grouping.  The only grouping not represented is the
+          "trust-anchor-cert-grouping" grouping.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(ex-crypto-types-usage.yang)
+]]></artwork>
+            </figure>
+          </t>
+
+          <t>Given the above example usage module, the following example
+          illustrates some configured keys.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The &quot;generate-hidden-key&quot; Action">
+          <t>The following example illustrates the "generate-hidden-key" action
+          in use with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+REQUEST
+-------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc.xml)
+
+RESPONSE
+--------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc-reply.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The &quot;install-hidden-key&quot; Action">
+          <t>The following example illustrates the "install-hidden-key" action
+          in use with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+REQUEST
+-------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc.xml)
+
+RESPONSE
+--------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc-reply.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The &quot;generate-certificate-signing-request&quot; Action">
+          <t>The following example illustrates the "generate-certificate-signing-request"
+          action in use with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+REQUEST
+-------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
+
+RESPONSE
+--------
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The &quot;certificate-expiration&quot; Notification">
+          <t>The following example illustrates the "certificate-expiration"
+          notification in use with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+
+      </section> <!-- end Examples -->
+
 
       <section title="Change Log">
         <section title="I-D to 00">
@@ -190,6 +311,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               <t>Added convenience typedefs for RFC 4253, RFC 5280, and RFC 5652.</t>
             </list>
           </t>
+        </section>
+        <section title="00 to 01">
+          <t>
+            <list style="symbols">
+              <t>Moved groupings from the draft-ietf-netconf-keystore here.</t>
+            </list>
+          </t>
+
         </section>
       </section>
 

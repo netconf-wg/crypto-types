@@ -1,0 +1,46 @@
+module ex-crypto-types-usage {
+  yang-version 1.1;
+
+  namespace "http://example.com/ns/example-crypto-types-usage";
+  prefix "ectu";
+
+  import ietf-crypto-types {
+    prefix ct;
+    reference 
+      "RFC XXXX: Common YANG Data Types for Cryptography";
+  }
+
+  organization
+   "Example Corporation";
+
+  contact
+   "Author: YANG Designer <mailto:yang.designer@example.com>";
+
+  description
+   "This module illustrates the grouping
+    defined in the crypto-types draft called 
+    'asymmetric-key-pair-with-certs-grouping'.";
+
+  revision "1001-01-01" {
+    description
+     "Initial version";
+    reference
+     "RFC ????: Usage Example for RFC XXXX";
+  }
+
+  container keys {
+    description
+      "A container of keys.";
+    list key {
+      key name;
+      leaf name {
+        type string;
+        description
+          "An arbitrary name for this key.";
+      }
+      uses ct:asymmetric-key-pair-with-certs-grouping;
+      description
+        "An asymmetric key pair with associated certificates.";
+    }
+  }
+}
