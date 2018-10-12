@@ -60,9 +60,27 @@ module ietf-crypto-types {
       "A base identity for hash algorithm verification.";
   }
 
+  identity sha-224 {
+    base "hash-algorithm";
+    description "The SHA-224 algorithm.";
+    reference "RFC 6234: US Secure Hash Algorithms.";
+  }
+  
   identity sha-256 {
     base "hash-algorithm";
     description "The SHA-256 algorithm.";
+    reference "RFC 6234: US Secure Hash Algorithms.";
+  }
+  
+  identity sha-384 {
+    base "hash-algorithm";
+    description "The SHA-384 algorithm.";
+    reference "RFC 6234: US Secure Hash Algorithms.";
+  }
+  
+  identity sha-512 {
+    base "hash-algorithm";
+    description "The SHA-384 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
 
@@ -165,6 +183,52 @@ module ietf-crypto-types {
                  Key Information.";
   }
 
+  /*************************************/
+  /*   Identities for HMAC Algorithms   */
+  /*************************************/
+
+  identity hmac-algorithm {
+    description
+      "A base identity for hmac generation.";
+      refernce "RFC 2104: HMAC: Keyed-Hashing for Message Authentication"  
+  }
+   
+  identity hmac-sha1 {
+    base "hmac";
+    description "Generating MAC using SHA1 hash function";
+    refernce "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
+  }
+
+  identity hmac-sha1-96 {
+    base "hmac";
+    description "Generating MAC using SHA1 hash function";
+    refernce "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
+  }
+
+  identity hmac-sha2-224 {
+    base "hmac";
+    description "Generating MAC using SHA2 hash function";
+    refernce "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+  }
+
+  identity hmac-sha2-256 {
+    base "hmac";
+    description "Generating MAC using SHA2 hash function";
+    refernce "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+  }
+
+  identity hmac-sha2-384 {
+    base "hmac";
+    description "Generating MAC using SHA2 hash function";
+    refernce "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+  }
+
+  identity hmac-sha2-512 {
+    base "hmac";
+    description "Generating MAC using SHA2 hash function";
+    refernce "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+  }
+
 
   /*********************************************************/
   /*   Typedefs for identityrefs to above base identites   */
@@ -186,6 +250,15 @@ module ietf-crypto-types {
     description 
       "This typedef enables importing modules to easily define an
        identityref to the 'key-algorithm' base identity.";
+  }
+
+  typedef hmac-algorithm-ref {
+    type identityref {
+      base "hmac-algorithm";
+    }
+    description 
+      "This typedef enables importing modules to easily define an
+       identityref to the 'hmac-algorithm' base identity.";
   }
 
 
