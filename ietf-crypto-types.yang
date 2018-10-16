@@ -308,7 +308,7 @@ identity aes-256-cbc {
   
  identity diffie-hellman-group15-sha256 {
     base "diffie-hellman-key-exhange-algorithm";
-    description "Using DH group14 5nd SHA256 for key exchange";
+    description "Using DH group15 5nd SHA256 for key exchange";
     refernce "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
             Key Exchange (KEX) Groups for Secure Shell (SSH)";
   }
@@ -322,14 +322,14 @@ identity aes-256-cbc {
   
  identity diffie-hellman-group17-sha256 {
     base "diffie-hellman-key-exhange-algorithm";
-    description "Using DH group14 and SHA256 for key exchange";
+    description "Using DH group17 and SHA256 for key exchange";
     refernce "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
             Key Exchange (KEX) Groups for Secure Shell (SSH)";
   }
   
   identity diffie-hellman-group18-sha256 {
     base "diffie-hellman-key-exhange-algorithm";
-    description "Using DH group14 and SHA256 for key exchange";
+    description "Using DH group18 and SHA256 for key exchange";
     refernce "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
             Key Exchange (KEX) Groups for Secure Shell (SSH)";
   }
