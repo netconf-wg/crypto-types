@@ -190,148 +190,171 @@ module ietf-crypto-types {
   identity hmac-algorithm {
     description
       "A base identity for hmac generation.";
-      reference "RFC 2104: HMAC: Keyed-Hashing for Message Authentication"  
   }
    
   identity hmac-sha1 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
   }
 
   identity hmac-sha1-96 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
   }
 
   identity hmac-sha2-224 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA2 hash function";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
   }
 
   identity hmac-sha2-256 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA2 hash function";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
   }
 
   identity hmac-sha2-384 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA2 hash function";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
   }
 
   identity hmac-sha2-512 {
-    base "hmac";
+    base "hmac-algorithm";
     description "Generating MAC using SHA2 hash function";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
   }
 
   /********************************************/
   /*   Identities for encryption Algorithms   */
   /********************************************/
-  identity symmmetric-encryption-algorithm {
+  identity symmetric-key-encryption-algorithm {
     description
       "A base identity for encryption algorithm.";
   }
   
   identity aes-128-cbc {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CBC mode with a key length of 128 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard (AES) Encryption
-            Algorithm in Cryptographic Message Syntax (CMS)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CBC mode with
+                 a key length of 128 bits";
+    reference "RFC 3565: Use of the Advanced Encryption Standard 
+               (AES) Encryption Algorithm in Cryptographic Message 
+               Syntax (CMS)";
   }
   
 identity aes-192-cbc {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CBC mode with a key length of 192 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard (AES) Encryption
-            Algorithm in Cryptographic Message Syntax (CMS)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CBC mode with 
+                 a key length of 192 bits";
+    reference "RFC 3565: Use of the Advanced Encryption Standard 
+               (AES) Encryption Algorithm in Cryptographic Message 
+               Syntax (CMS)";
   }
   
 identity aes-256-cbc {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CBC mode with a key length of 256 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard (AES) Encryption
-            Algorithm in Cryptographic Message Syntax (CMS)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CBC mode with 
+                 a key length of 256 bits";
+    reference "RFC 3565: Use of the Advanced Encryption Standard 
+               (AES) Encryption Algorithm in Cryptographic Message
+               Syntax (CMS)";
   }
   
  identity aes-128-ctr {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with a key length of 128 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) Counter Mode
-            With IPsec Encapsulating Security Payload (ESP)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CTR mode with 
+                 a key length of 128 bits";
+    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
+               Counter Mode With IPsec Encapsulating Security 
+               Payload (ESP)";
   }
   
  identity aes-192-ctr {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with a key length of 192 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) Counter Mode
-            With IPsec Encapsulating Security Payload (ESP)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CTR mode with 
+                 a key length of 192 bits";
+    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
+               Counter Mode With IPsec Encapsulating Security 
+               Payload (ESP)";
   }
   
  identity aes-256-ctr {
-    base "symmmetric-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with a key length of 256 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) Counter Mode
-            With IPsec Encapsulating Security Payload (ESP)";
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CTR mode with 
+                 a key length of 256 bits";
+    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
+               Counter Mode With IPsec Encapsulating Security 
+               Payload (ESP)";
   }
 
   /********************************************/
   /*   Identities for Diffie-Hellman Groups   */
   /********************************************/
-  identity diffie-hellman-key-exhange-algorithm {
+  identity diffie-hellman-key-exchange-algorithm {
     description
-      "A base identity for Diffe-Hellman based key exhange algorithm.";
+      "A base identity for Diffe-Hellman based key exchange 
+       algorithm.";
   }
   
  identity diffie-hellman-group1-sha1 {
-    base "dh-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group1 and SHA1 for key exchange";
-    reference "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
+    reference "RFC 4253: The Secure Shell (SSH) Transport 
+               Layer Protocol";
   }
   
  identity diffie-hellman-group14-sha1 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group14 and SHA1 for key exchange";
-    reference "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
+    reference "RFC 4253: The Secure Shell (SSH) Transport 
+               Layer Protocol";
   }
   
  identity diffie-hellman-group14-sha256 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group14 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-            Key Exchange (KEX) Groups for Secure Shell (SSH)";
+    reference "RFC 8268: More Modular Exponentiation (MODP) 
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups 
+               for Secure Shell (SSH)";
   }
   
  identity diffie-hellman-group15-sha256 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group15 5nd SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-            Key Exchange (KEX) Groups for Secure Shell (SSH)";
+    reference "RFC 8268: More Modular Exponentiation (MODP) 
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+               Secure Shell (SSH)";
   }
   
  identity diffie-hellman-group16-sha256 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group16 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-            Key Exchange (KEX) Groups for Secure Shell (SSH)";
+    reference "RFC 8268: More Modular Exponentiation (MODP) 
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups for
+               Secure Shell (SSH)";
   }
   
  identity diffie-hellman-group17-sha256 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group17 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-            Key Exchange (KEX) Groups for Secure Shell (SSH)";
+    reference "RFC 8268: More Modular Exponentiation (MODP) 
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups for
+               Secure Shell (SSH)";
   }
   
   identity diffie-hellman-group18-sha256 {
-    base "diffie-hellman-key-exhange-algorithm";
+    base "diffie-hellman-key-exchange-algorithm";
     description "Using DH group18 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-            Key Exchange (KEX) Groups for Secure Shell (SSH)";
+    reference "RFC 8268: More Modular Exponentiation (MODP) 
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups for
+               Secure Shell (SSH)";
   }
   
   /*********************************************************/
@@ -365,13 +388,14 @@ identity aes-256-cbc {
        identityref to the 'hmac-algorithm' base identity.";
   }
 
- typedef symmetric-encryption-algorithm-ref {
+ typedef symmetric-key-encryption-algorithm-ref {
     type identityref {
-      base "symmetric-encryption-algorithm";
+      base "symmetric-key-encryption-algorithm";
     }
     description 
       "This typedef enables importing modules to easily define an
-       identityref to the 'symmetric-encryption-algorithm' base identity.";
+       identityref to the 'symmetric-encryption-algorithm' base 
+       identity.";
   }
   
    typedef diffie-hellman-key-exchange-algorithm-ref {
@@ -380,7 +404,8 @@ identity aes-256-cbc {
     }
     description 
       "This typedef enables importing modules to easily define an
-       identityref to the 'diffie-hellman-key-exchange-algorithm' base identity.";
+       identityref to the 'diffie-hellman-key-exchange-algorithm' 
+       base identity.";
   }
   
   /***************************************************/
