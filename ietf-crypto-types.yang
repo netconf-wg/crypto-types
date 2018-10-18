@@ -217,6 +217,14 @@ module ietf-crypto-types {
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
+  
+    identity hmac-sha2-256-128 {
+    base "hmac-algorithm";
+    description "Generating a 256 bits MAC using SHA2 hash function and 
+                 trunicate it to 128 bits";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
+  }
 
   identity hmac-sha2-384 {
     base "hmac-algorithm";
