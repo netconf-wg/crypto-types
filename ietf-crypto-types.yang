@@ -84,9 +84,9 @@ module ietf-crypto-types {
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
 
-  /****************************************************/
-  /*   Identities for signature generation Algorithms */
-  /****************************************************/
+  /*********************************************************/
+  /*   Identities for asymmetric key encryption Algorithms */
+  /*********************************************************/
 
   identity asymmetric-key-encryption-algorithm {
     description
