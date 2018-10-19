@@ -531,7 +531,209 @@ identity dsa-sha1 {
       "A base identity for Diffe-Hellman based key exchange 
        algorithm.";
   }
+ 
+ identity rsa1024 {
+    base "key-exchange-algorithm";
+    description "Using rsa1024 for key exchange";
+    reference "RFC 4432: RSA Key Exchange for the Secure 
+               Shell (SSH) Transport Layer Protocoll";
+  }
+
+ identity rsa2048 {
+    base "key-exchange-algorithm";
+    description "Using rsa2048 for key exchange";
+    reference "RFC 4432: RSA Key Exchange for the Secure 
+               Shell (SSH) Transport Layer Protocoll";
+  }
+
+ identity rsa3076 {
+    base "key-exchange-algorithm";
+    description "Using rsa3076 for key exchange";
+    reference "RFC xxx:";
+  }
+
+ identity rsa4096 {
+    base "key-exchange-algorithm";
+    description "Using rsa3076 for key exchange";
+    reference "RFC xxx:";
+  }
+
+ identity rsa7680 {
+    base "key-exchange-algorithm";
+    description "Using rsa3076 for key exchange";
+    reference "RFC xxx:";
+  }
+
+ identity rsa15360
+    base "key-exchange-algorithm";
+    description "Using rsa3076 for key exchange";
+    reference "RFC xxx:";
+  }
   
+ identity psk_only {
+    base "key-exchange-algorithm";
+    description "Using Pre-shared key for authentication and
+                 key exhange"
+    reference "RFC 4279: Pre-Shared Key Ciphersuites for 
+               Transport Layer Security (TLS)";
+  }
+ 
+ identity dhe_ffdhe2048 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 2048 
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+ }
+ 
+  identity dhe_ffdhe3072 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 3072 
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+  
+   identity dhe_ffdhe4096 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 4096 
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+  
+   identity dhe_ffdhe6144 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 6144 
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+  
+ identity dhe_ffdhe8192 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 2048 
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+
+identity psk_dhe_ffdhe2048 {
+    base "key-exchange-algorithm";
+    description " ";
+    reference " ";
+  }
+
+identity psk_dhe_ffdhe3072 {
+    base "key-exchange-algorithm";
+    description " ";
+    reference " ";
+  }
+
+identity psk_dhe_ffdhe4096 {
+    base "key-exchange-algorithm";
+    description " ";
+    reference " ";
+  }
+
+identity psk_dhe_ffdhe6144 {
+    base "key-exchange-algorithm";
+    description " ";
+    reference " ";
+  }
+
+identity psk_dhe_ffdhe8192 {
+    base "key-exchange-algorithm";
+    description " ";
+    reference " ";
+  }
+
+identity ecdhe_secp256r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp256r1";
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
+               Cipher Suites for Transport Layer Security 
+               (TLS) Versions 1.2 and Earlier";
+  }
+
+identity ecdhe_secp384r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp384r1";
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
+               Cipher Suites for Transport Layer Security 
+               (TLS) Versions 1.2 and Earlier";
+ }
+
+identity ecdhe_secp521r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp521r1";
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
+               Cipher Suites for Transport Layer Security 
+               (TLS) Versions 1.2 and Earlier";
+ }
+
+identity ecdhe_x25519 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve x25519";
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
+               Cipher Suites for Transport Layer Security 
+               (TLS) Versions 1.2 and Earlier";
+ }
+ 
+ identity ecdhe_x448 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve x448";
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
+               Cipher Suites for Transport Layer Security 
+               (TLS) Versions 1.2 and Earlier";
+ }
+
+ identity psk_ecdhe_secp256r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp256r1";
+    reference "";
+ }
+
+ identity psk_ecdhe_secp384r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp384r1";
+    reference "";
+ }
+
+ identity psk_ecdhe_secp521r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp521r1";
+    reference "";
+ }
+ 
+identity psk_ecdhe_x25519 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve x25519";
+    reference "";
+ }
+
+identity psk_ecdhe_x448 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve x25519";
+    reference "";
+ }
+
+ 
  identity diffie-hellman-group1-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group1 and SHA1 for key exchange";
@@ -586,6 +788,21 @@ identity dsa-sha1 {
                Secure Shell (SSH)";
   }
   
+identity ecdh-sha2-secp256r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp256r1";
+    reference "";
+ }
+
+identity ecdh-sha2-secp384r1 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with
+                 elliptic group over curve secp256r1";
+    reference "";
+ }
+
+  
   /*********************************************************/
   /*   Typedefs for identityrefs to above base identites   */
   /*********************************************************/
@@ -627,9 +844,19 @@ identity dsa-sha1 {
        identity.";
   }
   
-   typedef diffie-hellman-key-exchange-algorithm-ref {
+   typedef asymmetric-key-encryption-algorithm-ref {
     type identityref {
-      base "diffie-hellman-key-exchange-algorithm";
+      base "asymmetric-key-encryption-algorithm";
+    }
+    description 
+      "This typedef enables importing modules to easily define an
+       identityref to the 'asymmetric-encryption-algorithm' base 
+       identity.";
+  }
+  
+   typedef key-exchange-algorithm-ref {
+    type identityref {
+      base "key-exchange-algorithm";
     }
     description 
       "This typedef enables importing modules to easily define an
