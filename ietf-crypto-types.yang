@@ -148,61 +148,141 @@ module ietf-crypto-types {
   }
 
   /*************************************/
-  /*   Identities for HMAC Algorithms   */
+  /*   Identities for MAC Algorithms   */
   /*************************************/
 
-  identity hmac-algorithm {
+  identity mac-algorithm {
     description
       "A base identity for hmac generation.";
   }
    
   identity hmac-sha1 {
-    base "hmac-algorithm";
+    base "mac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
   }
 
   identity hmac-sha1-96 {
-    base "hmac-algorithm";
+    base "mac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
   }
 
   identity hmac-sha2-224 {
-    base "hmac-algorithm";
+    base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
   identity hmac-sha2-256 {
-    base "hmac-algorithm";
+    base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
   
     identity hmac-sha2-256-128 {
-    base "hmac-algorithm";
-    description "Generating a 256 bits MAC using SHA2 hash function and 
-                 trunicate it to 128 bits";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
-               HMAC and HKDF)";
+    base "mac-algorithm";
+    description "Generating a 256 bits MAC using SHA2 hash function 
+                 and trunicate it to 128 bits";
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+               HMAC-SHA-512 with IPsec";
   }
 
   identity hmac-sha2-384 {
-    base "hmac-algorithm";
+    base "mac-algorithm";
+    description "Generating MAC using SHA2 hash function";
+    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
+               HMAC and HKDF)";
+  }
+  
+  identity hmac-sha2-384-192 {
+    base "mac-algorithm";
+    description "Generating a 384 bits MAC using SHA2 hash function 
+                 and trunicate it to 192 bits";
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+               HMAC-SHA-512 with IPsec";
+  }
+
+  identity hmac-sha2-512 {
+    base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
-  identity hmac-sha2-512 {
-    base "hmac-algorithm";
-    description "Generating MAC using SHA2 hash function";
-    reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
-               HMAC and HKDF)";
+  identity hmac-sha2-512-256 {
+    base "mac-algorithm";
+    description "Generating a 512 bits MAC using SHA2 hash function 
+                 and trunicating it to 256 bits";
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+               HMAC-SHA-512 with IPsec";
   }
+
+  identity aes-128-gmac {
+    base "mac-algorithm";
+    description "use of the Advanced Encryption Standard (AES)
+                 Galois Message Authentication Code (GMAC) as a 
+                 mechanism to provide data origin authentication";
+    reference "RFC 4543: The Use of Galois Message Authentication Code 
+               (GMAC) in IPsec ESP and AH";
+  }
+
+  identity aes-192-gmac {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-256-gmac {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-cmc-96 {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-cmc-128 {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-128-ccm {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-256-ccm {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-128-gcm {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+
+  identity aes-256-gcm {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+  
+  identity chacha20-poly1305 {
+    base "mac-algorithm";
+    description "Generating MAC using ...";
+    reference " ";
+  }
+  
 
   /********************************************/
   /*   Identities for encryption Algorithms   */
