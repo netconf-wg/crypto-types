@@ -65,19 +65,19 @@ module ietf-crypto-types {
     description "The SHA-224 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
-  
+
   identity sha-256 {
     base "hash-algorithm";
     description "The SHA-256 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
-  
+
   identity sha-384 {
     base "hash-algorithm";
     description "The SHA-384 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
-  
+
   identity sha-512 {
     base "hash-algorithm";
     description "The SHA-384 algorithm.";
@@ -90,7 +90,8 @@ module ietf-crypto-types {
 
   identity asymmetric-key-encryption-algorithm {
     description
-      "Base identity from which all signature-algorithms are derived.";
+      "Base identity from which all signature-algorithms are
+       derived.";
   }
 
   identity rsa1024 {
@@ -155,7 +156,7 @@ module ietf-crypto-types {
     description
       "A base identity for hmac generation.";
   }
-   
+
   identity hmac-sha1 {
     base "mac-algorithm";
     description "Generating MAC using SHA1 hash function";
@@ -181,12 +182,12 @@ module ietf-crypto-types {
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
-  
-    identity hmac-sha2-256-128 {
+
+  identity hmac-sha2-256-128 {
     base "mac-algorithm";
-    description "Generating a 256 bits MAC using SHA2 hash function 
+    description "Generating a 256 bits MAC using SHA2 hash function
                  and trunicate it to 128 bits";
-    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and
                HMAC-SHA-512 with IPsec";
   }
 
@@ -196,12 +197,12 @@ module ietf-crypto-types {
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
-  
+
   identity hmac-sha2-384-192 {
     base "mac-algorithm";
-    description "Generating a 384 bits MAC using SHA2 hash function 
+    description "Generating a 384 bits MAC using SHA2 hash function
                  and trunicate it to 192 bits";
-    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and
                HMAC-SHA-512 with IPsec";
   }
 
@@ -214,18 +215,18 @@ module ietf-crypto-types {
 
   identity hmac-sha2-512-256 {
     base "mac-algorithm";
-    description "Generating a 512 bits MAC using SHA2 hash function 
+    description "Generating a 512 bits MAC using SHA2 hash function
                  and trunicating it to 256 bits";
-    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and 
+    reference "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and
                HMAC-SHA-512 with IPsec";
   }
 
   identity aes-128-gmac {
     base "mac-algorithm";
     description "use of the Advanced Encryption Standard (AES)
-                 Galois Message Authentication Code (GMAC) as a 
+                 Galois Message Authentication Code (GMAC) as a
                  mechanism to provide data origin authentication";
-    reference "RFC 4543: The Use of Galois Message Authentication Code 
+    reference "RFC 4543: The Use of Galois Message Authentication Code
                (GMAC) in IPsec ESP and AH";
   }
 
@@ -276,613 +277,613 @@ module ietf-crypto-types {
     description "Generating MAC using ...";
     reference " ";
   }
-  
+
   identity chacha20-poly1305 {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
-  
+
 
   /********************************************/
   /*   Identities for encryption Algorithms   */
   /********************************************/
+
   identity symmetric-key-encryption-algorithm {
     description
       "A base identity for encryption algorithm.";
   }
-  
+
   identity aes-128-cbc {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CBC mode with
                  a key length of 128 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard 
-               (AES) Encryption Algorithm in Cryptographic Message 
-               Syntax (CMS)";
-  }
-  
-identity aes-192-cbc {
-    base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CBC mode with 
-                 a key length of 192 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard 
-               (AES) Encryption Algorithm in Cryptographic Message 
-               Syntax (CMS)";
-  }
-  
-identity aes-256-cbc {
-    base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CBC mode with 
-                 a key length of 256 bits";
-    reference "RFC 3565: Use of the Advanced Encryption Standard 
+    reference "RFC 3565: Use of the Advanced Encryption Standard
                (AES) Encryption Algorithm in Cryptographic Message
                Syntax (CMS)";
   }
-  
- identity aes-128-ctr {
+
+  identity aes-192-cbc {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with 
+    description "encrypt message with AES algorithm in CBC mode with
+                 a key length of 192 bits";
+    reference "RFC 3565: Use of the Advanced Encryption Standard
+               (AES) Encryption Algorithm in Cryptographic Message
+               Syntax (CMS)";
+  }
+
+  identity aes-256-cbc {
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CBC mode with
+                 a key length of 256 bits";
+    reference "RFC 3565: Use of the Advanced Encryption Standard
+               (AES) Encryption Algorithm in Cryptographic Message
+               Syntax (CMS)";
+  }
+
+  identity aes-128-ctr {
+    base "symmetric-key-encryption-algorithm";
+    description "encrypt message with AES algorithm in CTR mode with
                  a key length of 128 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
-               Counter Mode With IPsec Encapsulating Security 
+    reference "RFC 3686: Using Advanced Encryption Standard (AES)
+               Counter Mode With IPsec Encapsulating Security
                Payload (ESP)";
   }
-  
- identity aes-192-ctr {
+
+  identity aes-192-ctr {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with 
+    description "encrypt message with AES algorithm in CTR mode with
                  a key length of 192 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
-               Counter Mode With IPsec Encapsulating Security 
+    reference "RFC 3686: Using Advanced Encryption Standard (AES)
+               Counter Mode With IPsec Encapsulating Security
                Payload (ESP)";
   }
-  
- identity aes-256-ctr {
+
+  identity aes-256-ctr {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CTR mode with 
+    description "encrypt message with AES algorithm in CTR mode with
                  a key length of 256 bits";
-    reference "RFC 3686: Using Advanced Encryption Standard (AES) 
-               Counter Mode With IPsec Encapsulating Security 
+    reference "RFC 3686: Using Advanced Encryption Standard (AES)
+               Counter Mode With IPsec Encapsulating Security
                Payload (ESP)";
   }
-  
-identity aes-128-ccm {
+
+  identity aes-128-ccm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CCM mode with 
+    description "encrypt message with AES algorithm in CCM mode with
                  a key length of 128 bits";
-    reference "RFC 4309: Using Advanced Encryption Standard (AES) 
-               CCM Mode with IPsec Encapsulating Security Payload 
+    reference "RFC 4309: Using Advanced Encryption Standard (AES)
+               CCM Mode with IPsec Encapsulating Security Payload
                (ESP)";
-}
+  }
 
-identity aes-192-ccm {
+  identity aes-192-ccm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CCM mode with 
+    description "encrypt message with AES algorithm in CCM mode with
                  a key length of 192 bits";
-    reference "RFC 4309: Using Advanced Encryption Standard (AES) 
-               CCM Mode with IPsec Encapsulating Security Payload 
+    reference "RFC 4309: Using Advanced Encryption Standard (AES)
+               CCM Mode with IPsec Encapsulating Security Payload
                (ESP)";
-}
+  }
 
-identity aes-256-ccm {
+  identity aes-256-ccm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in CCM mode with 
+    description "encrypt message with AES algorithm in CCM mode with
                  a key length of 256 bits";
-    reference "RFC 4309: Using Advanced Encryption Standard (AES) 
-               CCM Mode with IPsec Encapsulating Security Payload 
+    reference "RFC 4309: Using Advanced Encryption Standard (AES)
+               CCM Mode with IPsec Encapsulating Security Payload
                (ESP)";
-}
+  }
 
-identity aes-128-gcm {
+  identity aes-128-gcm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in GCM mode with 
+    description "encrypt message with AES algorithm in GCM mode with
                  a key length of 128 bits";
-    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in 
+    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in
                IPsec Encapsulating Security Payload (ESP)";
-}
+  }
 
-identity aes-192-gcm {
+  identity aes-192-gcm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in GCM mode with 
+    description "encrypt message with AES algorithm in GCM mode with
                  a key length of 192 bits";
-    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in 
+    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in
                IPsec Encapsulating Security Payload (ESP)";
-}
+  }
 
-identity aes-256-gcm {
+  identity aes-256-gcm {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with AES algorithm in GCM mode with 
+    description "encrypt message with AES algorithm in GCM mode with
                  a key length of 256 bits";
-    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in 
+    reference "RFC 4106: The Use of Galois/Counter Mode (GCM) in
                IPsec Encapsulating Security Payload (ESP)";
-}
+  }
 
-identity chacha20-poly1305 {
+  identity chacha20-poly1305 {
     base "symmetric-key-encryption-algorithm";
-    description "encrypt message with chacha20 algorithm and 
+    description "encrypt message with chacha20 algorithm and
                  generate MAC with POLY1305";
     reference "RFC 7539: ChaCha20 and Poly1305 for IETF Protocols";
-}
+  }
 
-  /**************************************************************/
-  /*   Identities for signature algorithm */
-  /**************************************************************/
+  /******************************************/
+  /*   Identities for signature algorithm   */
+  /******************************************/
+
   identity signature-algorithm {
     description
       "A base identity for asymmetric key encryption algorithm.";
   }
-  
-identity rsa-pkcs1-sha1 {
+
+  identity rsa-pkcs1-sha1 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1 
+      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1
       hash algorithm.";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
   }
 
-identity rsa-pkcs1-sha256 {
+  identity rsa-pkcs1-sha256 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA256 
+      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA256
       hash algorithm.";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
   }
 
-identity rsa-pkcs1-sha384 {
+  identity rsa-pkcs1-sha384 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA384 
+      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA384
       hash algorithm.";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
-}
- 
-identity rsa-pkcs1-sha512 {
+  }
+
+  identity rsa-pkcs1-sha512 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA512 
+      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA512
       hash algorithm.";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
- identity rsa-pss-rsae-sha256 {
+  }
+
+  identity rsa-pss-rsae-sha256 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA256 hash algorithm. If the public key is 
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA256 hash algorithm. If the public key is
        carried in an X.509 certificate, it MUST use the rsaEncryption
        OID";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
+  }
+
   identity rsa-pss-rsae-sha384 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA384 hash algorithm. If the public key is 
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA384 hash algorithm. If the public key is
        carried in an X.509 certificate, it MUST use the rsaEncryption
        OID";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
+  }
+
   identity rsa-pss-rsae-sha512 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA512 hash algorithm. If the public key is 
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA512 hash algorithm. If the public key is
        carried in an X.509 certificate, it MUST use the rsaEncryption
        OID";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
+  }
+
   identity rsa-pss-pss-sha256 {
     base "signature-algorithm";
     description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA256 hash algorithm. If the public key is 
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS 
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA256 hash algorithm. If the public key is
+       carried in an X.509 certificate, it MUST use the RSASSA-PSS
        OID";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
-identity rsa-pss-pss-sha384 {
-    base "signature-algorithm";
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA256 hash algorithm. If the public key is 
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS 
-       OID";
-    reference
-      "RFC 8446: The Transport Layer Security (TLS) Protocol Version
-       1.3";
- }
- 
-identity rsa-pss-pss-sha512 {
-    base "signature-algorithm";
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation 
-       function 1 and SHA256 hash algorithm. If the public key is 
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS 
-       OID";
-    reference
-      "RFC 8446: The Transport Layer Security (TLS) Protocol Version
-       1.3";
- }
+  }
 
-identity ecdsa-secp256r1-sha256 {
+  identity rsa-pss-pss-sha384 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp256r1  
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA256 hash algorithm. If the public key is
+       carried in an X.509 certificate, it MUST use the RSASSA-PSS
+       OID";
+    reference
+      "RFC 8446: The Transport Layer Security (TLS) Protocol Version
+       1.3";
+  }
+
+  identity rsa-pss-pss-sha512 {
+    base "signature-algorithm";
+    description
+      "The signature algorithm using RSASSA-PSS with mask generation
+       function 1 and SHA256 hash algorithm. If the public key is
+       carried in an X.509 certificate, it MUST use the RSASSA-PSS
+       OID";
+    reference
+      "RFC 8446: The Transport Layer Security (TLS) Protocol Version
+       1.3";
+  }
+
+  identity ecdsa-secp256r1-sha256 {
+    base "signature-algorithm";
+    description
+      "The signature algorithm using ECDSA wtih curve name secp256r1
        and SHA256 hash algorithm. ";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
+  }
 
-identity ecdsa-secp384r1-sha384 {
+  identity ecdsa-secp384r1-sha384 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp384r1  
+      "The signature algorithm using ECDSA wtih curve name secp384r1
        and SHA384 hash algorithm. ";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
- identity ecdsa-secp512r1-sha512 {
+  }
+
+  identity ecdsa-secp512r1-sha512 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp512r1  
+      "The signature algorithm using ECDSA wtih curve name secp512r1
        and SHA512 hash algorithm. ";
     reference
       "RFC 8446: The Transport Layer Security (TLS) Protocol Version
        1.3";
- }
- 
- identity ed25519 {
+  }
+
+  identity ed25519 {
     base "signature-algorithm";
     description
-      "The signature algorithm using EdDSA as defined in RFC8032 or 
+      "The signature algorithm using EdDSA as defined in RFC8032 or
        its successors. ";
     reference
       "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
- }
- 
+  }
+
   identity ed448 {
     base "signature-algorithm";
     description
-      "The signature algorithm using EdDSA as defined in RFC8032 or 
+      "The signature algorithm using EdDSA as defined in RFC8032 or
        its successors. ";
     reference
       "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
- }
- 
-identity eccsi {
+  }
+
+  identity eccsi {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECCSI signature as defined in 
+      "The signature algorithm using ECCSI signature as defined in
       RFC6507. ";
     reference
       "RFC 6507: Elliptic Curve-Based Certificateless Signatures
        for Identity-Based Encryption (ECCSI)";
- }
+  }
 
-identity eccsi {
+  identity eccsi {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECCSI signature as defined in 
+      "The signature algorithm using ECCSI signature as defined in
       RFC6507. ";
     reference
       "RFC 6507: Elliptic Curve-Based Certificateless Signatures
        for Identity-Based Encryption (ECCSI)";
-}
+  }
 
-identity dsa-sha1 {
+  identity dsa-sha1 {
     base "signature-algorithm";
     description
-      "The signature algorithm using DSA algorithm with SHA1 for 
+      "The signature algorithm using DSA algorithm with SHA1 for
        finger print generation. ";
     reference
-      "RFC 3275: (Extensible Markup Language) XML-Signature Syntax 
+      "RFC 3275: (Extensible Markup Language) XML-Signature Syntax
        and Processing";
-}
+  }
 
- 
-  /********************************************/
+  /**********************************************/
   /*   Identities for key exchange algorithms   */
-  /********************************************/
+  /**********************************************/
+
   identity key-exchange-algorithm {
     description
-      "A base identity for Diffe-Hellman based key exchange 
+      "A base identity for Diffe-Hellman based key exchange
        algorithm.";
   }
- 
- identity rsa1024 {
+
+  identity rsa1024 {
     base "key-exchange-algorithm";
     description "Using rsa1024 for key exchange";
-    reference "RFC 4432: RSA Key Exchange for the Secure 
+    reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
- identity rsa2048 {
+  identity rsa2048 {
     base "key-exchange-algorithm";
     description "Using rsa2048 for key exchange";
-    reference "RFC 4432: RSA Key Exchange for the Secure 
+    reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
- identity rsa3076 {
+  identity rsa3076 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
- identity rsa4096 {
+  identity rsa4096 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
- identity rsa7680 {
+  identity rsa7680 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
- identity rsa15360
+  identity rsa15360 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
-  
- identity psk_only {
+
+  identity psk_only {
     base "key-exchange-algorithm";
     description "Using Pre-shared key for authentication and
-                 key exhange"
-    reference "RFC 4279: Pre-Shared Key Ciphersuites for 
+                 key exhange";
+    reference "RFC 4279: Pre-Shared Key Ciphersuites for
                Transport Layer Security (TLS)";
   }
- 
- identity dhe_ffdhe2048 {
+
+  identity dhe_ffdhe2048 {
     base "key-exchange-algorithm";
-    description "Ephemeral Diffie Hellman key exhange with 2048 
+    description "Ephemeral Diffie Hellman key exhange with 2048
                  bit finite field ";
-    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman
                Ephemeral Parameters for Transport Layer Security
                (TLS)";
- }
- 
+  }
+
   identity dhe_ffdhe3072 {
     base "key-exchange-algorithm";
-    description "Ephemeral Diffie Hellman key exhange with 3072 
+    description "Ephemeral Diffie Hellman key exhange with 3072
                  bit finite field ";
-    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
-               Ephemeral Parameters for Transport Layer Security
-               (TLS)";
-  }
-  
-   identity dhe_ffdhe4096 {
-    base "key-exchange-algorithm";
-    description "Ephemeral Diffie Hellman key exhange with 4096 
-                 bit finite field ";
-    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
-               Ephemeral Parameters for Transport Layer Security
-               (TLS)";
-  }
-  
-   identity dhe_ffdhe6144 {
-    base "key-exchange-algorithm";
-    description "Ephemeral Diffie Hellman key exhange with 6144 
-                 bit finite field ";
-    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
-               Ephemeral Parameters for Transport Layer Security
-               (TLS)";
-  }
-  
- identity dhe_ffdhe8192 {
-    base "key-exchange-algorithm";
-    description "Ephemeral Diffie Hellman key exhange with 2048 
-                 bit finite field ";
-    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman 
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman
                Ephemeral Parameters for Transport Layer Security
                (TLS)";
   }
 
-identity psk_dhe_ffdhe2048 {
+  identity dhe_ffdhe4096 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 4096
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+
+  identity dhe_ffdhe6144 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 6144
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+
+  identity dhe_ffdhe8192 {
+    base "key-exchange-algorithm";
+    description "Ephemeral Diffie Hellman key exhange with 2048
+                 bit finite field ";
+    reference "RFC 7919: Negotiated Finite Field Diffie-Hellman
+               Ephemeral Parameters for Transport Layer Security
+               (TLS)";
+  }
+
+  identity psk_dhe_ffdhe2048 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-identity psk_dhe_ffdhe3072 {
+  identity psk_dhe_ffdhe3072 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-identity psk_dhe_ffdhe4096 {
+  identity psk_dhe_ffdhe4096 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-identity psk_dhe_ffdhe6144 {
+  identity psk_dhe_ffdhe6144 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-identity psk_dhe_ffdhe8192 {
+  identity psk_dhe_ffdhe8192 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-identity ecdhe_secp256r1 {
+  identity ecdhe_secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
-    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
-               Cipher Suites for Transport Layer Security 
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC)
+               Cipher Suites for Transport Layer Security
                (TLS) Versions 1.2 and Earlier";
   }
 
-identity ecdhe_secp384r1 {
+  identity ecdhe_secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp384r1";
-    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
-               Cipher Suites for Transport Layer Security 
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC)
+               Cipher Suites for Transport Layer Security
                (TLS) Versions 1.2 and Earlier";
- }
+  }
 
-identity ecdhe_secp521r1 {
+  identity ecdhe_secp521r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp521r1";
-    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
-               Cipher Suites for Transport Layer Security 
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC)
+               Cipher Suites for Transport Layer Security
                (TLS) Versions 1.2 and Earlier";
- }
+  }
 
-identity ecdhe_x25519 {
+  identity ecdhe_x25519 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
-    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
-               Cipher Suites for Transport Layer Security 
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC)
+               Cipher Suites for Transport Layer Security
                (TLS) Versions 1.2 and Earlier";
- }
- 
- identity ecdhe_x448 {
+  }
+
+  identity ecdhe_x448 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x448";
-    reference "RFC 8422: Elliptic Curve Cryptography (ECC) 
-               Cipher Suites for Transport Layer Security 
+    reference "RFC 8422: Elliptic Curve Cryptography (ECC)
+               Cipher Suites for Transport Layer Security
                (TLS) Versions 1.2 and Earlier";
- }
+  }
 
- identity psk_ecdhe_secp256r1 {
+  identity psk_ecdhe_secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
     reference "";
- }
+  }
 
- identity psk_ecdhe_secp384r1 {
+  identity psk_ecdhe_secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp384r1";
     reference "";
- }
+  }
 
- identity psk_ecdhe_secp521r1 {
+  identity psk_ecdhe_secp521r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp521r1";
     reference "";
- }
- 
-identity psk_ecdhe_x25519 {
+  }
+
+  identity psk_ecdhe_x25519 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
     reference "";
- }
+  }
 
-identity psk_ecdhe_x448 {
+  identity psk_ecdhe_x448 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
     reference "";
- }
+  }
 
- 
- identity diffie-hellman-group1-sha1 {
+  identity diffie-hellman-group1-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group1 and SHA1 for key exchange";
-    reference "RFC 4253: The Secure Shell (SSH) Transport 
+    reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
-  
- identity diffie-hellman-group14-sha1 {
+
+  identity diffie-hellman-group14-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA1 for key exchange";
-    reference "RFC 4253: The Secure Shell (SSH) Transport 
+    reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
-  
+
  identity diffie-hellman-group14-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) 
-               Diffie-Hellman (DH) Key Exchange (KEX) Groups 
+    reference "RFC 8268: More Modular Exponentiation (MODP)
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups
                for Secure Shell (SSH)";
   }
-  
- identity diffie-hellman-group15-sha256 {
+
+  identity diffie-hellman-group15-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group15 5nd SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) 
-               Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+    reference "RFC 8268: More Modular Exponentiation (MODP)
+               Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
-  
- identity diffie-hellman-group16-sha256 {
+
+  identity diffie-hellman-group16-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group16 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) 
+    reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
-  
- identity diffie-hellman-group17-sha256 {
+
+  identity diffie-hellman-group17-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group17 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) 
+    reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
-  
+
   identity diffie-hellman-group18-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group18 and SHA256 for key exchange";
-    reference "RFC 8268: More Modular Exponentiation (MODP) 
+    reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
-  
-identity ecdh-sha2-secp256r1 {
+
+  identity ecdh-sha2-secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
     reference "";
- }
+  }
 
-identity ecdh-sha2-secp384r1 {
+  identity ecdh-sha2-secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
     reference "";
- }
+  }
 
-  
   /*********************************************************/
   /*   Typedefs for identityrefs to above base identites   */
   /*********************************************************/
@@ -891,7 +892,7 @@ identity ecdh-sha2-secp384r1 {
     type identityref {
       base "hash-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
        identityref to the 'hash-algorithm' base identity.";
   }
@@ -900,50 +901,49 @@ identity ecdh-sha2-secp384r1 {
     type identityref {
       base "signature-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
        identityref to the 'key-algorithm' base identity.";
   }
 
- typedef hmac-algorithm-ref {
+  typedef mac-algorithm-ref {
     type identityref {
-      base "hmac-algorithm";
+      base "mac-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
-       identityref to the 'hmac-algorithm' base identity.";
+       identityref to the 'mac-algorithm' base identity.";
   }
 
- typedef symmetric-key-encryption-algorithm-ref {
+  typedef symmetric-key-encryption-algorithm-ref {
     type identityref {
       base "symmetric-key-encryption-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
-       identityref to the 'symmetric-encryption-algorithm' base 
-       identity.";
+       identityref to the 'symmetric-key-encryption-algorithm'
+       base identity.";
   }
-  
-   typedef asymmetric-key-encryption-algorithm-ref {
+
+  typedef asymmetric-key-encryption-algorithm-ref {
     type identityref {
       base "asymmetric-key-encryption-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
-       identityref to the 'asymmetric-encryption-algorithm' base 
-       identity.";
+       identityref to the 'asymmetric-key-encryption-algorithm'
+       base identity.";
   }
-  
-   typedef key-exchange-algorithm-ref {
+
+  typedef key-exchange-algorithm-ref {
     type identityref {
       base "key-exchange-algorithm";
     }
-    description 
+    description
       "This typedef enables importing modules to easily define an
-       identityref to the 'diffie-hellman-key-exchange-algorithm' 
-       base identity.";
+       identityref to the 'key-exchange-algorithm' base identity.";
   }
-  
+
   /***************************************************/
   /*   Typedefs for ASN.1 structures from RFC 5280   */
   /***************************************************/
@@ -960,7 +960,7 @@ identity ecdh-sha2-secp384r1 {
          and Certificate Revocation List (CRL) Profile
        ITU-T X.690:
          Information technology – ASN.1 encoding rules:
-         Specification of Basic Encoding Rules (BER), 
+         Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
   }
@@ -977,7 +977,7 @@ identity ecdh-sha2-secp384r1 {
          and Certificate Revocation List (CRL) Profile
        ITU-T X.690:
          Information technology – ASN.1 encoding rules:
-         Specification of Basic Encoding Rules (BER), 
+         Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
   }
@@ -997,7 +997,7 @@ identity ecdh-sha2-secp384r1 {
          Cryptographic Message Syntax (CMS)
        ITU-T X.690:
          Information technology – ASN.1 encoding rules:
-         Specification of Basic Encoding Rules (BER), 
+         Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
   }
@@ -1010,7 +1010,7 @@ identity ecdh-sha2-secp384r1 {
     reference
       "RFC 5652: Cryptographic Message Syntax (CMS)";
   }
- 
+
   typedef signed-data-cms {
     type cms;
     description
@@ -1167,7 +1167,7 @@ identity ecdh-sha2-secp384r1 {
     description
       "A public key.";
     leaf algorithm {
-      type ct:key-algorithm-ref;
+      type key-exchange-algorithm-ref;
       description
         "Identifies the key's algorithm.  More specifically,
          this leaf specifies how the 'public-key' binary leaf
@@ -1181,9 +1181,9 @@ identity ecdh-sha2-secp384r1 {
         "A binary that contains the value of the public key.  The
          interpretation of the content is defined by the key
          algorithm.  For example, a DSA key is an integer, an RSA
-         key is represented as RSAPublicKey as defined in 
+         key is represented as RSAPublicKey as defined in
          RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-         is represented using the 'publicKey' described in 
+         is represented using the 'publicKey' described in
          RFC 5915.";
       reference
         "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
@@ -1206,7 +1206,7 @@ identity ecdh-sha2-secp384r1 {
             description
              "The private key is inaccessible due to being
               protected by the system (e.g., a cryptographic
-              hardware module).  It is not possible to 
+              hardware module).  It is not possible to
               configure a permanently hidden key, as a real
               private key value must be set.  Permanently
               hidden keys cannot be archived or backed up.";
@@ -1217,26 +1217,27 @@ identity ecdh-sha2-secp384r1 {
         "A binary that contains the value of the private key.  The
          interpretation of the content is defined by the key
          algorithm.  For example, a DSA key is an integer, an RSA
-         key is represented as RSAPrivateKey as defined in 
+         key is represented as RSAPrivateKey as defined in
          RFC 8017, and an Elliptic Curve Cryptography (ECC) key
          is represented as ECPrivateKey as defined in RFC 5915.";
       reference
         "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
                    RSA Cryptography Specifications Version 2.2.
          RFC 5915: Elliptic Curve Private Key Structure.";
-    }
+    } // end private-key
+
     action generate-hidden-key {
       description
         "Requests the device to generate a hidden key using the
          specified asymmetric key algorithm.  This action is
-         used to request the system the generate a key that 
+         used to request the system to generate a key that
          is 'permanently-hidden', perhaps protected by a
          cryptographic hardware module.  The resulting
          asymmetric key values are considered operational
          state and hence present only in <operational>.";
       input {
         leaf algorithm {
-          type ct:key-algorithm-ref;
+          type key-exchange-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
@@ -1246,7 +1247,8 @@ identity ecdh-sha2-secp384r1 {
         }
       }
     } // end generate-hidden-key
-     action install-hidden-key {
+
+    action install-hidden-key {
       description
         "Requests the device to load the specified values into
          a hidden key.  The resulting asymmetric key values are
@@ -1254,7 +1256,7 @@ identity ecdh-sha2-secp384r1 {
          <operational>.";
       input {
         leaf algorithm {
-          type ct:key-algorithm-ref;
+          type key-exchange-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
@@ -1265,12 +1267,12 @@ identity ecdh-sha2-secp384r1 {
         leaf public-key {
           type binary;
           description
-            "A binary that contains the value of the public key. 
+            "A binary that contains the value of the public key.
              The interpretation of the content is defined by the key
              algorithm.  For example, a DSA key is an integer, an
-             RSA key is represented as RSAPublicKey as defined in 
+             RSA key is represented as RSAPublicKey as defined in
              RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-             is represented using the 'publicKey' described in 
+             is represented using the 'publicKey' described in
              RFC 5915.";
           reference
             "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
@@ -1283,7 +1285,7 @@ identity ecdh-sha2-secp384r1 {
             "A binary that contains the value of the private key.
              The interpretation of the content is defined by the key
              algorithm.  For example, a DSA key is an integer, an RSA
-             key is represented as RSAPrivateKey as defined in 
+             key is represented as RSAPrivateKey as defined in
              RFC 8017, and an Elliptic Curve Cryptography (ECC) key
              is represented as ECPrivateKey as defined in RFC 5915.";
           reference
@@ -1299,9 +1301,8 @@ identity ecdh-sha2-secp384r1 {
   grouping trust-anchor-cert-grouping {
     description
      "A certificate, and a notification for when it might expire.";
-    leaf cert {
-      type ct:trust-anchor-cert-cms;
-      mandatory true;
+    leaf certificate {
+      type trust-anchor-cert-cms;
       description
        "The binary certificate data for this certificate.";
       reference
@@ -1313,9 +1314,8 @@ identity ecdh-sha2-secp384r1 {
   grouping end-entity-cert-grouping {
     description
      "A certificate, and a notification for when it might expire.";
-    leaf cert {
-      type ct:end-entity-cert-cms;
-      mandatory true;
+    leaf certificate {
+      type end-entity-cert-cms;
       description
        "The binary certificate data for this certificate.";
       reference
@@ -1331,7 +1331,7 @@ identity ecdh-sha2-secp384r1 {
          then once a day thereafter until the issue is resolved.";
       leaf expiration-date {
         type yang:date-and-time;
-        //mandatory true;
+        //mandatory true; (commented out due to yanglint bug)
         description
           "Identifies the expiration date on the certificate.";
       }
@@ -1345,25 +1345,27 @@ identity ecdh-sha2-secp384r1 {
     uses asymmetric-key-pair-grouping;
     container certificates {
       description
-        "Certificates associated with this asymmetric key.  
+        "Certificates associated with this asymmetric key.
          More than one certificate supports, for instance,
          a TPM-protected asymmetric key that has both IDevID
          and LDevID certificates associated.";
       list certificate {
-        must "../../algorithm
-               and ../../public-key
-                 and ../../private-key";
         key name;
         description
           "A certificate for this asymmetric key.";
         leaf name {
           type string;
           description
-            "An arbitrary name for the certificate.";
+            "An arbitrary name for the certificate.  If the name
+             matches the name of a certificate that exists
+             independently in <operational> (i.e., an IDevID),
+             then the 'cert' node MUST NOT be configured.";
+
         }
         uses end-entity-cert-grouping;
       } // end certificate
     } // end certificates
+
     action generate-certificate-signing-request {
       description
         "Generates a certificate signing request structure for
@@ -1388,7 +1390,7 @@ identity ecdh-sha2-secp384r1 {
                          Specification Version 1.7.
              ITU-T X.690:
                Information technology – ASN.1 encoding rules:
-               Specification of Basic Encoding Rules (BER), 
+               Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
         }
@@ -1405,7 +1407,7 @@ identity ecdh-sha2-secp384r1 {
                          Specification Version 1.7.
              ITU-T X.690:
                Information technology – ASN.1 encoding rules:
-               Specification of Basic Encoding Rules (BER), 
+               Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
         }
@@ -1425,7 +1427,7 @@ identity ecdh-sha2-secp384r1 {
                          Specification Version 1.7.
              ITU-T X.690:
                Information technology – ASN.1 encoding rules:
-               Specification of Basic Encoding Rules (BER), 
+               Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
 

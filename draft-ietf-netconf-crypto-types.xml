@@ -26,12 +26,18 @@
                 <email>kwatsen@juniper.net</email>
             </address>
         </author>
+        <author initials="H.W." surname="Wang" fullname="Wang Haiguang">
+            <organization>Huawei</organization>
+            <address>
+                <email>wang.haiguang.shieldlab@huawei.com</email>
+            </address>
+        </author>
         <date/>
         <area>Operations</area>
         <workgroup>NETCONF Working Group</workgroup>
         <abstract>
-          <t>This document defines YANG identities and typedefs useful for
-          cryptographic applications.</t>
+          <t>This document defines YANG identities, typedefs, the groupings
+          useful for cryptographic applications.</t>
         </abstract>
         <note title="Editorial Note (To be removed by RFC Editor)">
           <t>This draft contains many placeholder values that need to be replaced
@@ -53,7 +59,7 @@
           </t>
           <t>The following Appendix section is to be removed prior to publication:
             <list  style="symbols">
-              <t>Appendix A.  Change Log</t>
+              <t>Appendix B.  Change Log</t>
             </list>
           </t>
         </note>
@@ -62,7 +68,7 @@
       <section title="Introduction">
 
         <t>This document defines a YANG 1.1 <xref target="RFC7950"/> module
-        specifying identities and typedefs useful for cryptography.</t>
+        specifying identities, typedefs, and groupings useful for cryptography.</t>
 
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
@@ -74,9 +80,9 @@
       <section title="The Crypto Types Module">
 
         <section title="Tree Diagram">
-          <t>This section provides a tree diagrams <xref target="RFC8340"/> for
-          the "ietf-crypto-types" module that, in addition to typedefs and identities,
-          also presents groupings intended for external usage.</t>
+          <t>This section provides a tree diagram <xref target="RFC8340"/> for
+          the "ietf-crypto-types" module.  Only the groupings as represented,
+          as tree diagrams have no means to represent identities or typedefs.</t>
 
           <t><!--The following tree diagram has used groupings expanded:-->
             <figure>
@@ -120,9 +126,9 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         needed, they can be defined by another module or added into a future
         version of this document.</t>
 
-        <t>The YANG module defined in this document specifies only typedefs
-        and identities, and hence there are no YANG-specific
-        security considerations that need to be addressed.</t>
+        <t>NACM:default-deny-all is set on asymmetric-key-pair-grouping's
+        "private-key" node, as private keys should never be revealed without
+        explicit permission.</t>
       </section>
 
       <section title="IANA Considerations">
@@ -318,7 +324,19 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
               <t>Moved groupings from the draft-ietf-netconf-keystore here.</t>
             </list>
           </t>
-
+        </section>
+        <section title="01 to 02">
+          <t>
+            <list style="symbols">
+              <t>Removed unwanted "mandatory" and "must" statements.</t>
+              <t>Added many new crypto algorithms (thanks Haiguang!)</t>
+              <t>Clarified in asymmetric-key-pair-with-certs-grouping,
+                 in certificates/certificate/name/description, that 
+                 if the name MUST not match the name of a certificate
+                 that exists independently in &lt;operational&gt;, enabling
+                 certs installed by the manufacturer (e.g., an IDevID).</t>
+            </list>
+          </t>
         </section>
       </section>
 
