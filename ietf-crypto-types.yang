@@ -60,25 +60,25 @@ module ietf-crypto-types {
       "A base identity for hash algorithm verification.";
   }
 
-  identity sha-224 {
+  identity hash-sha-224 {
     base "hash-algorithm";
     description "The SHA-224 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
 
-  identity sha-256 {
+  identity hash-sha-256 {
     base "hash-algorithm";
     description "The SHA-256 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
 
-  identity sha-384 {
+  identity hash-sha-384 {
     base "hash-algorithm";
     description "The SHA-384 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
   }
 
-  identity sha-512 {
+  identity hash-sha-512 {
     base "hash-algorithm";
     description "The SHA-384 algorithm.";
     reference "RFC 6234: US Secure Hash Algorithms.";
@@ -642,49 +642,49 @@ module ietf-crypto-types {
        algorithm.";
   }
 
-  identity kxg-rsa1024 {
+  identity kex-rsa1024 {
     base "key-exchange-algorithm";
     description "Using rsa1024 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity kxg-rsa2048 {
+  identity kex-rsa2048 {
     base "key-exchange-algorithm";
     description "Using rsa2048 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity kxg-rsa3076 {
+  identity kex-rsa3076 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity kxg-rsa4096 {
+  identity kex-rsa4096 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";  
   }
 
-  identity kxg-rsa7680 {
+  identity kex-rsa7680 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";  
   }
 
-  identity kxg-rsa15360 {
+  identity kex-rsa15360 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity kxg-psk-only {
+  identity kex-psk-only {
     base "key-exchange-algorithm";
     description "Using Pre-shared key for authentication and
                  key exhange";
@@ -692,7 +692,7 @@ module ietf-crypto-types {
                Transport Layer Security (TLS)";
   }
 
-  identity kxg-dhe-ffdhe2048 {
+  identity kex-dhe-ffdhe2048 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 2048
                  bit finite field ";
@@ -701,7 +701,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity kxg-dhe-ffdhe3072 {
+  identity kex-dhe-ffdhe3072 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 3072
                  bit finite field ";
@@ -710,7 +710,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity kxg-dhe-ffdhe4096 {
+  identity kex-dhe-ffdhe4096 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 4096
                  bit finite field ";
@@ -719,7 +719,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity dhe-ffdhe6144 {
+  identity kex-dhe-ffdhe6144 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 6144
                  bit finite field ";
@@ -728,7 +728,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity kxg-dhe-ffdhe8192 {
+  identity kex-dhe-ffdhe8192 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 2048
                  bit finite field ";
@@ -737,7 +737,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity kxg-psk-dhe-ffdhe2048 {
+  identity kex-psk-dhe-ffdhe2048 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  Diffie-Hellman key generation mechansim, where
@@ -746,7 +746,7 @@ module ietf-crypto-types {
                Protocol Version 1.3";
   }
 
-  identity kxg-psk-dhe-ffdhe3072 {
+  identity kex-psk-dhe-ffdhe3072 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  Diffie-Hellman key generation mechansim, where
@@ -754,7 +754,7 @@ module ietf-crypto-types {
     reference "RFC 8446: The Transport Layer Security (TLS) 
                Protocol Version 1.3";  }
 
-  identity kxg-psk-dhe-ffdhe4096 {
+  identity kex-psk-dhe-ffdhe4096 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  Diffie-Hellman key generation mechansim, where
@@ -762,7 +762,7 @@ module ietf-crypto-types {
     reference "RFC 8446: The Transport Layer Security (TLS) 
                Protocol Version 1.3";  }
 
-  identity kxg-psk-dhe-ffdhe6144 {
+  identity kex-psk-dhe-ffdhe6144 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  Diffie-Hellman key generation mechansim, where
@@ -770,7 +770,7 @@ module ietf-crypto-types {
     reference "RFC 8446: The Transport Layer Security (TLS) 
                Protocol Version 1.3";  }
 
-  identity kxg-psk-dhe-ffdhe8192 {
+  identity kex-psk-dhe-ffdhe8192 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  Diffie-Hellman key generation mechansim, where
@@ -779,7 +779,7 @@ module ietf-crypto-types {
                Protocol Version 1.3";  
   }
 
-  identity kxg-ecdhe-secp256r1 {
+  identity kex-ecdhe-secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
@@ -788,7 +788,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity kxg-ecdhe-secp384r1 {
+  identity kex-ecdhe-secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp384r1";
@@ -797,7 +797,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity kxg-ecdhe-secp521r1 {
+  identity kex-ecdhe-secp521r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp521r1";
@@ -806,7 +806,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity kxg-ecdhe-x25519 {
+  identity kex-ecdhe-x25519 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
@@ -815,7 +815,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity kxg-ecdhe-x448 {
+  identity kex-ecdhe-x448 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x448";
@@ -824,7 +824,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity kxg-psk-ecdhe-secp256r1 {
+  identity kex-psk-ecdhe-secp256r1 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  elliptic group-based Ephemeral Diffie 
@@ -833,7 +833,7 @@ module ietf-crypto-types {
     reference "";
   }
 
-  identity kxg-psk-ecdhe-secp384r1 {
+  identity kex-psk-ecdhe-secp384r1 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  elliptic group-based Ephemeral Diffie 
@@ -843,7 +843,7 @@ module ietf-crypto-types {
                Protocol Version 1.3";
   }
 
-  identity kxg-psk-ecdhe-secp521r1 {
+  identity kex-psk-ecdhe-secp521r1 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  elliptic group-based Ephemeral Diffie 
@@ -853,7 +853,7 @@ module ietf-crypto-types {
                Protocol Version 1.3";
   }
 
-  identity kxg-psk-ecdhe-x25519 {
+  identity kex-psk-ecdhe-x25519 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  elliptic group-based Ephemeral Diffie 
@@ -862,7 +862,7 @@ module ietf-crypto-types {
                Protocol Version 1.3";
   }
 
-  identity kxg-psk-ecdhe-x448 {
+  identity kex-psk-ecdhe-x448 {
     base "key-exchange-algorithm";
     description "Key exchange using pre-shared key with 
                  elliptic group-based Ephemeral Diffie 
@@ -871,21 +871,21 @@ module ietf-crypto-types {
                Protocol Version 1.3";
   }
 
-  identity kxg-diffie-hellman-group1-sha1 {
+  identity kex-diffie-hellman-group1-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group1 and SHA1 for key exchange";
     reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
 
-  identity kxg-diffie-hellman-group14-sha1 {
+  identity kex-diffie-hellman-group14-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA1 for key exchange";
     reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
 
- identity kxg-diffie-hellman-group14-sha256 {
+ identity kex-diffie-hellman-group14-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -893,7 +893,7 @@ module ietf-crypto-types {
                for Secure Shell (SSH)";
   }
 
-  identity kxg-diffie-hellman-group15-sha256 {
+  identity kex-diffie-hellman-group15-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group15 5nd SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -901,7 +901,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity kxg-diffie-hellman-group16-sha256 {
+  identity kex-diffie-hellman-group16-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group16 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -909,7 +909,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity kxg-diffie-hellman-group17-sha256 {
+  identity kex-diffie-hellman-group17-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group17 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -917,7 +917,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity kxg-diffie-hellman-group18-sha256 {
+  identity kex-diffie-hellman-group18-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group18 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -925,7 +925,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity kxg-ecdh-sha2-secp256r1 {
+  identity kex-ecdh-sha2-secp256r1 {
     base "key-exchange-algorithm";
     description "Elliptic curve-based Diffie Hellman key exhange
                  over curve secp256r1 and using SHA2 for MAC 
@@ -934,7 +934,7 @@ module ietf-crypto-types {
                Shell (SSH)";
   }
 
-  identity kxg-ecdh-sha2-secp384r1 {
+  identity kex-ecdh-sha2-secp384r1 {
     base "key-exchange-algorithm";
     description "Elliptic curve-based Diffie Hellman key exhange
                  over curve secp256r1 and using SHA2 for MAC 
