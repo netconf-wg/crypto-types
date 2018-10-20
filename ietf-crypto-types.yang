@@ -52,7 +52,7 @@ module ietf-crypto-types {
 
 
   /*****************************************/
-  /*   Identities for Hashing Algorithms   */
+  /*   Identities for Hash Algorithms   */
   /*****************************************/
 
   identity hash-algorithm {
@@ -94,7 +94,7 @@ module ietf-crypto-types {
        derived.";
   }
 
-  identity rsa1024 {
+  identity enc-rsa1024 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 1024-bit key.";
@@ -103,7 +103,7 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  identity rsa2048 {
+  identity enc-rsa2048 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 2048-bit key.";
@@ -112,7 +112,7 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  identity rsa3072 {
+  identity enc-rsa3072 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 3072-bit key.";
@@ -121,7 +121,7 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  identity rsa4096 {
+  identity enc-rsa4096 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 4096-bit key.";
@@ -130,7 +130,7 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  identity rsa7680 {
+  identity enc-rsa7680 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 7680-bit key.";
@@ -139,7 +139,7 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  identity rsa15360 {
+  identity enc-rsa15360 {
     base asymmetric-key-encryption-algorithm;
     description
       "The RSA encryption algorithm using a 15360-bit key.";
@@ -154,36 +154,36 @@ module ietf-crypto-types {
 
   identity mac-algorithm {
     description
-      "A base identity for hmac generation.";
+      "A base identity for mac generation.";
   }
 
-  identity hmac-sha1 {
+  identity mac-hmac-sha1 {
     base "mac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
   }
 
-  identity hmac-sha1-96 {
+  identity mac-hmac-sha1-96 {
     base "mac-algorithm";
     description "Generating MAC using SHA1 hash function";
     reference "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
   }
 
-  identity hmac-sha2-224 {
+  identity mac-hmac-sha2-224 {
     base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
-  identity hmac-sha2-256 {
+  identity mac-hmac-sha2-256 {
     base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
-  identity hmac-sha2-256-128 {
+  identity mac-hmac-sha2-256-128 {
     base "mac-algorithm";
     description "Generating a 256 bits MAC using SHA2 hash function
                  and trunicate it to 128 bits";
@@ -191,14 +191,14 @@ module ietf-crypto-types {
                HMAC-SHA-512 with IPsec";
   }
 
-  identity hmac-sha2-384 {
+  identity mac-hmac-sha2-384 {
     base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
-  identity hmac-sha2-384-192 {
+  identity mac-hmac-sha2-384-192 {
     base "mac-algorithm";
     description "Generating a 384 bits MAC using SHA2 hash function
                  and trunicate it to 192 bits";
@@ -206,14 +206,14 @@ module ietf-crypto-types {
                HMAC-SHA-512 with IPsec";
   }
 
-  identity hmac-sha2-512 {
+  identity mac-hmac-sha2-512 {
     base "mac-algorithm";
     description "Generating MAC using SHA2 hash function";
     reference "RFC 6234: US Secure Hash Algorithms (SHA and SHA-based
                HMAC and HKDF)";
   }
 
-  identity hmac-sha2-512-256 {
+  identity mac-hmac-sha2-512-256 {
     base "mac-algorithm";
     description "Generating a 512 bits MAC using SHA2 hash function
                  and trunicating it to 256 bits";
@@ -221,7 +221,7 @@ module ietf-crypto-types {
                HMAC-SHA-512 with IPsec";
   }
 
-  identity aes-128-gmac {
+  identity mac-aes-128-gmac {
     base "mac-algorithm";
     description "use of the Advanced Encryption Standard (AES)
                  Galois Message Authentication Code (GMAC) as a
@@ -230,55 +230,55 @@ module ietf-crypto-types {
                (GMAC) in IPsec ESP and AH";
   }
 
-  identity aes-192-gmac {
+  identity mac-aes-192-gmac {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-256-gmac {
+  identity mac-aes-256-gmac {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-cmc-96 {
+  identity mac-aes-cmc-96 {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-cmc-128 {
+  identity mac-aes-cmc-128 {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-128-ccm {
+  identity mac-aes-128-ccm {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-256-ccm {
+  identity mac-aes-256-ccm {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-128-gcm {
+  identity mac-aes-128-gcm {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity aes-256-gcm {
+  identity mac-aes-256-gcm {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
   }
 
-  identity chacha20-poly1305 {
+  identity mac-chacha20-poly1305 {
     base "mac-algorithm";
     description "Generating MAC using ...";
     reference " ";
@@ -294,7 +294,7 @@ module ietf-crypto-types {
       "A base identity for encryption algorithm.";
   }
 
-  identity aes-128-cbc {
+  identity enc-aes-128-cbc {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CBC mode with
                  a key length of 128 bits";
@@ -303,7 +303,7 @@ module ietf-crypto-types {
                Syntax (CMS)";
   }
 
-  identity aes-192-cbc {
+  identity enc-aes-192-cbc {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CBC mode with
                  a key length of 192 bits";
@@ -312,7 +312,7 @@ module ietf-crypto-types {
                Syntax (CMS)";
   }
 
-  identity aes-256-cbc {
+  identity enc-aes-256-cbc {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CBC mode with
                  a key length of 256 bits";
@@ -321,7 +321,7 @@ module ietf-crypto-types {
                Syntax (CMS)";
   }
 
-  identity aes-128-ctr {
+  identity enc-aes-128-ctr {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CTR mode with
                  a key length of 128 bits";
@@ -330,7 +330,7 @@ module ietf-crypto-types {
                Payload (ESP)";
   }
 
-  identity aes-192-ctr {
+  identity enc-aes-192-ctr {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CTR mode with
                  a key length of 192 bits";
@@ -339,7 +339,7 @@ module ietf-crypto-types {
                Payload (ESP)";
   }
 
-  identity aes-256-ctr {
+  identity enc-aes-256-ctr {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CTR mode with
                  a key length of 256 bits";
@@ -348,7 +348,7 @@ module ietf-crypto-types {
                Payload (ESP)";
   }
 
-  identity aes-128-ccm {
+  identity enc-aes-128-ccm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CCM mode with
                  a key length of 128 bits";
@@ -357,7 +357,7 @@ module ietf-crypto-types {
                (ESP)";
   }
 
-  identity aes-192-ccm {
+  identity enc-aes-192-ccm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CCM mode with
                  a key length of 192 bits";
@@ -366,7 +366,7 @@ module ietf-crypto-types {
                (ESP)";
   }
 
-  identity aes-256-ccm {
+  identity enc-aes-256-ccm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in CCM mode with
                  a key length of 256 bits";
@@ -375,7 +375,7 @@ module ietf-crypto-types {
                (ESP)";
   }
 
-  identity aes-128-gcm {
+  identity enc-aes-128-gcm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in GCM mode with
                  a key length of 128 bits";
@@ -383,7 +383,7 @@ module ietf-crypto-types {
                IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity aes-192-gcm {
+  identity enc-aes-192-gcm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in GCM mode with
                  a key length of 192 bits";
@@ -391,7 +391,7 @@ module ietf-crypto-types {
                IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity aes-256-gcm {
+  identity enc-aes-256-gcm {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with AES algorithm in GCM mode with
                  a key length of 256 bits";
@@ -399,7 +399,7 @@ module ietf-crypto-types {
                IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity chacha20-poly1305 {
+  identity enc-chacha20-poly1305 {
     base "symmetric-key-encryption-algorithm";
     description "encrypt message with chacha20 algorithm and
                  generate MAC with POLY1305";
@@ -415,7 +415,7 @@ module ietf-crypto-types {
       "A base identity for asymmetric key encryption algorithm.";
   }
 
-  identity rsa-pkcs1-sha1 {
+  identity sig-rsa-pkcs1-sha1 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1
@@ -425,7 +425,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pkcs1-sha256 {
+  identity sig-rsa-pkcs1-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA256
@@ -435,7 +435,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pkcs1-sha384 {
+  identity sig-rsa-pkcs1-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA384
@@ -445,7 +445,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pkcs1-sha512 {
+  identity sig-rsa-pkcs1-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA512
@@ -455,7 +455,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-rsae-sha256 {
+  identity sig-rsa-pss-rsae-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -467,7 +467,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-rsae-sha384 {
+  identity sig-rsa-pss-rsae-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -479,7 +479,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-rsae-sha512 {
+  identity sig-rsa-pss-rsae-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -491,7 +491,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-pss-sha256 {
+  identity sig-rsa-pss-pss-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -503,7 +503,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-pss-sha384 {
+  identity sig-rsa-pss-pss-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -515,7 +515,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity rsa-pss-pss-sha512 {
+  identity sig-rsa-pss-pss-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -527,7 +527,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity ecdsa-secp256r1-sha256 {
+  identity sig-ecdsa-secp256r1-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using ECDSA wtih curve name secp256r1
@@ -537,7 +537,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity ecdsa-secp384r1-sha384 {
+  identity sig-ecdsa-secp384r1-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using ECDSA wtih curve name secp384r1
@@ -547,7 +547,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity ecdsa-secp512r1-sha512 {
+  identity sig-ecdsa-secp512r1-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using ECDSA wtih curve name secp512r1
@@ -557,7 +557,7 @@ module ietf-crypto-types {
        1.3";
   }
 
-  identity ed25519 {
+  identity sig-ed25519 {
     base "signature-algorithm";
     description
       "The signature algorithm using EdDSA as defined in RFC8032 or
@@ -566,7 +566,7 @@ module ietf-crypto-types {
       "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
   }
 
-  identity ed448 {
+  identity sig-ed448 {
     base "signature-algorithm";
     description
       "The signature algorithm using EdDSA as defined in RFC8032 or
@@ -575,7 +575,7 @@ module ietf-crypto-types {
       "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
   }
 
-  identity eccsi {
+  identity sig-eccsi {
     base "signature-algorithm";
     description
       "The signature algorithm using ECCSI signature as defined in
@@ -585,17 +585,7 @@ module ietf-crypto-types {
        for Identity-Based Encryption (ECCSI)";
   }
 
-  identity eccsi {
-    base "signature-algorithm";
-    description
-      "The signature algorithm using ECCSI signature as defined in
-      RFC6507. ";
-    reference
-      "RFC 6507: Elliptic Curve-Based Certificateless Signatures
-       for Identity-Based Encryption (ECCSI)";
-  }
-
-  identity dsa-sha1 {
+  identity sig-dsa-sha1 {
     base "signature-algorithm";
     description
       "The signature algorithm using DSA algorithm with SHA1 for
@@ -615,45 +605,45 @@ module ietf-crypto-types {
        algorithm.";
   }
 
-  identity rsa1024 {
+  identity kxg-rsa1024 {
     base "key-exchange-algorithm";
     description "Using rsa1024 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity rsa2048 {
+  identity kxg-rsa2048 {
     base "key-exchange-algorithm";
     description "Using rsa2048 for key exchange";
     reference "RFC 4432: RSA Key Exchange for the Secure
                Shell (SSH) Transport Layer Protocoll";
   }
 
-  identity rsa3076 {
+  identity kxg-rsa3076 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
-  identity rsa4096 {
+  identity kxg-rsa4096 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
-  identity rsa7680 {
+  identity kxg-rsa7680 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
-  identity rsa15360 {
+  identity kxg-rsa15360 {
     base "key-exchange-algorithm";
     description "Using rsa3076 for key exchange";
     reference "RFC xxx:";
   }
 
-  identity psk_only {
+  identity kxg-psk-only {
     base "key-exchange-algorithm";
     description "Using Pre-shared key for authentication and
                  key exhange";
@@ -661,7 +651,7 @@ module ietf-crypto-types {
                Transport Layer Security (TLS)";
   }
 
-  identity dhe_ffdhe2048 {
+  identity kxg-dhe-ffdhe2048 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 2048
                  bit finite field ";
@@ -670,7 +660,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity dhe_ffdhe3072 {
+  identity kxg-dhe-ffdhe3072 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 3072
                  bit finite field ";
@@ -679,7 +669,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity dhe_ffdhe4096 {
+  identity kxg-dhe-ffdhe4096 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 4096
                  bit finite field ";
@@ -688,7 +678,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity dhe_ffdhe6144 {
+  identity dhe-ffdhe6144 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 6144
                  bit finite field ";
@@ -697,7 +687,7 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity dhe_ffdhe8192 {
+  identity kxg-dhe-ffdhe8192 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with 2048
                  bit finite field ";
@@ -706,37 +696,37 @@ module ietf-crypto-types {
                (TLS)";
   }
 
-  identity psk_dhe_ffdhe2048 {
+  identity kxg-psk-dhe-ffdhe2048 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-  identity psk_dhe_ffdhe3072 {
+  identity kxg-psk-dhe-ffdhe3072 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-  identity psk_dhe_ffdhe4096 {
+  identity kxg-psk-dhe-ffdhe4096 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-  identity psk_dhe_ffdhe6144 {
+  identity kxg-psk-dhe-ffdhe6144 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-  identity psk_dhe_ffdhe8192 {
+  identity kxg-psk-dhe-ffdhe8192 {
     base "key-exchange-algorithm";
     description " ";
     reference " ";
   }
 
-  identity ecdhe_secp256r1 {
+  identity kxg-ecdhe-secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
@@ -745,7 +735,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity ecdhe_secp384r1 {
+  identity kxg-ecdhe-secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp384r1";
@@ -754,7 +744,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity ecdhe_secp521r1 {
+  identity kxg-ecdhe-secp521r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp521r1";
@@ -763,7 +753,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity ecdhe_x25519 {
+  identity kxg-ecdhe-x25519 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
@@ -772,7 +762,7 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity ecdhe_x448 {
+  identity kxg-ecdhe-x448 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x448";
@@ -781,56 +771,56 @@ module ietf-crypto-types {
                (TLS) Versions 1.2 and Earlier";
   }
 
-  identity psk_ecdhe_secp256r1 {
+  identity kxg-psk-ecdhe-secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
     reference "";
   }
 
-  identity psk_ecdhe_secp384r1 {
+  identity kxg-psk-ecdhe-secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp384r1";
     reference "";
   }
 
-  identity psk_ecdhe_secp521r1 {
+  identity kxg-psk-ecdhe-secp521r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp521r1";
     reference "";
   }
 
-  identity psk_ecdhe_x25519 {
+  identity kxg-psk-ecdhe-x25519 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
     reference "";
   }
 
-  identity psk_ecdhe_x448 {
+  identity kxg-psk-ecdhe-x448 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve x25519";
     reference "";
   }
 
-  identity diffie-hellman-group1-sha1 {
+  identity kxg-diffie-hellman-group1-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group1 and SHA1 for key exchange";
     reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
 
-  identity diffie-hellman-group14-sha1 {
+  identity kxg-diffie-hellman-group14-sha1 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA1 for key exchange";
     reference "RFC 4253: The Secure Shell (SSH) Transport
                Layer Protocol";
   }
 
- identity diffie-hellman-group14-sha256 {
+ identity kxg-diffie-hellman-group14-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group14 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -838,7 +828,7 @@ module ietf-crypto-types {
                for Secure Shell (SSH)";
   }
 
-  identity diffie-hellman-group15-sha256 {
+  identity kxg-diffie-hellman-group15-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group15 5nd SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -846,7 +836,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity diffie-hellman-group16-sha256 {
+  identity kxg-diffie-hellman-group16-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group16 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -854,7 +844,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity diffie-hellman-group17-sha256 {
+  identity kxg-diffie-hellman-group17-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group17 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -862,7 +852,7 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity diffie-hellman-group18-sha256 {
+  identity kxg-diffie-hellman-group18-sha256 {
     base "key-exchange-algorithm";
     description "Using DH group18 and SHA256 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
@@ -870,14 +860,14 @@ module ietf-crypto-types {
                Secure Shell (SSH)";
   }
 
-  identity ecdh-sha2-secp256r1 {
+  identity kxg-ecdh-sha2-secp256r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
     reference "";
   }
 
-  identity ecdh-sha2-secp384r1 {
+  identity kxg-ecdh-sha2-secp384r1 {
     base "key-exchange-algorithm";
     description "Ephemeral Diffie Hellman key exhange with
                  elliptic group over curve secp256r1";
