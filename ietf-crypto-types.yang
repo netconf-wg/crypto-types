@@ -85,68 +85,103 @@ module ietf-crypto-types {
   }
 
   /*********************************************************/
-  /*   Identities for asymmetric key encryption Algorithms */
+  /*   Identities for key Algorithms */
   /*********************************************************/
 
-  identity asymmetric-key-encryption-algorithm {
-    description
-      "Base identity from which all signature-algorithms are
-       derived.";
-  }
+     identity key-algorithm {
+       description
+         "Base identity from which all key-algorithms are derived.";
+     }
 
-  identity enc-rsa1024 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 1024-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa1024 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 1024-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
 
-  identity enc-rsa2048 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 2048-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa2048 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 2048-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
 
-  identity enc-rsa3072 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 3072-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa3072 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 3072-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
 
-  identity enc-rsa4096 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 4096-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa4096 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 4096-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
 
-  identity enc-rsa7680 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 7680-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa7680 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 7680-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
 
-  identity enc-rsa15360 {
-    base asymmetric-key-encryption-algorithm;
-    description
-      "The RSA encryption algorithm using a 15360-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
+     identity rsa15360 {
+       base key-algorithm;
+       description
+         "The RSA algorithm using a 15360-bit key.";
+       reference
+         "RFC 8017:
+            PKCS #1: RSA Cryptography Specifications Version 2.2.";
+     }
+
+     identity secp192r1 {
+       base key-algorithm;
+       description
+         "The secp192r1 algorithm.";
+       reference
+         "RFC 5480: Elliptic Curve Cryptography Subject Public
+                    Key Information.";
+     }
+
+     identity secp256r1 {
+       base key-algorithm;
+       description
+         "The secp256r1 algorithm.";
+       reference
+         "RFC 5480: Elliptic Curve Cryptography Subject Public
+                    Key Information.";
+     }
+
+     identity secp384r1 {
+       base key-algorithm;
+       description
+         "The secp384r1 algorithm.";
+       reference
+         "RFC 5480: Elliptic Curve Cryptography Subject Public
+                    Key Information.";
+     }
+
+     identity secp521r1 {
+       base key-algorithm;
+       description
+         "The secp521r1 algorithm.";
+       reference
+         "RFC 5480: Elliptic Curve Cryptography Subject Public
+                    Key Information.";
+     }
 
   /*************************************/
   /*   Identities for MAC Algorithms   */
@@ -830,7 +865,8 @@ module ietf-crypto-types {
                  elliptic group-based Ephemeral Diffie 
                  Hellman key exhange over curve 
                  secp256r1";
-    reference "";
+    reference "RFC 8446: The Transport Layer Security (TLS) 
+               Protocol Version 1.3";
   }
 
   identity kex-psk-ecdhe-secp384r1 {
@@ -984,9 +1020,9 @@ module ietf-crypto-types {
        base identity.";
   }
 
-  typedef asymmetric-key-encryption-algorithm-ref {
+  typedef key-algorithm-ref {
     type identityref {
-      base "asymmetric-key-encryption-algorithm";
+      base "key-algorithm";
     }
     description
       "This typedef enables importing modules to easily define an
