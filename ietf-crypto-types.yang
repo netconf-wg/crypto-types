@@ -929,33 +929,33 @@ module ietf-crypto-types {
                for Secure Shell (SSH)";
   }
 
-  identity kex-diffie-hellman-group15-sha256 {
+  identity kex-diffie-hellman-group15-sha512 {
     base "key-exchange-algorithm";
-    description "Using DH group15 5nd SHA256 for key exchange";
+    description "Using DH group15 5nd SHA512 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
 
-  identity kex-diffie-hellman-group16-sha256 {
+  identity kex-diffie-hellman-group16-sha512 {
     base "key-exchange-algorithm";
-    description "Using DH group16 and SHA256 for key exchange";
+    description "Using DH group16 and SHA512 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
 
-  identity kex-diffie-hellman-group17-sha256 {
+  identity kex-diffie-hellman-group17-sha512 {
     base "key-exchange-algorithm";
-    description "Using DH group17 and SHA256 for key exchange";
+    description "Using DH group17 and SHA512 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
   }
 
-  identity kex-diffie-hellman-group18-sha256 {
+  identity kex-diffie-hellman-group18-sha512 {
     base "key-exchange-algorithm";
-    description "Using DH group18 and SHA256 for key exchange";
+    description "Using DH group18 and SHA512 for key exchange";
     reference "RFC 8268: More Modular Exponentiation (MODP)
                Diffie-Hellman (DH) Key Exchange (KEX) Groups for
                Secure Shell (SSH)";
