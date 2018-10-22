@@ -1226,7 +1226,7 @@ module ietf-crypto-types {
     description
       "A public key.";
     leaf algorithm {
-      type key-exchange-algorithm-ref;
+      type asymmetric-key-encryption-algorithm-ref;
       description
         "Identifies the key's algorithm.  More specifically,
          this leaf specifies how the 'public-key' binary leaf
@@ -1296,7 +1296,7 @@ module ietf-crypto-types {
          state and hence present only in <operational>.";
       input {
         leaf algorithm {
-          type key-exchange-algorithm-ref;
+          type asymmetric-key-encryption-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
@@ -1315,7 +1315,7 @@ module ietf-crypto-types {
          <operational>.";
       input {
         leaf algorithm {
-          type key-exchange-algorithm-ref;
+          type asymmetric-key-encryption-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
@@ -1360,12 +1360,27 @@ module ietf-crypto-types {
   grouping trust-anchor-cert-grouping {
     description
      "A certificate, and a notification for when it might expire.";
-    leaf certificate {
+    leaf cert {
       type trust-anchor-cert-cms;
       description
        "The binary certificate data for this certificate.";
       reference
        "RFC YYYY: Common YANG Data Types for Cryptography";
+    }
+    notification certificate-expiration {
+      description
+        "A notification indicating that the configured certificate
+         is either about to expire or has already expired.  When to
+         send notifications is an implementation specific decision,
+         but it is RECOMMENDED that a notification be sent once a
+         month for 3 months, then once a week for four weeks, and
+         then once a day thereafter until the issue is resolved.";
+      leaf expiration-date {
+        type yang:date-and-time;
+        mandatory true;
+        description
+          "Identifies the expiration date on the certificate.";
+      }
     }
   } // end trust-anchor-cert-grouping
 
@@ -1373,7 +1388,7 @@ module ietf-crypto-types {
   grouping end-entity-cert-grouping {
     description
      "A certificate, and a notification for when it might expire.";
-    leaf certificate {
+    leaf cert {
       type end-entity-cert-cms;
       description
        "The binary certificate data for this certificate.";
@@ -1390,7 +1405,7 @@ module ietf-crypto-types {
          then once a day thereafter until the issue is resolved.";
       leaf expiration-date {
         type yang:date-and-time;
-        //mandatory true; (commented out due to yanglint bug)
+        mandatory true;
         description
           "Identifies the expiration date on the certificate.";
       }
