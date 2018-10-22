@@ -7,7 +7,7 @@
         <generate-hidden-key>
           <algorithm
            xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
-              ct:enc-rsa2048
+              ct:rsa2048
           </algorithm>
         </generate-hidden-key>
       </key>
