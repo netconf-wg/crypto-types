@@ -86,7 +86,7 @@
 
           <t><!--The following tree diagram has used groupings expanded:-->
             <figure>
-              <artwork><![CDATA[
+              <artwork name="ietf-crypto-types-tree.txt"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
 ]]></artwork>
             </figure>
@@ -110,7 +110,7 @@ INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
           <t>This module has an informational reference to <xref target="RFC6125"/>.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
+              <artwork name="ietf-crypto-types@YYYY-MM-DD.yang"><![CDATA[
 <CODE BEGINS> file "ietf-crypto-types@YYYY-MM-DD.yang"
 INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
 <CODE ENDS>
@@ -269,7 +269,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
           "trust-anchor-cert-grouping" grouping.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
+              <artwork name="ex-crypto-types-usage.yang"><![CDATA[
 INSERT_TEXT_FROM_FILE(ex-crypto-types-usage.yang)
 ]]></artwork>
             </figure>
@@ -279,7 +279,7 @@ INSERT_TEXT_FROM_FILE(ex-crypto-types-usage.yang)
           illustrates some configured keys.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
+              <artwork name="ex-crypto-types-usage.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
 ]]></artwork>
             </figure>
@@ -291,13 +291,14 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
           in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
-REQUEST
--------
+              <preamble>REQUEST</preamble>
+              <artwork name="ex-crypto-types-ghk-rpc.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc.xml)
-
-RESPONSE
---------
+]]></artwork>
+            </figure>
+            <figure>
+              <preamble>RESPONSE</preamble>
+              <artwork name="ex-crypto-types-ghk-rpc-reply.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc-reply.xml)
 ]]></artwork>
             </figure>
@@ -309,13 +310,14 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc-reply.xml)
           in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
-REQUEST
--------
+              <preamble>REQUEST</preamble>
+              <artwork name="ex-crypto-types-ihk-rpc.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc.xml)
-
-RESPONSE
---------
+]]></artwork>
+            </figure>
+            <figure>
+              <preamble>RESPONSE</preamble>
+              <artwork name="ex-crypto-types-ihk-rpc-reply.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc-reply.xml)
 ]]></artwork>
             </figure>
@@ -327,13 +329,14 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc-reply.xml)
           action in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
-REQUEST
--------
+              <preamble>REQUEST</preamble>
+              <artwork name="ex-crypto-types-gcsr-rpc.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
-
-RESPONSE
---------
+]]></artwork>
+            </figure>
+            <figure>
+              <preamble>RESPONSE</preamble>
+              <artwork name="ex-crypto-types-gcsr-rpc-reply.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
 ]]></artwork>
             </figure>
@@ -345,7 +348,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
           notification in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork><![CDATA[
+              <artwork name="ex-crypto-types-ce-notification.xml"><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
 ]]></artwork>
             </figure>
