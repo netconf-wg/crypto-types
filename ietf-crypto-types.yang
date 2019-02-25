@@ -98,7 +98,7 @@ module ietf-crypto-types {
   /*  Identities for Asymmetric Key Encyption Algorithms  */
   /********************************************************/
 
-  identity asymmetric-key-encryption-algorithm {
+  identity asymmetric-key-algorithm {
     description
       "Base identity from which all asymmetric key
        encryption Algorithm.";
@@ -302,92 +302,17 @@ module ietf-crypto-types {
       "RFC 4493: The AES-CMAC Algorithm";
   }
 
-  identity mac-aes-128-ccm {
-    base "mac-algorithm";
-    description
-      "Generating MAC using Advanced Encryption Standard (AES) in
-       CCM (Counter with CBC-MAC) mode (AES CCM)";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity mac-aes-192-ccm {
-    base "mac-algorithm";
-    description
-      "Generating MAC using Advanced Encryption Standard (AES) in
-       CCM (Counter with CBC-MAC) mode (AES CCM)";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity mac-aes-256-ccm {
-    base "mac-algorithm";
-    description
-      "Generating MAC using Advanced Encryption Standard (AES) in
-       CCM (Counter with CBC-MAC) mode (AES CCM)";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity mac-aes-128-gcm {
-    base "mac-algorithm";
-    description
-      "Generating MAC when using Advanced Encryption Standard (AES)
-       GCM mode for encryption";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity mac-aes-192-gcm {
-    base "mac-algorithm";
-    description
-      "Generating MAC when using Advanced Encryption Standard (AES)
-       GCM mode for encryption";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity mac-aes-256-gcm {
-    base "mac-algorithm";
-    description
-      "Generating MAC when using Advanced Encryption Standard (AES)
-       GCM mode for encryption";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity mac-chacha20-poly1305 {
-    base "mac-algorithm";
-    description
-      "Generating MAC using poly1305 algorithm";
-    reference
-      "RFC 7539: ChaCha20 and Poly1305 for IETF Protocols";
-  }
-
-
   /*******************************************************/
-  /*   Identities for Symmetric Key Encryption Algorithms*/
+  /*   Identities for Encryption Algorithms*/
   /*******************************************************/
 
-  identity symmetric-key-encryption-algorithm {
+  identity encryption-algorithm {
     description
       "A base identity for encryption algorithm.";
   }
 
   identity aes-128-cbc {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CBC mode with a key
        length of 128 bits";
@@ -398,7 +323,7 @@ module ietf-crypto-types {
   }
 
   identity aes-192-cbc {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CBC mode with a key
        length of 192 bits";
@@ -409,7 +334,7 @@ module ietf-crypto-types {
   }
 
   identity aes-256-cbc {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CBC mode with a key
        length of 256 bits";
@@ -420,7 +345,7 @@ module ietf-crypto-types {
   }
 
   identity aes-128-ctr {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CTR mode with a key
        length of 128 bits";
@@ -431,7 +356,7 @@ module ietf-crypto-types {
   }
 
   identity aes-192-ctr {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CTR mode with a key
        length of 192 bits";
@@ -442,7 +367,7 @@ module ietf-crypto-types {
   }
 
   identity aes-256-ctr {
-    base "symmetric-key-encryption-algorithm";
+    base "encryption-algorithm";
     description
       "Encrypt message with AES algorithm in CTR mode with a key
        length of 256 bits";
@@ -452,80 +377,90 @@ module ietf-crypto-types {
          IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity enc-aes-128-ccm {
-    base "symmetric-key-encryption-algorithm";
+  
+  /*******************************************************/
+  /*   Identities for Encryption-MAC Algorithms*/
+  /*******************************************************/
+  identity encryption-and-mac-algorithm {
+    description
+      "A base identity for encryption and MAC algorithm.";
+  }
+  
+  identity aes-128-ccm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in CCM mode with a key
-       length of 128 bits";
+       length of 128 bits; it can also be used for generating MAC";
     reference
       "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with IPsec
-         Encapsulating Security Payload (ESP)";
+         Using Advanced Encryption Standard (AES) CCM Mode with
+         IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity enc-aes-192-ccm {
-    base "symmetric-key-encryption-algorithm";
+  identity aes-192-ccm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in CCM mode with a key
-       length of 192 bits";
+       length of 192 bits; it can also be used for generating MAC";
     reference
       "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with IPsec
-         Encapsulating Security Payload (ESP)";
+         Using Advanced Encryption Standard (AES) CCM Mode with
+         IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity enc-aes-256-ccm {
-    base "symmetric-key-encryption-algorithm";
+  identity aes-256-ccm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in CCM mode with a key
-       length of 256 bits";
+       length of 256 bits; it can also be used for generating MAC";
     reference
       "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with IPsec
-         Encapsulating Security Payload (ESP)";
+         Using Advanced Encryption Standard (AES) CCM Mode with
+         IPsec Encapsulating Security Payload (ESP)";
   }
 
-  identity enc-aes-128-gcm {
-    base "symmetric-key-encryption-algorithm";
+  identity aes-128-gcm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in GCM mode with a key
-       length of 128 bits";
+       length of 128 bits; it can also be used for generating MAC";
     reference
       "RFC 4106:
          The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
          Security Payload (ESP)";
   }
 
-  identity enc-aes-192-gcm {
-    base "symmetric-key-encryption-algorithm";
+  identity aes-192-gcm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in GCM mode with a key
-       length of 192 bits";
+       length of 192 bits; it can also be used for generating MAC";
     reference
       "RFC 4106:
          The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
          Security Payload (ESP)";
   }
 
-  identity enc-aes-256-gcm {
-    base "symmetric-key-encryption-algorithm";
+  identity mac-aes-256-gcm {
+    base "mac-algorithm";
     description
       "Encrypt message with AES algorithm in GCM mode with a key
-       length of 256 bits";
+       length of 128 bits; it can also be used for generating MAC";
     reference
       "RFC 4106:
          The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
          Security Payload (ESP)";
   }
 
-  identity enc-chacha20-poly1305 {
-    base "symmetric-key-encryption-algorithm";
+  identity chacha20-poly1305 {
+    base "mac-algorithm";
     description
       "Encrypt message with chacha20 algorithm and generate MAC with
-       POLY1305";
+       POLY1305; it can also be used for generating MAC";
     reference
       "RFC 7539: ChaCha20 and Poly1305 for IETF Protocols";
   }
+
 
   /******************************************/
   /*   Identities for signature algorithm   */
@@ -1115,23 +1050,34 @@ module ietf-crypto-types {
        identityref to the 'mac-algorithm' base identity.";
   }
 
-  typedef symmetric-key-encryption-algorithm-ref {
+  typedef encryption-algorithm-ref {
     type identityref {
-      base "symmetric-key-encryption-algorithm";
+      base "encryption-algorithm";
     }
     description
       "This typedef enables importing modules to easily define an
-       identityref to the 'symmetric-key-encryption-algorithm'
+       identityref to the 'encryption-algorithm'
        base identity.";
   }
 
-  typedef asymmetric-key-encryption-algorithm-ref {
+  typedef encryption-and-mac-algorithm-ref {
     type identityref {
-      base "asymmetric-key-encryption-algorithm";
+      base "encryption-and-mac-algorithm";
     }
     description
       "This typedef enables importing modules to easily define an
-       identityref to the 'asymmetric-key-encryption-algorithm'
+       identityref to the 'encryption-and-mac-algorithm'
+       base identity.";
+  }
+
+
+  typedef asymmetric-key-algorithm-ref {
+    type identityref {
+      base "asymmetric-key-algorithm";
+    }
+    description
+      "This typedef enables importing modules to easily define an
+       identityref to the 'asymmetric-key-algorithm'
        base identity.";
   }
 
