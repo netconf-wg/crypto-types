@@ -1,0 +1,11 @@
+<generate xmlns="https://watsen.net/xiax" version="1">
+  <yang-tree-diagram>
+    <source>ietf-crypto-types@YYYY-MM-DD.yang</source>
+    <print-groupings/>
+    <additional-yang-modules>
+      <additional-yang-module>
+        <uri>https://raw.githubusercontent.com/YangModels/yang/master/standard/ietf/RFC/ietf-netconf-acm@2018-02-14.yang</uri>
+      </additional-yang-module>
+    </additional-yang-modules>
+  </yang-tree-diagram>
+</generate>
