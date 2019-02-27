@@ -40,6 +40,7 @@ clean:
 	-rm -f $(next).txt $(next).html
 	-rm -f $(draft)-[0-9][0-9].xml
 	-rm -f ietf-crypto-types\@20*.yang
+	-rm -f xiax/*\@20*
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
 endif
@@ -48,11 +49,7 @@ ifeq (org,$(draft_type))
 endif
 
 $(next).xml: $(draft).xml
-	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
-	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-crypto-types.yang > ietf-crypto-types\@$(shell date +%Y-%m-%d).yang
-	cd refs; ./validate-all.sh; ./gen-trees.sh; cd ..;
-	./.insert-figures.sh $@ > tmp; mv tmp $@
-	rm refs/*-tree.txt
+	xiax -f $< $@
 
 .INTERMEDIATE: $(draft).xml
 %.xml: %.md
@@ -64,15 +61,9 @@ $(next).xml: $(draft).xml
 %.txt: %.xml
 	$(xml2rfc) $< -o $@ --text
 
-ifeq "$(shell uname -s 2>/dev/null)" "Darwin"
-sed_i := sed -i ''
-else
-sed_i := sed -i
-endif
 
 %.html: %.xml
 	$(xml2rfc) $< -o $@ --html
-	$(sed_i) -f .addstyle.sed $@
 
 
 ### Below this deals with updating gh-pages

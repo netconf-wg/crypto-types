@@ -1,6 +1,5 @@
 <?xml version='1.0'?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd">
-
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes" ?>
@@ -11,22 +10,19 @@
 <?rfc comments="yes" ?>
 <?rfc inline="yes"?>
 <?rfc rfcedstyle="yes"?>
-<?rfc-ext allow-markup-in-artwork="yes" ?>
+<!-- <?rfc-ext allow-markup-in-artwork="yes" ?> what does this do? -->
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-
-<rfc category="std"
-     ipr="trust200902"
-     docName="draft-ietf-netconf-crypto-types-latest" >
+<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
     <front>
         <title>Common YANG Data Types for Cryptography</title>
-        <author initials="K.W." surname="Watsen" fullname="Kent Watsen">
-            <organization>Juniper Networks</organization>
+        <author initials="K." surname="Watsen" fullname="Kent Watsen">
+            <organization>Watsen Networks</organization>
             <address>
-                <email>kwatsen@juniper.net</email>
+                <email>kent+ietf@watsen.net</email>
             </address>
         </author>
-        <author initials="H.W." surname="Wang" fullname="Wang Haiguang">
+        <author initials="H." surname="Wang" fullname="Wang Haiguang">
             <organization>Huawei</organization>
             <address>
                 <email>wang.haiguang.shieldlab@huawei.com</email>
@@ -47,18 +43,18 @@
 
           <t>Artwork in this document contains shorthand references to drafts in 
           progress.  Please apply the following replacements:
-            <list  style="symbols">
+            <list style="symbols">
               <t><spanx style="verb">XXXX</spanx> --&gt; the assigned RFC value for this draft</t>
             </list>
           </t>
           <t>Artwork in this document contains placeholder values for the date
           of publication of this draft.  Please apply the following replacement:
-            <list  style="symbols">
+            <list style="symbols">
               <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication date of this draft</t>
             </list>
           </t>
           <t>The following Appendix section is to be removed prior to publication:
-            <list  style="symbols">
+            <list style="symbols">
               <t>Appendix B.  Change Log</t>
             </list>
           </t>
@@ -86,9 +82,7 @@
 
           <t><!--The following tree diagram has used groupings expanded:-->
             <figure>
-              <artwork name="ietf-crypto-types-tree.txt"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
-]]></artwork>
+              <artwork xiax:gen="xiax/gen-crypto-types-tree@YYYY-MM-DD.txt"/>
             </figure>
           </t>
         </section>
@@ -110,11 +104,7 @@ INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
           <t>This module has an informational reference to <xref target="RFC6125"/>.</t>
           <t>
             <figure>
-              <artwork name="ietf-crypto-types@YYYY-MM-DD.yang"><![CDATA[
-<CODE BEGINS> file "ietf-crypto-types@YYYY-MM-DD.yang"
-INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
-<CODE ENDS>
-  ]]></artwork>
+              <artwork xiax:src="ietf-crypto-types@YYYY-MM-DD.yang" xiax:markers="true" xiax:val="xiax/val-yang-ietf-crypto-types.xml"/>
             </figure>
           </t>
         </section>
@@ -164,11 +154,10 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
           registration is requested:</t>
           <t>
             <figure>
-                <artwork><![CDATA[
+              <artwork>
    URI: urn:ietf:params:xml:ns:yang:ietf-crypto-types
    Registrant Contact: The NETCONF WG of the IETF.
-   XML: N/A, the requested URI is an XML namespace.
-]]></artwork>
+   XML: N/A, the requested URI is an XML namespace.</artwork>
             </figure>
           </t>
         </section>
@@ -179,12 +168,11 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
           the following registration is requested:</t>
           <t>
             <figure>
-                <artwork><![CDATA[
+              <artwork>
    name:         ietf-crypto-types
    namespace:    urn:ietf:params:xml:ns:yang:ietf-crypto-types
    prefix:       ct
-   reference:    RFC XXXX
-]]></artwork>
+   reference:    RFC XXXX</artwork>
             </figure>
           </t>
         </section>
@@ -230,9 +218,9 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
         <?rfc include="reference.RFC.8422.xml"?>
         <?rfc include="reference.RFC.8446.xml"?>
 
-        <!-- THE FOLLOWING LINE DOESN'T RESOLVE FOR SOME REASON:
-             <?rfc include="_reference.ITU.X690.2015.xml"?> -->
-        <!-- THE FOLLOWING IS COPYIED FROM RFC 8366 -->
+        <!-- THE FOLLOWING LINE DOESN'T RESOLVE BECAUSE _reference.ITU.X744.1996.xml
+             DOES NOT EXIST HERE: http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/
+             <?rfc include="reference.ITU.X690.2015.xml"?> -->
         <reference anchor="ITU.X690.2015" target="https://www.itu.int/rec/T-REC-X.690/">
           <front>
             <title>Information Technology - ASN.1 encoding rules: Specification of Basic
@@ -241,10 +229,10 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
             <author>
               <organization>International Telecommunication Union</organization>
             </author>
-            <date month="August" year="2015" />
+            <date month="August" year="2015"/>
           </front>
-          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1" />
-	</reference>
+          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1"/>
+	    </reference>
       </references>
       <references title="Informative References">
         <?rfc include="reference.RFC.3688.xml"?>
@@ -269,9 +257,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang,71)
           "trust-anchor-cert-grouping" grouping.</t>
           <t>
             <figure>
-              <artwork name="ex-crypto-types-usage.yang"><![CDATA[
-INSERT_TEXT_FROM_FILE(ex-crypto-types-usage.yang)
-]]></artwork>
+              <artwork xiax:src="ex-crypto-types-usage.yang" xiax:val="xiax/val-yang-ex-crypto-types-usage@YYYY-MM-DD.xml"/>
             </figure>
           </t>
 
@@ -279,9 +265,7 @@ INSERT_TEXT_FROM_FILE(ex-crypto-types-usage.yang)
           illustrates some configured keys.</t>
           <t>
             <figure>
-              <artwork name="ex-crypto-types-usage.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-usage.xml" xiax:val="xiax/val-xml-ex-crypto-types-usage@YYYY-MM-DD.xml"/>
             </figure>
           </t>
         </section>
@@ -292,15 +276,11 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
           <t>
             <figure>
               <preamble>REQUEST</preamble>
-              <artwork name="ex-crypto-types-ghk-rpc.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc.xml"/> <!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc@YYYY-MM-DD.xml"/> -->
             </figure>
             <figure>
               <preamble>RESPONSE</preamble>
-              <artwork name="ex-crypto-types-ghk-rpc-reply.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc-reply.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc-reply.xml"/> <!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc-reply@YYYY-MM-DD.xml"/> -->
             </figure>
           </t>
         </section>
@@ -311,15 +291,11 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ghk-rpc-reply.xml)
           <t>
             <figure>
               <preamble>REQUEST</preamble>
-              <artwork name="ex-crypto-types-ihk-rpc.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-ihk-rpc.xml"/>
             </figure>
             <figure>
               <preamble>RESPONSE</preamble>
-              <artwork name="ex-crypto-types-ihk-rpc-reply.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc-reply.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-ihk-rpc-reply.xml"/>
             </figure>
           </t>
         </section>
@@ -330,15 +306,11 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ihk-rpc-reply.xml)
           <t>
             <figure>
               <preamble>REQUEST</preamble>
-              <artwork name="ex-crypto-types-gcsr-rpc.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-gcsr-rpc.xml"/>
             </figure>
             <figure>
               <preamble>RESPONSE</preamble>
-              <artwork name="ex-crypto-types-gcsr-rpc-reply.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-gcsr-rpc-reply.xml"/>
             </figure>
           </t>
         </section>
@@ -348,9 +320,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
           notification in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork name="ex-crypto-types-ce-notification.xml"><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
-]]></artwork>
+              <artwork xiax:src="refs/ex-crypto-types-ce-notification.xml"/>
             </figure>
           </t>
         </section>
@@ -405,4 +375,3 @@ and Liang Xia.
 
    </back>
 </rfc>
-

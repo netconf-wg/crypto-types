@@ -24,7 +24,7 @@ module ietf-crypto-types {
     WG List:  <mailto:netconf@ietf.org>
 
     Author:   Kent Watsen
-              <mailto:kwatsen@juniper.net>
+              <mailto:kent+ietf@watsen.net>
 
     Author:   Wang Haiguang
               <wang.haiguang.shieldlab@huawei.com>";
@@ -33,9 +33,9 @@ module ietf-crypto-types {
    "This module defines common YANG types for cryptographic
     applications.
 
-    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
-    "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", 
-    "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document
+    The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
+    'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
+    'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
     are to be interpreted as described in BCP 14 [RFC2119]
     [RFC8174] when, and only when, they appear in all
     capitals, as shown here.
@@ -1159,7 +1159,7 @@ module ietf-crypto-types {
          Internet X.509 Public Key Infrastructure Certificate
          and Certificate Revocation List (CRL) Profile
        ITU-T X.690:
-         Information technology – ASN.1 encoding rules:
+         Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
@@ -1176,7 +1176,7 @@ module ietf-crypto-types {
          Internet X.509 Public Key Infrastructure Certificate
          and Certificate Revocation List (CRL) Profile
        ITU-T X.690:
-         Information technology – ASN.1 encoding rules:
+         Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
@@ -1196,7 +1196,7 @@ module ietf-crypto-types {
       "RFC 5652:
          Cryptographic Message Syntax (CMS)
        ITU-T X.690:
-         Information technology – ASN.1 encoding rules:
+         Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
@@ -1604,7 +1604,7 @@ module ietf-crypto-types {
                PKCS #10: Certification Request Syntax
                          Specification Version 1.7.
              ITU-T X.690:
-               Information technology – ASN.1 encoding rules:
+               Information technology - ASN.1 encoding rules:
                Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
@@ -1621,7 +1621,7 @@ module ietf-crypto-types {
                PKCS #10: Certification Request Syntax
                          Specification Version 1.7.
              ITU-T X.690:
-               Information technology – ASN.1 encoding rules:
+               Information technology - ASN.1 encoding rules:
                Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
@@ -1641,7 +1641,7 @@ module ietf-crypto-types {
                PKCS #10: Certification Request Syntax
                          Specification Version 1.7.
              ITU-T X.690:
-               Information technology – ASN.1 encoding rules:
+               Information technology - ASN.1 encoding rules:
                Specification of Basic Encoding Rules (BER),
                Canonical Encoding Rules (CER) and Distinguished
                Encoding Rules (DER).";
@@ -1650,6 +1650,5 @@ module ietf-crypto-types {
       }
     } // end generate-certificate-signing-request
   } // end asymmetric-key-pair-with-certs-grouping
-
 
 }
