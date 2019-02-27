@@ -39,7 +39,7 @@ clean:
 	-rm -f $(draft).txt $(draft).html index.html
 	-rm -f $(next).txt $(next).html
 	-rm -f $(draft)-[0-9][0-9].xml
-	-rm -f ietf-crypto-types\@20*.yang
+	-rm -f ietf-*\@20*.yang
 	-rm -f xiax/*\@20*
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
