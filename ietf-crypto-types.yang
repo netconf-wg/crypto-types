@@ -95,7 +95,7 @@ module ietf-crypto-types {
   }
 
   /********************************************************/
-  /*  Identities for Asymmetric Key Encyption Algorithms  */
+  /*  Identities for Asymmetric Key Algorithms            */
   /********************************************************/
 
   identity asymmetric-key-algorithm {
@@ -105,7 +105,7 @@ module ietf-crypto-types {
   }
 
   identity rsa1024 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
     description
       "The RSA algorithm using a 1024-bit key.";
     reference
@@ -114,7 +114,7 @@ module ietf-crypto-types {
   }
 
   identity rsa2048 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
     description
       "The RSA algorithm using a 2048-bit key.";
     reference
@@ -123,7 +123,7 @@ module ietf-crypto-types {
   }
 
   identity rsa3072 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
     description
       "The RSA algorithm using a 3072-bit key.";
     reference
@@ -132,7 +132,7 @@ module ietf-crypto-types {
   }
 
   identity rsa4096 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
     description
       "The RSA algorithm using a 4096-bit key.";
     reference
@@ -141,7 +141,7 @@ module ietf-crypto-types {
   }
 
   identity rsa7680 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
     description
       "The RSA algorithm using a 7680-bit key.";
     reference
@@ -150,7 +150,7 @@ module ietf-crypto-types {
   }
 
   identity rsa15360 {
-    base asymmetric-key-encryption-algorithm;
+    base asymmetric-key-algorithm;
        description
       "The RSA algorithm using a 15360-bit key.";
     reference
@@ -158,6 +158,50 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
+  identity ecdsap192 {
+    base asymmetric-key-algorithm;
+       description
+      "The ECDSA algorithm using a NIST P256 Curve.";
+    reference
+      "RFC 6090:
+         Fundamental Elliptic Curve Cryptography Algorithms.";
+  }
+  
+    identity ecdsap224 {
+    base asymmetric-key-algorithm;
+       description
+      "The ECDSA algorithm using a NIST P256 Curve.";
+    reference
+      "RFC 6090:
+         Fundamental Elliptic Curve Cryptography Algorithms.";
+  }
+  
+  identity ecdsap256 {
+    base asymmetric-key-algorithm;
+       description
+      "The ECDSA algorithm using a NIST P256 Curve.";
+    reference
+      "RFC 6090:
+         Fundamental Elliptic Curve Cryptography Algorithms.";
+  }
+  
+  identity ecdsap384 {
+    base asymmetric-key-algorithm;
+       description
+      "The ECDSA algorithm using a NIST P256 Curve.";
+    reference
+      "RFC 6090:
+         Fundamental Elliptic Curve Cryptography Algorithms.";
+  }
+
+  identity ecdsap521 {
+    base asymmetric-key-algorithm;
+       description
+      "The ECDSA algorithm using a NIST P256 Curve.";
+    reference
+      "RFC 6090:
+         Fundamental Elliptic Curve Cryptography Algorithms.";
+  }
   /*************************************/
   /*   Identities for MAC Algorithms   */
   /*************************************/
@@ -379,7 +423,7 @@ module ietf-crypto-types {
 
   
   /*******************************************************/
-  /*   Identities for Encryption-MAC Algorithms*/
+  /*   Identities for Encryption and MAC Algorithms*/
   /*******************************************************/
   identity encryption-and-mac-algorithm {
     description
@@ -480,7 +524,7 @@ module ietf-crypto-types {
       "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
   }
 
-  identity rsa-pkcs1-sha1 {
+  identity rsassa-pkcs1-sha1 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1
@@ -489,7 +533,7 @@ module ietf-crypto-types {
       "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
   }
 
-  identity rsa-pkcs1-sha256 {
+  identity rsassa-pkcs1-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the
@@ -502,7 +546,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pkcs1-sha384 {
+  identity rsassa-pkcs1-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the
@@ -512,7 +556,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pkcs1-sha512 {
+  identity rsassa-pkcs1-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PKCS1-v1_5 with the
@@ -525,7 +569,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-rsae-sha256 {
+  identity rsassa-pss-rsae-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -537,7 +581,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-rsae-sha384 {
+  identity rsassa-pss-rsae-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -549,7 +593,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-rsae-sha512 {
+  identity rsassa-pss-rsae-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -561,7 +605,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-pss-sha256 {
+  identity rsassa-pss-pss-sha256 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -573,7 +617,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-pss-sha384 {
+  identity rsassa-pss-pss-sha384 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -585,7 +629,7 @@ module ietf-crypto-types {
          The Transport Layer Security (TLS) Protocol Version 1.3";
   }
 
-  identity rsa-pss-pss-sha512 {
+  identity rsassa-pss-pss-sha512 {
     base "signature-algorithm";
     description
       "The signature algorithm using RSASSA-PSS with mask generation
@@ -631,27 +675,6 @@ module ietf-crypto-types {
          Secure Shell Transport Layer
        RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsa-pkcs1-sha1 {
-    base "signature-algorithm";
-    description
-      "The signature algorithm using x509v3-ssh-rsa key format and
-       RSASSA-PKCS1-v1_5 with the SHA1 hash algorithm.";
-    reference
-      "RFC 6187:
-         X.509v3 Certificates for Secure Shell Authentication";
-  }
-
-  identity rsa2048-pkcs1-sha256 {
-    base "signature-algorithm";
-    description
-      "The signature algorithm using x509v3-rsa2048-sha256
-       key format and RSASSA-PKCS1-v1_5 with the SHA-256
-       hash algorithm.";
-    reference
-      "RFC 6187:
-         X.509v3 Certificates for Secure Shell Authentication";
   }
 
   identity ecdsa-secp256r1-sha256 {
@@ -1313,7 +1336,7 @@ module ietf-crypto-types {
     description
       "A public key.";
     leaf algorithm {
-      type asymmetric-key-encryption-algorithm-ref;
+      type asymmetric-key-algorithm-ref;
       description
         "Identifies the key's algorithm.  More specifically,
          this leaf specifies how the 'public-key' binary leaf
@@ -1383,7 +1406,7 @@ module ietf-crypto-types {
          state and hence present only in <operational>.";
       input {
         leaf algorithm {
-          type asymmetric-key-encryption-algorithm-ref;
+          type asymmetric-key-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
@@ -1402,7 +1425,7 @@ module ietf-crypto-types {
          <operational>.";
       input {
         leaf algorithm {
-          type asymmetric-key-encryption-algorithm-ref;
+          type asymmetric-key-algorithm-ref;
           mandatory true;
           description
             "The algorithm to be used when generating the
