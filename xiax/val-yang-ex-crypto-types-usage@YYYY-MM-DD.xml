@@ -1,3 +1,8 @@
 <validate xmlns="https://watsen.net/xiax">
-  <yang-module/>
+  <yang-module>
+    <additional-yang-modules>
+      <additional-yang-module>ietf-netconf-acm@2018-02-14.yang</additional-yang-module>
+      <additional-yang-module>ietf-crypto-types@2019-02-28.yang</additional-yang-module>
+    </additional-yang-modules>
+  </yang-module>
 </validate>

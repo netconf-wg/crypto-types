@@ -276,11 +276,11 @@
           <t>
             <figure>
               <preamble>REQUEST</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc.xml"/> <!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc@YYYY-MM-DD.xml"/> -->
+              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc.xml" xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc@YYYY-MM-DD.xml"/>
             </figure>
             <figure>
               <preamble>RESPONSE</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc-reply.xml"/> <!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc-reply@YYYY-MM-DD.xml"/> -->
+              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc-reply.xml" xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc-reply@YYYY-MM-DD.xml"/>
             </figure>
           </t>
         </section>

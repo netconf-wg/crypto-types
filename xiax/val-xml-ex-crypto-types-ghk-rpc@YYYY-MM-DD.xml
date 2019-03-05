@@ -4,16 +4,16 @@
       <data-type>rpc</data-type>
       <yang-modules>
         <yang-module>
+          <name>ietf-netconf-acm@2018-02-14.yang</name>
+          <uri>https://raw.githubusercontent.com/YangModels/yang/master/standard/ietf/RFC/ietf-netconf-acm%402018-02-14.yang</uri>
+        </yang-module>
+        <yang-module>
           <name>ietf-crypto-types@YYYY-MM-DD.yang</name>
           <uri>ietf-crypto-types@YYYY-MM-DD.yang</uri>
         </yang-module>
         <yang-module>
           <name>ex-crypto-types-usage.yang</name>
           <uri>not used</uri>
-        </yang-module>
-        <yang-module>
-          <name>ietf-netconf-acm@2018-02-14.yang</name>
-          <uri>https://raw.githubusercontent.com/YangModels/yang/master/standard/ietf/RFC/ietf-netconf-acm%402018-02-14.yang</uri>
         </yang-module>
       </yang-modules>
     </using-yang>
