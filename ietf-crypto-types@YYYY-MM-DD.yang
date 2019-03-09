@@ -55,7 +55,6 @@ module ietf-crypto-types {
      "RFC XXXX: Common YANG Data Types for Cryptography";
   }
 
-
   /**************************************/
   /*   Identities for Hash Algorithms   */
   /**************************************/
@@ -197,6 +196,7 @@ module ietf-crypto-types {
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
   }
+
   /*************************************/
   /*   Identities for MAC Algorithms   */
   /*************************************/
@@ -424,6 +424,7 @@ module ietf-crypto-types {
   /****************************************************/
   /*   Identities for Encryption and MAC Algorithms   */
   /****************************************************/
+
   identity encryption-and-mac-algorithm {
     description
       "A base identity for encryption and MAC algorithm.";
@@ -501,7 +502,7 @@ module ietf-crypto-types {
       "Encrypt message with chacha20 algorithm and generate MAC with
        POLY1305; it can also be used for generating MAC";
     reference
-      "RFC 7539: ChaCha20 and Poly1305 for IETF Protocols";
+      "RFC 8439: ChaCha20 and Poly1305 for IETF Protocols";
   }
 
 
@@ -643,7 +644,7 @@ module ietf-crypto-types {
   identity ecdsa-secp256r1-sha256 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp256r1
+      "The signature algorithm using ECDSA with curve name secp256r1
        and SHA256 hash algorithm.";
     reference
       "RFC 5656: Elliptic Curve Algorithm Integration in the
@@ -655,7 +656,7 @@ module ietf-crypto-types {
   identity ecdsa-secp384r1-sha384 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp384r1
+      "The signature algorithm using ECDSA with curve name secp384r1
        and SHA384 hash algorithm.";
     reference
       "RFC 5656: Elliptic Curve Algorithm Integration in the
@@ -667,7 +668,7 @@ module ietf-crypto-types {
   identity ecdsa-secp521r1-sha512 {
     base "signature-algorithm";
     description
-      "The signature algorithm using ECDSA wtih curve name secp521r1
+      "The signature algorithm using ECDSA with curve name secp521r1
        and SHA512 hash algorithm.";
     reference
       "RFC 5656: Elliptic Curve Algorithm Integration in the
@@ -711,24 +712,24 @@ module ietf-crypto-types {
 
   identity key-exchange-algorithm {
     description
-      "A base identity for Diffe-Hellman based key exchange
+      "A base identity for Diffie-Hellman based key exchange
        algorithm.";
   }
 
   identity psk-only {
     base "key-exchange-algorithm";
     description
-      "Using Pre-shared key for authentication and key exhange";
+      "Using Pre-shared key for authentication and key exchange";
     reference
       "RFC 4279:
-         Pre-Shared Key Ciphersuites for Transport Layer Security
+         Pre-Shared Key cipher suites for Transport Layer Security
         (TLS)";
   }
 
   identity dhe-ffdhe2048 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with 2048 bit
+      "Ephemeral Diffie Hellman key exchange with 2048 bit
        finite field";
     reference
       "RFC 7919:
@@ -739,7 +740,7 @@ module ietf-crypto-types {
   identity dhe-ffdhe3072 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with 3072 bit finite
+      "Ephemeral Diffie Hellman key exchange with 3072 bit finite
        field";
     reference
       "RFC 7919:
@@ -750,7 +751,7 @@ module ietf-crypto-types {
   identity dhe-ffdhe4096 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with 4096 bit
+      "Ephemeral Diffie Hellman key exchange with 4096 bit
        finite field";
     reference
       "RFC 7919:
@@ -761,7 +762,7 @@ module ietf-crypto-types {
   identity dhe-ffdhe6144 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with 6144 bit
+      "Ephemeral Diffie Hellman key exchange with 6144 bit
        finite field";
     reference
       "RFC 7919:
@@ -772,7 +773,7 @@ module ietf-crypto-types {
   identity dhe-ffdhe8192 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with 8192 bit
+      "Ephemeral Diffie Hellman key exchange with 8192 bit
        finite field";
     reference
       "RFC 7919:
@@ -784,7 +785,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechansim, where the DH group is FFDHE2048";
+       generation mechanism, where the DH group is FFDHE2048";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -794,7 +795,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechansim, where the DH group is FFDHE3072";
+       generation mechanism, where the DH group is FFDHE3072";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -804,7 +805,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechansim, where the DH group is FFDHE4096";
+       generation mechanism, where the DH group is FFDHE4096";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -814,7 +815,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechansim, where the DH group is FFDHE6144";
+       generation mechanism, where the DH group is FFDHE6144";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -824,7 +825,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechansim, where the DH group is FFDHE8192";
+       generation mechanism, where the DH group is FFDHE8192";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -833,7 +834,7 @@ module ietf-crypto-types {
   identity ecdhe-secp256r1 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with elliptic group
+      "Ephemeral Diffie Hellman key exchange with elliptic group
        over curve secp256r1";
     reference
       "RFC 8422:
@@ -844,7 +845,7 @@ module ietf-crypto-types {
   identity ecdhe-secp384r1 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with elliptic group
+      "Ephemeral Diffie Hellman key exchange with elliptic group
        over curve secp384r1";
     reference
       "RFC 8422:
@@ -855,7 +856,7 @@ module ietf-crypto-types {
   identity ecdhe-secp521r1 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with elliptic group
+      "Ephemeral Diffie Hellman key exchange with elliptic group
        over curve secp521r1";
     reference
       "RFC 8422:
@@ -866,7 +867,7 @@ module ietf-crypto-types {
   identity ecdhe-x25519 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with elliptic group
+      "Ephemeral Diffie Hellman key exchange with elliptic group
        over curve x25519";
     reference
       "RFC 8422:
@@ -877,7 +878,7 @@ module ietf-crypto-types {
   identity ecdhe-x448 {
     base "key-exchange-algorithm";
     description
-      "Ephemeral Diffie Hellman key exhange with elliptic group
+      "Ephemeral Diffie Hellman key exchange with elliptic group
        over curve x448";
     reference
       "RFC 8422:
@@ -889,7 +890,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exhange over curve secp256r1";
+       Ephemeral Diffie Hellman key exchange over curve secp256r1";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -899,7 +900,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exhange over curve secp384r1";
+       Ephemeral Diffie Hellman key exchange over curve secp384r1";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -909,7 +910,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exhange over curve secp521r1";
+       Ephemeral Diffie Hellman key exchange over curve secp521r1";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -919,7 +920,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exhange over curve x25519";
+       Ephemeral Diffie Hellman key exchange over curve x25519";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -929,7 +930,7 @@ module ietf-crypto-types {
     base "key-exchange-algorithm";
     description
       "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exhange over curve x448";
+       Ephemeral Diffie Hellman key exchange over curve x448";
     reference
       "RFC 8446:
          The Transport Layer Security (TLS) Protocol Version 1.3";
@@ -996,7 +997,7 @@ module ietf-crypto-types {
   identity ecdh-sha2-secp256r1 {
     base "key-exchange-algorithm";
     description
-      "Elliptic curve-based Diffie Hellman key exhange over curve
+      "Elliptic curve-based Diffie Hellman key exchange over curve
        secp256r1 and using SHA2 for MAC generation";
     reference
       "RFC 6239: Suite B Cryptographic Suites for Secure Shell 
@@ -1006,7 +1007,7 @@ module ietf-crypto-types {
   identity ecdh-sha2-secp384r1 {
     base "key-exchange-algorithm";
     description
-      "Elliptic curve-based Diffie Hellman key exhange over curve
+      "Elliptic curve-based Diffie Hellman key exchange over curve
        secp384r1 and using SHA2 for MAC generation";
     reference
       "RFC 6239: Suite B Cryptographic Suites for Secure Shell 
@@ -1033,9 +1034,9 @@ module ietf-crypto-types {
          PKCS #1: RSA Cryptography Specifications Version 2.2.";
   }
 
-  /*********************************************************/
-  /*   Typedefs for identityrefs to above base identites   */
-  /*********************************************************/
+  /**********************************************************/
+  /*   Typedefs for identityrefs to above base identities   */
+  /**********************************************************/
 
   typedef hash-algorithm-ref {
     type identityref {
@@ -1318,7 +1319,6 @@ module ietf-crypto-types {
          and Certificate Revocation List (CRL) Profile.";
   }
 
-
   /**********************************************/
   /*   Groupings for keys and/or certificates   */
   /**********************************************/
@@ -1350,13 +1350,13 @@ module ietf-crypto-types {
                    RSA Cryptography Specifications Version 2.2.
          RFC 5915: Elliptic Curve Private Key Structure.";
     }
-  } // end public-key-grouping
-
+  }
 
   grouping asymmetric-key-pair-grouping {
     description
       "A private/public key pair.";
     uses public-key-grouping;
+
     leaf private-key {
       nacm:default-deny-all;
       type union {
@@ -1384,7 +1384,7 @@ module ietf-crypto-types {
         "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
                    RSA Cryptography Specifications Version 2.2.
          RFC 5915: Elliptic Curve Private Key Structure.";
-    } // end private-key
+    } // private-key
 
     action generate-hidden-key {
       description
@@ -1406,7 +1406,7 @@ module ietf-crypto-types {
             "RFC CCCC: Common YANG Data Types for Cryptography";
         }
       }
-    } // end generate-hidden-key
+    } // generate-hidden-key
 
     action install-hidden-key {
       description
@@ -1454,8 +1454,8 @@ module ietf-crypto-types {
              RFC 5915: Elliptic Curve Private Key Structure.";
         }
       }
-    } // end install-hidden-key
-  } // end asymmetric-key-pair-grouping
+    } // install-hidden-key
+  } // asymmetric-key-pair-grouping
 
 
   grouping trust-anchor-cert-grouping {
@@ -1483,7 +1483,7 @@ module ietf-crypto-types {
           "Identifies the expiration date on the certificate.";
       }
     }
-  } // end trust-anchor-cert-grouping
+  }
 
 
   grouping end-entity-cert-grouping {
@@ -1511,13 +1511,14 @@ module ietf-crypto-types {
           "Identifies the expiration date on the certificate.";
       }
     }
-  } // end end-entity-cert-grouping
+  }
 
 
   grouping asymmetric-key-pair-with-certs-grouping {
     description
       "A private/public key pair and associated certificates.";
     uses asymmetric-key-pair-grouping;
+
     container certificates {
       description
         "Certificates associated with this asymmetric key.
@@ -1538,8 +1539,8 @@ module ietf-crypto-types {
 
         }
         uses end-entity-cert-grouping;
-      } // end certificate
-    } // end certificates
+      }
+    } // certificates
 
     action generate-certificate-signing-request {
       description
@@ -1608,7 +1609,7 @@ module ietf-crypto-types {
 
         }
       }
-    } // end generate-certificate-signing-request
-  } // end asymmetric-key-pair-with-certs-grouping
+    } // generate-certificate-signing-request
+  } // asymmetric-key-pair-with-certs-grouping
 
 }
