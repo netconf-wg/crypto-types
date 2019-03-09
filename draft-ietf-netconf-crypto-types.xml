@@ -382,6 +382,13 @@
             </list>
           </t>
         </section>
+        <section title="03 to 04">
+          <t>
+            <list style="symbols">
+              <t>ran YANG module through formatter.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
