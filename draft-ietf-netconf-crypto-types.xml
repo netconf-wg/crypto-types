@@ -389,6 +389,13 @@
             </list>
           </t>
         </section>
+        <section title="04 to 05">
+          <t>
+            <list style="symbols">
+              <t>fixed broken symlink causing reformatted YANG module to not show.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
