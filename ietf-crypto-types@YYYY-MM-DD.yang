@@ -8,6 +8,7 @@ module ietf-crypto-types {
     reference
       "RFC 6991: Common YANG Data Types";
   }
+
   import ietf-netconf-acm {
     prefix nacm;
     reference
@@ -16,11 +17,13 @@ module ietf-crypto-types {
 
   organization
     "IETF NETCONF (Network Configuration) Working Group";
+
   contact
     "WG Web:   <http://datatracker.ietf.org/wg/netconf/>
      WG List:  <mailto:netconf@ietf.org>
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>
      Author:   Wang Haiguang <wang.haiguang.shieldlab@huawei.com>";
+
   description
     "This module defines common YANG types for cryptographic
      applications.
@@ -28,8 +31,8 @@ module ietf-crypto-types {
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
      'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
      'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
-     are to be interpreted as described in BCP 14 [RFC2119]
-     [RFC8174] when, and only when, they appear in all
+     are to be interpreted as described in BCP 14 (RFC2119)
+     (RFC8174) when, and only when, they appear in all
      capitals, as shown here.
 
      Copyright (c) 2019 IETF Trust and the persons identified
@@ -40,7 +43,7 @@ module ietf-crypto-types {
      subject to the license terms contained in, the Simplified
      BSD License set forth in Section 4.c of the IETF Trust's
      Legal Provisions Relating to IETF Documents
-     (http://trustee.ietf.org/license-info).
+     (https://trustee.ietf.org/license-info).
 
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
@@ -1333,6 +1336,7 @@ module ietf-crypto-types {
     description
       "A public key.";
     leaf algorithm {
+      nacm:default-deny-write;
       type asymmetric-key-algorithm-ref;
       description
         "Identifies the key's algorithm.  More specifically,
@@ -1342,6 +1346,7 @@ module ietf-crypto-types {
         "RFC CCCC: Common YANG Data Types for Cryptography";
     }
     leaf public-key {
+      nacm:default-deny-write;
       type binary;
       description
         "A binary that contains the value of the public key.  The
@@ -1362,7 +1367,6 @@ module ietf-crypto-types {
     description
       "A private/public key pair.";
     uses public-key-grouping;
-
     leaf private-key {
       nacm:default-deny-all;
       type union {
@@ -1372,10 +1376,7 @@ module ietf-crypto-types {
             description
               "The private key is inaccessible due to being
                protected by the system (e.g., a cryptographic
-               hardware module).  It is not possible to
-               configure a permanently hidden key, as a real
-               private key value must be set.  Permanently
-               hidden keys cannot be archived or backed up.";
+               hardware module).";
           }
         }
       }
@@ -1393,6 +1394,7 @@ module ietf-crypto-types {
     } // private-key
 
     action generate-hidden-key {
+      nacm:default-deny-all;
       description
         "Requests the device to generate a hidden key using the
          specified asymmetric key algorithm.  This action is
@@ -1415,6 +1417,7 @@ module ietf-crypto-types {
     } // generate-hidden-key
 
     action install-hidden-key {
+      nacm:default-deny-all;
       description
         "Requests the device to load the specified values into
          a hidden key.  The resulting asymmetric key values are
@@ -1468,6 +1471,7 @@ module ietf-crypto-types {
     description
       "A certificate, and a notification for when it might expire.";
     leaf cert {
+      nacm:default-deny-write;
       type trust-anchor-cert-cms;
       description
         "The binary certificate data for this certificate.";
@@ -1495,6 +1499,7 @@ module ietf-crypto-types {
     description
       "A certificate, and a notification for when it might expire.";
     leaf cert {
+      nacm:default-deny-write;
       type end-entity-cert-cms;
       description
         "The binary certificate data for this certificate.";
@@ -1518,11 +1523,90 @@ module ietf-crypto-types {
     }
   }
 
+  grouping asymmetric-key-pair-with-cert-grouping {
+    description
+      "A private/public key pair and an associated certificate.";
+
+    uses asymmetric-key-pair-grouping;
+    uses end-entity-cert-grouping;
+
+    action generate-certificate-signing-request {
+      nacm:default-deny-all;
+      description
+        "Generates a certificate signing request structure for
+         the associated asymmetric key using the passed subject
+         and attribute values.  The specified assertions need
+         to be appropriate for the certificate's use.  For
+         example, an entity certificate for a TLS server
+         SHOULD have values that enable clients to satisfy
+         RFC 6125 processing.";
+      input {
+        leaf subject {
+          type binary;
+          mandatory true;
+          description
+            "The 'subject' field per the CertificationRequestInfo
+              structure as specified by RFC 2986, Section 4.1
+              encoded using the ASN.1 distinguished encoding
+              rules (DER), as specified in ITU-T X.690.";
+          reference
+            "RFC 2986:
+               PKCS #10: Certification Request Syntax
+                         Specification Version 1.7.
+             ITU-T X.690:
+               Information technology - ASN.1 encoding rules:
+               Specification of Basic Encoding Rules (BER),
+               Canonical Encoding Rules (CER) and Distinguished
+               Encoding Rules (DER).";
+        }
+        leaf attributes {
+          type binary;
+          description
+            "The 'attributes' field from the structure
+             CertificationRequestInfo as specified by RFC 2986,
+             Section 4.1 encoded using the ASN.1 distinguished
+             encoding rules (DER), as specified in ITU-T X.690.";
+          reference
+            "RFC 2986:
+               PKCS #10: Certification Request Syntax
+                         Specification Version 1.7.
+             ITU-T X.690:
+               Information technology - ASN.1 encoding rules:
+               Specification of Basic Encoding Rules (BER),
+               Canonical Encoding Rules (CER) and Distinguished
+               Encoding Rules (DER).";
+        }
+      }
+      output {
+        leaf certificate-signing-request {
+          type binary;
+          mandatory true;
+          description
+            "A CertificationRequest structure as specified by
+             RFC 2986, Section 4.2 encoded using the ASN.1
+             distinguished encoding rules (DER), as specified
+             in ITU-T X.690.";
+          reference
+            "RFC 2986:
+               PKCS #10: Certification Request Syntax
+                         Specification Version 1.7.
+             ITU-T X.690:
+               Information technology - ASN.1 encoding rules:
+               Specification of Basic Encoding Rules (BER),
+               Canonical Encoding Rules (CER) and Distinguished
+               Encoding Rules (DER).";
+        }
+      }
+    } // generate-certificate-signing-request
+  } // asymmetric-key-pair-with-cert-grouping
+
+
   grouping asymmetric-key-pair-with-certs-grouping {
     description
       "A private/public key pair and associated certificates.";
     uses asymmetric-key-pair-grouping;
     container certificates {
+      nacm:default-deny-write;
       description
         "Certificates associated with this asymmetric key.
          More than one certificate supports, for instance,
@@ -1545,6 +1629,7 @@ module ietf-crypto-types {
     } // certificates
 
     action generate-certificate-signing-request {
+      nacm:default-deny-all;
       description
         "Generates a certificate signing request structure for
          the associated asymmetric key using the passed subject
@@ -1612,5 +1697,4 @@ module ietf-crypto-types {
       }
     } // generate-certificate-signing-request
   } // asymmetric-key-pair-with-certs-grouping
-
 }

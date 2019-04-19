@@ -111,39 +111,99 @@
       </section>
 
       <section title="Security Considerations">
-        <t>In order to use YANG identities for algorithm identifiers, only
-        the most commonly used RSA key lengths are supported for the RSA
-        algorithm.  Additional key lengths can be defined in another module
-        or added into a future version of this document.</t>
+        <section title="Support for Algorithms">
+          <t>In order to use YANG identities for algorithm identifiers, only
+          the most commonly used RSA key lengths are supported for the RSA
+          algorithm.  Additional key lengths can be defined in another module
+          or added into a future version of this document.</t>
+  
+          <t>This document limits the number of elliptical curves supported.
+          This was done to match industry trends and IETF best practice (e.g.,
+          matching work being done in TLS 1.3).  If additional algorithms are
+          needed, they can be defined by another module or added into a future
+          version of this document.</t>
+        </section>
+        <section title="No Support for CRMF">
+          <t>This document uses PKCS #10 <xref target="RFC2986"/> for the
+          "generate-certificate-signing-request" action.  The use of Certificate
+          Request Message Format (CRMF) <xref target="RFC4211"/> was considered,
+          but is was unclear if there was market demand for it.  If it is desired 
+          to support CRMF in the future, a backwards compatible solution can be
+          defined at that time.</t>
+        </section>
+        <section title="Access to Data Nodes">
+          <t>The YANG module in this document defines "grouping" statements
+            that are designed to be accessed via YANG based management
+            protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
+            <xref target="RFC8040"/>. Both of these protocols have
+            mandatory-to-implement secure transport layers (e.g., SSH, TLS)
+            with mutual authentication.</t>
 
-        <t>This document limits the number of elliptical curves supported.
-        This was done to match industry trends and IETF best practice (e.g.,
-        matching work being done in TLS 1.3).  If additional algorithms are
-        needed, they can be defined by another module or added into a future
-        version of this document.</t>
+          <t>The NETCONF access control model (NACM) <xref target="RFC8341"/>
+            provides the means to restrict access for particular users to a
+            pre-configured subset of all available protocol operations and
+            content.</t>
 
-        <t>Some of the operations in this YANG module may be considered sensitive or
-        vulnerable in some network environments. It is thus important to control access
-        to these operations. These are the operations and their sensitivity/vulnerability:
-          <list style="hanging" hangIndent="6">
-            <t hangText="   generate-certificate-signing-request:">For this action,
-              it is RECOMMENDED that implementations assert channel binding <xref target="RFC5056"/>,
-              so as to ensure that the application layer that sent the request is the same
-              as the device authenticated when the secure transport layer was established.</t>
-          </list>
-        </t>
+          <t>Since the module in this document only define groupings,
+            these considerations are primarily for the designers of other
+            modules that use these groupings.</t>
 
-        <t>This document uses PKCS #10 <xref target="RFC2986"/> for the
-        "generate-certificate-signing-request" action.  The use of Certificate
-        Request Message Format (CRMF) <xref target="RFC4211"/> was considered,
-        but is was unclear if there was market demand for it.  If it is desired 
-        to support CRMF in the future, placing a "choice" statement in both
-        the input and output statements, along with an "if-feature" statement
-        on the CRMF option, would enable a backwards compatible solution.</t>
+          <t>There are a number of data nodes defined by the grouping
+            statements that are writable/creatable/deletable (i.e., config
+            true, which is the default).  Some of these data nodes may be
+            considered sensitive or vulnerable in some network environments.
+            Write operations (e.g., edit-config) to these data nodes
+            without proper protection can have a negative effect on
+            network operations.  These are the subtrees and data nodes
+            and their sensitivity/vulnerability:
+            <list hangIndent="6" style="hanging">
+              <t hangText="   *:">All of the data nodes defined by 
+                all the groupings are considered sensitive to write
+                operations.  For instance, the modification of a
+                public key or a certificate can dramatically alter
+                the implemented security policy.  For this reason,
+                the NACM extension "default-deny-write" has been
+                applied to all the data nodes defined by all the
+                groupings.</t>
+            </list>
+          </t>
 
-        <t>NACM:default-deny-all is set on asymmetric-key-pair-grouping's
-        "private-key" node, as private keys should never be revealed without
-        explicit permission.</t>
+          <t>Some of the readable data nodes in the YANG module may
+            be considered sensitive or vulnerable in some network
+            environments. It is thus important to control read access
+            (e.g., via get, get-config, or notification) to these
+            data nodes. These are the subtrees and data nodes and
+            their sensitivity/vulnerability: 
+            <list hangIndent="6" style="hanging">
+              <t hangText="   /private-key:">The "private-key" node
+                defined in the "asymmetric-key-pair-grouping" grouping
+                is additionally sensitive to read operations such that,
+                in normal use cases, it should never be returned to a
+                client.  For this reason, the NACM extension
+                "default-deny-all" has been applied to it here.</t>
+            </list>
+          </t>
+
+          <t>Some of the operations in this YANG module may be considered
+            sensitive or vulnerable in some network environments. It is
+            thus important to control access to these operations. These
+            are the operations and their sensitivity/vulnerability:
+            <list style="hanging" hangIndent="6">
+              <t hangText="   *:">All of the "action" statements defined by
+                groupings SHOULD only be executed by authorized users.  For
+                this reason, the NACM extension "default-deny-all" has been
+                applied to all of them.  Note that NACM uses "default-deny-all"
+                to protect "RPC" and "action" statements; it does not define,
+                e.g., an extension called "default-deny-execute".</t>
+              <t hangText="   generate-certificate-signing-request:">For
+                this action, it is RECOMMENDED that implementations assert
+                channel binding <xref target="RFC5056"/>, so as to ensure
+                that the application layer that sent the request is the same
+                as the device authenticated when the secure transport layer
+                was established.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="IANA Considerations">
@@ -393,6 +453,19 @@
           <t>
             <list style="symbols">
               <t>fixed broken symlink causing reformatted YANG module to not show.</t>
+            </list>
+          </t>
+        </section>
+         <section title="05 to 06">
+          <t>
+            <list style="symbols">
+              <t>Added NACM annotations.</t>
+              <t>Updated Security Considerations section.</t>
+              <t>Added 'asymmetric-key-pair-with-cert-grouping' grouping.</t>
+              <t>Removed text from 'permanently-hidden' enum regarding
+                such keys not being backed up or restored.</t>
+              <t>Updated the boilerplate text in module-level "description"
+                 statement to match copyeditor convention.</t>
             </list>
           </t>
         </section>
