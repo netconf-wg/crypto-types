@@ -28,13 +28,6 @@ module ietf-crypto-types {
     "This module defines common YANG types for cryptographic
      applications.
 
-     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
-     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
-     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
-     are to be interpreted as described in BCP 14 (RFC2119)
-     (RFC8174) when, and only when, they appear in all
-     capitals, as shown here.
-
      Copyright (c) 2019 IETF Trust and the persons identified
      as authors of the code. All rights reserved.
 
@@ -45,8 +38,16 @@ module ietf-crypto-types {
      Legal Provisions Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX; see
-     the RFC itself for full legal notices.";
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
+     itself for full legal notices.; 
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
+     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
+     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
+     are to be interpreted as described in BCP 14 (RFC 2119)
+     (RFC 8174) when, and only when, they appear in all
+     capitals, as shown here.";
 
   revision YYYY-MM-DD {
     description
@@ -1334,10 +1335,16 @@ module ietf-crypto-types {
 
   grouping public-key-grouping {
     description
-      "A public key.";
+      "A public key.
+         
+       The 'algorithm' and 'public-key' nodes are not
+       mandatory because they MAY be defined in <operational>.
+       Implementations SHOULD assert that these values are
+       either configured or that they exist in <operational>.";
     leaf algorithm {
       nacm:default-deny-write;
       type asymmetric-key-algorithm-ref;
+      must '../public-key';
       description
         "Identifies the key's algorithm.  More specifically,
          this leaf specifies how the 'public-key' binary leaf
@@ -1348,6 +1355,7 @@ module ietf-crypto-types {
     leaf public-key {
       nacm:default-deny-write;
       type binary;
+      must '../algorithm';
       description
         "A binary that contains the value of the public key.  The
          interpretation of the content is defined by the key
@@ -1365,7 +1373,12 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-grouping {
     description
-      "A private/public key pair.";
+      "A private/public key pair.
+         
+       The 'algorithm', 'public-key', and 'private-key'  nodes are
+       not mandatory because they MAY be defined in <operational>.
+       Implementations SHOULD assert that these values are either
+       configured or that they exist in <operational>.";
     uses public-key-grouping;
     leaf private-key {
       nacm:default-deny-all;
@@ -1376,10 +1389,20 @@ module ietf-crypto-types {
             description
               "The private key is inaccessible due to being
                protected by the system (e.g., a cryptographic
-               hardware module).";
+               hardware module).
+
+               How such keys are backed-up and restored, if
+               at all, is implementation specific.
+               
+               Servers MUST fail any attempt by a client to
+               configure this value directly.  This value is
+               not set by clients, but rather is set by the
+               'generate-hidden-key' and 'install-hidden-key'
+               actions.";
           }
         }
       }
+      must '../public-key';
       description
         "A binary that contains the value of the private key.  The
          interpretation of the content is defined by the key
@@ -1398,11 +1421,14 @@ module ietf-crypto-types {
       description
         "Requests the device to generate a hidden key using the
          specified asymmetric key algorithm.  This action is
-         used to request the system to generate a key that
-         is 'permanently-hidden', perhaps protected by a
-         cryptographic hardware module.  The resulting
-         asymmetric key values are considered operational
-         state and hence present only in <operational>.";
+         used to request the system to generate a key that is
+         'permanently-hidden', perhaps protected by a cryptographic
+         hardware module.  The resulting asymmetric key values are
+         considered operational state and hence present only in
+         <operational> and bound to the lifetime of the parent
+         'config true' node.  Subsequent invocations of this or
+         the 'install-hidden-key' action are denied with error-tag
+         'data-exists'.";
       input {
         leaf algorithm {
           type asymmetric-key-algorithm-ref;
@@ -1422,7 +1448,10 @@ module ietf-crypto-types {
         "Requests the device to load the specified values into
          a hidden key.  The resulting asymmetric key values are
          considered operational state and hence present only in
-         <operational>.";
+         <operational> and bound to the lifetime of the parent
+         'config true' node.  Subsequent invocations of this
+         or the 'generate-hidden-key' action are denied with
+         error-tag 'data-exists'.";
       input {
         leaf algorithm {
           type asymmetric-key-algorithm-ref;
@@ -1469,8 +1498,38 @@ module ietf-crypto-types {
 
   grouping trust-anchor-cert-grouping {
     description
-      "A certificate, and a notification for when it might expire.";
+      "A trust anchor certificate, and a notification for when
+       it is about to (or already has) expire.";
     leaf cert {
+      nacm:default-deny-write;
+      type trust-anchor-cert-cms;
+      description
+        "The binary certificate data for this certificate.";
+      reference
+        "RFC YYYY: Common YANG Data Types for Cryptography";
+    }
+    notification certificate-expiration {
+      description
+        "A notification indicating that the configured certificate
+         is either about to expire or has already expired.  When to
+         send notifications is an implementation specific decision,
+         but it is RECOMMENDED that a notification be sent once a
+         month for 3 months, then once a week for four weeks, and
+         then once a day thereafter until the issue is resolved.";
+      leaf expiration-date {
+        type yang:date-and-time;
+        mandatory true;
+        description
+          "Identifies the expiration date on the certificate.";
+      }
+    }
+  }
+
+  grouping trust-anchor-certs-grouping {
+    description
+      "A list of trust anchor certificates, and a notification
+       for when one is about to (or already has) expire.";
+    leaf-list cert {
       nacm:default-deny-write;
       type trust-anchor-cert-cms;
       description
@@ -1497,8 +1556,38 @@ module ietf-crypto-types {
 
   grouping end-entity-cert-grouping {
     description
-      "A certificate, and a notification for when it might expire.";
+      "An end entity certificate, and a notification for when
+       it is about to (or already has) expire.";
     leaf cert {
+      nacm:default-deny-write;
+      type end-entity-cert-cms;
+      description
+        "The binary certificate data for this certificate.";
+      reference
+        "RFC YYYY: Common YANG Data Types for Cryptography";
+    }
+    notification certificate-expiration {
+      description
+        "A notification indicating that the configured certificate
+         is either about to expire or has already expired.  When to
+         send notifications is an implementation specific decision,
+         but it is RECOMMENDED that a notification be sent once a
+         month for 3 months, then once a week for four weeks, and
+         then once a day thereafter until the issue is resolved.";
+      leaf expiration-date {
+        type yang:date-and-time;
+        mandatory true;
+        description
+          "Identifies the expiration date on the certificate.";
+      }
+    }
+  }
+
+  grouping end-entity-certs-grouping {
+    description
+      "A list of end entity certificates, and a notification for
+       when one is about to (or already has) expire.";
+    leaf-list cert {
       nacm:default-deny-write;
       type end-entity-cert-cms;
       description

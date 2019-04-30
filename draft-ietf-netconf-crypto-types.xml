@@ -295,10 +295,12 @@
         <?rfc include="reference.RFC.6020.xml"?>
         <?rfc include="reference.RFC.6125.xml"?>
         <?rfc include="reference.RFC.6234.xml"?>
+        <?rfc include="reference.RFC.6241.xml"?>
         <?rfc include="reference.RFC.6239.xml"?>
         <?rfc include="reference.RFC.6507.xml"?>
         <?rfc include="reference.RFC.8017.xml"?>
         <?rfc include="reference.RFC.8032.xml"?>
+        <?rfc include="reference.RFC.8040.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
         <?rfc include="reference.RFC.8439.xml"?>
       </references>
@@ -465,7 +467,23 @@
               <t>Removed text from 'permanently-hidden' enum regarding
                 such keys not being backed up or restored.</t>
               <t>Updated the boilerplate text in module-level "description"
-                 statement to match copyeditor convention.</t>
+                statement to match copyeditor convention.</t>
+              <t>Added an explanation to the 'public-key-grouping' and
+                'asymmetric-key-pair-grouping' statements as for why the
+                nodes are not mandatory (e.g., because they may exist only
+                in &lt;operational&gt;.</t>
+              <t>Added 'must' expressions to the 'public-key-grouping' and
+                'asymmetric-key-pair-grouping' statements ensuring sibling
+                nodes are either all exist or do not all exist.</t>
+              <t>Added an explanation to the 'permanently-hidden' that the
+                value cannot be configured directly by clients and servers
+                MUST fail any attempt to do so.</t>
+              <t>Added 'trust-anchor-certs-grouping' and 'end-entity-certs-grouping'
+                (the plural form of existing groupings).</t>
+              <t>Now states that keys created in &lt;operational&gt; by the
+                *-hidden-key actions are bound to the lifetime of the parent
+                'config true' node, and that subsequent invocations of either
+                action results in a failure.</t>
             </list>
           </t>
         </section>
@@ -475,10 +493,11 @@
         <t>The authors would like to thank for following for
         lively discussions on list and in the halls (ordered
         by last name):
-Martin Bjorklund,
-Balázs Kovács,
-Eric Voit,
-and Liang Xia.
+          Martin Bjorklund,
+          Balázs Kovács,
+          Juergen Schoenwaelder,
+          Eric Voit,
+          and Liang Xia.
        </t>
      </section>
 
