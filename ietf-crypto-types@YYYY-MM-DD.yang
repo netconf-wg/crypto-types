@@ -1346,9 +1346,7 @@ module ietf-crypto-types {
       type asymmetric-key-algorithm-ref;
       must '../public-key';
       description
-        "Identifies the key's algorithm.  More specifically,
-         this leaf specifies how the 'public-key' binary leaf
-         is encoded.";
+        "Identifies the key's algorithm.";
       reference
         "RFC CCCC: Common YANG Data Types for Cryptography";
     }
@@ -1389,7 +1387,10 @@ module ietf-crypto-types {
             description
               "The private key is inaccessible due to being
                protected by the system (e.g., a cryptographic
-               hardware module).
+               hardware module).  Since hidden keys are only
+               reported in <operational>, the 'permanently-
+               hidden' value never appears in conventional
+               configuration datastores.
 
                How such keys are backed-up and restored, if
                at all, is implementation specific.
@@ -1404,8 +1405,9 @@ module ietf-crypto-types {
       }
       must '../public-key';
       description
-        "A binary that contains the value of the private key.  The
-         interpretation of the content is defined by the key
+        "Either a binary that contains the value of the private
+         key or, in the case of a hidden key, the value 
+         'permanently-hidden'.  The interpretation of the content is defined by the key
          algorithm.  For example, a DSA key is an integer, an RSA
          key is represented as RSAPrivateKey as defined in
          RFC 8017, and an Elliptic Curve Cryptography (ECC) key
@@ -1420,13 +1422,15 @@ module ietf-crypto-types {
       nacm:default-deny-all;
       description
         "Requests the device to generate a hidden key using the
-         specified asymmetric key algorithm.  This action is
-         used to request the system to generate a key that is
-         'permanently-hidden', perhaps protected by a cryptographic
-         hardware module.  The resulting asymmetric key values are
-         considered operational state and hence present only in
-         <operational> and bound to the lifetime of the parent
-         'config true' node.  Subsequent invocations of this or
+         specified asymmetric key algorithm, such that the
+         'private-key' is always reported as 'permanently-hidden'
+         (the 'algorithm' and 'public-key' values are reported
+         as usual).  The resulting asymmetric key values are
+         considered operational state, with origin 'system' and
+         hence present only in <operational> and bound to the
+         lifetime of the parent 'config true' node (i.e., the
+         key in <operational> MUST be deleted when the 'config
+         true' parent node is deleted).  Subsequent invocations of this or
          the 'install-hidden-key' action are denied with error-tag
          'data-exists'.";
       input {
@@ -1446,10 +1450,12 @@ module ietf-crypto-types {
       nacm:default-deny-all;
       description
         "Requests the device to load the specified values into
-         a hidden key.  The resulting asymmetric key values are
-         considered operational state and hence present only in
-         <operational> and bound to the lifetime of the parent
-         'config true' node.  Subsequent invocations of this
+         a hidden key, such that the 'private-key' is always
+         reported as 'permanently-hidden' (the 'algorithm' and
+         'public-key' values are reported as usual).  The
+         stored values are considered operational state (origin
+         is 'system') and hence present only in <operational>.
+         and bound to the lifetime of the parent 'config true' node.  Subsequent invocations of this
          or the 'generate-hidden-key' action are denied with
          error-tag 'data-exists'.";
       input {
@@ -1464,6 +1470,7 @@ module ietf-crypto-types {
         }
         leaf public-key {
           type binary;
+          mandatory true;
           description
             "A binary that contains the value of the public key.
              The interpretation of the content is defined by the key
@@ -1479,6 +1486,7 @@ module ietf-crypto-types {
         }
         leaf private-key {
           type binary;
+          mandatory true;
           description
             "A binary that contains the value of the private key.
              The interpretation of the content is defined by the key
@@ -1557,7 +1565,9 @@ module ietf-crypto-types {
   grouping end-entity-cert-grouping {
     description
       "An end entity certificate, and a notification for when
-       it is about to (or already has) expire.";
+       it is about to (or already has) expire.  Implementations
+       SHOULD assert that, where used, the end entity certificate
+       contains the expected public key.";
     leaf cert {
       nacm:default-deny-write;
       type end-entity-cert-cms;
@@ -1614,7 +1624,9 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-with-cert-grouping {
     description
-      "A private/public key pair and an associated certificate.";
+      "A private/public key pair and an associated certificate.
+       Implementations SHOULD assert that certificates contain
+       the matching public key.";
 
     uses asymmetric-key-pair-grouping;
     uses end-entity-cert-grouping;
@@ -1649,7 +1661,7 @@ module ietf-crypto-types {
                Encoding Rules (DER).";
         }
         leaf attributes {
-          type binary;
+          type binary;     // FIXME: does this need to be mandatory?
           description
             "The 'attributes' field from the structure
              CertificationRequestInfo as specified by RFC 2986,
@@ -1692,7 +1704,9 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-with-certs-grouping {
     description
-      "A private/public key pair and associated certificates.";
+      "A private/public key pair and associated certificates.
+       Implementations SHOULD assert that certificates contain
+       the matching public key.";
     uses asymmetric-key-pair-grouping;
     container certificates {
       nacm:default-deny-write;
@@ -1747,7 +1761,7 @@ module ietf-crypto-types {
                Encoding Rules (DER).";
         }
         leaf attributes {
-          type binary;
+          type binary;     // FIXME: does this need to be mandatory?
           description
             "The 'attributes' field from the structure
              CertificationRequestInfo as specified by RFC 2986,
