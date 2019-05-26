@@ -164,19 +164,23 @@ module ietf-crypto-types {
   identity secp192r1 {
     base asymmetric-key-algorithm;
     description
-      "The ECDSA algorithm using a NIST P256 Curve.";
+      "The ECDSA algorithm using a NIST P192 Curve.";
     reference
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
+      "RFC 5480:
+         Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
   identity secp224r1 {
     base asymmetric-key-algorithm;
     description
-      "The ECDSA algorithm using a NIST P256 Curve.";
+      "The ECDSA algorithm using a NIST P224 Curve.";
     reference
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
+       "RFC 5480:
+         Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
   identity secp256r1 {
@@ -186,24 +190,30 @@ module ietf-crypto-types {
     reference
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
+       "RFC 5480:
+         Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
   identity secp384r1 {
     base asymmetric-key-algorithm;
     description
-      "The ECDSA algorithm using a NIST P256 Curve.";
+      "The ECDSA algorithm using a NIST P384 Curve.";
     reference
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
+       "RFC 5480:
+         Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
   identity secp521r1 {
     base asymmetric-key-algorithm;
     description
-      "The ECDSA algorithm using a NIST P256 Curve.";
+      "The ECDSA algorithm using a NIST P521 Curve.";
     reference
       "RFC 6090:
          Fundamental Elliptic Curve Cryptography Algorithms.";
+       "RFC 5480:
+         Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
   /*************************************/
