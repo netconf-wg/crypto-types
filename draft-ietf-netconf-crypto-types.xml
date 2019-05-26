@@ -458,7 +458,7 @@
             </list>
           </t>
         </section>
-         <section title="05 to 06">
+        <section title="05 to 06">
           <t>
             <list style="symbols">
               <t>Added NACM annotations.</t>
@@ -487,6 +487,20 @@
             </list>
           </t>
         </section>
+        <section title="06 to 07">
+          <t>
+            <list style="symbols">
+              <t>Added `mandatory true` to action input parameters where needed</t>
+              <t>Clarified the 'permanently-hidden' description to note that the
+                value only appears in &lt;operationa;&gt; (never conventional
+                configuration datastores)</t>
+              <t>Clarified the 'private-key' description to better reflect the value
+                being a 'union'</t>
+              <t>Added clarifications that implementations SHOULD assert that
+                configured certificates contain the matching public key.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
@@ -494,6 +508,7 @@
         lively discussions on list and in the halls (ordered
         by last name):
           Martin Bjorklund,
+          Nick Hancock,
           Balázs Kovács,
           Juergen Schoenwaelder,
           Eric Voit,
