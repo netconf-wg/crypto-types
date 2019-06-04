@@ -167,8 +167,8 @@ module ietf-crypto-types {
       "The ECDSA algorithm using a NIST P192 Curve.";
     reference
       "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.";
-      "RFC 5480:
+         Fundamental Elliptic Curve Cryptography Algorithms.
+      RFC 5480:
          Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
@@ -178,8 +178,8 @@ module ietf-crypto-types {
       "The ECDSA algorithm using a NIST P224 Curve.";
     reference
       "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.";
-       "RFC 5480:
+         Fundamental Elliptic Curve Cryptography Algorithms.
+       RFC 5480:
          Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
@@ -189,8 +189,8 @@ module ietf-crypto-types {
       "The ECDSA algorithm using a NIST P256 Curve.";
     reference
       "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.";
-       "RFC 5480:
+         Fundamental Elliptic Curve Cryptography Algorithms.
+       RFC 5480:
          Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
@@ -200,8 +200,8 @@ module ietf-crypto-types {
       "The ECDSA algorithm using a NIST P384 Curve.";
     reference
       "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.";
-       "RFC 5480:
+         Fundamental Elliptic Curve Cryptography Algorithms.
+       RFC 5480:
          Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
@@ -211,8 +211,8 @@ module ietf-crypto-types {
       "The ECDSA algorithm using a NIST P521 Curve.";
     reference
       "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.";
-       "RFC 5480:
+         Fundamental Elliptic Curve Cryptography Algorithms.
+       RFC 5480:
          Elliptic Curve Cryptography Subject Public Key Information.";
   }
 
