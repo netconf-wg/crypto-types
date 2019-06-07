@@ -56,6 +56,25 @@ module ietf-crypto-types {
       "RFC XXXX: Common YANG Data Types for Cryptography";
   }
 
+
+  /****************/
+  /*   Features   */
+  /****************/
+  feature generate-key {
+    description
+      "Indicates that the server supports the configuration
+       private key values using the 'value-to-be-generated'
+       prefix.";
+  }
+
+  feature hidden-key {
+    description
+      "Indicates that the server supports the configuration
+       of hidden private keys, whether by the using the
+       'value-to-be-generated-and-hidden' value or the
+       'value-to-be-hidden' prefix.";
+  }
+ 
   /**************************************/
   /*   Identities for Hash Algorithms   */
   /**************************************/
@@ -1345,16 +1364,11 @@ module ietf-crypto-types {
 
   grouping public-key-grouping {
     description
-      "A public key.
-         
-       The 'algorithm' and 'public-key' nodes are not
-       mandatory because they MAY be defined in <operational>.
-       Implementations SHOULD assert that these values are
-       either configured or that they exist in <operational>.";
+      "A public key and its associated algorithm.";
     leaf algorithm {
       nacm:default-deny-write;
       type asymmetric-key-algorithm-ref;
-      must '../public-key';
+      mandatory true;
       description
         "Identifies the key's algorithm.";
       reference
@@ -1363,15 +1377,13 @@ module ietf-crypto-types {
     leaf public-key {
       nacm:default-deny-write;
       type binary;
-      must '../algorithm';
+      mandatory true;
       description
-        "A binary that contains the value of the public key.  The
-         interpretation of the content is defined by the key
-         algorithm.  For example, a DSA key is an integer, an RSA
-         key is represented as RSAPublicKey as defined in
-         RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-         is represented using the 'publicKey' described in
-         RFC 5915.";
+        "The binary value of the public key.  The interpretation of
+         the value is defined by 'algorithm'.  For example, a DSA
+         key is an integer, an RSA key is represented as RSAPublicKey
+         per RFC 8017, and an ECC key is represented using the
+         'publicKey' described in RFC 5915.";
       reference
         "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
                    RSA Cryptography Specifications Version 2.2.
@@ -1381,138 +1393,86 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-grouping {
     description
-      "A private/public key pair.
-         
-       The 'algorithm', 'public-key', and 'private-key'  nodes are
-       not mandatory because they MAY be defined in <operational>.
-       Implementations SHOULD assert that these values are either
-       configured or that they exist in <operational>.";
+      "A private key and its associated public key and algorithm.";
     uses public-key-grouping;
     leaf private-key {
       nacm:default-deny-all;
       type union {
         type binary;
-        type enumeration {
-          enum permanently-hidden {
-            description
-              "The private key is inaccessible due to being
-               protected by the system (e.g., a cryptographic
-               hardware module).  Since hidden keys are only
-               reported in <operational>, the 'permanently-
-               hidden' value never appears in conventional
-               configuration datastores.
-
-               How such keys are backed-up and restored, if
-               at all, is implementation specific.
-               
-               Servers MUST fail any attempt by a client to
-               configure this value directly.  This value is
-               not set by clients, but rather is set by the
-               'generate-hidden-key' and 'install-hidden-key'
-               actions.";
-          }
+        type string {
+          pattern
+            'permanently-hidden'
+          + '|encrypted-by:.*:[A-Za-z0-9+/]+[=]{1,3}'
+          + '|value-to-be-generated(-and-hidden)?'
+          + '|value-to-be-hidden:[A-Za-z0-9+/]+[=]{1,3}';
         }
       }
-      must '../public-key';
+      mandatory true;
       description
-        "Either a binary that contains the value of the private
-         key or, in the case of a hidden key, the value 
-         'permanently-hidden'.  The interpretation of the content is defined by the key
-         algorithm.  For example, a DSA key is an integer, an RSA
-         key is represented as RSAPrivateKey as defined in
-         RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-         is represented as ECPrivateKey as defined in RFC 5915.";
+        "Either the binary value of the private key or a value 
+         indentifing special input and output values described
+         below.  The key's value is interpreted by the 'algorithm'.
+         For example, a DSA key is an integer, an RSA key is
+         represented as RSAPrivateKey as defined in RFC 8017, and
+         an ECC key is represented as ECPrivateKey as defined in
+         RFC 5915.
+
+         Special input and output values:
+
+           permanently-hidden
+ 
+             Primarily an output value indicating that the private
+             key value is not available in any form.  The only time
+             this value MAY be used as a input value is when it is
+             being used to copy a manufacturer-generated value from
+             <operational> to <running>.
+ 
+           encrypted-by:*:[A-Za-z0-9+/]+[=]{1,3}
+ 
+             Primarily an output value indicating that the private
+             key is encrypted using another key, identified by the
+             'by' attribute.  The only time this value MAY be used
+             as a input value is when it is being used to copy a
+             manufacturer-generated value from <operational> to
+             <running>.  Following the prefix is the base64-encoded
+             value of the encrypted private key. 
+ 
+           value-to-be-generated(-and-hidden)?
+ 
+             An input value used to request the system to generate,
+             and optionally hide, the public/private key pair.  When
+             used, the 'public-key' value MUST be empty (zero bytes).
+             
+             Without the optional '-and-hidden' postfix, the generated
+             key pair is stored in the configuration data store as if
+             the values had been configured by the client.
+
+             With the optional '-and-hidden' postfix, the generated
+             key pair is 'hidden' and thereafter be reported using
+             either 'permanently-hidden' or 'encrypted-by:*:'.
+
+             The server's support for 'value-to-be-generated' input
+             value is known by the 'generate-key' feature, and the
+             server's support for 'value-to-be-generated-and-hidden'
+             value is known by the combination of both the 'generate-
+             key' and 'hidden-key' features.
+ 
+           value-to-be-hidden:[A-Za-z0-9+/]+[=]{1,3}
+ 
+             An input value used to request the system to store the
+             provided private key such that it will thereafter be
+             reported using either as 'permanently-hidden' or
+             'encrypted-by:*:'.  Following the prefix is the
+             base64-encoded value of the private key.
+
+             The server's support for 'value-to-be-hidden' input
+             value is known by the 'hidden-key' feature.";
       reference
         "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
                    RSA Cryptography Specifications Version 2.2.
          RFC 5915: Elliptic Curve Private Key Structure.";
-    } // private-key
-
-    action generate-hidden-key {
-      nacm:default-deny-all;
-      description
-        "Requests the device to generate a hidden key using the
-         specified asymmetric key algorithm, such that the
-         'private-key' is always reported as 'permanently-hidden'
-         (the 'algorithm' and 'public-key' values are reported
-         as usual).  The resulting asymmetric key values are
-         considered operational state, with origin 'system' and
-         hence present only in <operational> and bound to the
-         lifetime of the parent 'config true' node (i.e., the
-         key in <operational> MUST be deleted when the 'config
-         true' parent node is deleted).  Subsequent invocations of this or
-         the 'install-hidden-key' action are denied with error-tag
-         'data-exists'.";
-      input {
-        leaf algorithm {
-          type asymmetric-key-algorithm-ref;
-          mandatory true;
-          description
-            "The algorithm to be used when generating the
-             asymmetric key.";
-          reference
-            "RFC CCCC: Common YANG Data Types for Cryptography";
-        }
       }
-    } // generate-hidden-key
-
-    action install-hidden-key {
-      nacm:default-deny-all;
-      description
-        "Requests the device to load the specified values into
-         a hidden key, such that the 'private-key' is always
-         reported as 'permanently-hidden' (the 'algorithm' and
-         'public-key' values are reported as usual).  The
-         stored values are considered operational state (origin
-         is 'system') and hence present only in <operational>.
-         and bound to the lifetime of the parent 'config true' node.  Subsequent invocations of this
-         or the 'generate-hidden-key' action are denied with
-         error-tag 'data-exists'.";
-      input {
-        leaf algorithm {
-          type asymmetric-key-algorithm-ref;
-          mandatory true;
-          description
-            "The algorithm to be used when generating the
-             asymmetric key.";
-          reference
-            "RFC CCCC: Common YANG Data Types for Cryptography";
-        }
-        leaf public-key {
-          type binary;
-          mandatory true;
-          description
-            "A binary that contains the value of the public key.
-             The interpretation of the content is defined by the key
-             algorithm.  For example, a DSA key is an integer, an
-             RSA key is represented as RSAPublicKey as defined in
-             RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-             is represented using the 'publicKey' described in
-             RFC 5915.";
-          reference
-            "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
-                       RSA Cryptography Specifications Version 2.2.
-             RFC 5915: Elliptic Curve Private Key Structure.";
-        }
-        leaf private-key {
-          type binary;
-          mandatory true;
-          description
-            "A binary that contains the value of the private key.
-             The interpretation of the content is defined by the key
-             algorithm.  For example, a DSA key is an integer, an RSA
-             key is represented as RSAPrivateKey as defined in
-             RFC 8017, and an Elliptic Curve Cryptography (ECC) key
-             is represented as ECPrivateKey as defined in RFC 5915.";
-          reference
-            "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
-                       RSA Cryptography Specifications Version 2.2.
-             RFC 5915: Elliptic Curve Private Key Structure.";
-        }
-      }
-    } // install-hidden-key
-  } // asymmetric-key-pair-grouping
-
+    }
 
   grouping trust-anchor-cert-grouping {
     description

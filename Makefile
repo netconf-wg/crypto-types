@@ -49,7 +49,7 @@ ifeq (org,$(draft_type))
 endif
 
 $(next).xml: $(draft).xml
-	xiax -f $< $@
+	/Users/kent/.pyenv/versions/3.7.2/bin/xiax -f $< $@
 
 .INTERMEDIATE: $(draft).xml
 %.xml: %.md

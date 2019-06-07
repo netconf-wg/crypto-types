@@ -5,11 +5,41 @@
       xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
       ct:rsa2048
     </algorithm>
-    <private-key>base64encodedvalue==</private-key>
     <public-key>base64encodedvalue==</public-key>
+    <private-key>base64encodedvalue==</private-key>
     <certificates>
       <certificate>
         <name>ex-cert</name>
+        <cert>base64encodedvalue==</cert>
+      </certificate>
+    </certificates>
+  </key>
+  <key>
+    <name>ex-hidden-key</name>
+    <algorithm
+      xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+      ct:rsa2048
+    </algorithm>
+    <public-key>base64encodedvalue==</public-key>
+    <private-key>permanently-hidden</private-key>
+    <certificates>
+      <certificate>
+        <name>ex-hidden-key-cert</name>
+        <cert>base64encodedvalue==</cert>
+      </certificate>
+    </certificates>
+  </key>
+  <key>
+    <name>ex-encrypted-key</name>
+    <algorithm
+      xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+      ct:rsa2048
+    </algorithm>
+    <public-key>base64encodedvalue==</public-key>
+    <private-key>encrypted-by:ex-key:base64encodedvalue==</private-key>
+    <certificates>
+      <certificate>
+        <name>ex-encrypted-key-cert</name>
         <cert>base64encodedvalue==</cert>
       </certificate>
     </certificates>

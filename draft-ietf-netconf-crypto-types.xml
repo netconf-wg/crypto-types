@@ -332,36 +332,6 @@
           </t>
         </section>
 
-        <section title="The &quot;generate-hidden-key&quot; Action">
-          <t>The following example illustrates the "generate-hidden-key" action
-          in use with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <preamble>REQUEST</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc.xml"/><!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc@YYYY-MM-DD.xml"/>-->
-            </figure>
-            <figure>
-              <preamble>RESPONSE</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ghk-rpc-reply.xml"/><!-- xiax:val="xiax/val-xml-ex-crypto-types-ghk-rpc-reply@YYYY-MM-DD.xml"/>-->
-            </figure>
-          </t>
-        </section>
-
-        <section title="The &quot;install-hidden-key&quot; Action">
-          <t>The following example illustrates the "install-hidden-key" action
-          in use with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <preamble>REQUEST</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ihk-rpc.xml"/>
-            </figure>
-            <figure>
-              <preamble>RESPONSE</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-ihk-rpc-reply.xml"/>
-            </figure>
-          </t>
-        </section>
-
         <section title="The &quot;generate-certificate-signing-request&quot; Action">
           <t>The following example illustrates the "generate-certificate-signing-request"
           action in use with the NETCONF protocol.</t>
@@ -490,14 +460,10 @@
         <section title="06 to 07">
           <t>
             <list style="symbols">
-              <t>Added `mandatory true` to action input parameters where needed</t>
-              <t>Clarified the 'permanently-hidden' description to note that the
-                value only appears in &lt;operationa;&gt; (never conventional
-                configuration datastores)</t>
-              <t>Clarified the 'private-key' description to better reflect the value
-                being a 'union'</t>
               <t>Added clarifications that implementations SHOULD assert that
                 configured certificates contain the matching public key.</t>
+              <t>Replaced the 'generate-hidden-key' and 'install-hidden-key' actions
+                with special 'crypt-hash' -like input/output values.</t>
             </list>
           </t>
         </section>
