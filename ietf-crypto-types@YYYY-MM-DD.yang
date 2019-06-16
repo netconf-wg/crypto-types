@@ -84,8 +84,18 @@ module ietf-crypto-types {
       "A base identity for hash algorithm verification.";
   }
 
+  identity sha1 {
+    base hash-algorithm;
+    status Obsolete;
+    description
+      "The SHA1 algorithm.";
+    reference
+      "RFC 3174: US Secure Hash Algorithms 1 (SHA1).";
+  }
+  
   identity sha-224 {
     base hash-algorithm;
+    status Normal;
     description
       "The SHA-224 algorithm.";
     reference
@@ -94,6 +104,7 @@ module ietf-crypto-types {
 
   identity sha-256 {
     base hash-algorithm;
+    status Normal;
     description
       "The SHA-256 algorithm.";
     reference
@@ -102,6 +113,7 @@ module ietf-crypto-types {
 
   identity sha-384 {
     base hash-algorithm;
+    status Normal
     description
       "The SHA-384 algorithm.";
     reference
@@ -110,11 +122,39 @@ module ietf-crypto-types {
 
   identity sha-512 {
     base hash-algorithm;
+    status Normal
     description
       "The SHA-512 algorithm.";
     reference
       "RFC 6234: US Secure Hash Algorithms.";
   }
+  
+  typedef hash-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                enum NONE {
+                    value 0;
+                }
+                enum sha1 {
+                    value 1;
+                }
+                enum sha-224 {
+                    value 2;
+                }
+                enum sha-256 {
+                    value 3;
+                }
+                enum sha-384 {
+                    value 4;
+                }
+                enum sha-512 {
+                    value 5;
+                }
+            }
+        }
+    }
+  
 
   /***********************************************/
   /*  Identities for Asymmetric Key Algorithms   */
@@ -1143,6 +1183,7 @@ module ietf-crypto-types {
       "This typedef enables importing modules to easily define an
        identityref to the 'key-exchange-algorithm' base identity.";
   }
+
 
   /***************************************************/
   /*   Typedefs for ASN.1 structures from RFC 5280   */
