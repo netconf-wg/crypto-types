@@ -467,6 +467,19 @@
             </list>
           </t>
         </section>
+        <section title="07 to 08">
+          <t>
+            <list style="symbols">
+              <t>Removed the 'generate-key and 'hidden-key' features.</t>
+              <t>Added grouping symmetric-key-grouping</t>
+              <t>Modified 'asymmetric-key-pair-grouping' to have a 'choice'
+                 statement for the keystone module to augment into, as well
+                 as replacing the 'union' with leafs (having different NACM
+                 settings.</t>
+            </list>
+          </t>
+        </section>
+
       </section>
 
       <section title="Acknowledgements" numbered="no">

@@ -57,24 +57,6 @@ module ietf-crypto-types {
   }
 
 
-  /****************/
-  /*   Features   */
-  /****************/
-  feature generate-key {
-    description
-      "Indicates that the server supports the configuration
-       private key values using the 'value-to-be-generated'
-       prefix.";
-  }
-
-  feature hidden-key {
-    description
-      "Indicates that the server supports the configuration
-       of hidden private keys, whether by the using the
-       'value-to-be-generated-and-hidden' value or the
-       'value-to-be-hidden' prefix.";
-  }
- 
   /**************************************/
   /*   Identities for Hash Algorithms   */
   /**************************************/
@@ -1362,6 +1344,43 @@ module ietf-crypto-types {
   /*   Groupings for keys and/or certificates   */
   /**********************************************/
 
+  grouping symmetric-key-grouping {
+    description
+      "A symmetric key and algorithm.";
+    leaf algorithm {
+      type identityref {
+        base "ct:encryption-algorithm";
+      }
+      mandatory true;
+      description
+        "The algorithm to be used when generating the key.";
+      reference
+        "RFC CCCC: Common YANG Data Types for Cryptography";
+    }
+    choice key-type {
+      mandatory true;
+      description
+        "Choice between key types.";
+      leaf key {
+        nacm:default-deny-all;
+        type binary;
+        description
+          "The binary value of the key.  The interpretation of
+           the value is defined by 'algorithm'.  For example, 
+           FIXME.";
+        reference
+          "RFC XXXX: FIXME";
+      }
+      leaf hidden-key {
+        nacm:default-deny-write;
+        type empty;
+        description
+          "A permanently hidden key.  How such keys are created
+           is outside the scope of this module.";
+      }
+    }
+  }
+
   grouping public-key-grouping {
     description
       "A public key and its associated algorithm.";
@@ -1395,84 +1414,33 @@ module ietf-crypto-types {
     description
       "A private key and its associated public key and algorithm.";
     uses public-key-grouping;
-    leaf private-key {
-      nacm:default-deny-all;
-      type union {
-        type binary;
-        type string {
-          pattern
-            'permanently-hidden'
-          + '|encrypted-by:.*:[A-Za-z0-9+/]+[=]{1,3}'
-          + '|value-to-be-generated(-and-hidden)?'
-          + '|value-to-be-hidden:[A-Za-z0-9+/]+[=]{1,3}';
-        }
-      }
+    choice private-key-type {
       mandatory true;
       description
-        "Either the binary value of the private key or a value 
-         indentifing special input and output values described
-         below.  The key's value is interpreted by the 'algorithm'.
-         For example, a DSA key is an integer, an RSA key is
-         represented as RSAPrivateKey as defined in RFC 8017, and
-         an ECC key is represented as ECPrivateKey as defined in
-         RFC 5915.
-
-         Special input and output values:
-
-           permanently-hidden
- 
-             Primarily an output value indicating that the private
-             key value is not available in any form.  The only time
-             this value MAY be used as a input value is when it is
-             being used to copy a manufacturer-generated value from
-             <operational> to <running>.
- 
-           encrypted-by:*:[A-Za-z0-9+/]+[=]{1,3}
- 
-             Primarily an output value indicating that the private
-             key is encrypted using another key, identified by the
-             'by' attribute.  The only time this value MAY be used
-             as a input value is when it is being used to copy a
-             manufacturer-generated value from <operational> to
-             <running>.  Following the prefix is the base64-encoded
-             value of the encrypted private key. 
- 
-           value-to-be-generated(-and-hidden)?
- 
-             An input value used to request the system to generate,
-             and optionally hide, the public/private key pair.  When
-             used, the 'public-key' value MUST be empty (zero bytes).
-             
-             Without the optional '-and-hidden' postfix, the generated
-             key pair is stored in the configuration data store as if
-             the values had been configured by the client.
-
-             With the optional '-and-hidden' postfix, the generated
-             key pair is 'hidden' and thereafter be reported using
-             either 'permanently-hidden' or 'encrypted-by:*:'.
-
-             The server's support for 'value-to-be-generated' input
-             value is known by the 'generate-key' feature, and the
-             server's support for 'value-to-be-generated-and-hidden'
-             value is known by the combination of both the 'generate-
-             key' and 'hidden-key' features.
- 
-           value-to-be-hidden:[A-Za-z0-9+/]+[=]{1,3}
- 
-             An input value used to request the system to store the
-             provided private key such that it will thereafter be
-             reported using either as 'permanently-hidden' or
-             'encrypted-by:*:'.  Following the prefix is the
-             base64-encoded value of the private key.
-
-             The server's support for 'value-to-be-hidden' input
-             value is known by the 'hidden-key' feature.";
-      reference
-        "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
-                   RSA Cryptography Specifications Version 2.2.
-         RFC 5915: Elliptic Curve Private Key Structure.";
+        "Choice between key types.";
+      leaf private-key {
+        nacm:default-deny-all;
+        type binary;
+        description
+          "The value of the binary key.  The key's value is
+           interpreted by the 'algorithm'.  For example, a DSA key
+           is an integer, an RSA key is represented as RSAPrivateKey
+           as defined in RFC 8017, and an ECC key is represented as
+           ECPrivateKey as defined in RFC 5915.";
+        reference
+          "RFC 8017: Public-Key Cryptography Standards (PKCS) #1:
+                     RSA Cryptography Specifications Version 2.2.
+           RFC 5915: Elliptic Curve Private Key Structure.";
+      }
+      leaf hidden-private-key {
+        nacm:default-deny-write;
+        type empty;
+        description
+          "A permanently hidden key.  How such keys are created
+           is outside the scope of this module.";
       }
     }
+  }
 
   grouping trust-anchor-cert-grouping {
     description
