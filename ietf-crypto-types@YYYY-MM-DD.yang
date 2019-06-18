@@ -84,11 +84,9 @@ module ietf-crypto-types {
             type enumeration {
                 enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
+                      "Hash algorithm is NULL.";
                 }
                 enum sha1 {
                     value 1;
@@ -132,6 +130,13 @@ module ietf-crypto-types {
                     
                 }
             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the hash algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected hash 
+                  algorithm. It is mandatory." 
         }
     }
   
@@ -145,11 +150,9 @@ module ietf-crypto-types {
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
+                      "Asymetric key algorithm is NULL.";
                  }
                  enum rsa1024 {
                     value 1;
@@ -162,7 +165,7 @@ module ietf-crypto-types {
                  }
                  enum rsa2048 {
                      value 2;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The RSA algorithm using a 2048-bit key.";
                      reference
@@ -171,7 +174,7 @@ module ietf-crypto-types {
                  }
                  enum rsa3072 {
                      value 3;
-                     satus "Normal"
+                     status "Normal"
                      description
                          "The RSA algorithm using a 3072-bit key.";
                      reference
@@ -180,7 +183,7 @@ module ietf-crypto-types {
                  }
                  enum rsa4096 {
                      value 4;
-                     satus "Normal"
+                     status "Normal"
                      description
                          "The RSA algorithm using a 4096-bit key.";
                      reference
@@ -189,7 +192,7 @@ module ietf-crypto-types {
                  }
                  enum rsa7680 {
                      value 5;
-                     satus "Normal"
+                     status "Normal"
                      description
                          "The RSA algorithm using a 7680-bit key.";
                      reference
@@ -198,7 +201,7 @@ module ietf-crypto-types {
                  }       
                  enum rsa15360 {
                      value 6;
-                     satus "Normal"
+                     status "Normal"
                      description
                          "The RSA algorithm using a 15360-bit key.";
                      reference
@@ -207,7 +210,7 @@ module ietf-crypto-types {
                  }                    
                  enum secp192r1 {
                      value 7;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P192 Curve.";
                      reference
@@ -218,7 +221,7 @@ module ietf-crypto-types {
                  }                 
                  enum secp224r1 {
                      value 7;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P224 Curve.";
                      reference
@@ -229,7 +232,7 @@ module ietf-crypto-types {
                  }                 
                  enum secp224r1 {
                      value 8;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P224 Curve.";
                      reference
@@ -240,7 +243,7 @@ module ietf-crypto-types {
                  }   
                  enum secp256r1 {
                      value 9;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P256 Curve.";
                      reference
@@ -251,7 +254,7 @@ module ietf-crypto-types {
                  }  
                  enum secp384r1 {
                      value 10;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P384 Curve.";
                      reference
@@ -262,7 +265,7 @@ module ietf-crypto-types {
                  }  
                  enum secp521r1 {
                      value 11;
-                     satus "Normal"
+                     status "Normal"
                      description
                         "The ECDSA algorithm using a NIST P521 Curve.";
                      reference
@@ -272,6 +275,13 @@ module ietf-crypto-types {
                           Elliptic Curve Cryptography Subject Public Key Information.";                     
                  }  
             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the asymmetric key algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected asymmetric key 
+                  algorithm. It is mandatory." 
         }
    }
   /*************************************/
@@ -284,19 +294,9 @@ module ietf-crypto-types {
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
-                 }
-                 enum NONE {
-                    value 0;
-                    status "None";
-                    description
-                      "None";
-                    reference
-                      "None";
+                      "mac algorithm is NULL.";
                  }
                  enum hmac-sha1
                  {
@@ -445,7 +445,14 @@ module ietf-crypto-types {
                     reference
                       "RFC 4494: The AES-CMAC Algorithm and its Use with IPsec";
                  }                   
-            }            
+            }  
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the mac algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected mac algorithm. 
+                  It is mandatory."             
       }
   }
 
@@ -458,11 +465,9 @@ module ietf-crypto-types {
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
+                      "Encryption algorithm is NULL.";
                  }
                  enum aes-128-cbc {
                     value 1;
@@ -528,6 +533,13 @@ module ietf-crypto-types {
                       Mode with IPsec Encapsulating Security Payload (ESP)";
                  }                     
              }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the encryption algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected encryption algorithm. 
+                  It is mandatory."             
         }
    }
   /****************************************************/
@@ -539,9 +551,9 @@ module ietf-crypto-types {
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
+                      "Encryption and MAC algorithm is NULL.";
                     reference
                       "None";
                  }
@@ -624,6 +636,13 @@ module ietf-crypto-types {
                       "RFC 8439: ChaCha20 and Poly1305 for IETF Protocols";
                  }                  
              }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the encryption and mac algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected encryption and mac 
+                  algorithm. It is mandatory."             
          }
   }
   
@@ -636,11 +655,9 @@ typedef signature-algorithm-t {
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
+                      "Signature algorithm is NULL";
                  }
                  enum dsa-sha1 {
                     value 1;
@@ -831,28 +848,27 @@ typedef signature-algorithm-t {
                        Identity-based Encryption (ECCSI)";
                  }                   
              }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the signature algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected signature algorithm. 
+                  It is mandatory."             
         }
   }
   /**********************************************/
   /*   Identities for key exchange algorithms   */
   /**********************************************/
-
-  identity key-exchange-algorithm {
-    description
-      "A base identity for Diffie-Hellman based key exchange
-       algorithm.";
-  }
   typedef key-exchange-algorithm-t {
         type union {
             type uint16; 
             type enumeration {
                  enum NONE {
                     value 0;
-                    status "None";
+                    status "Normal";
                     description
-                      "None";
-                    reference
-                      "None";
+                      "Key exchange algorithm is NULL.";
                  }
                  enum psk-only {
                     value 1;
@@ -1160,6 +1176,13 @@ typedef signature-algorithm-t {
                       "RFC 8017:PKCS #1: RSA Cryptography Specifications Version 2.2.";
                  }                    
              }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the key exchange algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected key exchange algorithm. 
+                  It is mandatory."             
         }
   }
 
