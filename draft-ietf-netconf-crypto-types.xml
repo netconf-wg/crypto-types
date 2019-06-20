@@ -479,6 +479,13 @@
             </list>
           </t>
         </section>
+        <section title="08 to 09">
+          <t>
+            <list style="symbols">
+              <t>Converting algorithm from identities to enumerations.</t>
+            </list>
+          </t>
+        </section>
 
       </section>
 
