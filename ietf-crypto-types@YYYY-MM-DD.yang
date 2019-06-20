@@ -60,1070 +60,1112 @@ module ietf-crypto-types {
   /**************************************/
   /*   Identities for Hash Algorithms   */
   /**************************************/
-
-  identity hash-algorithm {
-    description
-      "A base identity for hash algorithm verification.";
-  }
-
-  identity sha-224 {
-    base hash-algorithm;
-    description
-      "The SHA-224 algorithm.";
-    reference
-      "RFC 6234: US Secure Hash Algorithms.";
-  }
-
-  identity sha-256 {
-    base hash-algorithm;
-    description
-      "The SHA-256 algorithm.";
-    reference
-      "RFC 6234: US Secure Hash Algorithms.";
-  }
-
-  identity sha-384 {
-    base hash-algorithm;
-    description
-      "The SHA-384 algorithm.";
-    reference
-      "RFC 6234: US Secure Hash Algorithms.";
-  }
-
-  identity sha-512 {
-    base hash-algorithm;
-    description
-      "The SHA-512 algorithm.";
-    reference
-      "RFC 6234: US Secure Hash Algorithms.";
-  }
+  typedef hash-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Hash algorithm is NULL.";
+                }
+                enum sha1 {
+                    value 1;
+                    status  "Obsolete";
+                    description
+                      "The SHA1 algorithm.";
+                    reference
+                      "RFC 3174: US Secure Hash Algorithms 1 (SHA1).";
+                }
+                enum sha-224 {
+                    value 2;
+                    status "Normal";
+                    description
+                       "The SHA-224 algorithm.";
+                    reference
+                       "RFC 6234: US Secure Hash Algorithms.";
+                }
+                enum sha-256 {
+                    value 3;
+                    status “Normal”;
+                    description
+                       "The SHA-256 algorithm.";
+                    reference
+                       "RFC 6234: US Secure Hash Algorithms.";                    
+                }
+                enum sha-384 {
+                    value 4;
+                    status “Normal”
+                    description
+                        "The SHA-384 algorithm.";
+                    reference
+                       "RFC 6234: US Secure Hash Algorithms.";
+                }
+                enum sha-512 {
+                    value 5;
+                    status “Normal”；
+                    description
+                       "The SHA-512 algorithm.";
+                    reference
+                       "RFC 6234: US Secure Hash Algorithms.";
+                    
+                }
+            }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the hash algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected hash 
+                  algorithm. It is mandatory." 
+        }
+    }
+  
 
   /***********************************************/
   /*  Identities for Asymmetric Key Algorithms   */
   /***********************************************/
-
-  identity asymmetric-key-algorithm {
-    description
-      "Base identity from which all asymmetric key
-       encryption Algorithm.";
-  }
-
-  identity rsa1024 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 1024-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsa2048 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 2048-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsa3072 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 3072-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsa4096 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 4096-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsa7680 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 7680-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsa15360 {
-    base asymmetric-key-algorithm;
-    description
-      "The RSA algorithm using a 15360-bit key.";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity secp192r1 {
-    base asymmetric-key-algorithm;
-    description
-      "The ECDSA algorithm using a NIST P192 Curve.";
-    reference
-      "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.
-      RFC 5480:
-         Elliptic Curve Cryptography Subject Public Key Information.";
-  }
-
-  identity secp224r1 {
-    base asymmetric-key-algorithm;
-    description
-      "The ECDSA algorithm using a NIST P224 Curve.";
-    reference
-      "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.
-       RFC 5480:
-         Elliptic Curve Cryptography Subject Public Key Information.";
-  }
-
-  identity secp256r1 {
-    base asymmetric-key-algorithm;
-    description
-      "The ECDSA algorithm using a NIST P256 Curve.";
-    reference
-      "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.
-       RFC 5480:
-         Elliptic Curve Cryptography Subject Public Key Information.";
-  }
-
-  identity secp384r1 {
-    base asymmetric-key-algorithm;
-    description
-      "The ECDSA algorithm using a NIST P384 Curve.";
-    reference
-      "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.
-       RFC 5480:
-         Elliptic Curve Cryptography Subject Public Key Information.";
-  }
-
-  identity secp521r1 {
-    base asymmetric-key-algorithm;
-    description
-      "The ECDSA algorithm using a NIST P521 Curve.";
-    reference
-      "RFC 6090:
-         Fundamental Elliptic Curve Cryptography Algorithms.
-       RFC 5480:
-         Elliptic Curve Cryptography Subject Public Key Information.";
-  }
-
+  typedef asymmetric-key-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Asymetric key algorithm is NULL.";
+                 }
+                 enum rsa1024 {
+                    value 1;
+                    status "Normal"
+                    description
+                      "The RSA algorithm using a 1024-bit key.";
+                    reference
+                      "RFC 8017: PKCS #1: RSA Cryptography 
+                       Specifications Version 2.2.";
+                 }
+                 enum rsa2048 {
+                     value 2;
+                     status "Normal"
+                     description
+                        "The RSA algorithm using a 2048-bit key.";
+                     reference
+                        "RFC 8017:
+                         PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }
+                 enum rsa3072 {
+                     value 3;
+                     status "Normal"
+                     description
+                         "The RSA algorithm using a 3072-bit key.";
+                     reference
+                         "RFC 8017:
+                          PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }
+                 enum rsa4096 {
+                     value 4;
+                     status "Normal"
+                     description
+                         "The RSA algorithm using a 4096-bit key.";
+                     reference
+                         "RFC 8017:
+                          PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }
+                 enum rsa7680 {
+                     value 5;
+                     status "Normal"
+                     description
+                         "The RSA algorithm using a 7680-bit key.";
+                     reference
+                         "RFC 8017:
+                          PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }       
+                 enum rsa15360 {
+                     value 6;
+                     status "Normal"
+                     description
+                         "The RSA algorithm using a 15360-bit key.";
+                     reference
+                         "RFC 8017:
+                          PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }                    
+                 enum secp192r1 {
+                     value 7;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P192 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }                 
+                 enum secp224r1 {
+                     value 7;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P224 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }                 
+                 enum secp224r1 {
+                     value 8;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P224 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }   
+                 enum secp256r1 {
+                     value 9;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P256 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }  
+                 enum secp384r1 {
+                     value 10;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P384 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }  
+                 enum secp521r1 {
+                     value 11;
+                     status "Normal"
+                     description
+                        "The ECDSA algorithm using a NIST P521 Curve.";
+                     reference
+                        "RFC 6090:
+                          Fundamental Elliptic Curve Cryptography Algorithms.
+                         RFC 5480:
+                          Elliptic Curve Cryptography Subject Public Key Information.";                     
+                 }  
+            }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the asymmetric key algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected asymmetric key 
+                  algorithm. It is mandatory." 
+        }
+   }
   /*************************************/
   /*   Identities for MAC Algorithms   */
   /*************************************/
 
-  identity mac-algorithm {
-    description
-      "A base identity for mac generation.";
-  }
-
-  identity hmac-sha1 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA1 hash function";
-    reference
-      "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
-  }
-
-  identity hmac-sha1-96 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA1 hash function";
-    reference
-      "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
-  }
-
-  identity hmac-sha2-224 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA2 hash function";
-    reference
-      "RFC 6234:
-         US Secure Hash Algorithms (SHA and SHA-based HMAC and
-         HKDF)";
-  }
-
-  identity hmac-sha2-256 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA2 hash function";
-    reference
-      "RFC 6234:
-         US Secure Hash Algorithms (SHA and SHA-based HMAC and
-         HKDF)";
-  }
-
-  identity hmac-sha2-256-128 {
-    base mac-algorithm;
-    description
-      "Generating a 256 bits MAC using SHA2 hash function and
-       truncate it to 128 bits";
-    reference
-      "RFC 4868:
-         Using HMAC-SHA-256, HMAC-SHA-384, and HMAC-SHA-512
-         with IPsec";
-  }
-
-  identity hmac-sha2-384 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA2 hash function";
-    reference
-      "RFC 6234:
-         US Secure Hash Algorithms (SHA and SHA-based HMAC and
-         HKDF)";
-  }
-
-  identity hmac-sha2-384-192 {
-    base mac-algorithm;
-    description
-      "Generating a 384 bits MAC using SHA2 hash function and
-       truncate it to 192 bits";
-    reference
-      "RFC 4868:
-         Using HMAC-SHA-256, HMAC-SHA-384, and HMAC-SHA-512 with
-         IPsec";
-  }
-
-  identity hmac-sha2-512 {
-    base mac-algorithm;
-    description
-      "Generating MAC using SHA2 hash function";
-    reference
-      "RFC 6234:
-         US Secure Hash Algorithms (SHA and SHA-based HMAC and
-         HKDF)";
-  }
-
-  identity hmac-sha2-512-256 {
-    base mac-algorithm;
-    description
-      "Generating a 512 bits MAC using SHA2 hash function and
-       truncating it to 256 bits";
-    reference
-      "RFC 4868:
-         Using HMAC-SHA-256, HMAC-SHA-384, and HMAC-SHA-512 with
-         IPsec";
-  }
-
-  identity aes-128-gmac {
-    base mac-algorithm;
-    description
-      "Generating MAC using the Advanced Encryption Standard (AES)
-       Galois Message Authentication Code (GMAC) as a mechanism to
-       provide data origin authentication";
-    reference
-      "RFC 4543:
-         The Use of Galois Message Authentication Code (GMAC) in
-         IPsec ESP and AH";
-  }
-
-  identity aes-192-gmac {
-    base mac-algorithm;
-    description
-      "Generating MAC using the Advanced Encryption Standard (AES)
-       Galois Message Authentication Code (GMAC) as a mechanism to
-       provide data origin authentication";
-    reference
-      "RFC 4543:
-         The Use of Galois Message Authentication Code (GMAC) in
-         IPsec ESP and AH";
-  }
-
-  identity aes-256-gmac {
-    base mac-algorithm;
-    description
-      "Generating MAC using the Advanced Encryption Standard (AES)
-       Galois Message Authentication Code (GMAC) as a mechanism to
-       provide data origin authentication";
-    reference
-      "RFC 4543:
-         The Use of Galois Message Authentication Code (GMAC) in
-         IPsec ESP and AH";
-  }
-
-  identity aes-cmac-96 {
-    base mac-algorithm;
-    description
-      "Generating MAC using Advanced Encryption Standard (AES)
-       Cipher-based Message Authentication Code (CMAC)";
-    reference
-      "RFC 4494: The AES-CMAC-96 Algorithm and its Use with IPsec";
-  }
-
-  identity aes-cmac-128 {
-    base mac-algorithm;
-    description
-      "Generating MAC using Advanced Encryption Standard (AES)
-       Cipher-based Message Authentication Code (CMAC)";
-    reference
-      "RFC 4493: The AES-CMAC Algorithm";
+  typedef mac-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "mac algorithm is NULL.";
+                 }
+                 enum hmac-sha1
+                 {
+                    value 1;
+                    status "Normal;";
+                    description
+                      "Generating MAC using SHA1 hash function";
+                    reference
+                      "RFC 3174: US Secure Hash Algorithm 1 (SHA1)";
+                 }
+                 enum hmac-sha1-96
+                 {
+                    value 2;
+                    status "Normal;";
+                    description
+                      "Generating MAC using SHA1 hash function";
+                    reference
+                      "RFC 2404: The Use of HMAC-SHA-1-96 within ESP and AH";
+                 }
+                 enum hmac-sha2-224
+                 {
+                    value 3;
+                    status "Normal;";
+                    description
+                      "Generating MAC using SHA2 hash function";
+                    reference
+                      "RFC 6234: US Secure Hash Algorithms 
+                       (SHA and SHA-based HMAC and HKDF)";
+                 }
+                 enum hmac-sha2-256
+                 {
+                    value 4;
+                    status "Normal;";
+                    description
+                      "Generating MAC using SHA2 hash function";
+                    reference
+                      "RFC 6234: US Secure Hash Algorithms 
+                       (SHA and SHA-based HMAC and HKDF)";
+                 }
+                 enum hmac-sha2-256-128
+                 {
+                    value 5;
+                    status "Normal;";
+                    description
+                      "Generating a 256 bits MAC using SHA2 hash function and
+                       truncate it to 128 bits";
+                    reference
+                      "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, 
+                       and HMAC-SHA-512 with IPsec";
+                 }                 
+                 enum hmac-sha2-384
+                 {
+                    value 6;
+                    status "Normal;";
+                    description
+                      "Generating a 384 bits MAC using SHA2 hash function";
+                    reference
+                      "RFC 6234: US Secure Hash Algorithms 
+                       (SHA and SHA-based HMAC and HKDF)";
+                 }                 
+                 enum hmac-sha2-384-192
+                 {
+                    value 7;
+                    status "Normal;";
+                    description
+                      "Generating a 384 bits MAC using SHA2 hash function and
+                       truncate it to 192 bits";
+                    reference
+                      "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, 
+                       and HMAC-SHA-512 with IPsec";
+                 }    
+                 enum hmac-sha2-512
+                 {
+                    value 8;
+                    status "Normal;";
+                    description
+                      "Generating a 512 bits MAC using SHA2 hash function";
+                    reference
+                      "RFC 6234: US Secure Hash Algorithms 
+                       (SHA and SHA-based HMAC and HKDF)";
+                 }      
+                 enum hmac-sha2-512-256
+                 {
+                    value 9;
+                    status "Normal;";
+                    description
+                      "Generating a 512 bits MAC using SHA2 hash function and
+                       truncate it to 256 bits";
+                    reference
+                      "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, 
+                       and HMAC-SHA-512 with IPsec";
+                 }   
+                 enum aes-128-gmac
+                 {
+                    value 10;
+                    status "Normal;";
+                    description
+                      "Generating 128-bit MAC using the Advanced Encryption Standard (AES)
+                       Galois Message Authentication Code (GMAC) as a mechanism to
+                       provide data origin authenticatio";
+                    reference
+                      "RFC 4543: The Use of Galois Message Authentication Code 
+                       (GMAC) in IPsec ESP and AH";
+                 }
+                 enum aes-192-gmac
+                 {
+                    value 11;
+                    status "Normal;";
+                    description
+                      "Generating 192-bit MAC using the Advanced Encryption Standard (AES)
+                       Galois Message Authentication Code (GMAC) as a mechanism to
+                       provide data origin authenticatio";
+                    reference
+                      "RFC 4543: The Use of Galois Message Authentication Code 
+                       (GMAC) in IPsec ESP and AH";
+                 }  
+                 enum aes-256-gmac
+                 {
+                    value 11;
+                    status "Normal;";
+                    description
+                      "Generating 256-bit MAC using the Advanced Encryption Standard (AES)
+                       Galois Message Authentication Code (GMAC) as a mechanism to
+                       provide data origin authenticatio";
+                    reference
+                      "RFC 4543: The Use of Galois Message Authentication Code 
+                       (GMAC) in IPsec ESP and AH";
+                 }    
+                 enum aes-cmac-96
+                 {
+                    value 12;
+                    status "Normal;";
+                    description
+                      "Generating 96-bit MAC using Advanced Encryption Standard (AES)
+                       Cipher-based Message Authentication Code (CMAC)";
+                    reference
+                      "RFC 4494: The AES-CMAC Algorithm and its Use with IPsec";
+                 }      
+                 enum aes-cmac-128
+                 {
+                    value 13;
+                    status "Normal;";
+                    description
+                      "Generating 128-bit MAC using Advanced Encryption Standard (AES)
+                       Cipher-based Message Authentication Code (CMAC)";
+                    reference
+                      "RFC 4494: The AES-CMAC Algorithm and its Use with IPsec";
+                 }                   
+            }  
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the mac algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected mac algorithm. 
+                  It is mandatory."             
+      }
   }
 
   /********************************************/
   /*   Identities for Encryption Algorithms   */
   /********************************************/
-
-  identity encryption-algorithm {
-    description
-      "A base identity for encryption algorithm.";
-  }
-
-  identity aes-128-cbc {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CBC mode with a key
-       length of 128 bits";
-    reference
-      "RFC 3565:
-         Use of the Advanced Encryption Standard (AES) Encryption
-         Algorithm in Cryptographic Message Syntax (CMS)";
-  }
-
-  identity aes-192-cbc {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CBC mode with a key
-       length of 192 bits";
-    reference
-      "RFC 3565:
-         Use of the Advanced Encryption Standard (AES) Encryption
-         Algorithm in Cryptographic Message Syntax (CMS)";
-  }
-
-  identity aes-256-cbc {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CBC mode with a key
-       length of 256 bits";
-    reference
-      "RFC 3565:
-         Use of the Advanced Encryption Standard (AES) Encryption
-         Algorithm in Cryptographic Message Syntax (CMS)";
-  }
-
-  identity aes-128-ctr {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CTR mode with a key
-       length of 128 bits";
-    reference
-      "RFC 3686:
-         Using Advanced Encryption Standard (AES) Counter Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity aes-192-ctr {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CTR mode with a key
-       length of 192 bits";
-    reference
-      "RFC 3686:
-         Using Advanced Encryption Standard (AES) Counter Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity aes-256-ctr {
-    base encryption-algorithm;
-    description
-      "Encrypt message with AES algorithm in CTR mode with a key
-       length of 256 bits";
-    reference
-      "RFC 3686:
-         Using Advanced Encryption Standard (AES) Counter Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
+  typedef encryption-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Encryption algorithm is NULL.";
+                 }
+                 enum aes-128-cbc {
+                    value 1;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CBC mode with a key
+                       length of 128 bits";
+                    reference
+                      "RFC 3565: Use of the Advanced Encryption Standard (AES) 
+                       Encryption Algorithm in Cryptographic Message Syntax 
+                       (CMS)";
+                 }
+                 enum aes-192-cbc {
+                    value 2;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CBC mode with a key
+                       length of 192 bits";
+                    reference
+                      "RFC 3565: Use of the Advanced Encryption Standard (AES) 
+                       Encryption Algorithm in Cryptographic Message Syntax 
+                       (CMS)";
+                 }     
+                 enum aes-256-cbc {
+                    value 3;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CBC mode with a key
+                       length of 256 bits";
+                    reference
+                      "RFC 3565: Use of the Advanced Encryption Standard (AES) 
+                       Encryption Algorithm in Cryptographic Message Syntax 
+                       (CMS)";
+                 }      
+                 enum aes-128-ctr {
+                    value 4;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CTR mode with a key
+                       length of 128 bits";
+                    reference
+                      "RRFC 3686: Using Advanced Encryption Standard (AES) Counter 
+                      Mode with IPsec Encapsulating Security Payload (ESP)";
+                 }                     
+                 enum aes-192-ctr {
+                    value 4;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CTR mode with a key
+                       length of 192 bits";
+                    reference
+                      "RRFC 3686: Using Advanced Encryption Standard (AES) Counter 
+                      Mode with IPsec Encapsulating Security Payload (ESP)";
+                 }                     
+                 enum aes-256-ctr {
+                    value 5;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CTR mode with a key
+                       length of 256 bits";
+                    reference
+                      "RRFC 3686: Using Advanced Encryption Standard (AES) Counter 
+                      Mode with IPsec Encapsulating Security Payload (ESP)";
+                 }                     
+             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the encryption algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected encryption algorithm. 
+                  It is mandatory."             
+        }
+   }
   /****************************************************/
   /*   Identities for Encryption and MAC Algorithms   */
   /****************************************************/
-
-  identity encryption-and-mac-algorithm {
-    description
-      "A base identity for encryption and MAC algorithm.";
+  typedef encryption-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Encryption and MAC algorithm is NULL.";
+                    reference
+                      "None";
+                 }
+                 enum aes-128-ccm {
+                    value 1;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CCM 
+                       mode with a key length of 128 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4309: Using Advanced Encryption Standard 
+                      (AES) CCM Mode with IPsec Encapsulating Security 
+                      Payload (ESP)";
+                 }     
+                 enum aes-192-ccm {
+                    value 2;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CCM 
+                       mode with a key length of 192 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4309: Using Advanced Encryption Standard 
+                      (AES) CCM Mode with IPsec Encapsulating Security 
+                      Payload (ESP)";
+                 } 
+                 enum aes-256-ccm {
+                    value 3;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in CCM 
+                       mode with a key length of 256 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4309: Using Advanced Encryption Standard 
+                      (AES) CCM Mode with IPsec Encapsulating Security 
+                      Payload (ESP)";
+                 } 
+                 enum aes-128-gcm {
+                    value 4;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in GCM 
+                       mode with a key length of 128 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4106: The Use of Galois/Counter Mode (GCM) 
+                      in IPsec Encapsulating Security Payload (ESP)";
+                 } 
+                 enum aes-192-gcm {
+                    value 5;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in GCM 
+                       mode with a key length of 192 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4106: The Use of Galois/Counter Mode (GCM) 
+                      in IPsec Encapsulating Security Payload (ESP)";
+                 } 
+                 enum aes-256-gcm {
+                    value 6;
+                    status "Normal";
+                    description
+                      "Encrypt message with AES algorithm in GCM 
+                       mode with a key length of 256 bits; it can 
+                       also be used for generating MAC";
+                    reference
+                      "RFC 4106: The Use of Galois/Counter Mode (GCM) 
+                      in IPsec Encapsulating Security Payload (ESP)";
+                 } 
+                 enum chacha20-poly1305 {
+                    value 7;
+                    status "Normal";
+                    description
+                      "Encrypt message with chacha20 algorithm and generate MAC with
+                       POLY1305; it can also be used for generating MAC";
+                    reference
+                      "RFC 8439: ChaCha20 and Poly1305 for IETF Protocols";
+                 }                  
+             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the encryption and mac algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected encryption and mac 
+                  algorithm. It is mandatory."             
+         }
   }
-
-  identity aes-128-ccm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in CCM mode with a key
-       length of 128 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity aes-192-ccm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in CCM mode with a key
-       length of 192 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity aes-256-ccm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in CCM mode with a key
-       length of 256 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4309:
-         Using Advanced Encryption Standard (AES) CCM Mode with
-         IPsec Encapsulating Security Payload (ESP)";
-  }
-
-  identity aes-128-gcm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in GCM mode with a key
-       length of 128 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity aes-192-gcm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in GCM mode with a key
-       length of 192 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity mac-aes-256-gcm {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with AES algorithm in GCM mode with a key
-       length of 128 bits; it can also be used for generating MAC";
-    reference
-      "RFC 4106:
-         The Use of Galois/Counter Mode (GCM) in IPsec Encapsulating
-         Security Payload (ESP)";
-  }
-
-  identity chacha20-poly1305 {
-    base encryption-and-mac-algorithm;
-    description
-      "Encrypt message with chacha20 algorithm and generate MAC with
-       POLY1305; it can also be used for generating MAC";
-    reference
-      "RFC 8439: ChaCha20 and Poly1305 for IETF Protocols";
-  }
-
+  
   /******************************************/
   /*   Identities for signature algorithm   */
   /******************************************/
-
-  identity signature-algorithm {
-    description
-      "A base identity for asymmetric key encryption algorithm.";
+typedef signature-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Signature algorithm is NULL";
+                 }
+                 enum dsa-sha1 {
+                    value 1;
+                    status "Normal";
+                    description
+                      "The signature algorithm using DSA algorithm with SHA1 hash
+                       algorithm";
+                    reference
+                      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
+                 }
+                 enum rsassa-pkcs1-sha1{
+                    value 2;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1
+                       hash algorithm.";
+                    reference
+                      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
+                 }                 
+                 enum rsassa-pkcs1-sha256{
+                    value 3;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA256
+                       hash algorithm.";
+                    reference
+                      "RFC 8332:Use of RSA Keys with SHA-256 and SHA-512 in the 
+                       Secure Shell (SSH) Protocol
+                       RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }          
+                 enum rsassa-pkcs1-sha384{
+                    value 4;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA384
+                       hash algorithm.";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }     
+                 enum rsassa-pkcs1-sha512{
+                    value 5;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA512
+                       hash algorithm.";
+                    reference
+                      "RFC 8332:Use of RSA Keys with SHA-256 and SHA-512 in the 
+                       Secure Shell (SSH) Protocol
+                       RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }  
+                 enum rsassa-pss-rsae-sha256{
+                    value 6;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA256 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }     
+                 enum rsassa-pss-rsae-sha384{
+                    value 7;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA384 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }  
+                 enum rsassa-pss-rsae-sha512{
+                    value 8;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA512 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }
+                 enum rsassa-pss-pss-sha256{
+                    value 9;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA256 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }   
+                 enum rsassa-pss-pss-sha384{
+                    value 10;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA384 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }                  
+                 enum rsassa-pss-pss-sha512{
+                    value 11;
+                    status "Normal";
+                    description
+                      "The signature algorithm using RSASSA-PSS with mask generation
+                       function 1 and SHA512 hash algorithm. If the public key is
+                       carried in an X.509 certificate, it MUST use the rsaEncryption
+                       OID";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }  
+                 enum ecdsa-secp256r1-sha256{
+                    value 12;
+                    status "Normal";
+                    description
+                      "The signature algorithm using ECDSA with curve name secp256r1
+                       and SHA256 hash algorithm.";
+                    reference
+                      "RFC 5656: Elliptic Curve Algorithm Integration in the
+                       Secure Shell Transport Layer
+                       RFC 8446:
+                       The Transport Layer Security (TLS) Protocol Version 1.3";
+                 }   
+                 enum ecdsa-secp384r1-sha384{
+                    value 13;
+                    status "Normal";
+                    description
+                      "The signature algorithm using ECDSA with curve name secp384r1
+                       and SHA384 hash algorithm.";
+                    reference
+                      "RFC 5656: Elliptic Curve Algorithm Integration in the
+                       Secure Shell Transport Layer
+                       RFC 8446:
+                       The Transport Layer Security (TLS) Protocol Version 1.3";
+                 }  
+                 enum ecdsa-secp521r1-sha512{
+                    value 14;
+                    status "Normal";
+                    description
+                      "The signature algorithm using ECDSA with curve name secp521r1
+                       and SHA512 hash algorithm.";
+                    reference
+                      "RFC 5656: Elliptic Curve Algorithm Integration in the
+                       Secure Shell Transport Layer
+                       RFC 8446:
+                       The Transport Layer Security (TLS) Protocol Version 1.3";
+                 }  
+                 enum ed25519{
+                    value 15;
+                    status "Normal";
+                    description
+                      "The signature algorithm using EdDSA as defined in RFC 8032 or
+                       its successors.";
+                    reference
+                      "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
+                 }                   
+                 enum ed448{
+                    value 16;
+                    status "Normal";
+                    description
+                      "The signature algorithm using EdDSA as defined in RFC 8032 or
+                       its successors.";
+                    reference
+                      "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
+                 }  
+                 enum eccsi{
+                    value 17;
+                    status "Normal";
+                    description
+                      "The signature algorithm using ECCSI signature as defined in
+                       RFC 6507.";
+                    reference
+                      "RFC 6507:Elliptic Curve-Based Certificateless Signatures for
+                       Identity-based Encryption (ECCSI)";
+                 }                   
+             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the signature algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected signature algorithm. 
+                  It is mandatory."             
+        }
   }
-
-  identity dsa-sha1 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using DSA algorithm with SHA1 hash
-       algorithm";
-    reference
-      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
-  }
-
-  identity rsassa-pkcs1-sha1 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the SHA1
-       hash algorithm.";
-    reference
-      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
-  }
-
-  identity rsassa-pkcs1-sha256 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the
-       SHA256 hash algorithm.";
-    reference
-      "RFC 8332:
-         Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell
-         (SSH) Protocol
-       RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pkcs1-sha384 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the
-       SHA384 hash algorithm.";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pkcs1-sha512 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PKCS1-v1_5 with the
-       SHA512 hash algorithm.";
-    reference
-      "RFC 8332:
-         Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell
-         (SSH) Protocol
-       RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-rsae-sha256 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA256 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the rsaEncryption
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-rsae-sha384 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA384 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the rsaEncryption
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-rsae-sha512 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA512 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the rsaEncryption
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-pss-sha256 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA256 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-pss-sha384 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA256 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity rsassa-pss-pss-sha512 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using RSASSA-PSS with mask generation
-       function 1 and SHA256 hash algorithm. If the public key is
-       carried in an X.509 certificate, it MUST use the RSASSA-PSS
-       OID";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity ecdsa-secp256r1-sha256 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using ECDSA with curve name secp256r1
-       and SHA256 hash algorithm.";
-    reference
-      "RFC 5656: Elliptic Curve Algorithm Integration in the
-         Secure Shell Transport Layer
-       RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity ecdsa-secp384r1-sha384 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using ECDSA with curve name secp384r1
-       and SHA384 hash algorithm.";
-    reference
-      "RFC 5656: Elliptic Curve Algorithm Integration in the
-         Secure Shell Transport Layer
-       RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity ecdsa-secp521r1-sha512 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using ECDSA with curve name secp521r1
-       and SHA512 hash algorithm.";
-    reference
-      "RFC 5656: Elliptic Curve Algorithm Integration in the
-         Secure Shell Transport Layer
-       RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity ed25519 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using EdDSA as defined in RFC 8032 or
-       its successors.";
-    reference
-      "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
-  }
-
-  identity ed448 {
-    base signature-algorithm;
-    description
-      "The signature algorithm using EdDSA as defined in RFC 8032 or
-       its successors.";
-    reference
-      "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)";
-  }
-
-  identity eccsi {
-    base signature-algorithm;
-    description
-      "The signature algorithm using ECCSI signature as defined in
-       RFC 6507.";
-    reference
-      "RFC 6507:
-         Elliptic Curve-Based Certificateless Signatures for
-         Identity-based Encryption (ECCSI)";
-  }
-
   /**********************************************/
   /*   Identities for key exchange algorithms   */
   /**********************************************/
-
-  identity key-exchange-algorithm {
-    description
-      "A base identity for Diffie-Hellman based key exchange
-       algorithm.";
-  }
-
-  identity psk-only {
-    base key-exchange-algorithm;
-    description
-      "Using Pre-shared key for authentication and key exchange";
-    reference
-      "RFC 4279:
-         Pre-Shared Key cipher suites for Transport Layer Security
-        (TLS)";
-  }
-
-  identity dhe-ffdhe2048 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with 2048 bit
-       finite field";
-    reference
-      "RFC 7919:
-         Negotiated Finite Field Diffie-Hellman Ephemeral Parameters
-         for Transport Layer Security (TLS)";
-  }
-
-  identity dhe-ffdhe3072 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with 3072 bit finite
-       field";
-    reference
-      "RFC 7919:
-         Negotiated Finite Field Diffie-Hellman Ephemeral Parameters
-         for Transport Layer Security (TLS)";
-  }
-
-  identity dhe-ffdhe4096 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with 4096 bit
-       finite field";
-    reference
-      "RFC 7919:
-         Negotiated Finite Field Diffie-Hellman Ephemeral Parameters
-         for Transport Layer Security (TLS)";
-  }
-
-  identity dhe-ffdhe6144 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with 6144 bit
-       finite field";
-    reference
-      "RFC 7919:
-         Negotiated Finite Field Diffie-Hellman Ephemeral Parameters
-         for Transport Layer Security (TLS)";
-  }
-
-  identity dhe-ffdhe8192 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with 8192 bit
-       finite field";
-    reference
-      "RFC 7919:
-         Negotiated Finite Field Diffie-Hellman Ephemeral Parameters
-         for Transport Layer Security (TLS)";
-  }
-
-  identity psk-dhe-ffdhe2048 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechanism, where the DH group is FFDHE2048";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-dhe-ffdhe3072 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechanism, where the DH group is FFDHE3072";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-dhe-ffdhe4096 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechanism, where the DH group is FFDHE4096";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-dhe-ffdhe6144 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechanism, where the DH group is FFDHE6144";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-dhe-ffdhe8192 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with Diffie-Hellman key
-       generation mechanism, where the DH group is FFDHE8192";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity ecdhe-secp256r1 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with elliptic group
-       over curve secp256r1";
-    reference
-      "RFC 8422:
-         Elliptic Curve Cryptography (ECC) Cipher Suites for
-         Transport Layer Security (TLS) Versions 1.2 and Earlier";
-  }
-
-  identity ecdhe-secp384r1 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with elliptic group
-       over curve secp384r1";
-    reference
-      "RFC 8422:
-         Elliptic Curve Cryptography (ECC) Cipher Suites for
-         Transport Layer Security (TLS) Versions 1.2 and Earlier";
-  }
-
-  identity ecdhe-secp521r1 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with elliptic group
-       over curve secp521r1";
-    reference
-      "RFC 8422:
-         Elliptic Curve Cryptography (ECC) Cipher Suites for
-         Transport Layer Security (TLS) Versions 1.2 and Earlier";
-  }
-
-  identity ecdhe-x25519 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with elliptic group
-       over curve x25519";
-    reference
-      "RFC 8422:
-         Elliptic Curve Cryptography (ECC) Cipher Suites for
-         Transport Layer Security (TLS) Versions 1.2 and Earlier";
-  }
-
-  identity ecdhe-x448 {
-    base key-exchange-algorithm;
-    description
-      "Ephemeral Diffie Hellman key exchange with elliptic group
-       over curve x448";
-    reference
-      "RFC 8422:
-         Elliptic Curve Cryptography (ECC) Cipher Suites for
-         Transport Layer Security (TLS) Versions 1.2 and Earlier";
-  }
-
-  identity psk-ecdhe-secp256r1 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exchange over curve secp256r1";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-ecdhe-secp384r1 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exchange over curve secp384r1";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-ecdhe-secp521r1 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exchange over curve secp521r1";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-ecdhe-x25519 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exchange over curve x25519";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity psk-ecdhe-x448 {
-    base key-exchange-algorithm;
-    description
-      "Key exchange using pre-shared key with elliptic group-based
-       Ephemeral Diffie Hellman key exchange over curve x448";
-    reference
-      "RFC 8446:
-         The Transport Layer Security (TLS) Protocol Version 1.3";
-  }
-
-  identity diffie-hellman-group14-sha1 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group14 and SHA1 for key exchange";
-    reference
-      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
-  }
-
-  identity diffie-hellman-group14-sha256 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group14 and SHA256 for key exchange";
-    reference
-      "RFC 8268:
-         More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-         Key Exchange (KEX) Groups for Secure Shell (SSH)";
-  }
-
-  identity diffie-hellman-group15-sha512 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group15 and SHA512 for key exchange";
-    reference
-      "RFC 8268:
-         More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-         Key Exchange (KEX) Groups for Secure Shell (SSH)";
-  }
-
-  identity diffie-hellman-group16-sha512 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group16 and SHA512 for key exchange";
-    reference
-      "RFC 8268:
-         More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-         Key Exchange (KEX) Groups for Secure Shell (SSH)";
-  }
-
-  identity diffie-hellman-group17-sha512 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group17 and SHA512 for key exchange";
-    reference
-      "RFC 8268:
-         More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-         Key Exchange (KEX) Groups for Secure Shell (SSH)";
-  }
-
-  identity diffie-hellman-group18-sha512 {
-    base key-exchange-algorithm;
-    description
-      "Using DH group18 and SHA512 for key exchange";
-    reference
-      "RFC 8268:
-         More Modular Exponentiation (MODP) Diffie-Hellman (DH)
-         Key Exchange (KEX) Groups for Secure Shell (SSH)";
-  }
-
-  identity ecdh-sha2-secp256r1 {
-    base key-exchange-algorithm;
-    description
-      "Elliptic curve-based Diffie Hellman key exchange over curve
-       secp256r1 and using SHA2 for MAC generation";
-    reference
-      "RFC 6239: Suite B Cryptographic Suites for Secure Shell
-       (SSH)";
-  }
-
-  identity ecdh-sha2-secp384r1 {
-    base key-exchange-algorithm;
-    description
-      "Elliptic curve-based Diffie Hellman key exchange over curve
-       secp384r1 and using SHA2 for MAC generation";
-    reference
-      "RFC 6239: Suite B Cryptographic Suites for Secure Shell
-       (SSH)";
-  }
-
-  identity rsaes-oaep {
-    base key-exchange-algorithm;
-    description
-      "RSAES-OAEP combines the RSAEP and RSADP primitives with the
-       EME-OAEP encoding method";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  identity rsaes-pkcs1-v1_5 {
-    base key-exchange-algorithm;
-    description
-      " RSAES-PKCS1-v1_5 combines the RSAEP and RSADP primitives
-        with the EME-PKCS1-v1_5 encoding method";
-    reference
-      "RFC 8017:
-         PKCS #1: RSA Cryptography Specifications Version 2.2.";
-  }
-
-  /**********************************************************/
-  /*   Typedefs for identityrefs to above base identities   */
-  /**********************************************************/
-
-  typedef hash-algorithm-ref {
-    type identityref {
-      base hash-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'hash-algorithm' base identity.";
-  }
-
-  typedef signature-algorithm-ref {
-    type identityref {
-      base signature-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'signature-algorithm' base identity.";
-  }
-
-  typedef mac-algorithm-ref {
-    type identityref {
-      base mac-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'mac-algorithm' base identity.";
-  }
-
-  typedef encryption-algorithm-ref {
-    type identityref {
-      base encryption-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'encryption-algorithm'
-       base identity.";
-  }
-
-  typedef encryption-and-mac-algorithm-ref {
-    type identityref {
-      base encryption-and-mac-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'encryption-and-mac-algorithm'
-       base identity.";
-  }
-
-  typedef asymmetric-key-algorithm-ref {
-    type identityref {
-      base asymmetric-key-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'asymmetric-key-algorithm'
-       base identity.";
-  }
-
-  typedef key-exchange-algorithm-ref {
-    type identityref {
-      base key-exchange-algorithm;
-    }
-    description
-      "This typedef enables importing modules to easily define an
-       identityref to the 'key-exchange-algorithm' base identity.";
+  typedef key-exchange-algorithm-t {
+        type union {
+            type uint16; 
+            type enumeration {
+                 enum NONE {
+                    value 0;
+                    status "Normal";
+                    description
+                      "Key exchange algorithm is NULL.";
+                 }
+                 enum psk-only {
+                    value 1;
+                    status "Normal";
+                    description
+                      "Using Pre-shared key for authentication and key exchange";
+                    reference
+                      "RFC 4279: Pre-Shared Key cipher suites for Transport Layer 
+                      Security (TLS)";
+                 }
+                 enum dhe-ffdhe2048 {
+                    value 2;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with 2048 bit
+                       finite field";
+                    reference
+                      "RFC 7919: Negotiated Finite Field Diffie-Hellman Ephemeral 
+                       Parameters for Transport Layer Security (TLS)";
+                 }                 
+                 enum dhe-ffdhe3072 {
+                    value 3;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with 3072 bit
+                       finite field";
+                    reference
+                      "RFC 7919: Negotiated Finite Field Diffie-Hellman Ephemeral 
+                       Parameters for Transport Layer Security (TLS)";
+                 }                 
+                 enum dhe-ffdhe4096 {
+                    value 4;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with 4096 bit
+                       finite field";
+                    reference
+                      "RFC 7919: Negotiated Finite Field Diffie-Hellman Ephemeral 
+                       Parameters for Transport Layer Security (TLS)";
+                 }      
+                 enum dhe-ffdhe6144 {
+                    value 5;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with 6144 bit
+                       finite field";
+                    reference
+                      "RFC 7919: Negotiated Finite Field Diffie-Hellman Ephemeral 
+                       Parameters for Transport Layer Security (TLS)";
+                 }     
+                 enum dhe-ffdhe8192 {
+                    value 6;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with 8192 bit
+                       finite field";
+                    reference
+                      "RFC 7919: Negotiated Finite Field Diffie-Hellman Ephemeral 
+                       Parameters for Transport Layer Security (TLS)";
+                 }  
+                 enum psk-dhe-ffdhe2048 {
+                    value 7;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with Diffie-Hellman key
+                       generation mechanism, where the DH group is FFDHE2048";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }  
+                 enum psk-dhe-ffdhe3072 {
+                    value 8;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with Diffie-Hellman key
+                       generation mechanism, where the DH group is FFDHE3072";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }
+                 enum psk-dhe-ffdhe4096 {
+                    value 9;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with Diffie-Hellman key
+                       generation mechanism, where the DH group is FFDHE4096";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }        
+                 enum psk-dhe-ffdhe6144 {
+                    value 10;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with Diffie-Hellman key
+                       generation mechanism, where the DH group is FFDHE6144";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }        
+                 enum psk-dhe-ffdhe8192 {
+                    value 11;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with Diffie-Hellman key
+                       generation mechanism, where the DH group is FFDHE8192";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }      
+                 enum ecdhe-secp256r1 {
+                    value 12;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with elliptic group
+                       over curve secp256r1";
+                    reference
+                      "RFC 8422:Elliptic Curve Cryptography (ECC) Cipher Suites 
+                       for Transport Layer Security (TLS) Versions 1.2 and Earlier";
+                 }       
+                 enum ecdhe-secp384r1 {
+                    value 13;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with elliptic group
+                       over curve secp384r1";
+                    reference
+                      "RFC 8422:Elliptic Curve Cryptography (ECC) Cipher Suites 
+                       for Transport Layer Security (TLS) Versions 1.2 and Earlier";
+                 }        
+                 enum ecdhe-secp521r1 {
+                    value 14;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with elliptic group
+                       over curve secp521r1";
+                    reference
+                      "RFC 8422:Elliptic Curve Cryptography (ECC) Cipher Suites 
+                       for Transport Layer Security (TLS) Versions 1.2 and Earlier";
+                 }   
+                 enum ecdhe-x25519 {
+                    value 15;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with elliptic group
+                       over curve x25519";
+                    reference
+                      "RFC 8422:Elliptic Curve Cryptography (ECC) Cipher Suites 
+                       for Transport Layer Security (TLS) Versions 1.2 and Earlier";
+                 }    
+                 enum ecdhe-x448 {
+                    value 16;
+                    status "Normal";
+                    description
+                      "Ephemeral Diffie Hellman key exchange with elliptic group
+                       over curve x448";
+                    reference
+                      "RFC 8422:Elliptic Curve Cryptography (ECC) Cipher Suites 
+                       for Transport Layer Security (TLS) Versions 1.2 and Earlier";
+                 }      
+                 enum psk-ecdhe-secp256r1 {
+                    value 17;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with elliptic group-based
+                       Ephemeral Diffie Hellman key exchange over curve secp256r1";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }    
+                 enum psk-ecdhe-secp384r1 {
+                    value 18;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with elliptic group-based
+                       Ephemeral Diffie Hellman key exchange over curve secp384r1";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }       
+                 enum psk-ecdhe-secp521r1 {
+                    value 19;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with elliptic group-based
+                       Ephemeral Diffie Hellman key exchange over curve secp521r1";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }    
+                 enum psk-ecdhe-x25519 {
+                    value 20;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with elliptic group-based
+                       Ephemeral Diffie Hellman key exchange over curve x25519";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 }     
+                 enum psk-ecdhe-x448 {
+                    value 21;
+                    status "Normal";
+                    description
+                      "Key exchange using pre-shared key with elliptic group-based
+                       Ephemeral Diffie Hellman key exchange over curve x448";
+                    reference
+                      "RFC 8446: The Transport Layer Security (TLS) Protocol 
+                       Version 1.3";
+                 } 
+                 enum diffie-hellman-group14-sha1 {
+                    value 22;
+                    status "Normal";
+                    description
+                      "Using DH group14 and SHA1 for key exchange";
+                    reference
+                      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
+                 }       
+                 enum diffie-hellman-group14-sha256 {
+                    value 23;
+                    status "Normal";
+                    description
+                      "Using DH group14 and SHA-256 for key exchange";
+                    reference
+                      "RFC 8268: More Modular Exponentiation (MODP) 
+                       Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+                       Secure Shell (SSH)";
+                 }        
+                 enum diffie-hellman-group15-sha512 {
+                    value 24;
+                    status "Normal";
+                    description
+                      "Using DH group15 and SHA-512 for key exchange";
+                    reference
+                      "RFC 8268: More Modular Exponentiation (MODP) 
+                       Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+                       Secure Shell (SSH)";
+                 }     
+                 enum diffie-hellman-group16-sha512 {
+                    value 25;
+                    status "Normal";
+                    description
+                      "Using DH group16 and SHA-512 for key exchange";
+                    reference
+                      "RFC 8268: More Modular Exponentiation (MODP) 
+                       Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+                       Secure Shell (SSH)";
+                 }    
+                 enum diffie-hellman-group17-sha512 {
+                    value 26;
+                    status "Normal";
+                    description
+                      "Using DH group17 and SHA-512 for key exchange";
+                    reference
+                      "RFC 8268: More Modular Exponentiation (MODP) 
+                       Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+                       Secure Shell (SSH)";
+                 }   
+                 enum diffie-hellman-group18-sha512 {
+                    value 27;
+                    status "Normal";
+                    description
+                      "Using DH group18 and SHA-512 for key exchange";
+                    reference
+                      "RFC 8268: More Modular Exponentiation (MODP) 
+                       Diffie-Hellman (DH) Key Exchange (KEX) Groups for 
+                       Secure Shell (SSH)";
+                 }    
+                 enum ecdh-sha2-secp256r1  {
+                    value 28;
+                    status "Normal";
+                    description
+                      "Elliptic curve-based Diffie Hellman key exchange over curve
+                       ecp256r1 and using SHA2 for MAC generation";
+                    reference
+                      "RFC 6239: Suite B Cryptographic Suites for Secure Shell
+                       (SSH)";
+                 }            
+                 enum ecdh-sha2-secp384r1  {
+                    value 29;
+                    status "Normal";
+                    description
+                      "Elliptic curve-based Diffie Hellman key exchange over curve
+                       ecp384r1 and using SHA2 for MAC generation";
+                    reference
+                      "RFC 6239: Suite B Cryptographic Suites for Secure Shell
+                       (SSH)";
+                 }   
+                 enum rsaes-oaep {
+                    value 30;
+                    status "Normal";
+                    description
+                      "RSAES-OAEP combines the RSAEP and RSADP primitives with the
+                       EME-OAEP encoding method";
+                    reference
+                      "RFC 8017:PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }       
+                 enum rsaes-pkcs1-v1_5 {
+                    value 31;
+                    status "Normal";
+                    description
+                      "RSAES-PKCS1-v1_5 combines the RSAEP and RSADP primitives
+                       with the EME-PKCS1-v1_5 encoding method";
+                    reference
+                      "RFC 8017:PKCS #1: RSA Cryptography Specifications Version 2.2.";
+                 }                    
+             }
+            description 
+                 "The uint16 filed shall be set by individual 
+                  protocol families according to the key exchange algorithm 
+                  value assigned by IANA. The setting is optional 
+                  and by default is 0. 
+                  The enumeration filed is set to the selected key exchange algorithm. 
+                  It is mandatory."             
+        }
   }
 
   /***************************************************/
