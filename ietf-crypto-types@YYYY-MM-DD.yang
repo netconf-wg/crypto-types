@@ -537,7 +537,25 @@ module ietf-crypto-types {
           reference
             "RFC 3961:
              Encryption and Checksum Specifications for Kerberos 5";
-        }        
+        } 
+        enum rc4-hmac {
+          value 8;
+          description
+            "Encrypt message with rc4 algorithm";
+          reference
+            "RFC 4757:
+             The RC4-HMAC Kerberos Encryption Types Used by Microsoft 
+             Windows";
+        }         
+        enum rc4-hmac-exp {
+          value 9;
+          description
+            "Encrypt message with rc4 algorithm that is exportable";
+          reference
+            "RFC 4757:
+             The RC4-HMAC Kerberos Encryption Types Used by Microsoft 
+             Windows";
+        }                 
       }
     }
     default "0";
