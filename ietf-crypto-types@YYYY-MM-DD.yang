@@ -859,8 +859,34 @@ module ietf-crypto-types {
                The Transport Layer Security (TLS) Protocol
                Version 1.3";
         }
-        enum ed25519-sha512 {
+        enum ed25519 {
           value 15;
+          description
+            "The signature algorithm using EdDSA with curve x25519";
+          reference
+            "RFC 8032:
+             Edwards-Curve Digital Signature Algorithm (EdDSA)";
+        }
+        enum ed25519-cts {
+          value 16;
+          description
+            "The signature algorithm using EdDSA with curve x25519 
+             with phflag = 0";
+          reference
+            "RFC 8032:
+             Edwards-Curve Digital Signature Algorithm (EdDSA)";
+        }      
+        enum ed25519-ph {
+          value 17;
+          description
+            "The signature algorithm using EdDSA with curve x25519 
+             with phflag = 1";
+          reference
+            "RFC 8032:
+             Edwards-Curve Digital Signature Algorithm (EdDSA)";
+        }              
+        enum ed25519-sha512 {
+          value 18;
           description
             "The signature algorithm using EdDSA with curve x25519
             and SHA-512 function";
@@ -870,8 +896,25 @@ module ietf-crypto-types {
                (EdDSA) Signatures in the Cryptographic Message 
                Syntax (CMS)";
         }
+        enum ed448 {
+          value 19;
+          description
+            "The signature algorithm using EdDSA with curve x448";
+          reference
+            "RFC 8032:
+             Edwards-Curve Digital Signature Algorithm (EdDSA)";
+        }                      
+        enum ed448-ph {
+          value 20;
+          description
+            "The signature algorithm using EdDSA with curve x448 and
+            with PH being SHAKE256(x, 64) and phflag being 1";
+          reference
+            "RFC 8032:
+             Edwards-Curve Digital Signature Algorithm (EdDSA)";
+        }                              
         enum ed448-shake256 {
-          value 16;
+          value 21;
           description
             "The signature algorithm using EdDSA with curve x448
             and SHAKE-256 function";
