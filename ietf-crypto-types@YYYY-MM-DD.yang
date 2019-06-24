@@ -290,7 +290,7 @@ module ietf-crypto-types {
                Elliptic Curves for Security.";
         }       
         enum x448 {
-          value 12;
+          value 13;
           description
             "The asymmetric algorithm using a x.448 Curve.";
           reference
