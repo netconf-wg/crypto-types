@@ -434,6 +434,15 @@ module ietf-crypto-types {
             "RFC 4494:
                The AES-CMAC Algorithm and its Use with IPsec";
         }
+        enum sha1-des3-kd {
+          value 15;
+          description
+            "Generating MAC using triple DES encryption function";
+          reference
+            "RFC 3961:
+               Encryption and Checksum Specifications for Kerberos 
+               5";
+        }        
       }
     }
     default "0";
@@ -520,6 +529,15 @@ module ietf-crypto-types {
                Mode with IPsec Encapsulating Security Payload
                (ESP)";
         }
+        enum des3-cbc-sha1-kd {
+          value 7;
+          description
+            "Encrypt message with 3DES algorithm in CBC mode with
+             sha1 function for key derivation";
+          reference
+            "RFC 3961:
+             Encryption and Checksum Specifications for Kerberos 5";
+        }        
       }
     }
     default "0";
