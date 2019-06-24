@@ -1105,8 +1105,141 @@ module ietf-crypto-types {
             "RFC 6239:
                Suite B Cryptographic Suites for Secure Shell (SSH)";
         }
-        enum rsaes-oaep {
+        enum ecdh-x25519-x9.63-sha256 {
           value 30;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using ANSI x9.63 with SHA256 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x25519-x9.63-sha384 {
+          value 31;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using ANSI x9.63 with SHA384 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x25519-x9.63-sha512 {
+          value 32;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using ANSI x9.63 with SHA512 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }    
+        enum ecdh-x25519-hkdf-sha256 {
+          value 33;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using HKDF with SHA256 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x25519-hkdf-sha384 {
+          value 34;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using HKDF with SHA384 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x25519-hkdf-sha512 {
+          value 35;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.25519 and using HKDF with SHA512 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }        
+        enum ecdh-x448-x9.63-sha256 {
+          value 36;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using ANSI x9.63 with SHA256 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x448-x9.63-sha384 {
+          value 37;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using ANSI x9.63 with SHA384 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x448-x9.63-sha512 {
+          value 38;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using ANSI x9.63 with SHA512 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }    
+        enum ecdh-x448-hkdf-sha256 {
+          value 39;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using HKDF with SHA256 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x448-hkdf-sha384 {
+          value 40;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using HKDF with SHA384 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }      
+        enum ecdh-x448-hkdf-sha512 {
+          value 41;
+          description
+            "Elliptic curve-based Diffie Hellman key exchange over
+             curve x.448 and using HKDF with SHA512 as KDF";
+          reference
+            "RFC 8418:
+               Use of the Elliptic Curve Diffie-Hellman Key Agreement 
+               Algorithm with X25519 and X448 in the Cryptographic 
+               Message Syntax (CMS)";
+        }        
+        
+        enum rsaes-oaep {
+          value 42;
           description
             "RSAES-OAEP combines the RSAEP and RSADP primitives with
              the EME-OAEP encoding method";
@@ -1116,7 +1249,7 @@ module ietf-crypto-types {
                  RSA Cryptography Specifications Version 2.2.";
         }
         enum rsaes-pkcs1-v1_5 {
-          value 31;
+          value 43;
           description
             "RSAES-PKCS1-v1_5 combines the RSAEP and RSADP
              primitives with the EME-PKCS1-v1_5 encoding method";
