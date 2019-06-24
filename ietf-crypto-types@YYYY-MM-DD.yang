@@ -925,7 +925,7 @@ module ietf-crypto-types {
                Syntax (CMS)";
         }
         enum ed448-shake256-len {
-          value 17;
+          value 22;
           description
             "The signature algorithm using EdDSA with curve x448
             and SHAKE-256 function and a customized hash output";
@@ -934,9 +934,29 @@ module ietf-crypto-types {
                Use of Edwards-Curve Digital Signature Algorithm 
                (EdDSA) Signatures in the Cryptographic Message 
                Syntax (CMS)";
+        }    
+        enum rsa-sha2-256 {
+          value 23;
+          description
+            "The signature algorithm using RSA with SHA2 function
+             for SSH protocol";
+          reference
+            "RFC 8332:
+             Use of RSA Keys with SHA-256 and SHA-512
+             in the Secure Shell (SSH) Protocol";
+        }    
+        enum rsa-sha2-512 {
+          value 24;
+          description
+            "The signature algorithm using RSA with SHA2 function
+             for SSH protocol";
+          reference
+            "RFC 8332:
+             Use of RSA Keys with SHA-256 and SHA-512
+             in the Secure Shell (SSH) Protocol";
         }        
         enum eccsi {
-          value 18;
+          value 25;
           description
             "The signature algorithm using ECCSI signature as
              defined in RFC 6507.";
