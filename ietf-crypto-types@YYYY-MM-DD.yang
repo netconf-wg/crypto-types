@@ -229,7 +229,7 @@ module ietf-crypto-types {
         enum secp192r1 {
           value 7;
           description
-            "The ECDSA algorithm using a NIST P192 Curve.";
+            "The asymmetric algorithm using a NIST P192 Curve.";
           reference
             "RFC 6090:
                Fundamental Elliptic Curve Cryptography Algorithms.
@@ -240,7 +240,7 @@ module ietf-crypto-types {
         enum secp224r1 {
           value 8;
           description
-            "The ECDSA algorithm using a NIST P224 Curve.";
+            "The asymmetric algorithm using a NIST P224 Curve.";
           reference
             "RFC 6090:
                Fundamental Elliptic Curve Cryptography Algorithms.
@@ -251,7 +251,7 @@ module ietf-crypto-types {
         enum secp256r1 {
           value 9;
           description
-            "The ECDSA algorithm using a NIST P256 Curve.";
+            "The asymmetric algorithm using a NIST P256 Curve.";
           reference
             "RFC 6090:
                Fundamental Elliptic Curve Cryptography Algorithms.
@@ -262,7 +262,7 @@ module ietf-crypto-types {
         enum secp384r1 {
           value 10;
           description
-            "The ECDSA algorithm using a NIST P384 Curve.";
+            "The asymmetric algorithm using a NIST P384 Curve.";
           reference
             "RFC 6090:
                Fundamental Elliptic Curve Cryptography Algorithms.
@@ -273,7 +273,7 @@ module ietf-crypto-types {
         enum secp521r1 {
           value 11;
           description
-            "The ECDSA algorithm using a NIST P521 Curve.";
+            "The asymmetric algorithm using a NIST P521 Curve.";
           reference
             "RFC 6090:
                Fundamental Elliptic Curve Cryptography Algorithms.
@@ -281,6 +281,22 @@ module ietf-crypto-types {
                Elliptic Curve Cryptography Subject Public Key
                Information.";
         }
+        enum x25519 {
+          value 12;
+          description
+            "The asymmetric algorithm using a x.25519 Curve.";
+          reference
+            "RFC 7748:
+               Elliptic Curves for Security.";
+        }       
+        enum x448 {
+          value 12;
+          description
+            "The asymmetric algorithm using a x.448 Curve.";
+          reference
+            "RFC 7748:
+               Elliptic Curves for Security.";
+        }          
       }
     }
     default "0";
