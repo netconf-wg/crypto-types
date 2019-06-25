@@ -50,6 +50,7 @@ endif
 $(next).xml: $(draft).xml
 	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-crypto-types.yang > ietf-crypto-types\@$(shell date +%Y-%m-%d).yang
+	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ex-crypto-types-usage.yang > ex-crypto-types-usage\@$(shell date +%Y-%m-%d).yang
 	cd refs; ./validate-all.sh; ./gen-trees.sh; cd ..;
 	./.insert-figures.sh $@ > tmp; mv tmp $@
 	rm refs/*-tree.txt

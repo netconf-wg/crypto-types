@@ -13,7 +13,8 @@
 <!-- <?rfc-ext allow-markup-in-artwork="yes" ?> what does this do? -->
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
+<!--<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">-->
+<rfc category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
     <front>
         <title>Common YANG Data Types for Cryptography</title>
         <author initials="K." surname="Watsen" fullname="Kent Watsen">
@@ -82,7 +83,10 @@
 
           <t><!--The following tree diagram has used groupings expanded:-->
             <figure>
-              <artwork xiax:gen="xiax/gen-crypto-types-tree@YYYY-MM-DD.txt"/>
+             <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
+  ]]></artwork>
+              <!--<artwork xiax:gen="xiax/gen-crypto-types-tree@YYYY-MM-DD.txt"/>-->
             </figure>
           </t>
         </section>
@@ -104,7 +108,12 @@
           <xref target="RFC8439"/>.</t>
           <t>
             <figure>
-              <artwork xiax:src="ietf-crypto-types@YYYY-MM-DD.yang" xiax:markers="true" xiax:val="xiax/val-yang-ietf-crypto-types.xml"/>
+             <artwork><![CDATA[
+  <CODE BEGINS> file "ietf-crypto-types@YYYY-MM-DD.yang"
+  INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
+  <CODE ENDS>
+  ]]></artwork>
+              <!--<artwork xiax:src="ietf-crypto-types.yang" xiax:markers="true" xiax:val="xiax/val-yang-ietf-crypto-types.xml"/> -->
             </figure>
           </t>
         </section>
@@ -319,7 +328,10 @@
           "trust-anchor-cert-grouping" grouping.</t>
           <t>
             <figure>
-              <artwork xiax:src="ex-crypto-types-usage.yang" xiax:val="xiax/val-yang-ex-crypto-types-usage@YYYY-MM-DD.xml"/>
+              <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
+  ]]></artwork>
+              <!--<artwork xiax:src="ex-crypto-types-usage.yang" xiax:val="xiax/val-yang-ex-crypto-types-usage@YYYY-MM-DD.xml"/>-->
             </figure>
           </t>
 
@@ -327,7 +339,10 @@
           illustrates some configured keys.</t>
           <t>
             <figure>
-              <artwork xiax:src="refs/ex-crypto-types-usage.xml" xiax:val="xiax/val-xml-ex-crypto-types-usage@YYYY-MM-DD.xml"/>
+              <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
+  ]]></artwork>
+              <!--<artwork xiax:src="refs/ex-crypto-types-usage.xml" xiax:val="xiax/val-xml-ex-crypto-types-usage@YYYY-MM-DD.xml"/>-->
             </figure>
           </t>
         </section>
@@ -338,11 +353,17 @@
           <t>
             <figure>
               <preamble>REQUEST</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-gcsr-rpc.xml"/>
+              <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
+  ]]></artwork>
+              <!--<artwork xiax:src="refs/ex-crypto-types-gcsr-rpc.xml"/>-->
             </figure>
             <figure>
               <preamble>RESPONSE</preamble>
-              <artwork xiax:src="refs/ex-crypto-types-gcsr-rpc-reply.xml"/>
+              <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
+  ]]></artwork>
+              <!--<artwork xiax:src="refs/ex-crypto-types-gcsr-rpc-reply.xml"/>-->
             </figure>
           </t>
         </section>
@@ -352,7 +373,10 @@
           notification in use with the NETCONF protocol.</t>
           <t>
             <figure>
-              <artwork xiax:src="refs/ex-crypto-types-ce-notification.xml"/>
+              <artwork><![CDATA[
+  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
+  ]]></artwork>
+              <!--<artwork xiax:src="refs/ex-crypto-types-ce-notification.xml"/>-->
             </figure>
           </t>
         </section>

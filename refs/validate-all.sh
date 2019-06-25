@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mv ../ietf-crypto-types\@YYYY-MM-DD.yang ../ietf-crypto-types\@YYYY-MM-DD.yang.hide
+#mv ../ietf-crypto-types\@YYYY-MM-DD.yang ../ietf-crypto-types\@YYYY-MM-DD.yang.hide
 
 
 echo "Testing ietf-crypto-types.yang (pyang)..."
@@ -74,4 +74,4 @@ rm yanglint-notification.xml
 #echo "Testing ex-gcsr-rpc-reply.xml..."
 #yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gcsr-rpc-reply.xml ex-gcsr-rpc.xml
 
-mv ../ietf-crypto-types\@YYYY-MM-DD.yang.hide ../ietf-crypto-types\@YYYY-MM-DD.yang
+#mv ../ietf-crypto-types\@YYYY-MM-DD.yang.hide ../ietf-crypto-types\@YYYY-MM-DD.yang
