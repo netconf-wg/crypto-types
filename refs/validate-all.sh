@@ -19,29 +19,29 @@ yanglint ../ex-crypto-types-usage.yang
 
 
 echo "Testing ex-crypto-types-usage.xml..."
-yanglint -m -t config -s ../ex-crypto-types-usage.yang ../ietf-*\@20*.yang ./ietf-origin.yang  ex-crypto-types-usage.xml
+yanglint -m -t config -s ../ex-crypto-types-usage.yang ./ietf-origin.yang  ex-crypto-types-usage.xml
 
-echo "Testing ex-crypto-types-ghk-rpc.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc.xml
+#echo "Testing ex-crypto-types-ghk-rpc.xml..."
+#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc.xml
 
-echo "Testing ex-crypto-types-ghk-rpc-reply.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc-reply.xml ex-crypto-types-ghk-rpc.xml
+#echo "Testing ex-crypto-types-ghk-rpc-reply.xml..."
+#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc-reply.xml ex-crypto-types-ghk-rpc.xml
 
-echo "Testing ex-crypto-types-ihk-rpc.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc.xml
+#echo "Testing ex-crypto-types-ihk-rpc.xml..."
+#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc.xml
 
-echo "Testing ex-crypto-types-ihk-rpc-reply.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc-reply.xml ex-crypto-types-ihk-rpc.xml
+#echo "Testing ex-crypto-types-ihk-rpc-reply.xml..."
+#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc-reply.xml ex-crypto-types-ihk-rpc.xml
 
 echo "Testing ex-crypto-types-gcsr-rpc.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc.xml
+yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc.xml
 
 echo "Testing ex-crypto-types-gcsr-rpc-reply.xml..."
-yanglint -s -t auto ../ietf-*\@20*.yang ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc-reply.xml ex-crypto-types-gcsr-rpc.xml
+yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc-reply.xml ex-crypto-types-gcsr-rpc.xml
 
 echo "Testing ex-crypto-types-ce-notification.xml..."
 echo -e 'setns a=urn:ietf:params:xml:ns:neteonf:notification:1.0\nsetns b=urn:ietf:params:xml:ns:yang:ietf-crypto-types\ncat //a:notification/b:crypto-types' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
-yanglint -s -t notif -r ex-crypto-types-usage.xml ../ietf-*\@20*.yang  ../ex-crypto-types-usage.yang yanglint-notification.xml
+yanglint -s -t notif -r ex-crypto-types-usage.xml ../ex-crypto-types-usage.yang yanglint-notification.xml
 rm yanglint-notification.xml
 
 

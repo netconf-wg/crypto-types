@@ -40,7 +40,6 @@ clean:
 	-rm -f $(draft)-[0-9][0-9].txt
 	-rm -f $(draft)-[0-9][0-9].html
 	-rm -f ietf-*\@20*.yang
-	-rm -f xiax/*\@20*
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
 endif
@@ -49,7 +48,11 @@ ifeq (org,$(draft_type))
 endif
 
 $(next).xml: $(draft).xml
-	/Users/kent/.pyenv/versions/3.7.2/bin/xiax -f $< $@
+	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
+	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-crypto-types.yang > ietf-crypto-types\@$(shell date +%Y-%m-%d).yang
+	cd refs; ./validate-all.sh; ./gen-trees.sh; cd ..;
+	./.insert-figures.sh $@ > tmp; mv tmp $@
+	rm refs/*-tree.txt
 
 .INTERMEDIATE: $(draft).xml
 %.xml: %.md
@@ -60,7 +63,6 @@ $(next).xml: $(draft).xml
 
 %.txt: %.xml
 	$(xml2rfc) $< -o $@ --text
-
 
 %.html: %.xml
 	$(xml2rfc) $< -o $@ --html
