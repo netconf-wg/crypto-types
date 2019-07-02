@@ -108,12 +108,12 @@
           <xref target="RFC8439"/>.</t>
           <t>
             <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "ietf-crypto-types@YYYY-MM-DD.yang"</preamble>
              <artwork><![CDATA[
-  <CODE BEGINS> file "ietf-crypto-types@YYYY-MM-DD.yang"
-  INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
-  <CODE ENDS>
-  ]]></artwork>
+INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
+]]></artwork>
               <!--<artwork xiax:src="ietf-crypto-types.yang" xiax:markers="true" xiax:val="xiax/val-yang-ietf-crypto-types.xml"/> -->
+              <postamble>&lt;CODE ENDS&gt;</postamble>
             </figure>
           </t>
         </section>
@@ -507,6 +507,23 @@
           <t>
             <list style="symbols">
               <t>Converting algorithm from identities to enumerations.</t>
+            </list>
+          </t>
+        </section>
+        <section title="09 to 10">
+          <t>
+            <list style="symbols">
+              <t>All of the below changes are to the algorithm enumerations defined in ietf-crypto-types.</t>
+              <t>Add in support for key exchange over x.25519 and x.448 based on RFC 8418.</t>
+              <t>Add in SHAKE-128, SHAKE-224, SHAKE-256, SHAKE-384 and SHAKE 512</t>
+              <t>Revise/add in enum of signature algorithm for x25519 and x448</t>
+              <t>Add in des3-cbc-sha1 for IPSec</t>
+              <t>Add in sha1-des3-kd for IPSec</t>
+              <t>Add in  definit for rc4-hmac and rc4-hmac-exp. These two algorithms have been deprecated in RFC 8429. But some existing draft in i2nsf may still want to use them.</t>
+              <t>Add x25519 and x448 curve for asymmetric algorithms</t>
+              <t>Add signature algorithms ed25519, ed25519-cts, ed25519ph</t>
+              <t>add signature algorithms ed448, ed448ph</t>
+              <t>Add in rsa-sha2-256 and rsa-sha2-512 for SSH protocols (rfc8332)</t>
             </list>
           </t>
         </section>
