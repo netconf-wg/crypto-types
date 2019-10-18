@@ -28,10 +28,25 @@ module ex-crypto-types-usage {
      "RFC ????: Usage Example for RFC XXXX";
   }
 
-  container keys {
+  container symmetric-keys {
     description
-      "A container of keys.";
-    list key {
+      "A container of symmetric keys.";
+    list symmetric-key {
+      key name;
+      description
+        "A symmetric key";
+      leaf name {
+        type string;
+        description
+          "An arbitrary name for this key.";
+      }
+      uses ct:symmetric-key-grouping;
+    }
+  }
+  container asymmetric-keys {
+    description
+      "A container of asymmetric keys.";
+    list asymmetric-key {
       key name;
       leaf name {
         type string;

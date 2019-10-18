@@ -1,14 +1,14 @@
 <rpc message-id="101"
   xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <action xmlns="urn:ietf:params:xml:ns:yang:1">
-    <keys xmlns="http://example.com/ns/example-crypto-types-usage">
-      <key>
+    <asymmetric-keys xmlns="http://example.com/ns/example-crypto-types-usage">
+      <asymmetric-key>
         <name>ex-key-sect571r1</name>
         <generate-certificate-signing-request>
           <subject>base64encodedvalue==</subject>
           <attributes>base64encodedvalue==</attributes>
         </generate-certificate-signing-request>
-      </key>
-    </keys>
+      </asymmetric-key>
+    </asymmetric-keys>
   </action>
 </rpc>

@@ -314,18 +314,11 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.8439.xml"?>
       </references>
 
-      <section title="Examples">
+      <section title="Examples" anchor="examples">
         <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping">
-          <t>The following example module has been constructed to illustrate
-          use of the "asymmetric-key-pair-with-certs-grouping" grouping defined
-          in the "ietf-crypto-types" module.</t>
-          <t>Note that the "asymmetric-key-pair-with-certs-grouping" grouping uses both
-          the "asymmetric-key-pair-grouping" and "end-entity-cert-grouping" groupings,
-          and that the "asymmetric-key-pair-grouping" grouping uses the 
-          "public-key-grouping" grouping.  Thus, a total of four of the five groupings
-          defined in the "ietf-crypto-types" module are illustrated through the
-          use of this one grouping.  The only grouping not represented is the
-          "trust-anchor-cert-grouping" grouping.</t>
+          <t>The following example module illustrates the use of both the "symmetric-key-grouping"
+            and the "asymmetric-key-pair-with-certs-grouping" groupings defined in the
+            "ietf-crypto-types" module.</t>
           <t>
             <figure>
               <artwork><![CDATA[
@@ -524,6 +517,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               <t>Add signature algorithms ed25519, ed25519-cts, ed25519ph</t>
               <t>add signature algorithms ed448, ed448ph</t>
               <t>Add in rsa-sha2-256 and rsa-sha2-512 for SSH protocols (rfc8332)</t>
+            </list>
+          </t>
+        </section>
+        <section title="10 to 11">
+          <t>
+            <list style="symbols">
+              <t>Added a "key-format" identity.</t>
+              <t>Added symmetric keys to the example in <xref target="examples"/>.</t>
             </list>
           </t>
         </section>

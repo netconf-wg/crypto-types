@@ -1,8 +1,26 @@
-<keys xmlns="http://example.com/ns/example-crypto-types-usage">
-  <key>
-    <name>ex-key</name>
+<symmetric-keys xmlns="http://example.com/ns/example-crypto-types-usage"
+      xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+  <symmetric-key>
+    <name>ex-symmetric-key</name>
+    <algorithm>aes-256-cbc</algorithm>
+    <key-format>ct:octet-string-key-format</key-format>
+    <key>base64encodedvalue==</key>
+  </symmetric-key>
+  <symmetric-key>
+    <name>ex-hidden-symmetric-key</name>
+    <algorithm>aes-256-cbc</algorithm>
+    <hidden-key/>
+  </symmetric-key>
+</symmetric-keys>
+
+<asymmetric-keys xmlns="http://example.com/ns/example-crypto-types-usage"
+      xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+  <asymmetric-key>
+    <name>ex-asymmetric-key</name>
     <algorithm>rsa2048</algorithm>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>base64encodedvalue==</public-key>
+    <private-key-format>ct:rsa-private-key-format</private-key-format>
     <private-key>base64encodedvalue==</private-key>
     <certificates>
       <certificate>
@@ -10,10 +28,11 @@
         <cert>base64encodedvalue==</cert>
       </certificate>
     </certificates>
-  </key>
-  <key>
-    <name>ex-hidden-key</name>
+  </asymmetric-key>
+  <asymmetric-key>
+    <name>ex-hidden-asymmetric-key</name>
     <algorithm>rsa2048</algorithm>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>base64encodedvalue==</public-key>
     <hidden-private-key/>
     <certificates>
@@ -22,5 +41,5 @@
         <cert>base64encodedvalue==</cert>
       </certificate>
     </certificates>
-  </key>
-</keys>
+  </asymmetric-key>
+</asymmetric-keys>
