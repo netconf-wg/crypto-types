@@ -1,4 +1,4 @@
-module ietf-iana-symmetric-algs-name {
+module ietf-ct-iana-symmetric-algs-name {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-crypto-types:ietf-iana-symmetric-algs-name";
   prefix san;
