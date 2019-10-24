@@ -1,1 +1,123 @@
-
+typedef asymmetric-algs-name {
+    type enumeration {
+        enum rsa1024 {
+             value 1;
+             description
+               "The RSA algorithm using a 1024-bit key.";
+             reference
+               "RFC 8017: PKCS #1: RSA Cryptography
+                Specifications Version 2.2.";
+        }
+        enum rsa2048 {
+             value 2;
+             description
+               "The RSA algorithm using a 2048-bit key.";
+             reference
+               "RFC 8017:
+                PKCS #1: RSA Cryptography Specifications Version 2.2.";
+        }
+        enum rsa3072 {
+             value 3;
+             description
+               "The RSA algorithm using a 3072-bit key.";
+             reference
+               "RFC 8017:
+                PKCS #1: RSA Cryptography Specifications Version 2.2.";
+        }
+        enum rsa4096 {
+             value 4;
+             description
+               "The RSA algorithm using a 4096-bit key.";
+             reference
+               "RFC 8017:
+                PKCS #1: RSA Cryptography Specifications Version 2.2.";
+        }
+        enum rsa7680 {
+             value 5;
+             description
+               "The RSA algorithm using a 7680-bit key.";
+             reference
+               "RFC 8017:
+                PKCS #1: RSA Cryptography Specifications Version 2.2.";
+         }
+         enum rsa15360 {
+             value 6;
+             description
+               "The RSA algorithm using a 15360-bit key.";
+             reference
+               "RFC 8017:
+                PKCS #1: RSA Cryptography Specifications Version 2.2.";
+         }
+         enum secp192r1 {
+             value 7;
+             description
+               "The asymmetric algorithm using a NIST P192 Curve.";
+             reference
+               "RFC 6090:
+                  Fundamental Elliptic Curve Cryptography Algorithms.
+                RFC 5480:
+                   Elliptic Curve Cryptography Subject Public Key
+                   Information.";
+         }
+         enum secp224r1 {
+             value 8;
+             description
+               "The asymmetric algorithm using a NIST P224 Curve.";
+             reference
+               "RFC 6090:
+                  Fundamental Elliptic Curve Cryptography Algorithms.
+                RFC 5480:
+                  Elliptic Curve Cryptography Subject Public Key
+                  Information.";
+          }
+          enum secp256r1 {
+             value 9;
+             description
+               "The asymmetric algorithm using a NIST P256 Curve.";
+             reference
+               "RFC 6090:
+                  Fundamental Elliptic Curve Cryptography Algorithms.
+                RFC 5480:
+                  Elliptic Curve Cryptography Subject Public Key
+                  Information.";
+           }
+           enum secp384r1 {
+             value 10;
+             description
+               "The asymmetric algorithm using a NIST P384 Curve.";
+             reference
+               "RFC 6090:
+                  Fundamental Elliptic Curve Cryptography Algorithms.
+                RFC 5480:
+                  Elliptic Curve Cryptography Subject Public Key
+                  Information.";
+           }
+           enum secp521r1 {
+             value 11;
+             description
+               "The asymmetric algorithm using a NIST P521 Curve.";
+             reference
+               "RFC 6090:
+                  Fundamental Elliptic Curve Cryptography Algorithms.
+                RFC 5480:
+                  Elliptic Curve Cryptography Subject Public Key
+                  Information.";
+           }
+           enum x25519 {
+             value 12;
+             description
+               "The asymmetric algorithm using a x.25519 Curve.";
+             reference
+               "RFC 7748:
+                  Elliptic Curves for Security.";
+           }
+           enum x448 {
+             value 13;
+             description
+               "The asymmetric algorithm using a x.448 Curve.";
+             reference
+               "RFC 7748:
+                  Elliptic Curves for Security.";
+           }
+    }
+}
