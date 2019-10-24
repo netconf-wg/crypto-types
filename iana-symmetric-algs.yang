@@ -1,1 +1,95 @@
-
+typedef symmetric-algs-name {
+   type enumeration {
+       enum aes-128-cbc {
+             value 1;
+             description
+               "Encrypt message with AES algorithm in CBC mode with
+                a key length of 128 bits.";
+             reference
+               "RFC 3565: Use of the Advanced Encryption Standard (AES)
+                Encryption Algorithm in Cryptographic Message Syntax
+                (CMS)";
+       }
+       enum aes-192-cbc {
+             value 2;
+             description
+               "Encrypt message with AES algorithm in CBC mode with
+                a key length of 192 bits";
+             reference
+               "RFC 3565: Use of the Advanced Encryption Standard (AES)
+                Encryption Algorithm in Cryptographic Message Syntax
+                (CMS)";
+        }
+        enum aes-256-cbc {
+             value 3;
+             description
+               "Encrypt message with AES algorithm in CBC mode with
+                a key length of 256 bits";
+             reference
+               "RFC 3565: Use of the Advanced Encryption Standard (AES)
+                Encryption Algorithm in Cryptographic Message Syntax
+                (CMS)";
+        }
+        enum aes-128-ctr {
+             value 4;
+             description
+               "Encrypt message with AES algorithm in CTR mode with
+                a key length of 128 bits";
+             reference
+               "RFC 3686:
+                  Using Advanced Encryption Standard (AES) Counter
+                  Mode with IPsec Encapsulating Security Payload
+                  (ESP)";
+        }
+        enum aes-192-ctr {
+             value 5;
+             description
+               "Encrypt message with AES algorithm in CTR mode with
+                a key length of 192 bits";
+             reference
+               "RFC 3686:
+                  Using Advanced Encryption Standard (AES) Counter
+                  Mode with IPsec Encapsulating Security Payload
+                  (ESP)";
+        }
+        enum aes-256-ctr {
+             value 6;
+             description
+               "Encrypt message with AES algorithm in CTR mode with
+                a key length of 256 bits";
+             reference
+               "RFC 3686:
+                  Using Advanced Encryption Standard (AES) Counter
+                  Mode with IPsec Encapsulating Security Payload
+                  (ESP)";
+        }
+        enum des3-cbc-sha1-kd {
+             value 7;
+             description
+               "Encrypt message with 3DES algorithm in CBC mode
+                with sha1 function for key derivation";
+             reference
+               "RFC 3961:
+                  Encryption and Checksum Specifications for
+                  Kerberos 5";
+        }
+        enum rc4-hmac {
+             value 8;
+             description
+               "Encrypt message with rc4 algorithm";
+             reference
+               "RFC 4757:
+                  The RC4-HMAC Kerberos Encryption Types Used by
+                  Microsoft Windows";
+        }
+        enum rc4-hmac-exp {
+             value 9;
+             description
+               "Encrypt message with rc4 algorithm that is exportable";
+             reference
+               "RFC 4757:
+                  The RC4-HMAC Kerberos Encryption Types Used by
+                  Microsoft Windows";
+        }        
+   }
+}
