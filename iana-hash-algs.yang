@@ -1,1 +1,90 @@
-
+typedef hash-algs-name {
+     type enumeration {
+          enum sha1 {
+             value 1;
+             status obsolete;
+             description
+               "The SHA1 algorithm.";
+             reference
+               "RFC 3174: US Secure Hash Algorithms 1 (SHA1).";
+          }
+          enum sha-224 {
+             value 2;
+             description
+               "The SHA-224 algorithm.";
+             reference
+               "RFC 6234: US Secure Hash Algorithms.";
+          }
+          enum sha-256 {
+             value 3;
+             description
+               "The SHA-256 algorithm.";
+             reference
+               "RFC 6234: US Secure Hash Algorithms.";
+          }
+          enum sha-384 {
+             value 4;
+             description
+               "The SHA-384 algorithm.";
+             reference
+               "RFC 6234: US Secure Hash Algorithms.";
+          }
+          enum sha-512 {
+             value 5;
+             description
+               "The SHA-512 algorithm.";
+             reference
+               "RFC 6234: US Secure Hash Algorithms.";
+          }
+          enum shake-128 {
+             value 6;
+             description
+               "The SHA3 algorithm with 128-bits output.";
+             reference
+               "National Institute of Standards and Technology,
+               SHA-3 Standard: Permutation-Based Hash and
+               Extendable-Output Functions, FIPS PUB 202, DOI
+               10.6028/NIST.FIPS.202, August 2015.";
+          }
+          enum shake-224 {
+             value 7;
+             description
+               "The SHA3 algorithm with 224-bits output.";
+             reference
+               "National Institute of Standards and Technology,
+               SHA-3 Standard: Permutation-Based Hash and
+               Extendable-Output Functions, FIPS PUB 202, DOI
+               10.6028/NIST.FIPS.202, August 2015.";
+          }
+          enum shake-256 {
+             value 8;
+             description
+               "The SHA3 algorithm with 256-bits output.";
+             reference
+               "National Institute of Standards and Technology,
+               SHA-3 Standard: Permutation-Based Hash and
+               Extendable-Output Functions, FIPS PUB 202, DOI
+               10.6028/NIST.FIPS.202, August 2015.";
+          }
+          enum shake-384 {
+             value 9;
+             description
+               "The SHA3 algorithm with 384-bits output.";
+             reference
+               "National Institute of Standards and Technology,
+               SHA-3 Standard: Permutation-Based Hash and
+               Extendable-Output Functions, FIPS PUB 202, DOI
+               10.6028/NIST.FIPS.202, August 2015.";
+          }
+          enum shake-512 {
+             value 10;
+             description
+               "The SHA3 algorithm with 384-bits output.";
+             reference
+               "National Institute of Standards and Technology,
+               SHA-3 Standard: Permutation-Based Hash and
+               Extendable-Output Functions, FIPS PUB 202, DOI
+               10.6028/NIST.FIPS.202, August 2015.";
+          }               
+     }
+}
