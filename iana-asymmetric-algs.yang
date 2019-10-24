@@ -1,4 +1,4 @@
-module ietf-iana-asymmetric-algs-name {
+module ietf-ct-iana-asymmetric-algs-name {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-crypto-types:ietf-iana-asymmetric-algs-name";
   prefix asan;
