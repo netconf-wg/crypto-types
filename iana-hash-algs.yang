@@ -1,4 +1,4 @@
-module ietf-iana-hash-algs-name {
+module ietf-ct-iana-hash-algs-name {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-crypto-types:ietf-iana-hash-algs-name";
   prefix han;
