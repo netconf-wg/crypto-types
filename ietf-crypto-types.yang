@@ -68,8 +68,8 @@ module ietf-crypto-types {
           type hash-algs-name;
       }
       Description
-          “This enumeration type defines crypto 
-           algorithms corresponding to the relative crypto-algs-class”
+          “This union is defined for crypto 
+          algorithms”
   }
   
   /********************************************/
