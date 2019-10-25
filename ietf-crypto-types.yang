@@ -57,6 +57,58 @@ module ietf-crypto-types {
   }
 
   /********************************************/
+  /*           Union for crypto-algs-type     */
+  /********************************************/
+  typedef crypto-algs-type {
+      type union {
+          type uint16;
+          type crypto-algs-class;
+      }
+      Description
+          “This enumeration type defines type of crypto 
+           algorithms”
+  }
+  
+  /********************************************/
+  /*           Union for crypto-algs          */
+  /********************************************/
+    typedef crypto-algs-type {
+      type union {
+          type uint16;
+          type asymmetric-algs-name;
+          type symmetric-algs-name;
+          type hash-algs-name;
+      }
+      Description
+          “This enumeration type defines crypto 
+           algorithms corresponding to the relative crypto-algs-class”
+  }
+  
+  /********************************************/
+  /*           crypto-algs-class              */
+  /********************************************/
+  typedef iana-crypto-algs-class {
+       type enumeration {
+             enum asymmetric-algs {
+                 value "1"; 
+                 descpriton
+                     "encryption or sign messages with asymmetric 
+                     algorithms"
+             }
+             enum symmetric-algs {
+                 value "2";
+                 descpriton
+                     "encryption messages with symmetric algorithms"
+             }
+             enum hash-algs {
+                 value "3";
+                 descpriton
+                     "Algorithms used for hash generation"
+             }
+       }
+  }
+
+  /********************************************/
   /*   Identities for Key Format Structures   */
   /********************************************/
 
