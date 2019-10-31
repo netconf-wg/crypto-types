@@ -55,22 +55,6 @@ module ietf-crypto-types {
     reference
       "RFC XXXX: Common YANG Data Types for Cryptography";
   }
-
-  
-  /********************************************/
-  /*           Union for crypto-algs          */
-  /********************************************/
-    typedef crypto-algs{
-      type union {
-          type uint16;
-          type asymmetric-algs-name;
-          type symmetric-algs-name;
-          type hash-algs-name;
-      }
-      Description
-          “This union is defined for crypto 
-          algorithms”
-  }
   
   /********************************************/
   /*   Identities for Key Format Structures   */
