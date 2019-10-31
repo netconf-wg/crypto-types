@@ -1,6 +1,6 @@
-module ietf-ct-iana-asymmetric-algs-name {
+module iana-asymmetric-algs {
   yang-version 1.1;
-  namespace "urn:ietf:params:xml:ns:yang:ietf-crypto-types:ietf-iana-asymmetric-algs-name";
+  namespace "urn:ietf:params:xml:ns:yang:iana-asymmetric-algs";
   prefix asan;
 
   import ietf-yang-types {
@@ -52,7 +52,7 @@ module ietf-ct-iana-asymmetric-algs-name {
       "RFC XXXX: Common YANG Data Types for Cryptography";
 }
 
-typedef asymmetric-algs-name {
+typedef iana-asymmetric-algs{
     type enumeration {
         enum rsa1024 {
              value 1;
