@@ -15,6 +15,24 @@ module ietf-crypto-types {
       "RFC 8341: Network Configuration Access Control Model";
   }
 
+  //import iana-hash-algs {
+  //  prefix iha;
+  //  reference
+  //    "RFC XXXX: Common YANG Data Types for Cryptography";
+  //}
+
+  import iana-symmetric-algs {
+    prefix isa;
+    reference
+      "RFC XXXX: Common YANG Data Types for Cryptography";
+  }
+
+  import iana-asymmetric-algs {
+    prefix iasa;
+    reference
+      "RFC XXXX: Common YANG Data Types for Cryptography";
+  }
+
   organization
     "IETF NETCONF (Network Configuration) Working Group";
 
@@ -40,7 +58,7 @@ module ietf-crypto-types {
 
      This version of this YANG module is part of RFC XXXX
      (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
-     itself for full legal notices.;
+     itself for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
      'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
@@ -269,13 +287,48 @@ module ietf-crypto-types {
   }
 
   /***************************************************/
+  /*   Typedefs for structures related to !!FIXME!!  */
+  /***************************************************/
+
+/* It seems like we're moving towards using the existing
+   symmetric and asymmetric key definitions...
+
+  typedef psk {
+    type binary;
+    description
+      "The binary key data for a PSK (pairwise-symmetric or
+       pre-shared key).  FIXME: specify how it is formmated.";
+  }
+
+  typedef raw-public-key {
+    type binary;
+    description
+      "A SubjectPublicKeyInfo structure, as specified in RFC
+       5280, encoded using ASN.1 distinguished encoding rules
+       (DER), as specified in ITU-T X.690.";
+    reference
+      "RFC 7250:
+         Using Raw Public Keys in Transport Layer Security
+         (TLS) and Datagram Transport Layer Security (DTLS).
+       RFC 5280:
+         Internet X.509 Public Key Infrastructure Certificate
+         and Certificate Revocation List (CRL) Profile.
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
+  }
+*/
+
+  /***************************************************/
   /*   Typedefs for structures related to RFC 4253   */
   /***************************************************/
 
   typedef ssh-host-key {
     type binary;
     description
-      "The binary public key data for this SSH key, as
+      "The binary public key data for an SSH key, as
        specified by RFC 4253, Section 6.6, i.e.:
 
          string    certificate or public key format
@@ -387,7 +440,7 @@ module ietf-crypto-types {
     description
       "A symmetric key and algorithm.";
     leaf algorithm {
-      type encryption-algorithm-t;
+      type isa:symmetric-algorithm-type;
       mandatory true;
       description
         "The algorithm to be used when generating the key.";
@@ -432,7 +485,7 @@ module ietf-crypto-types {
       "A public key and its associated algorithm.";
     leaf algorithm {
       nacm:default-deny-write;
-      type asymmetric-key-algorithm-t;
+      type iasa:asymmetric-algorithm-type;
       mandatory true;
       description
         "Identifies the key's algorithm.";
@@ -647,7 +700,7 @@ module ietf-crypto-types {
                Encoding Rules (DER).";
         }
         leaf attributes {
-          type binary; // FIXME: does this need to be mandatory?
+          type binary;
           description
             "The 'attributes' field from the structure
              CertificationRequestInfo as specified by RFC 2986,
@@ -745,7 +798,7 @@ module ietf-crypto-types {
                Encoding Rules (DER).";
         }
         leaf attributes {
-          type binary; // FIXME: does this need to be mandatory?
+          type binary;
           description
             "The 'attributes' field from the structure
              CertificationRequestInfo as specified by RFC 2986,

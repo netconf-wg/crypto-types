@@ -17,13 +17,13 @@
 <rfc category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
     <front>
         <title>Common YANG Data Types for Cryptography</title>
-        <author initials="K." surname="Watsen" fullname="Kent Watsen">
+        <author initials="K.W." surname="Watsen" fullname="Kent Watsen">
             <organization>Watsen Networks</organization>
             <address>
                 <email>kent+ietf@watsen.net</email>
             </address>
         </author>
-        <author initials="H." surname="Wang" fullname="Wang Haiguang">
+        <author initials="H.W." surname="Wang" fullname="Wang Haiguang">
             <organization>Huawei</organization>
             <address>
                 <email>wang.haiguang.shieldlab@huawei.com</email>
@@ -33,8 +33,15 @@
         <area>Operations</area>
         <workgroup>NETCONF Working Group</workgroup>
         <abstract>
-          <t>This document defines YANG identities, typedefs, the groupings
-          useful for cryptographic applications.</t>
+          <t>This document defines four YANG modules for types useful to
+            cryptographic applications.  The modules defined include:
+            <list style="symbols">
+              <t>ietf-crypto-types</t>
+              <t>iana-symmetric-algs</t>
+              <t>iana-asymmetric-algs</t>
+              <t>iana-hash-algs</t>
+            </list>
+          </t>
         </abstract>
         <note title="Editorial Note (To be removed by RFC Editor)">
           <t>This draft contains many placeholder values that need to be replaced
@@ -63,10 +70,17 @@
     </front>
     <middle>
       <section title="Introduction">
-
-        <t>This document defines a YANG 1.1 <xref target="RFC7950"/> module
-        specifying identities, typedefs, and groupings useful for cryptography.</t>
-
+        <t>This document defines four YANG 1.1 <xref target="RFC7950"/> modules
+          for types useful to cryptographic applications.  The modules defined
+          include:</t>
+        <t>
+          <list style="symbols">
+            <t>ietf-crypto-types</t>
+            <t>iana-symmetric-algs</t>
+            <t>iana-asymmetric-algs</t>
+            <t>iana-hash-algs</t>
+          </list>
+        </t>
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
         "MAY", and "OPTIONAL" in this document are to be interpreted as
@@ -75,24 +89,19 @@
       </section>
 
       <section title="The Crypto Types Module">
-
         <section title="Tree Diagram">
           <t>This section provides a tree diagram <xref target="RFC8340"/> for
-          the "ietf-crypto-types" module.  Only the groupings as represented,
+          the "ietf-crypto-types" module.  Only "grouping" statements are represented,
           as tree diagrams have no means to represent identities or typedefs.</t>
-
-          <t><!--The following tree diagram has used groupings expanded:-->
+          <t>
             <figure>
              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
-  ]]></artwork>
-              <!--<artwork xiax:gen="xiax/gen-crypto-types-tree@YYYY-MM-DD.txt"/>-->
+INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
+]]></artwork>
             </figure>
           </t>
         </section>
-
- 
-        <section title="YANG Module" anchor="keystore-yang-module">
+        <section title="YANG Module" anchor="crypto-types-yang-module">
           <t>This module has normative references to <xref target="RFC2404"/>,
           <xref target="RFC3565"/>, <xref target="RFC3686"/>, <xref target="RFC4106"/>,
           <xref target="RFC4253"/>, <xref target="RFC4279"/>, <xref target="RFC4309"/>, 
@@ -112,8 +121,176 @@
              <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
 ]]></artwork>
-              <!--<artwork xiax:src="ietf-crypto-types.yang" xiax:markers="true" xiax:val="xiax/val-yang-ietf-crypto-types.xml"/> -->
               <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+        <section title="Examples" anchor="crypto-types-examples">
+          <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping" toc="exclude">
+            <t>The following example module illustrates the use of both the "symmetric-key-grouping"
+              and the "asymmetric-key-pair-with-certs-grouping" groupings defined in the
+              "ietf-crypto-types" module.</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
+]]></artwork>
+              </figure>
+            </t>
+  
+            <t>Given the above example usage module, the following example
+            illustrates some configured keys.</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+  
+          <section title="The &quot;generate-certificate-signing-request&quot; Action" toc="exclude">
+            <t>The following example illustrates the "generate-certificate-signing-request"
+            action with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <preamble>REQUEST</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
+]]></artwork>
+              </figure>
+              <figure>
+                <preamble>RESPONSE</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+  
+          <section title="The &quot;certificate-expiration&quot; Notification" toc="exclude">
+            <t>The following example illustrates the "certificate-expiration"
+            notification with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+        </section>
+      </section>
+
+      <section title="The Symmetric Algorithms Module">
+        <section title="Tree Diagram">
+          <t>This section provides a tree diagram <xref target="RFC8340"/> for
+          the "iana-symmetric-algs" module.  Only the "container" statement is represented,
+          as tree diagrams have no means to represent "typedef" statements.</t>
+          <t>
+            <figure>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/iana-symmetric-algs-tree.txt)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+        <section title="YANG Module" anchor="symmetric-algs-yang-module">
+          <t>This module has normative references to FIXME...</t>
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-symmetric-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-symmetric-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+        <section title="Examples" anchor="symmetric-algs-examples">
+          <t>The following example illustrates the "supported-symmetric-algorithms"
+          "container" statement with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-symmetric-algs.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+      </section>
+
+      <section title="The Asymmetric Algorithms Module">
+        <section title="Tree Diagram">
+          <t>This section provides a tree diagram <xref target="RFC8340"/> for
+          the "iana-asymmetric-algs" module.  Only the "container" statement is represented,
+          as tree diagrams have no means to represent "typedef" statements.</t>
+          <t>
+            <figure>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/iana-asymmetric-algs-tree.txt)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+        <section title="YANG Module" anchor="asymmetric-algs-yang-module">
+          <t>This module has normative references to FIXME...</t>
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-asymmetric-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-asymmetric-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+        <section title="Examples" anchor="asymmetric-algs-examples">
+          <t>The following example illustrates the "supported-asymmetric-algorithms"
+          "container" statement with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-asymmetric-algs.xml)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+      </section>
+
+      <section title="The Hash Algorithms Module">
+        <section title="Tree Diagram">
+          <t>This section provides a tree diagram <xref target="RFC8340"/> for
+          the "iana-hash-algs" module.  Only the "container" statement is represented,
+          as tree diagrams have no means to represent "typedef" statements.</t>
+          <t>
+            <figure>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/iana-hash-algs-tree.txt)
+]]></artwork>
+            </figure>
+          </t>
+        </section>
+        <section title="YANG Module" anchor="hash-algs-yang-module">
+          <t>This module has normative references to FIXME...</t>
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-hash-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-hash-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+        <section title="Examples" anchor="hash-algs-examples">
+          <t>The following example illustrates the "supported-hash-algorithms"
+          "container" statement with the NETCONF protocol.</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
+]]></artwork>
             </figure>
           </t>
         </section>
@@ -217,30 +394,57 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
 
       <section title="IANA Considerations">
         <section title="The IETF XML Registry">
-          <t>This document registers one URI in the "ns" subregistry
+          <t>This document registers four URIs in the "ns" subregistry
           of the IETF XML Registry <xref target="RFC3688"/>.  Following
           the format in <xref target="RFC3688"/>, the following
-          registration is requested:</t>
+          registrations are requested:</t>
           <t>
             <figure>
               <artwork>
    URI: urn:ietf:params:xml:ns:yang:ietf-crypto-types
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+
+   URI: urn:ietf:params:xml:ns:yang:iana-symmetric-algs
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+
+   URI: urn:ietf:params:xml:ns:yang:iana-ssymmetric-algs
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+
+   URI: urn:ietf:params:xml:ns:yang:iana-hash-algs
    Registrant Contact: The NETCONF WG of the IETF.
    XML: N/A, the requested URI is an XML namespace.</artwork>
             </figure>
           </t>
         </section>
         <section title="The YANG Module Names Registry">
-          <t>This document registers one YANG module in the
+          <t>This document registers four YANG modules in the
           YANG Module Names registry <xref target="RFC6020"/>.
           Following the format in <xref target="RFC6020"/>, the
-          the following registration is requested:</t>
+          the following registrations are requested:</t>
           <t>
             <figure>
               <artwork>
    name:         ietf-crypto-types
    namespace:    urn:ietf:params:xml:ns:yang:ietf-crypto-types
    prefix:       ct
+   reference:    RFC XXXX
+
+   name:         iana-symmetric-algs
+   namespace:    urn:ietf:params:xml:ns:yang:iana-symmetric-algs
+   prefix:       isa
+   reference:    RFC XXXX
+
+   name:         iana-asymmetric-algs
+   namespace:    urn:ietf:params:xml:ns:yang:iana-asymmetric-algs
+   prefix:       iasa
+   reference:    RFC XXXX
+
+   name:         iana-hash-algs
+   namespace:    urn:ietf:params:xml:ns:yang:iana-hash-algs
+   prefix:       iha
    reference:    RFC XXXX</artwork>
             </figure>
           </t>
@@ -314,67 +518,6 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.8439.xml"?>
       </references>
 
-      <section title="Examples" anchor="examples">
-        <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping">
-          <t>The following example module illustrates the use of both the "symmetric-key-grouping"
-            and the "asymmetric-key-pair-with-certs-grouping" groupings defined in the
-            "ietf-crypto-types" module.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
-  ]]></artwork>
-              <!--<artwork xiax:src="ex-crypto-types-usage.yang" xiax:val="xiax/val-yang-ex-crypto-types-usage@YYYY-MM-DD.xml"/>-->
-            </figure>
-          </t>
-
-          <t>Given the above example usage module, the following example
-          illustrates some configured keys.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
-  ]]></artwork>
-              <!--<artwork xiax:src="refs/ex-crypto-types-usage.xml" xiax:val="xiax/val-xml-ex-crypto-types-usage@YYYY-MM-DD.xml"/>-->
-            </figure>
-          </t>
-        </section>
-
-        <section title="The &quot;generate-certificate-signing-request&quot; Action">
-          <t>The following example illustrates the "generate-certificate-signing-request"
-          action in use with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <preamble>REQUEST</preamble>
-              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
-  ]]></artwork>
-              <!--<artwork xiax:src="refs/ex-crypto-types-gcsr-rpc.xml"/>-->
-            </figure>
-            <figure>
-              <preamble>RESPONSE</preamble>
-              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
-  ]]></artwork>
-              <!--<artwork xiax:src="refs/ex-crypto-types-gcsr-rpc-reply.xml"/>-->
-            </figure>
-          </t>
-        </section>
-
-        <section title="The &quot;certificate-expiration&quot; Notification">
-          <t>The following example illustrates the "certificate-expiration"
-          notification in use with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-  INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
-  ]]></artwork>
-              <!--<artwork xiax:src="refs/ex-crypto-types-ce-notification.xml"/>-->
-            </figure>
-          </t>
-        </section>
-
-      </section> <!-- end Examples -->
 
 
       <section title="Change Log">
@@ -524,11 +667,19 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           <t>
             <list style="symbols">
               <t>Added a "key-format" identity.</t>
-              <t>Added symmetric keys to the example in <xref target="examples"/>.</t>
+              <t>Added symmetric keys to the example in <xref target="crypto-types-examples"/>.</t>
             </list>
           </t>
         </section>
-
+        <section title="11 to 12">
+          <t>
+            <list style="symbols">
+              <t>Removed all non-essential (to NC/RC) algorithm types.</t>
+              <t>Moved remaining algorithm types each into its own module.</t>
+              <t>Added a 'config false' "algorithms-supported" list to each of the algorithm-type modules.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">

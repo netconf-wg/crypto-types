@@ -9,6 +9,23 @@ pyang --canonical --ietf --max-line-length=69 -p ../ ../ietf-crypto-types\@20*.y
 echo "Testing ietf-crypto-types.yang (yanglint)..."
 yanglint ../ietf-crypto-types\@20*.yang
 
+echo "Testing iana-symmetric-algs.yang (pyang)..."
+pyang --canonical --ietf --max-line-length=69 -p ../ ../iana-symmetric-algs\@20*.yang
+
+echo "Testing iana-symmetric-algs.yang (yanglint)..."
+yanglint ../iana-symmetric-algs\@20*.yang
+
+echo "Testing iana-asymmetric-algs.yang (pyang)..."
+pyang --canonical --ietf --max-line-length=69 -p ../ ../iana-asymmetric-algs\@20*.yang
+
+echo "Testing iana-asymmetric-algs.yang (yanglint)..."
+yanglint ../iana-asymmetric-algs\@20*.yang
+
+echo "Testing iana-hash-algs.yang (pyang)..."
+pyang --canonical --ietf --max-line-length=69 -p ../ ../iana-hash-algs\@20*.yang
+
+echo "Testing iana-hash-algs.yang (yanglint)..."
+yanglint ../iana-hash-algs\@20*.yang
 
 echo "Testing ex-crypto-types-usage.yang (pyang)..."
 pyang --lint --max-line-length=69 -p ../ ../ex-crypto-types-usage.yang
@@ -75,3 +92,14 @@ rm yanglint-notification.xml
 #yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gcsr-rpc-reply.xml ex-gcsr-rpc.xml
 
 #mv ../ietf-crypto-types\@YYYY-MM-DD.yang.hide ../ietf-crypto-types\@YYYY-MM-DD.yang
+
+
+
+echo "Testing ex-symmetric-algs.xml..."
+yanglint -m -t data -s ../iana-symmetric-algs\@20*.yang ./ietf-origin.yang ex-symmetric-algs.xml
+
+echo "Testing ex-asymmetric-algs.xml..."
+yanglint -m -t data -s ../iana-asymmetric-algs\@20*.yang ./ietf-origin.yang ex-asymmetric-algs.xml
+
+echo "Testing ex-hash-algs.xml..."
+yanglint -m -t data -s ../iana-hash-algs\@20*.yang ./ietf-origin.yang ex-hash-algs.xml
