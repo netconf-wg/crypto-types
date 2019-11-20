@@ -1,0 +1,9 @@
+<supported-symmetric-algorithms 
+  xmlns="urn:ietf:params:xml:ns:yang:iana-symmetric-algs">
+  <supported-symmetric-algorithm>
+    <algorithm>aes-128-cbc</algorithm>
+  </supported-symmetric-algorithm>
+  <supported-symmetric-algorithm>
+    <algorithm>aes-256-cbc</algorithm>
+  </supported-symmetric-algorithm>
+</supported-symmetric-algorithms>

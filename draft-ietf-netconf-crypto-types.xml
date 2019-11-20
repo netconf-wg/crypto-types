@@ -680,6 +680,17 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
             </list>
           </t>
         </section>
+        <section title="12 to 13">
+          <t>
+            <list style="symbols">
+              <t>Added the four features: "[encrypted-]one-[a]symmetric-key-format", each protecting a 'key-format' identity of the same name.</t>
+              <t>Added 'must' expressions asserting that the 'key-format' leaf exists whenever a non-hidden key is specified.</t>
+              <t>Improved the 'description' statements and added 'reference' statements for the 'key-format' identities.</t>
+              <t>Added a questionable forward reference to "encrypted-*" leafs in a couple 'when' expressions.</t>
+              <t>Did NOT move "config false" alg-supported lists to SSH/TLS drafts.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
