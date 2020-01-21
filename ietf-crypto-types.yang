@@ -205,6 +205,7 @@ module ietf-crypto-types {
     base "symmetric-key-format";
     description
       "Indicates that the key is encoded as a raw octet string.";
+
     // FIXME
     // Knowing that it is an "OctetString" isn't really helpful.
     // Knowing the length of the octet string would be helpful,
@@ -212,6 +213,9 @@ module ietf-crypto-types {
     // to only (for now) use "one-symmetric-key-format" for
     // symmetric keys...were the usability issues Juergen
     // mentioned before only apply to asymmetric keys?
+
+    // FIXME2: can this identity be used to encrypt "passwords"
+    // used to authenticate to remote peers?
   }
 
   identity one-symmetric-key-format {
@@ -488,7 +492,6 @@ module ietf-crypto-types {
     }
     leaf key-format {
       nacm:default-deny-write;
-      when "../key or ../encrypted-key"; // FIXME: forward ref?!
       type identityref {
         base symmetric-key-format;
       }
@@ -512,6 +515,7 @@ module ietf-crypto-types {
       leaf hidden-key {
         nacm:default-deny-write;
         type empty;
+        must "not(../key-format)";
         description
           "A permanently hidden key.  How such keys are created
            is outside the scope of this module.";
@@ -533,16 +537,15 @@ module ietf-crypto-types {
     }
     leaf public-key-format {
       nacm:default-deny-write;
-      when "../public-key";
       type identityref {
         base public-key-format;
       }
+      mandatory true;
       description "Identifies the key's format.";
     }
     leaf public-key {
       nacm:default-deny-write;
       type binary;
-      must "../public-key-format";
       mandatory true;
       description
         "The binary value of the public key.  The interpretation
@@ -556,8 +559,6 @@ module ietf-crypto-types {
     uses public-key-grouping;
     leaf private-key-format {
       nacm:default-deny-write;
-      when "../private-key or ../encrypted-private-key";
-                               // FIXME: forward ref?!
       type identityref {
         base private-key-format;
       }
@@ -578,6 +579,7 @@ module ietf-crypto-types {
       leaf hidden-private-key {
         nacm:default-deny-write;
         type empty;
+        must "not(../private-key-format)";
         description
           "A permanently hidden key.  How such keys are created
            is outside the scope of this module.";

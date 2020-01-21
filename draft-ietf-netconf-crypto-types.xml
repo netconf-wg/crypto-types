@@ -691,6 +691,13 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
             </list>
           </t>
         </section>
+        <section title="13 to 14">
+          <t>
+            <list style="symbols">
+              <t>Resolved the "FIXME: forward ref" issue by modulating 'must', 'when', and 'mandatory' expressions.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
