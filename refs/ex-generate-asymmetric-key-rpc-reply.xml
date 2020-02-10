@@ -1,0 +1,11 @@
+<rpc-reply message-id="101"
+  xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"
+  xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+  <!--<data> yanglint validation fails -->
+    <ct:algorithm>secp256r1</ct:algorithm>
+    <ct:public-key-format>ct:subject-public-key-info-format</ct:public-key-format>
+    <ct:public-key>base64encodedvalue==</ct:public-key>
+    <ct:private-key-format>ct:encrypted-one-asymmetric-key-format</ct:private-key-format>
+    <ct:private-key>base64encodedvalue==</ct:private-key>
+  <!--</data> yanglint validation fails -->
+</rpc-reply>

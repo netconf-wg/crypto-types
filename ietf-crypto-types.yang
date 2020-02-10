@@ -78,35 +78,45 @@ module ietf-crypto-types {
   /*   Features   */
   /****************/
 
-  feature "one-asymmetric-key-format" {
+  feature one-asymmetric-key-format {
     description
       "Indicates that the server supports the
        'one-asymmetric-key-format' identity.";
   }
 
-  feature "one-symmetric-key-format" {
+  feature one-symmetric-key-format {
     description
       "Indicates that the server supports the
        'one-symmetric-key-format' identity.";
   }
 
-  feature "encrypted-one-symmetric-key-format" {
+  feature encrypted-one-symmetric-key-format {
     description
       "Indicates that the server supports the
        'encrypted-one-symmetric-key-format' identity.";
   }
 
-  feature "encrypted-one-asymmetric-key-format" {
+  feature encrypted-one-asymmetric-key-format {
     description
       "Indicates that the server supports the
        'encrypted-one-asymmetric-key-format' identity.";
   }
 
-  /********************************************/
-  /*   Identities for Key Format Structures   */
-  /********************************************/
+  feature symmetric-key-generation {
+    description
+      "Indicates that the server implements the 'generate-
+       symmetric-key' RPC.";
+  }
 
-  /*** base key formats ****/
+  feature asymmetric-key-generation {
+    description
+      "Indicates that the server implements the 'generate-
+       asymmetric-key' RPC.";
+  }
+
+  /*************************************************/
+  /*   Base Identities for Key Format Structures   */
+  /*************************************************/
 
   identity key-format-base {
     description "Base key-format identity for all keys.";
@@ -128,7 +138,9 @@ module ietf-crypto-types {
   }
 
 
-  /**** for private keys ****/
+  /****************************************************/
+  /*   Identities for Private Key Format Structures   */
+  /****************************************************/
 
   identity rsa-private-key-format {
     base "private-key-format";
@@ -173,7 +185,9 @@ module ietf-crypto-types {
    }
 
 
-  /**** for public keys ****/
+  /***************************************************/
+  /*   Identities for Public Key Format Structures   */
+  /***************************************************/
 
   identity ssh-public-key-format {
     base "public-key-format";
@@ -199,7 +213,9 @@ module ietf-crypto-types {
   }
 
 
-  /**** for symmetric keys ****/
+  /******************************************************/
+  /*   Identities for Symmetric Key Format Structures   */
+  /******************************************************/
 
   identity octet-string-key-format {
     base "symmetric-key-format";
@@ -243,7 +259,6 @@ module ietf-crypto-types {
        RFC 6031: Cryptographic Message Syntax (CMS)
                  Symmetric Key Package Content Type";
   }
-
 
 
   /***************************************************/
@@ -879,4 +894,51 @@ module ietf-crypto-types {
       }
     } // generate-certificate-signing-request
   } // asymmetric-key-pair-with-certs-grouping
+
+
+  /*********************************/
+  /*   Protocol-Accessible Nodes   */
+  /*********************************/
+
+  rpc generate-asymmetric-key {
+    if-feature "asymmetric-key-generation";
+    description
+      "Requests the device to generate an asymmetric key using
+       the specified key algorithm.";
+    input {
+      leaf algorithm {
+        type iasa:asymmetric-algorithm-type;
+        mandatory true;
+        description
+          "The algorithm to be used when generating the key.";
+        reference
+          "RFC AAAA: Common YANG Data Types for Cryptography";
+      }
+    }
+    output {
+      uses ct:asymmetric-key-pair-grouping;
+    }
+  } // end generate-asymmetric-key
+
+
+  rpc generate-symmetric-key {
+    if-feature "symmetric-key-generation";
+    description
+      "Requests the device to generate an symmetric key using
+       the specified key algorithm.";
+    input {
+      leaf algorithm {
+        type isa:symmetric-algorithm-type;
+        mandatory true;
+        description
+          "The algorithm to be used when generating the key.";
+        reference
+          "RFC AAAA: Common YANG Data Types for Cryptography";
+      }
+    }
+    output {
+      uses ct:symmetric-key-grouping;
+    }
+  } // end generate-symmetric-key
+
 }

@@ -38,17 +38,17 @@ yanglint ../ex-crypto-types-usage.yang
 echo "Testing ex-crypto-types-usage.xml..."
 yanglint -m -t config -s ../ex-crypto-types-usage.yang ../ietf-crypto-types\@20*.yang ./ietf-origin.yang  ex-crypto-types-usage.xml
 
-#echo "Testing ex-crypto-types-ghk-rpc.xml..."
-#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc.xml
+echo "Testing ex-generate-symmetric-key-rpc.xml..."
+yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc.xml
 
-#echo "Testing ex-crypto-types-ghk-rpc-reply.xml..."
-#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ghk-rpc-reply.xml ex-crypto-types-ghk-rpc.xml
+echo "Testing ex-generate-symmetric-key-rpc-reply.xml..."
+yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc-reply.xml ex-generate-symmetric-key-rpc.xml
 
-#echo "Testing ex-crypto-types-ihk-rpc.xml..."
-#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc.xml
+echo "Testing ex-generate-asymmetric-key-rpc.xml..."
+yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc.xml
 
-#echo "Testing ex-crypto-types-ihk-rpc-reply.xml..."
-#yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-ihk-rpc-reply.xml ex-crypto-types-ihk-rpc.xml
+echo "Testing ex-generate-asymmetric-key-rpc-reply.xml..."
+yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc-reply.xml ex-generate-asymmetric-key-rpc.xml
 
 echo "Testing ex-crypto-types-gcsr-rpc.xml..."
 yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc.xml

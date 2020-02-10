@@ -149,6 +149,44 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
             </t>
           </section>
   
+          <section title="The &quot;generate-symmetric-key&quot; RPC" toc="exclude">
+            <t>The following example illustrates the "generate-symmetric-key"
+            RPC with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <preamble>REQUEST</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-generate-symmetric-key-rpc.xml)
+]]></artwork>
+              </figure>
+              <figure>
+                <preamble>RESPONSE</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-generate-symmetric-key-rpc-reply.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+  
+          <section title="The &quot;generate-asymmetric-key&quot; RPC" toc="exclude">
+            <t>The following example illustrates the "generate-asymmetric-key"
+            RPC with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <preamble>REQUEST</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-generate-asymmetric-key-rpc.xml)
+]]></artwork>
+              </figure>
+              <figure>
+                <preamble>RESPONSE</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-generate-asymmetric-key-rpc-reply.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+
           <section title="The &quot;generate-certificate-signing-request&quot; Action" toc="exclude">
             <t>The following example illustrates the "generate-certificate-signing-request"
             action with the NETCONF protocol.</t>
@@ -695,6 +733,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
           <t>
             <list style="symbols">
               <t>Resolved the "FIXME: forward ref" issue by modulating 'must', 'when', and 'mandatory' expressions.</t>
+              <t>Moved the generate key actions from ietf-keystore to ietf-crypto-types as RPCs.</t>
             </list>
           </t>
         </section>
