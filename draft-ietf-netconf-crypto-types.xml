@@ -734,6 +734,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
             <list style="symbols">
               <t>Resolved the "FIXME: forward ref" issue by modulating 'must', 'when', and 'mandatory' expressions.</t>
               <t>Moved the generate key actions from ietf-keystore to ietf-crypto-types as RPCs.</t>
+              <t>Cleaned up various description statements and removed lingering FIXMEs.</t>
             </list>
           </t>
         </section>

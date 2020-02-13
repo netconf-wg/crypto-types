@@ -73,7 +73,8 @@ module ietf-crypto-types {
     reference
       "RFC XXXX: Common YANG Data Types for Cryptography";
   }
-  
+
+
   /****************/
   /*   Features   */
   /****************/
@@ -114,26 +115,20 @@ module ietf-crypto-types {
        asymmetric-key' RPC.";
   }
 
+
   /*************************************************/
   /*   Base Identities for Key Format Structures   */
   /*************************************************/
 
-  identity key-format-base {
-    description "Base key-format identity for all keys.";
-  }
-
   identity public-key-format {
-    base "key-format-base";
     description "Base key-format identity for public keys.";
   }
 
   identity private-key-format {
-    base "key-format-base";
     description "Base key-format identity for private keys.";
   }
 
   identity symmetric-key-format {
-    base "key-format-base";
     description "Base key-format identity for symmetric keys.";
   }
 
@@ -165,23 +160,36 @@ module ietf-crypto-types {
     if-feature "one-asymmetric-key-format";
     base "private-key-format";
     description
-      "Indicates that the private key value is encoded
-       as a OneAsymmetricKey structure (RFC 6031).";
-       // FIXME: DER encoded ASN.1, etc...or flex PEM?
+      "Indicates that the private key value is a CMS
+       OneAsymmetricKey structure, as defined in RFC 5958,
+       encoded using ASN.1 distinguished encoding rules
+       (DER), as specified in ITU-T X.690.";
     reference
-      "RFC 5958: Asymmetric Key Packages";
+      "RFC 5958: Asymmetric Key Packages
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
   }
 
   identity encrypted-one-asymmetric-key-format {
     if-feature "encrypted-one-asymmetric-key-format";
     base "private-key-format";
     description
-      "Indicates that the private key value is encoded
-       as a OneAsymmetricKey structure (RFC 5958).";
-       // FIXME: DER encoded ASN.1, etc...or flex PEM?
+      "Indicates that the private key value is a CMS EnvelopedData
+       structure, per Section 8 in RFC 5652, containing a
+       OneAsymmetricKey structure, as defined in RFC 5958,
+       encoded using ASN.1 distinguished encoding rules (DER),
+       as specified in ITU-T X.690.";
     reference
       "RFC 5652: Cryptographic Message Syntax (CMS)
-       RFC 5958: Asymmetric Key Packages";
+       RFC 5958: Asymmetric Key Packages
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
    }
 
 
@@ -192,24 +200,32 @@ module ietf-crypto-types {
   identity ssh-public-key-format {
     base "public-key-format";
     description
-      "Indicates that the public key value is encoded
-       an SSH public key, as described by RFC 4716.";
+      "Indicates that the public key value is an SSH public key,
+       as specified by RFC 4253, Section 6.6, i.e.:
+
+         string    certificate or public key format
+                   identifier
+         byte[n]   key/certificate data.";
     reference
-      "RFC 4716: The Secure Shell (SSH) Public Key
-                 File Format";
+      "RFC 4253: The Secure Shell (SSH) Transport Layer Protocol";
   }
 
   identity subject-public-key-info-format {
     base "public-key-format";
     description
-      "Indicates that the public key value is encoded as
-       a SubjectPublicKeyInfo structure, as described in
-       RFC 5280.";
-      // FIXME: DER encoded ASN.1, etc...
+      "Indicates that the public key value is a SubjectPublicKeyInfo
+       structure, as described in RFC 5280 encoded using ASN.1
+       distinguished encoding rules (DER), as specified in
+       ITU-T X.690.";
     reference
       "RFC 5280:
          Internet X.509 Public Key Infrastructure Certificate
-         and Certificate Revocation List (CRL) Profile";
+         and Certificate Revocation List (CRL) Profile
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
   }
 
 
@@ -220,44 +236,47 @@ module ietf-crypto-types {
   identity octet-string-key-format {
     base "symmetric-key-format";
     description
-      "Indicates that the key is encoded as a raw octet string.";
-
-    // FIXME
-    // Knowing that it is an "OctetString" isn't really helpful.
-    // Knowing the length of the octet string would be helpful,
-    // as it relates to the algorithm's block size.  We may want
-    // to only (for now) use "one-symmetric-key-format" for
-    // symmetric keys...were the usability issues Juergen
-    // mentioned before only apply to asymmetric keys?
-
-    // FIXME2: can this identity be used to encrypt "passwords"
-    // used to authenticate to remote peers?
+      "Indicates that the key is encoded as a raw octet string.
+       The length of the octet string MUST be appropriate for
+       the associated algorithm's block size.";
   }
 
   identity one-symmetric-key-format {
     if-feature "one-symmetric-key-format";
     base "symmetric-key-format";
     description
-      "Indicates that the symmetric key value is encoded
-       as a OneSymmetricKey (from RFC 6031).";
-       // FIXME: DER encoded ASN.1, etc...or flex PEM?
+      "Indicates that the private key value is a CMS
+       OneSymmetricKey structure, as defined in RFC 6031,
+       encoded using ASN.1 distinguished encoding rules
+       (DER), as specified in ITU-T X.690.";
     reference
       "RFC 6031: Cryptographic Message Syntax (CMS)
-                 Symmetric Key Package Content Type";
+                 Symmetric Key Package Content Type
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
   }
 
   identity encrypted-one-symmetric-key-format {
     if-feature "encrypted-one-symmetric-key-format";
     base "symmetric-key-format";
     description
-      "Indicates that the symmetric key value is encoded
-       as an EncryptedData structure (RFC 5652) containing
-       OneSymmetricKey (RFC 6031).";
-       // FIXME: DER encoded ASN.1, etc...or flex PEM?
+      "Indicates that the private key value is a CMS
+       EnvelopedData structure, per Section 8 in RFC 5652,
+       containing a OneSymmetricKey structure, as defined
+       in RFC 6031, encoded using ASN.1 distinguished
+       encoding rules (DER), as specified in ITU-T X.690.";
     reference
       "RFC 5652: Cryptographic Message Syntax (CMS)
        RFC 6031: Cryptographic Message Syntax (CMS)
-                 Symmetric Key Package Content Type";
+                 Symmetric Key Package Content Type
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
   }
 
 
@@ -298,6 +317,7 @@ module ietf-crypto-types {
          Canonical Encoding Rules (CER) and Distinguished
          Encoding Rules (DER).";
   }
+
 
   /***********************************************/
   /*   Typedefs for ASN.1 structures from 5652   */
@@ -379,24 +399,6 @@ module ietf-crypto-types {
   }
 
 
-  /***************************************************/
-  /*   Typedefs for structures related to RFC 4253   */
-  /***************************************************/
-
-  typedef ssh-host-key {
-    type binary;
-    description
-      "The binary public key data for an SSH key, as
-       specified by RFC 4253, Section 6.6, i.e.:
-
-         string    certificate or public key format
-                   identifier
-         byte[n]   key/certificate data.";
-    reference
-      "RFC 4253: The Secure Shell (SSH) Transport Layer
-                 Protocol";
-  }
-
   /*********************************************************/
   /*   Typedefs for ASN.1 structures related to RFC 5280   */
   /*********************************************************/
@@ -415,6 +417,7 @@ module ietf-crypto-types {
        that is neither self-signed nor having Basic constraint
        CA true.";
   }
+
 
   /*********************************************************/
   /*   Typedefs for ASN.1 structures related to RFC 5652   */
@@ -476,19 +479,6 @@ module ietf-crypto-types {
          and Certificate Revocation List (CRL) Profile.";
   }
 
-  typedef ssh-public-key-type {  // DELETE?
-     type binary;
-     description
-       "The binary public key data for this SSH key, as
-        specified by RFC 4253, Section 6.6, i.e.:
-
-          string    certificate or public key format
-                    identifier
-          byte[n]   key/certificate data.";
-     reference
-       "RFC 4253: The Secure Shell (SSH) Transport
-                  Layer Protocol";
-  }
 
   /**********************************************/
   /*   Groupings for keys and/or certificates   */
@@ -522,10 +512,7 @@ module ietf-crypto-types {
         must "../key-format";
         description
           "The binary value of the key.  The interpretation of
-           the value is defined by 'key-format'.  For example,
-           FIXME.";
-        reference
-          "RFC XXXX: FIXME";
+           the value is defined by the 'key-format' field.";
       }
       leaf hidden-key {
         nacm:default-deny-write;
