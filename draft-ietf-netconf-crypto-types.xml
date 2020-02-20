@@ -106,8 +106,8 @@ INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
           <xref target="RFC2986"/>, <xref target="RFC3447"/>, <xref target="RFC4253"/>,
           <xref target="RFC5280"/>, <xref target="RFC5652"/>, <xref target="RFC5915"/>,
           <xref target="RFC5958"/>, <xref target="RFC6031"/>, <xref target="RFC6125"/>,
-          <xref target="6991"/>, <xref target="8174"/>, <xref target="8341"/>, and
-          <xref target="ITU.X690.2015"/>.</t>
+          <xref target="RFC6991"/>, <xref target="RFC8174"/>, <xref target="RFC8341"/>,
+          and <xref target="ITU.X690.2015"/>.</t>
           <t>
             <figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-crypto-types@YYYY-MM-DD.yang"</preamble>
@@ -488,29 +488,32 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
     <back>
       <references title="Normative References">
         <?rfc include="reference.RFC.2119.xml"?>
-        <?rfc include="reference.RFC.2404.xml"?>
-        <?rfc include="reference.RFC.3565.xml"?>
+        <!--<?rfc include="reference.RFC.2404.xml"?>-->
+        <?rfc include="reference.RFC.3447.xml"?>
+        <!--<?rfc include="reference.RFC.3565.xml"?>
         <?rfc include="reference.RFC.3686.xml"?>
-        <?rfc include="reference.RFC.4106.xml"?>
+        <?rfc include="reference.RFC.4106.xml"?>-->
         <?rfc include="reference.RFC.4253.xml"?>
-        <?rfc include="reference.RFC.4279.xml"?>
+        <!--<?rfc include="reference.RFC.4279.xml"?>
         <?rfc include="reference.RFC.4309.xml"?>
         <?rfc include="reference.RFC.4494.xml"?>
         <?rfc include="reference.RFC.4543.xml"?>
-        <?rfc include="reference.RFC.4868.xml"?>
+        <?rfc include="reference.RFC.4868.xml"?>-->
         <?rfc include="reference.RFC.5280.xml"?>
         <?rfc include="reference.RFC.5652.xml"?>
-        <?rfc include="reference.RFC.5656.xml"?>
-        <?rfc include="reference.RFC.6187.xml"?>
+        <!--<?rfc include="reference.RFC.5656.xml"?>-->
+        <?rfc include="reference.RFC.5958.xml"?>
+        <?rfc include="reference.RFC.6031.xml"?>
+        <!--<?rfc include="reference.RFC.6187.xml"?>-->
         <?rfc include="reference.RFC.6991.xml"?>
-        <?rfc include="reference.RFC.7919.xml"?>
+        <!--<?rfc include="reference.RFC.7919.xml"?>-->
         <?rfc include="reference.RFC.7950.xml"?>
         <?rfc include="reference.RFC.8174.xml"?>
-        <?rfc include="reference.RFC.8268.xml"?>
-        <?rfc include="reference.RFC.8332.xml"?>
+        <!--<?rfc include="reference.RFC.8268.xml"?>
+        <?rfc include="reference.RFC.8332.xml"?>-->
         <?rfc include="reference.RFC.8341.xml"?>
-        <?rfc include="reference.RFC.8422.xml"?>
-        <?rfc include="reference.RFC.8446.xml"?>
+        <!--<?rfc include="reference.RFC.8422.xml"?>
+        <?rfc include="reference.RFC.8446.xml"?>-->
 
         <!-- THE FOLLOWING LINE DOESN'T RESOLVE BECAUSE _reference.ITU.X744.1996.xml
              DOES NOT EXIST HERE: http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/
@@ -530,23 +533,23 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
       </references>
       <references title="Informative References">
         <?rfc include="reference.RFC.2986.xml"?>
-        <?rfc include="reference.RFC.3174.xml"?>
+        <!--<?rfc include="reference.RFC.3174.xml"?>-->
         <?rfc include="reference.RFC.3688.xml"?>
         <?rfc include="reference.RFC.4211.xml"?>
-        <?rfc include="reference.RFC.4493.xml"?>
+        <!--<?rfc include="reference.RFC.4493.xml"?>-->
         <?rfc include="reference.RFC.5056.xml"?>
         <?rfc include="reference.RFC.5915.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
         <?rfc include="reference.RFC.6125.xml"?>
-        <?rfc include="reference.RFC.6234.xml"?>
+        <!--<?rfc include="reference.RFC.6234.xml"?>-->
         <?rfc include="reference.RFC.6241.xml"?>
-        <?rfc include="reference.RFC.6239.xml"?>
+        <!--<?rfc include="reference.RFC.6239.xml"?>
         <?rfc include="reference.RFC.6507.xml"?>
         <?rfc include="reference.RFC.8017.xml"?>
-        <?rfc include="reference.RFC.8032.xml"?>
+        <?rfc include="reference.RFC.8032.xml"?>-->
         <?rfc include="reference.RFC.8040.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
-        <?rfc include="reference.RFC.8439.xml"?>
+        <!--<?rfc include="reference.RFC.8439.xml"?>-->
       </references>
 
 
