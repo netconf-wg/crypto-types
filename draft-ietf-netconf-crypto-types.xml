@@ -52,7 +52,7 @@
           <t>Artwork in this document contains shorthand references to drafts in 
           progress.  Please apply the following replacements:
             <list style="symbols">
-              <t><spanx style="verb">XXXX</spanx> --&gt; the assigned RFC value for this draft</t>
+              <t><spanx style="verb">AAAA</spanx> --&gt; the assigned RFC value for this draft</t>
             </list>
           </t>
           <t>Artwork in this document contains placeholder values for the date
@@ -63,7 +63,7 @@
           </t>
           <t>The following Appendix section is to be removed prior to publication:
             <list style="symbols">
-              <t>Appendix B.  Change Log</t>
+              <t>Appendix A.  Change Log</t>
             </list>
           </t>
         </note>
@@ -102,19 +102,12 @@ INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
           </t>
         </section>
         <section title="YANG Module" anchor="crypto-types-yang-module">
-          <t>This module has normative references to <xref target="RFC2404"/>,
-          <xref target="RFC3565"/>, <xref target="RFC3686"/>, <xref target="RFC4106"/>,
-          <xref target="RFC4253"/>, <xref target="RFC4279"/>, <xref target="RFC4309"/>, 
-          <xref target="RFC4494"/>, <xref target="RFC4543"/>, <xref target="RFC4868"/>, 
-          <xref target="RFC5280"/>, <xref target="RFC5652"/>, <xref target="RFC5656"/>, 
-          <xref target="RFC6187"/>, <xref target="RFC6991"/>, <xref target="RFC7919"/>, 
-          <xref target="RFC8268"/>, <xref target="RFC8332"/>, <xref target="RFC8341"/>,
-          <xref target="RFC8422"/>, <xref target="RFC8446"/>, and <xref target="ITU.X690.2015"/>.</t>
-          <t>This module has an informational reference to <xref target="RFC2986"/>,
-          <xref target="RFC3174"/>, <xref target="RFC4493"/>, <xref target="RFC5915"/>,
-          <xref target="RFC6125"/>, <xref target="RFC6234"/>, <xref target="RFC6239"/>,
-          <xref target="RFC6507"/>, <xref target="RFC8017"/>, <xref target="RFC8032"/>,
-          <xref target="RFC8439"/>.</t>
+          <t>This module has normative references to <xref target="RFC2119"/>,
+          <xref target="RFC2986"/>, <xref target="RFC3447"/>, <xref target="RFC4253"/>,
+          <xref target="RFC5280"/>, <xref target="RFC5652"/>, <xref target="RFC5915"/>,
+          <xref target="RFC5958"/>, <xref target="RFC6031"/>, <xref target="RFC6125"/>,
+          <xref target="6991"/>, <xref target="8174"/>, <xref target="8341"/>, and
+          <xref target="ITU.X690.2015"/>.</t>
           <t>
             <figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-crypto-types@YYYY-MM-DD.yang"</preamble>
