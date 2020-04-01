@@ -41,7 +41,7 @@ clean:
 	-rm -f $(draft)-[0-9][0-9].html
 	-rm -f ietf-*\@20*.yang
 	-rm -f iana-*\@20*.yang
-	-rm -f ex-crypto-types-usage\@.20*.yang
+	-rm -f ex-crypto-types-usage\@20*.yang
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
 endif
@@ -56,8 +56,8 @@ $(next).xml: $(draft).xml
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" iana-asymmetric-algs.yang > iana-asymmetric-algs\@$(shell date +%Y-%m-%d).yang
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" iana-hash-algs.yang > iana-hash-algs\@$(shell date +%Y-%m-%d).yang
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ex-crypto-types-usage.yang > ex-crypto-types-usage\@$(shell date +%Y-%m-%d).yang
-	cd refs; ./validate-all.sh; ./gen-trees.sh; cd ..;
-	./.insert-figures.sh $@ > tmp; mv tmp $@
+	cd refs && ./validate-all.sh && ./gen-trees.sh && cd ..
+	./.insert-figures.sh $@ > tmp && mv tmp $@
 	rm refs/*-tree.txt
 
 .INTERMEDIATE: $(draft).xml

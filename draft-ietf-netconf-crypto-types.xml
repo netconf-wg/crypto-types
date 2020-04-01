@@ -33,15 +33,12 @@
         <area>Operations</area>
         <workgroup>NETCONF Working Group</workgroup>
         <abstract>
-          <t>This document defines four YANG modules for types useful to
-            cryptographic applications.  The modules defined include:
-            <list style="symbols">
-              <t>ietf-crypto-types</t>
-              <t>iana-symmetric-algs</t>
-              <t>iana-asymmetric-algs</t>
-              <t>iana-hash-algs</t>
-            </list>
-          </t>
+          <t>This document primarily defines a YANG module for identities,
+            typedefs, groupings, and RPCs useful to cryptographic applications.
+            This draft additionally defines a new IANA registry for
+            cryptographic primitives, modifies existing SSH and TLS registries,
+            and defines a process enabling IANA to automatically generate three
+            new YANG modules from the new cryptographic primitives registry.</t>
         </abstract>
         <note title="Editorial Note (To be removed by RFC Editor)">
           <t>This draft contains many placeholder values that need to be replaced
@@ -63,29 +60,29 @@
           </t>
           <t>The following Appendix section is to be removed prior to publication:
             <list style="symbols">
-              <t>Appendix A.  Change Log</t>
+              <t>Appendix B.  Change Log</t>
             </list>
           </t>
         </note>
     </front>
     <middle>
       <section title="Introduction">
-        <t>This document defines four YANG 1.1 <xref target="RFC7950"/> modules
-          for types useful to cryptographic applications.  The modules defined
-          include:</t>
-        <t>
-          <list style="symbols">
-            <t>ietf-crypto-types</t>
-            <t>iana-symmetric-algs</t>
-            <t>iana-asymmetric-algs</t>
-            <t>iana-hash-algs</t>
-          </list>
-        </t>
+        <t>This document primarily defines a YANG 1.1 <xref target="RFC7950"/> 
+          module for identities, typedefs, groupings, and RPCs useful to
+          cryptographic applications.</t>
+        <t>This draft additionally defines a new IANA registry called
+          "Cryptographic Primitives", and defines a process enabling IANA
+          to  automatically generate three new YANG modules ("iana-hash-algs",
+          "iana-symmetric-key-algs", and "iana-asymmetric-key-algs") from the
+          new cryptographic primitives registry.</t>
+        <t>Lastly, the draft also modifies existing SSH and TLS registries,
+          adding a new column called "Primitives" to specific sub-registries
+          identifying which primitives are used by that registration.</t>
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-        NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-        "MAY", and "OPTIONAL" in this document are to be interpreted as
-        described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
-        when, and only when, they appear in all capitals, as shown here.</t>
+          NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+          "MAY", and "OPTIONAL" in this document are to be interpreted as
+          described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
+          when, and only when, they appear in all capitals, as shown here.</t>
       </section>
 
       <section title="The Crypto Types Module">
@@ -213,121 +210,8 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
         </section>
       </section>
 
-      <section title="The Symmetric Algorithms Module">
-        <section title="Tree Diagram">
-          <t>This section provides a tree diagram <xref target="RFC8340"/> for
-          the "iana-symmetric-algs" module.  Only the "container" statement is represented,
-          as tree diagrams have no means to represent "typedef" statements.</t>
-          <t>
-            <figure>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/iana-symmetric-algs-tree.txt)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-        <section title="YANG Module" anchor="symmetric-algs-yang-module">
-          <t>This module has normative references to FIXME...</t>
-          <t>
-            <figure>
-            <preamble>&lt;CODE BEGINS&gt; file "iana-symmetric-algs@YYYY-MM-DD.yang"</preamble>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(iana-symmetric-algs@YYYY-MM-DD.yang)
-]]></artwork>
-              <postamble>&lt;CODE ENDS&gt;</postamble>
-            </figure>
-          </t>
-        </section>
-        <section title="Examples" anchor="symmetric-algs-examples">
-          <t>The following example illustrates the "supported-symmetric-algorithms"
-          "container" statement with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-symmetric-algs.xml)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-      </section>
-
-      <section title="The Asymmetric Algorithms Module">
-        <section title="Tree Diagram">
-          <t>This section provides a tree diagram <xref target="RFC8340"/> for
-          the "iana-asymmetric-algs" module.  Only the "container" statement is represented,
-          as tree diagrams have no means to represent "typedef" statements.</t>
-          <t>
-            <figure>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/iana-asymmetric-algs-tree.txt)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-        <section title="YANG Module" anchor="asymmetric-algs-yang-module">
-          <t>This module has normative references to FIXME...</t>
-          <t>
-            <figure>
-            <preamble>&lt;CODE BEGINS&gt; file "iana-asymmetric-algs@YYYY-MM-DD.yang"</preamble>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(iana-asymmetric-algs@YYYY-MM-DD.yang)
-]]></artwork>
-              <postamble>&lt;CODE ENDS&gt;</postamble>
-            </figure>
-          </t>
-        </section>
-        <section title="Examples" anchor="asymmetric-algs-examples">
-          <t>The following example illustrates the "supported-asymmetric-algorithms"
-          "container" statement with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-asymmetric-algs.xml)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-      </section>
-
-      <section title="The Hash Algorithms Module">
-        <section title="Tree Diagram">
-          <t>This section provides a tree diagram <xref target="RFC8340"/> for
-          the "iana-hash-algs" module.  Only the "container" statement is represented,
-          as tree diagrams have no means to represent "typedef" statements.</t>
-          <t>
-            <figure>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/iana-hash-algs-tree.txt)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-        <section title="YANG Module" anchor="hash-algs-yang-module">
-          <t>This module has normative references to FIXME...</t>
-          <t>
-            <figure>
-            <preamble>&lt;CODE BEGINS&gt; file "iana-hash-algs@YYYY-MM-DD.yang"</preamble>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(iana-hash-algs@YYYY-MM-DD.yang)
-]]></artwork>
-              <postamble>&lt;CODE ENDS&gt;</postamble>
-            </figure>
-          </t>
-        </section>
-        <section title="Examples" anchor="hash-algs-examples">
-          <t>The following example illustrates the "supported-hash-algorithms"
-          "container" statement with the NETCONF protocol.</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
-]]></artwork>
-            </figure>
-          </t>
-        </section>
-      </section>
-
       <section title="Security Considerations">
+        <!--
         <section title="Support for Algorithms">
           <t>In order to use YANG identities for algorithm identifiers, only
           the most commonly used RSA key lengths are supported for the RSA
@@ -340,6 +224,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
           needed, they can be defined by another module or added into a future
           version of this document.</t>
         </section>
+        -->
         <section title="No Support for CRMF">
           <t>This document uses PKCS #10 <xref target="RFC2986"/> for the
           "generate-certificate-signing-request" action.  The use of Certificate
@@ -418,15 +303,344 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
                 that the application layer that sent the request is the same
                 as the device authenticated when the secure transport layer
                 was established.</t>
+              <t hangText="   generate-symmetric-key:">FIXME</t>
+              <t hangText="   generate-asymmetric-key:">FIXME</t>
             </list>
           </t>
         </section>
       </section>
 
       <section title="IANA Considerations">
-        <section title="The IETF XML Registry">
+        <section title='Create the "Cryptographic Primitives" Registry' anchor="iana-prims">
+          <t>This section defines a new registry called "Cryptographic Primitives",
+            following the guidelines described in Section 4 of <xref target="RFC5226"/>.</t>
+          <t>This registery enumerates various primitive algorithms that are used
+            by various cryptographic ciphers and protocols.</t>
+          <t>The following note shall be at the top of the registry:
+            <list style="empty">
+              <t>This registry enumerates cryptographic primitives that are or
+                have been used by various cryptographic ciphers and protocols.
+              </t>
+            </list>
+          </t>
+          <section title='Introduction' anchor='prim-alg-reg-intro'>
+            <t>The Cryptographic Primitives registry is composed of a number of
+              sub-registries, one for each kind of primitive algorithm.</t>
+            <t>Each sub-registry has the same number of fields and update policy.</t>
+            <t>The fields for each sub-registry are:
+              <list style="symbols">
+                <t>Name
+                  <list style="symbols">
+                    <t>The name of the algorithm (required).</t>
+                    <t>The name must be the common "enumerated" value for the algorithm.</t>
+                    <t>The name must be unique within the sub-registry.</t>
+                    <t>The name must be a single word composed of one or more ASCII characters.</t>
+                    <t>Each character must be either an uppercase or lowercase letter, a digit,
+                      a hyphen, or an underscore.</t>
+                    <t>While not bounded, the name is expected to be relatively
+                      short; unlikely ever exceeding a couple dozen characters.</t>
+                  </list>
+                </t>
+                <!--
+                <t>Title
+                  <list style="symbols">
+                    <t>A human-readable title for the algorithm (optional).</t>
+                    <t>The discription may be used to provide the common name
+                      and/or alternate names for the algorithm.</t>
+                    <t>The title, when present, is expected to be no more
+                      than one sentence.</t>
+                    <t>The title is expected to be in English, but may contain
+                      UTF-8 characters as may be needed in some cases.</t>
+                  </list>
+                </t>
+                -->
+                <t>Description
+                  <list style="symbols">
+                    <t>An arbitrary description of the algorithm (optional).</t>
+                    <t>The discription may be used to provide a human-facing name
+                      and/or alternate names for the algorithm.</t>
+                    <t>The description, when present, is expected to be no more
+                      than a few sentences.</t>
+                    <t>The description is to be in English, but may contain UTF-8
+                      characters as may be needed in some cases.</t>
+                  </list>
+                </t>
+                <t>Status
+                  <list style="symbols">
+                    <t>An enumerated value stating the current status of the algorithm (optional).</t>
+                    <t>The value, when present, must be "Recommended", "Deprecated" or "Obsolete".</t>
+                    <t>An algorithm having no "status" specified (i.e., not marked as "Recommended")
+                      does not necessarily mean that it is flawed; rather, it indicates that the
+                      item either has not been through the IETF consensus process, has limited
+                      applicability, or is intended only for specific use cases.</t>
+                    <t>When requesting a registration for an algorithm having no status, the
+                      request should use an empty string value (i.e., "Status: ") to clearly
+                      indicate no status, as opposed to the value having been forgotten.</t>
+                  </list>
+                </t>
+                <t>References
+                  <list style="symbols">
+                    <t>One or more normative references for the algorithm (required).</t>
+                    <t>Each reference must declare its "type" as as either "text" or "rfc"
+                      and, if "rfc", must also declare an "data" value containing the
+                      RFC's number in the form "rfcxxxx" (or "rfcxxxxx").  In either
+                      case, the xref's content must contain a suitable textual citation,
+                      e.g., containing both a tracking number (e.g., RFC 2119) as well
+                      the document's title (e.g., Key words for use in RFCs to Indicate
+                      Requirement Levels).  Rendering software (e.g., stylesheets) may
+                      choose to present the reference in any suitable manner.</t>
+                    <t>There must be at least one reference to a document that defines
+                      the algorithm.</t>
+                    <t>There must be a reference to the document that originated the
+                      algorithm's registration.</t>
+                    <t>The document that defines the algorithm and the document that
+                      defines originated the registration may be the same.</t>
+                    <t>While not bounded, the total number of references is unlikely
+                      to ever exceed a few.</t>
+                  </list>
+                </t>
+              </list>
+            </t>
+            <t>The update policy is either "RFC Required" or "IETF Review", and maybe
+              also "IESG Approval".  In any case, it is always requires an "Expert
+              Review" (a.k.a. "Designated Expert).</t>
+            <t>Whenever a sub-registry is updated, IANA must automatically update and
+              re-published the corresponding YANG module, as described in
+              <xref target="iana-modules">IANA-maintained YANG Modules</xref>.</t>
+          </section>
+          <section title='The "Symmetric Key Algorithms" Sub-Registry' anchor='iana-sym-reg'>
+            <t>The "Symmetric Key Algorithms" sub-registry enumerates symmetric key
+              algorithms used by cryptographic ciphers and protocols.</t>
+            <t>The format of this registry is described in the
+              <xref target="prim-alg-reg-intro">Introduction</xref> section above.</t>
+            <t>Following is the initial assignment for this sub-registry:
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(init-symmetric-key-algs.txt)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+          <section title='The "Asymmetric Key Algorithms" Sub-Registry' anchor='iana-asym-reg'>
+            <t>The "Asymmetric Key Algorithms" sub-registry enumerates asymmetric key
+              algorithms used by cryptographic ciphers and protocols.</t>
+            <t>The format of this registry is described in the
+              <xref target="prim-alg-reg-intro">Introduction</xref> section above.</t>
+            <t>Following is the initial assignment for this sub-registry:
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(init-asymmetric-key-algs.txt)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+          <section title='The "Hash Algorithms" Sub-Registry' anchor='iana-hash-reg'>
+            <t>The "Hash Algorithms" sub-registry enumerates hashing algorithms used
+              by cryptographic ciphers and protocols.</t>
+            <t>The format of this registry is described in the
+              <xref target="prim-alg-reg-intro">Introduction</xref> section above.</t>
+            <t>Following is the initial assignment for this sub-registry:
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(init-hash-algs.txt)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+        </section>
+
+        <section title="IANA-maintained YANG Modules" anchor="iana-modules">
+          <t>FIXME: this section needs elaboration!</t>
+          <t>
+            <list style="empty">
+              <t>Any time one of the "Primitive" registries defined in
+                <xref target="iana-prims"/> is modified, IANA must:
+                <list style="empty">
+                  <t>Run the TBD script defined in TBD to generate the corresponding
+                    YANG module.</t>
+                  <t>Publish the corresponding YANG module using the TBD process.</t>
+                </list>
+              </t>
+            </list>
+          </t>
+          <t>Sample resulting YANG modules are provided in <xref target="sample-iana-modules"/>.</t>
+        </section>
+
+        <section title='Update the "Secure Shell (SSH) Protocol Parameters" Registry'>
+          <t>This section updates the "Secure Shell (SSH) Protocol Parameters" registry
+            located at https://www.iana.org/assignments/ssh-parameters/ssh-parameters.xhtml,
+            following the guidelines specified in Section 5.2 in <xref target="RFC5226"/>.</t>
+          <t>The Secure Shell (SSH) Protocol Parameters registry is composed of a
+            number of sub-registries.  The update described in this section modifies
+            only a subset of the sub-registries, as described in the subsections contained herein.</t>
+          <t>The modification includes both adding a new column to the sub-registry
+            and initialing the new column's values for existing registrations.</t>
+          <t>The process to add the new column is the same for each subregistry and
+            hence described only once here below.</t>
+          <t>How to initialize the new column's values for existing registrations
+            is specific to each subregistry and hence specified in the subsections.</t>
+          <section title="Common Update to Specified Sub-Registries">
+            <t>Add a new column called "Primitives" placed at the left-most position
+              in the table.</t>
+            <t>This column must contain one or more primitive algorithms used by the
+              given registration.</t>
+            <t>Each primitive algorithm must be listed in the "Cryptographic Primitives"
+              registry defined in <xref target="iana-prims"/>.</t>
+            <t>While unbounded, the number of primitive algorithms listed is never
+              expected to be more than a few.</t>
+          </section>
+          <section title='The "Public Key Algorithm Names" Sub-Registry'>
+            <t>
+              <figure>
+                <artwork>
+Public Key Algorithm Name     Primitives
+=========================     ==========
+ssh-dss                       dss, sha1
+ssh-rsa                       rsa, sha1
+rsa-sha2-256                  rsa, sha-256
+rsa-sha2-512                  rsa,
+spki-sign-rsa                 rsa
+spki-sign-dss                 dss
+pgp-sign-rsa                  rsa
+pgp-sign-dss                  dss
+null                          N/A
+ecdsa-sha2-*                  
+x509v3-ssh-dss                dss
+x509v3-ssh-rsa                rsa
+x509v3-rsa2048-sha256         rsa
+x509v3-ecdsa-sha2-*           
+ssh-ed25519                   x25519
+ssh-ed448                     x448
+                </artwork>
+              </figure>
+            </t>
+          </section>
+        </section>
+
+        <section title='Update the "Transport Layer Security (TLS) Parameters" Registry'>
+          <t>This section updates the "Update the "Transport Layer Security (TLS) Parameters" registry
+            located at https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml,
+            following the guidelines specified in Section 5.2 in <xref target="RFC5226"/>.</t>
+          <t>The Update the "Transport Layer Security (TLS) Parameters registry is composed of a
+            number of sub-registries.  The update described in this section modifies
+            only a subset of the sub-registries, as described in the subsections contained herein.</t>
+          <t>The modification includes both adding a new column to the sub-registry
+            and initialing the new column's values for existing registrations.</t>
+          <t>The process to add the new column is the same for each subregistry and
+            hence described only once here below.</t>
+          <t>How to initialize the new column's values for existing registrations
+            is specific to each subregistry and hence specified in the subsections.</t>
+          <section title="Common Update to Specified Sub-Registries">
+            <t>Add a new column called "Primitives" placed at the left-most position
+              in the table.</t>
+            <t>This column must contain one or more primitive algorithms used by the
+              given registration.</t>
+            <t>Each primitive algorithm must be listed in the "Cryptographic Primitives"
+              registry defined in <xref target="iana-prims"/>.</t>
+            <t>While unbounded, the number of primitive algorithms listed is never
+              expected to be more than a few.</t>
+          </section>
+          <section title='The "TLS Supported Groups" Sub-Registry'>
+            <t>Any unspecified row should have the Primitive value "N/A".</t>
+            <t>
+              <figure>
+                <artwork>
+Value   Description             Primitives
+=====   ===========             ==========
+1       sect163k1               FIXME
+2       sect163r1               FIXME?
+3       sect163r2               FIXME?
+4       sect193r1               FIXME?
+5       sect193r2               FIXME?
+6       sect233k1               FIXME?
+7       sect233r1               FIXME?
+8       sect239k1               FIXME?
+9       sect283k1               FIXME?
+10      sect283r1               FIXME?
+11      sect409k1               FIXME?
+12      sect409r1               FIXME?
+13      sect571k1               FIXME?
+14      sect571r1               FIXME?
+15      secp160k1               FIXME?
+16      secp160r1               FIXME?
+17      secp160r2               FIXME?
+18      secp192k1               FIXME?
+19      secp192r1               secp192r1
+20      secp224k1               FIXME?
+21      secp224r1               secp224r1
+22      secp256k1               FIXME?
+23      secp256r1               secp256r1
+24      secp384r1               secp384r1
+25      secp521r1               secp521r1
+26      brainpoolP256r1         FIXME?
+27      brainpoolP384r1         FIXME?
+28      brainpoolP512r1         FIXME?
+29      x25519                  x25519
+30      x448                    x448
+31      brainpoolP256r1tls13    FIXME?
+32      brainpoolP384r1tls13    FIXME?
+33      brainpoolP512r1tls13    FIXME?
+256     ffdhe2048               FIXME?
+257     ffdhe3072               FIXME?
+258     ffdhe4096               FIXME?
+259     ffdhe6144               FIXME?
+260     ffdhe8192               FIXME?
+                </artwork>
+              </figure>
+            </t>
+          </section>
+          <section title='The "TLS SignatureAlgorithm" Sub-Registry'>
+            <t>Any unspecified row should have the Primitive value "N/A".</t>
+            <t>
+              <figure>
+                <artwork>
+Value   Description             Primitives
+=====   ===========             ==========
+0       anonymous               FIXME?
+1       rsa                     rsa
+2       dsa                     dsa
+3       ecdsa                   FIXME?
+7       ed25519                 x25519
+8       ed448                   x448
+                </artwork>
+              </figure>
+            </t>
+          </section>
+          <section title='The "TLS SignatureScheme" Sub-Registry'>
+            <t>Any unspecified row should have the Primitive value "N/A".</t>
+            <t>
+              <figure>
+                <artwork>
+Value    Description                          Primitives
+=====    ===========                          ==========
+0x0201   rsa_pkcs1_sha1                       rsa
+0x0203   ecdsa_sha1                           dsa
+0x0401   rsa_pkcs1_sha256                     rsa
+0x0403   ecdsa_secp256r1_sha256               secp256r1
+0x0501   rsa_pkcs1_sha384                     rsa
+0x0503   ecdsa_secp384r1_sha384               secp384r1
+0x0601   rsa_pkcs1_sha512                     rsa
+0x0603   ecdsa_secp521r1_sha512               secp521r1
+0x0804   rsa_pss_rsae_sha256                  rsa
+0x0805   rsa_pss_rsae_sha384                  rsa
+0x0806   rsa_pss_rsae_sha512                  rsa
+0x0807   ed25519                              x25519
+0x0808   ed448                                x448
+0x0809   rsa_pss_pss_sha256                   rsa
+0x080A   rsa_pss_pss_sha384                   rsa
+0x080B   rsa_pss_pss_sha512                   rsa
+0x081A   ecdsa_brainpoolP256r1tls13_sha256    dsa
+0x081B   ecdsa_brainpoolP384r1tls13_sha384    dsa
+0x081C   ecdsa_brainpoolP512r1tls13_sha512    dsa
+                </artwork>
+              </figure>
+            </t>
+          </section>
+        </section>
+
+        <section title='Update the "IETF XML" Registry'>
           <t>This document registers four URIs in the "ns" subregistry
-          of the IETF XML Registry <xref target="RFC3688"/>.  Following
+          of the "IETF XML" registry <xref target="RFC3688"/>.  Following
           the format in <xref target="RFC3688"/>, the following
           registrations are requested:</t>
           <t>
@@ -450,9 +664,9 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
             </figure>
           </t>
         </section>
-        <section title="The YANG Module Names Registry">
+        <section title='Update the "YANG Module Names" Registry'>
           <t>This document registers four YANG modules in the
-          YANG Module Names registry <xref target="RFC6020"/>.
+          "YANG Module Names" registry <xref target="RFC6020"/>.
           Following the format in <xref target="RFC6020"/>, the
           the following registrations are requested:</t>
           <t>
@@ -481,10 +695,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
           </t>
         </section>
       </section>
-
-
     </middle>
-
     <back>
       <references title="Normative References">
         <?rfc include="reference.RFC.2119.xml"?>
@@ -538,6 +749,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
         <?rfc include="reference.RFC.4211.xml"?>
         <!--<?rfc include="reference.RFC.4493.xml"?>-->
         <?rfc include="reference.RFC.5056.xml"?>
+        <?rfc include="reference.RFC.5226.xml"?>
         <?rfc include="reference.RFC.5915.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
         <?rfc include="reference.RFC.6125.xml"?>
@@ -552,7 +764,48 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
         <!--<?rfc include="reference.RFC.8439.xml"?>-->
       </references>
 
+      <section title="Sample IANA Modules" anchor="sample-iana-modules">
 
+        <t>This non-normative section presents the YANG modules produced by
+          running the TBD script presented in <xref target="iana-modules"/>
+          over the registries defined in <xref target="iana-prims"/>.</t>
+
+        <section title="The Symmetric Algorithms Module" anchor="symmetric-algs-yang-module">
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-symmetric-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-symmetric-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The Asymmetric Algorithms Module" anchor="asymmetric-algs-yang-module">
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-asymmetric-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-asymmetric-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+
+        <section title="The Hash Algorithms Module" anchor="hash-algs-yang-module">
+          <t>
+            <figure>
+            <preamble>&lt;CODE BEGINS&gt; file "iana-hash-algs@YYYY-MM-DD.yang"</preamble>
+             <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(iana-hash-algs@YYYY-MM-DD.yang)
+]]></artwork>
+              <postamble>&lt;CODE ENDS&gt;</postamble>
+            </figure>
+          </t>
+        </section>
+      </section>
 
       <section title="Change Log">
         <section title="I-D to 00">
@@ -729,8 +982,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-hash-algs.xml)
           <t>
             <list style="symbols">
               <t>Resolved the "FIXME: forward ref" issue by modulating 'must', 'when', and 'mandatory' expressions.</t>
-              <t>Moved the generate key actions from ietf-keystore to ietf-crypto-types as RPCs.</t>
+              <t>Moved the 'generatesymmetric-key' and 'generate-asymmetric-key' actions from ietf-keystore to
+                ietf-crypto-types, now as RPCs.</t>
               <t>Cleaned up various description statements and removed lingering FIXMEs.</t>
+              <t>Converted the "iana-&lt;alg-type&gt;-algs" YANG modules to IANA registries with
+                instructions for how to generate modules from the registries, whenever they may
+                be updated.</t>
             </list>
           </t>
         </section>
