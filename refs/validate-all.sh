@@ -76,25 +76,25 @@ command="yanglint -m -t config -s ../ex-crypto-types-usage.yang ../ietf-crypto-t
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
-printf "Testing ex-generate-symmetric-key-rpc.xml..."
-command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
+#printf "Testing ex-generate-symmetric-key-rpc.xml..."
+#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
 
-printf "Testing ex-generate-symmetric-key-rpc-reply.xml..."
-command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc-reply.xml ex-generate-symmetric-key-rpc.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
+#printf "Testing ex-generate-symmetric-key-rpc-reply.xml..."
+#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc-reply.xml ex-generate-symmetric-key-rpc.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
 
-printf "Testing ex-generate-asymmetric-key-rpc.xml..."
-command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
+#printf "Testing ex-generate-asymmetric-key-rpc.xml..."
+#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
 
-printf "Testing ex-generate-asymmetric-key-rpc-reply.xml..."
-command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc-reply.xml ex-generate-asymmetric-key-rpc.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
+#printf "Testing ex-generate-asymmetric-key-rpc-reply.xml..."
+#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc-reply.xml ex-generate-asymmetric-key-rpc.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
 
 printf "Testing ex-crypto-types-gcsr-rpc.xml..."
 command="yanglint -s -t auto ../ex-crypto-types-usage.yang ex-crypto-types-gcsr-rpc.xml"
@@ -115,49 +115,17 @@ rm yanglint-notification.xml
 
 
 
-
-#echo "Testing ex-ce-notification.xml..."
-#yanglint -r ex-crypto-types-usage.xml -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-ce-notification.xml
-
-
-#echo "Testing ex-crypto-types-usage.yang (pyang)..."
-#pyang --lint --max-line-length=70 -p ../ ../ex-crypto-types-usage\@*.yang
-
-#echo "Testing ex-crypto-types-usage.yang (yanglint)..."
-#yanglint ../ex-crypto-types-usage\@*.yang
-
-#echo "Testing ex-crypto-types-usage.xml..."
-#yanglint -p ../ -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-crypto-types-usage.xml
-
-
-
-#echo "Testing ex-gpk-rpc.xml..."
-#yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gpk-rpc.xml
-
-#echo "Testing ex-gpk-rpc-reply.xml..."
-#yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gpk-rpc-reply.xml ex-gpk-rpc.xml
-
-#echo "Testing ex-gcsr-rpc.xml..."
-#yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gcsr-rpc.xml
-
-#echo "Testing ex-gcsr-rpc-reply.xml..."
-#yanglint -p ../ -t auto -s ../ex-crypto-types-usage\@*.yang ../ietf-crypto-types\@*.yang ex-gcsr-rpc-reply.xml ex-gcsr-rpc.xml
-
-#mv ../ietf-crypto-types\@YYYY-MM-DD.yang.hide ../ietf-crypto-types\@YYYY-MM-DD.yang
-
-
-
-printf "Testing ex-symmetric-algs.xml..."
-command="yanglint -m -t data -s ../iana-symmetric-algs\@20*.yang ./ietf-origin.yang ex-symmetric-algs.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
-
-printf "Testing ex-asymmetric-algs.xml..."
-command="yanglint -m -t data -s ../iana-asymmetric-algs\@20*.yang ./ietf-origin.yang ex-asymmetric-algs.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
-
-printf "Testing ex-hash-algs.xml..."
-command="yanglint -m -t data -s ../iana-hash-algs\@20*.yang ./ietf-origin.yang ex-hash-algs.xml"
-run_unix_cmd $LINENO "$command" 0
-printf "okay.\n"
+#printf "Testing ex-symmetric-algs.xml..."
+#command="yanglint -m -t data -s ../iana-symmetric-algs\@20*.yang ./ietf-origin.yang ex-symmetric-algs.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
+#
+#printf "Testing ex-asymmetric-algs.xml..."
+#command="yanglint -m -t data -s ../iana-asymmetric-algs\@20*.yang ./ietf-origin.yang ex-asymmetric-algs.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"
+#
+#printf "Testing ex-hash-algs.xml..."
+#command="yanglint -m -t data -s ../iana-hash-algs\@20*.yang ./ietf-origin.yang ex-hash-algs.xml"
+#run_unix_cmd $LINENO "$command" 0
+#printf "okay.\n"

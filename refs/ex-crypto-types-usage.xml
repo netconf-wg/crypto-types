@@ -2,15 +2,23 @@
   xmlns="http://example.com/ns/example-crypto-types-usage"
   xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
   <symmetric-key>
-    <name>ex-symmetric-key</name>
-    <algorithm>aes-256-cbc</algorithm>
+    <name>ex-hidden-symmetric-key</name>
+    <hidden-key/>
+  </symmetric-key>
+  <symmetric-key>
+    <name>ex-octet-string-based-symmetric-key</name>
     <key-format>ct:octet-string-key-format</key-format>
     <key>base64encodedvalue==</key>
   </symmetric-key>
   <symmetric-key>
-    <name>ex-hidden-symmetric-key</name>
-    <algorithm>aes-256-cbc</algorithm>
-    <hidden-key/>
+    <name>ex-one-symmetric-based-symmetric-key</name>
+    <key-format>ct:one-symmetric-key-format</key-format>
+    <key>base64encodedvalue==</key>
+  </symmetric-key>
+  <symmetric-key>
+    <name>ex-encrypted-one-symmetric-based-symmetric-key</name>
+    <key-format>ct:encrypted-one-symmetric-key-format</key-format>
+    <key>base64encodedvalue==</key>
   </symmetric-key>
 </symmetric-keys>
 
@@ -18,8 +26,21 @@
   xmlns="http://example.com/ns/example-crypto-types-usage"
   xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
   <asymmetric-key>
-    <name>ex-asymmetric-key</name>
-    <algorithm>rsa2048</algorithm>
+    <name>ex-hidden-asymmetric-key</name>
+    <public-key-format>
+      ct:subject-public-key-info-format
+    </public-key-format>
+    <public-key>base64encodedvalue==</public-key>
+    <hidden-private-key/>
+    <certificates>
+      <certificate>
+        <name>ex-hidden-key-cert</name>
+        <cert>base64encodedvalue==</cert>
+      </certificate>
+    </certificates>
+  </asymmetric-key>
+  <asymmetric-key>
+    <name>ex-subject-public-info-based-asymmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
@@ -36,18 +57,25 @@
     </certificates>
   </asymmetric-key>
   <asymmetric-key>
-    <name>ex-hidden-asymmetric-key</name>
-    <algorithm>rsa2048</algorithm>
+    <name>ex-one-asymmetric-based-symmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
     <public-key>base64encodedvalue==</public-key>
-    <hidden-private-key/>
-    <certificates>
-      <certificate>
-        <name>ex-hidden-key-cert</name>
-        <cert>base64encodedvalue==</cert>
-      </certificate>
-    </certificates>
+    <private-key-format>
+      ct:one-asymmetric-key-format
+    </private-key-format>
+    <private-key>base64encodedvalue==</private-key>
+  </asymmetric-key>
+  <asymmetric-key>
+    <name>ex-encrypted-one-asymmetric-based-symmetric-key</name>
+    <public-key-format>
+      ct:subject-public-key-info-format
+    </public-key-format>
+    <public-key>base64encodedvalue==</public-key>
+    <private-key-format>
+      ct:encrypted-one-asymmetric-key-format
+    </private-key-format>
+    <private-key>base64encodedvalue==</private-key>
   </asymmetric-key>
 </asymmetric-keys>
