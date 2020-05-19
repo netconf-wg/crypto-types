@@ -16,62 +16,49 @@
 <!--<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">-->
 <rfc category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
     <front>
-        <title>Common YANG Data Types for Cryptography</title>
-        <author initials="K." surname="Watsen" fullname="Kent Watsen">
-            <organization>Watsen Networks</organization>
-            <address>
-                <email>kent+ietf@watsen.net</email>
-            </address>
-        </author>
-        <date/>
-        <area>Operations</area>
-        <workgroup>NETCONF Working Group</workgroup>
-        <abstract>
-          <t>This document primarily defines a YANG module for identities,
-            typedefs, groupings, and RPCs useful to cryptographic applications.
-            This draft additionally defines a new IANA registry for
-            cryptographic primitives, modifies existing SSH and TLS registries,
-            and defines a process enabling IANA to automatically generate three
-            new YANG modules from the new cryptographic primitives registry.</t>
-        </abstract>
-        <note title="Editorial Note (To be removed by RFC Editor)">
-          <t>This draft contains many placeholder values that need to be replaced
-          with finalized values at the time of publication.  This note summarizes
-          all of the substitutions that are needed.  No other RFC Editor 
-          instructions are specified elsewhere in this document.</t>
-
-          <t>Artwork in this document contains shorthand references to drafts in 
-          progress.  Please apply the following replacements:
-            <list style="symbols">
-              <t><spanx style="verb">AAAA</spanx> --&gt; the assigned RFC value for this draft</t>
-            </list>
-          </t>
-          <t>Artwork in this document contains placeholder values for the date
-          of publication of this draft.  Please apply the following replacement:
-            <list style="symbols">
-              <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication date of this draft</t>
-            </list>
-          </t>
-          <t>The following Appendix section is to be removed prior to publication:
-            <list style="symbols">
-              <t>Appendix B.  Change Log</t>
-            </list>
-          </t>
-        </note>
+      <title>Common YANG Data Types for Cryptography</title>
+      <author initials="K." surname="Watsen" fullname="Kent Watsen">
+        <organization>Watsen Networks</organization>
+        <address>
+          <email>kent+ietf@watsen.net</email>
+        </address>
+      </author>
+      <date/>
+      <area>Operations</area>
+      <workgroup>NETCONF Working Group</workgroup>
+      <abstract>
+        <t>This document presents a YANG 1.1 (RFC 7950) module defining identities,
+          typedefs, and groupings useful to cryptographic applications.</t>
+      </abstract>
+      <note title="Editorial Note (To be removed by RFC Editor)">
+        <t>This draft contains placeholder values that need to be replaced
+        with finalized values at the time of publication.  This note summarizes
+        all of the substitutions that are needed.  No other RFC Editor 
+        instructions are specified elsewhere in this document.</t>
+        <t>Artwork in this document contains shorthand references to drafts in 
+        progress.  Please apply the following replacements:
+          <list style="symbols">
+            <t><spanx style="verb">AAAA</spanx> --&gt; the assigned RFC value for this draft</t>
+          </list>
+        </t>
+        <t>Artwork in this document contains placeholder values for the date
+        of publication of this draft.  Please apply the following replacement:
+          <list style="symbols">
+            <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication date of this draft</t>
+          </list>
+        </t>
+        <t>The following Appendix section is to be removed prior to publication:
+          <list style="symbols">
+            <t>Appendix B.  Change Log</t>
+          </list>
+        </t>
+      </note>
     </front>
     <middle>
       <section title="Introduction">
-        <t>This document primarily defines a YANG 1.1 <xref target="RFC7950"/> 
-          module for identities, typedefs, groupings, and RPCs useful to
+        <t>This document presents a YANG 1.1 <xref target="RFC7950"/> 
+          module defining identities, typedefs, and groupings useful to
           cryptographic applications.</t>
-        <t>This draft additionally defines a new IANA registry called
-          "Cryptographic Primitives", and defines a process enabling IANA
-          to  automatically generate three new YANG modules ("iana-hash-algs",
-          "iana-symmetric-key-algs", and "iana-asymmetric-key-algs") from the
-          new cryptographic primitives registry.</t>
-        <t>Lastly, the draft also modifies existing SSH and TLS registries,
-          adding a new column called "Primitives" to specific sub-registries
-          identifying which primitives are used by that registration.</t>
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
           NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
           "MAY", and "OPTIONAL" in this document are to be interpreted as
@@ -167,20 +154,6 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
       </section>
 
       <section title="Security Considerations">
-        <!--
-        <section title="Support for Algorithms">
-          <t>In order to use YANG identities for algorithm identifiers, only
-          the most commonly used RSA key lengths are supported for the RSA
-          algorithm.  Additional key lengths can be defined in another module
-          or added into a future version of this document.</t>
-  
-          <t>This document limits the number of elliptical curves supported.
-          This was done to match industry trends and IETF best practice (e.g.,
-          matching work being done in TLS 1.3).  If additional algorithms are
-          needed, they can be defined by another module or added into a future
-          version of this document.</t>
-        </section>
-        -->
         <section title="No Support for CRMF">
           <t>This document uses PKCS #10 <xref target="RFC2986"/> for the
           "generate-certificate-signing-request" action.  The use of Certificate
@@ -291,7 +264,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
    name:         ietf-crypto-types
    namespace:    urn:ietf:params:xml:ns:yang:ietf-crypto-types
    prefix:       ct
-   reference:    RFC XXXX
+   reference:    RFC AAAA
 </artwork>
             </figure>
           </t>
@@ -557,6 +530,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
               <t>Removed the "generate-symmetric-key" and "generate-asymmetric-key" RPCs.</t>
               <t>Removed the "algorithm" node in the various symmetric and asymmetric key groupings.</t>
               <t>Added 'typedef csr' and 'feature certificate-signing-request-generation'.</t>
+              <t>Refined a usage of "end-entity-cert-grouping" to make the "cert" node mandatory true.</t>
             </list>
           </t>
         </section>

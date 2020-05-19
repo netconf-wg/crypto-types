@@ -696,11 +696,11 @@ module ietf-crypto-types {
       description
         "Generates a certificate signing request structure for
          the associated asymmetric key using the passed subject
-         and attribute values.  The specified assertions need
-         to be appropriate for the certificate's use.  For
-         example, an entity certificate for a TLS server
-         SHOULD have values that enable clients to satisfy
-         RFC 6125 processing.";
+         and attribute values.
+         
+         This action statement is only available when the
+         associated 'public-key-format' node's value is
+         'subject-public-key-info-format'.";
       reference
         "RFC 6125:
           Representation and Verification of Domain-Based
@@ -788,7 +788,11 @@ module ietf-crypto-types {
              independently in <operational> (i.e., an IDevID),
              then the 'cert' node MUST NOT be configured.";
         }
-        uses end-entity-cert-grouping;
+        uses end-entity-cert-grouping {
+          refine cert {
+            mandatory true;
+          }
+        }
       }
     }
     uses generate-csr-grouping;

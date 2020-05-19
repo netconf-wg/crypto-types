@@ -7,7 +7,7 @@ module ex-crypto-types-usage {
   import ietf-crypto-types {
     prefix ct;
     reference 
-      "RFC XXXX: Common YANG Data Types for Cryptography";
+      "RFC AAAA: Common YANG Data Types for Cryptography";
   }
 
   organization
@@ -21,11 +21,11 @@ module ex-crypto-types-usage {
     defined in the crypto-types draft called 
     'asymmetric-key-pair-with-certs-grouping'.";
 
-  revision "1001-01-01" {
+  revision "YYYY-MM-DD" {
     description
      "Initial version";
     reference
-     "RFC ????: Usage Example for RFC XXXX";
+     "RFC AAAA: Common YANG Data Types for Cryptography";
   }
 
   container symmetric-keys {
