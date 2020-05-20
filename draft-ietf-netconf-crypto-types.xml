@@ -53,6 +53,7 @@
           </list>
         </t>
       </note>
+INSERT_TEXT_FROM_FILE(../client-server-overview-snippet.xml,158)
     </front>
     <middle>
       <section title="Introduction">
@@ -531,6 +532,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
               <t>Removed the "algorithm" node in the various symmetric and asymmetric key groupings.</t>
               <t>Added 'typedef csr' and 'feature certificate-signing-request-generation'.</t>
               <t>Refined a usage of "end-entity-cert-grouping" to make the "cert" node mandatory true.</t>
+              <t>Added a "Note to Reviewers" note to first page.</t>
             </list>
           </t>
         </section>
