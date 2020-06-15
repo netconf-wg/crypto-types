@@ -536,6 +536,13 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
             </list>
           </t>
         </section>
+        <section title="15 to 16">
+          <t>
+            <list style="symbols">
+              <t>Editorial cleanup of items found in WGLC.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">

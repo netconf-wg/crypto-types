@@ -482,7 +482,7 @@ module ietf-crypto-types {
 
   grouping symmetric-key-grouping {
     description
-      "A symmetric key and algorithm.";
+      "A symmetric key.";
     leaf key-format {
       nacm:default-deny-write;
       type identityref {
@@ -515,7 +515,7 @@ module ietf-crypto-types {
 
   grouping public-key-grouping {
     description
-      "A public key and its associated algorithm.";
+      "A public key.";
     leaf public-key-format {
       nacm:default-deny-write;
       type identityref {
@@ -536,7 +536,7 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-grouping {
     description
-      "A private key and its associated public key and algorithm.";
+      "A private key and its associated public key.";
     uses public-key-grouping;
     leaf private-key-format {
       nacm:default-deny-write;
