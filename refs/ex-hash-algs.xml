@@ -1,9 +1,0 @@
-<supported-hash-algorithms 
-  xmlns="urn:ietf:params:xml:ns:yang:iana-hash-algs">
-  <supported-hash-algorithm>
-    <algorithm>sha-256</algorithm>
-  </supported-hash-algorithm>
-  <supported-hash-algorithm>
-    <algorithm>sha-512</algorithm>
-  </supported-hash-algorithm>
-</supported-hash-algorithms>

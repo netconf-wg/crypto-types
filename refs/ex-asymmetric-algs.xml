@@ -1,9 +1,0 @@
-<supported-asymmetric-algorithms 
-  xmlns="urn:ietf:params:xml:ns:yang:iana-asymmetric-algs">
-  <supported-asymmetric-algorithm>
-    <algorithm>rsa2048</algorithm>
-  </supported-asymmetric-algorithm>
-  <supported-asymmetric-algorithm>
-    <algorithm>secp256r1</algorithm>
-  </supported-asymmetric-algorithm>
-</supported-asymmetric-algorithms>

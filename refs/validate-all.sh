@@ -29,35 +29,6 @@ command="yanglint ../ietf-crypto-types\@20*.yang"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
-#printf "Testing iana-symmetric-algs.yang (pyang)..."
-#command="pyang -Werror --canonical --ietf --max-line-length=69 -p ../ ../iana-symmetric-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing iana-symmetric-algs.yang (yanglint)..."
-#command="yanglint ../iana-symmetric-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing iana-asymmetric-algs.yang (pyang)..."
-#command="pyang -Werror --canonical --ietf --max-line-length=69 -p ../ ../iana-asymmetric-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing iana-asymmetric-algs.yang (yanglint)..."
-#command="yanglint ../iana-asymmetric-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing iana-hash-algs.yang (pyang)..."
-#command="pyang -Werror --canonical --ietf --max-line-length=69 -p ../ ../iana-hash-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing iana-hash-algs.yang (yanglint)..."
-#command="yanglint ../iana-hash-algs\@20*.yang"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
 
 printf "Testing ex-crypto-types-usage.yang (pyang)..."
 command="pyang -Werror --lint --max-line-length=69 -p ../ ../ex-crypto-types-usage\@*.yang"
@@ -76,25 +47,6 @@ command="yanglint -m -t config -s ../ex-crypto-types-usage\@*.yang ../ietf-crypt
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
-#printf "Testing ex-generate-symmetric-key-rpc.xml..."
-#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-
-#printf "Testing ex-generate-symmetric-key-rpc-reply.xml..."
-#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-symmetric-key-rpc-reply.xml ex-generate-symmetric-key-rpc.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-
-#printf "Testing ex-generate-asymmetric-key-rpc.xml..."
-#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-
-#printf "Testing ex-generate-asymmetric-key-rpc-reply.xml..."
-#command="yanglint -s -t auto ../ietf-*\@*.yang ex-generate-asymmetric-key-rpc-reply.xml ex-generate-asymmetric-key-rpc.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
 
 printf "Testing ex-crypto-types-gcsr-rpc.xml..."
 command="yanglint -s -t auto ../ex-crypto-types-usage\@*.yang ex-crypto-types-gcsr-rpc.xml"
@@ -106,6 +58,7 @@ command="yanglint -s -t auto ../ex-crypto-types-usage\@*.yang ex-crypto-types-gc
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
+
 printf "Testing ex-crypto-types-ce-notification.xml..."
 echo -e 'setns a=urn:ietf:params:xml:ns:neteonf:notification:1.0\nsetns b=urn:ietf:params:xml:ns:yang:ietf-crypto-types\ncat //a:notification/b:crypto-types' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
 command="yanglint -s -t notif -r ex-crypto-types-usage.xml ../ex-crypto-types-usage\@*.yang  ../ietf-crypto-types\@20*.yang yanglint-notification.xml"
@@ -114,18 +67,3 @@ printf "okay.\n"
 rm yanglint-notification.xml
 
 
-
-#printf "Testing ex-symmetric-algs.xml..."
-#command="yanglint -m -t data -s ../iana-symmetric-algs\@20*.yang ./ietf-origin.yang ex-symmetric-algs.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing ex-asymmetric-algs.xml..."
-#command="yanglint -m -t data -s ../iana-asymmetric-algs\@20*.yang ./ietf-origin.yang ex-asymmetric-algs.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
-#
-#printf "Testing ex-hash-algs.xml..."
-#command="yanglint -m -t data -s ../iana-hash-algs\@20*.yang ./ietf-origin.yang ex-hash-algs.xml"
-#run_unix_cmd $LINENO "$command" 0
-#printf "okay.\n"
