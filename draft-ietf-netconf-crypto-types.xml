@@ -16,7 +16,7 @@
 <!--<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">-->
 <rfc category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
     <front>
-      <title>Common YANG Data Types for Cryptography</title>
+      <title>YANG Data Types and Groupings for Cryptography</title>
       <author initials="K." surname="Watsen" fullname="Kent Watsen">
         <organization>Watsen Networks</organization>
         <address>
@@ -539,7 +539,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
         <section title="15 to 16">
           <t>
             <list style="symbols">
-              <t>Editorial cleanup of items found in WGLC.</t>
+              <t>Updated draft title (refer to "Groupings" too).</t>
+              <t>Removed 'end-entity-certs-grouping' as it wasn't being used anywhere.</t>
+              <t>Removed 'trust-anchor-certs-grouping' as it was no longer being used
+                after modifying 'local-or-truststore-certs-grouping' to use lists (not
+                leaf-lists).</t>
+              <t>Other Editorial cleanup items found in WGLC.</t>
             </list>
           </t>
         </section>
@@ -548,16 +553,17 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
       <section title="Acknowledgements" numbered="no">
         <t>The authors would like to thank for following for
         lively discussions on list and in the halls (ordered
-        by last name):
+          by first name):
+          Balázs Kovács,
+          Eric Voit,
+          Juergen Schoenwaelder,
+          Liang Xia,
           Martin Bjorklund,
           Nick Hancock,
-          Wang Haiguang,
-          Balázs Kovács,
           Rich Salz,
-          Juergen Schoenwaelder,
-          Eric Voit,
           Rob Wilton,
-          and Liang Xia.
+          Tom Petch,
+          and Wang Haiguang.
        </t>
      </section>
 
