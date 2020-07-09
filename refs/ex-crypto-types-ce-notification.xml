@@ -1,19 +1,17 @@
 <notification
   xmlns="urn:ietf:params:xml:ns:netconf:notification:1.0">
   <eventTime>2018-05-25T00:01:00Z</eventTime>
-  <keys xmlns="http://example.com/ns/example-crypto-types-usage">
-    <key>
-      <name>locally-defined key</name>
+  <asymmetric-keys xmlns="http://example.com/ns/example-crypto-types-usage">
+    <asymmetric-key>
+      <name>ex-hidden-asymmetric-key</name>
       <certificates>
         <certificate>
-          <name>my-cert</name>
+          <name>ex-hidden-asymmetric-key</name>
           <certificate-expiration>
-            <expiration-date>
-              2018-08-05T14:18:53-05:00
-            </expiration-date>
+            <expiration-date>2018-08-05T14:18:53-05:00</expiration-date>
           </certificate-expiration>
         </certificate>
       </certificates>
-    </key>
-  </keys>
+    </asymmetric-key>
+  </asymmetric-keys>
 </notification>

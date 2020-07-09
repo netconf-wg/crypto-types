@@ -60,7 +60,7 @@ printf "okay.\n"
 
 
 printf "Testing ex-crypto-types-ce-notification.xml..."
-echo -e 'setns a=urn:ietf:params:xml:ns:neteonf:notification:1.0\nsetns b=urn:ietf:params:xml:ns:yang:ietf-crypto-types\ncat //a:notification/b:crypto-types' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
+echo -e 'setns a=urn:ietf:params:xml:ns:netconf:notification:1.0\nsetns b=http://example.com/ns/example-crypto-types-usage\ncat //a:notification/b:asymmetric-keys' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
 command="yanglint -s -t notif -r ex-crypto-types-usage.xml ../ex-crypto-types-usage\@*.yang  ../ietf-crypto-types\@20*.yang yanglint-notification.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"

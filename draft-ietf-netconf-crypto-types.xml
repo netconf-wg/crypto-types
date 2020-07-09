@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes" ?>
@@ -14,7 +15,12 @@
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
 <!--<rfc xmlns:xiax="https://watsen.net/xiax" category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">-->
-<rfc category="std" ipr="trust200902" docName="draft-ietf-netconf-crypto-types-latest">
+
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"
+     category="std"
+     consensus="true"
+     ipr="trust200902"
+     docName="draft-ietf-netconf-crypto-types-latest">
     <front>
       <title>YANG Data Types and Groupings for Cryptography</title>
       <author initials="K." surname="Watsen" fullname="Kent Watsen">
@@ -49,37 +55,564 @@
         </t>
         <t>The following Appendix section is to be removed prior to publication:
           <list style="symbols">
-            <t>Appendix B.  Change Log</t>
+            <t><xref target="change-log"/>.  Change Log</t>
           </list>
         </t>
       </note>
-INSERT_TEXT_FROM_FILE(../client-server-overview-snippet.xml,148)
     </front>
     <middle>
       <section title="Introduction">
         <t>This document presents a YANG 1.1 <xref target="RFC7950"/> 
           module defining identities, typedefs, and groupings useful to
           cryptographic applications.</t>
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-          NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-          "MAY", and "OPTIONAL" in this document are to be interpreted as
-          described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
-          when, and only when, they appear in all capitals, as shown here.</t>
+            
+INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
+
+        <section title="Adherence to the NMDA">
+          <t>This document in compliant with the Network Management Datastore
+            Architecture (NMDA) <xref target="RFC8342"/>. It does not define
+            any protocol accessible nodes that are "config false".</t>
+        </section>
+
       </section>
 
-      <section title="The Crypto Types Module">
-        <section title="Tree Diagram">
-          <t>This section provides a tree diagram <xref target="RFC8340"/> for
-          the "ietf-crypto-types" module.  Only "grouping" statements are represented,
-          as tree diagrams have no means to represent identities or typedefs.</t>
-          <t>
-            <figure>
-             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ietf-crypto-types-tree.txt)
+      <section title="The &quot;ietf-crypto-types&quot; Module">
+
+       <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module
+         that defines data types (typedefs and identities) and groupings
+         supporting downstream models needing cryptographic primitives.</t>
+
+         <section title="Data Model Overview">
+
+          <section title="Features" anchor="features" toc="exclude">
+            <t>The following diagram lists all the "feature" statements
+              defined in the "ietf-crypt-types" module:</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+Features:
+  +-- one-symmetric-key-format
+  +-- one-asymmetric-key-format
+  +-- encrypted-one-symmetric-key-format
+  +-- encrypted-one-asymmetric-key-format
+  +-- certificate-signing-request-generation
 ]]></artwork>
-            </figure>
-          </t>
+              </figure>
+            </t>
+          </section>
+
+          <section title="Identities" anchor="identities" toc="exclude">
+            <t>The following diagram illustrates the relationship amongst the
+              "identity" statements defined in the "ietf-crypto-types" module:</t>
+            <t>
+              <figure>
+               <artwork><![CDATA[
+Identities:               
+  +-- public-key-format
+  |  +-- subject-public-key-info-format
+  |  +-- ssh-public-key-format             
+  +-- private-key-format
+  |  +-- rsa-private-key-format
+  |  +-- ec-private-key-format
+  |  +-- one-asymmetric-key-format
+  |  |         {one-asymmetric-key-format}?
+  |  +-- encrypted-one-asymmetric-key-format
+  |            {encrypted-one-asymmetric-key-format}?
+  +-- symmetric-key-format
+     +-- octet-string-key-format
+     +-- one-symmetric-key-format
+     |         {one-symmetric-key-format}?
+     +-- encrypted-one-symmetric-key-format
+               {encrypted-one-symmetric-key-format}?
+]]></artwork>
+              </figure>
+            </t>
+            <t>Comments:</t>
+            <ul>
+              <li>The diagram shows that there are three base identities.  These
+                identities are used by this module to define the format that
+                key data is encoded in.  The base identities are "abstract",
+                in the object orientied programming sense, in that they only
+                define a "class" of formats, rather than a specific format.</li>
+              <li>The various derived identities define specific key encoding
+                formats.  The derived identities defined in this document are
+                sufficient for the effort described in <xref target="collective-effort"/>
+                but, by nature of them being identities, additional derived
+                identities MAY be defined by future efforts.</li>
+              <li>Identities use to specify uncommon formats are enabled by
+                "feature" statements, enabling applications to support them
+                when needed.</li>
+            </ul>
+          </section>
+
+          <section title="Typedefs" anchor="typedefs" toc="exclude">
+            <t>The following diagram illustrates the relationship amongst the
+              "typedef" statements defined in the "ietf-crypto-types" module:</t>
+            <t>
+              <figure>
+               <artwork><![CDATA[
+Typedefs:
+  binary
+    +-- csr-info
+    +-- csr
+    +-- x509
+    |  +-- trust-anchor-cert-x509
+    |  +-- end-entity-cert-x509
+    +-- crl
+    +-- ocsp-request
+    +-- ocsp-response
+    +-- cms
+       +-- data-content-cms
+       +-- signed-data-cms
+       |  +-- trust-anchor-cert-cms
+       |  +-- end-entity-cert-cms
+       +-- enveloped-data-cms
+       +-- digested-data-cms
+       +-- encrypted-data-cms
+       +-- authenticated-data-cms
+]]></artwork>
+              </figure>
+            </t>
+            <t>Comments:</t>
+            <ul>
+              <li>All of the typedefs defined in the "ietf-crypto-types" module
+                extend the "binary" type defined in <xref target="RFC7950"/>.</li>
+              <li>Additionally, all the typedefs define a type for encoding an ASN.1
+                <xref target="ITU.X680.2015"/> structure using DER <xref target="ITU.X690.2015"/>.</li>
+              <li>The "trust-anchor-*" and "end-entity-*" typedefs are syntactically
+                identical to their base typedefs and only distiguish themselves
+                by the expected nature of their content.  These typedefs are
+                defined to facilitate common modeling needs.</li>
+            </ul>
+          </section>
+
+          <section title="Groupings" toc="exclude">
+            <t>The following diagram lists all the "grouping" statements
+              defined in the "ietf-crypto-types" module:</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+Groupings:
+  +-- encrypted-key-value-grouping
+  +-- symmetric-key-grouping
+  +-- public-key-grouping
+  +-- asymmetric-key-pair-grouping
+  +-- trust-anchor-cert-grouping
+  +-- end-entity-cert-grouping
+  +-- generate-csr-grouping
+  +-- asymmetric-key-pair-with-cert-grouping
+  +-- asymmetric-key-pair-with-certs-grouping
+]]></artwork>
+              </figure>
+            </t>
+            <t>Each of these groupings are presented in the following subsections.</t>
+
+            <section title="The &quot;encrypted-key-value-grouping&quot; Grouping" anchor="encrypted-key-value-grouping">
+              <t>The following tree diagram <xref target="RFC8340"/> illustrates the
+                "encrypted-key-value-grouping" grouping:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-encrypted-key-value-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>The "encrypted-by" node is an empty container (difficult to
+                  see in the diagram) that a consuming module MUST augment key
+                  references into.  The "ietf-crypto-types" module is unable to
+                  populate this container as the module only defines groupings.
+                  <xref target="ct-usage"/> presents an example illustrating
+                  a consuming module populating the "encrypted-by" container.</li>
+                <li>The "encrypted-value" node is the key, encrypted by the other
+                  key referenced by the "encrypted-by" node, encoded in the format
+                  specified by the "format" identity <xref target="identities"/>
+                  associated with the ancestor node using this grouping.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;symmetric-key-grouping&quot; Grouping" anchor="symmetric-key-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "symmetric-key-grouping" grouping.  The first tree diagram does 
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-symmetric-key-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-symmetric-key-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "encrypted-key-value-grouping" grouping is discussed in
+                      <xref target="encrypted-key-value-grouping"/>.</li>
+                  </ul>
+                </li>
+                <li>The "key-format" node is an identity-reference to the "symmetric-key-format"
+                  abstract base identity discussed in <xref target="identities"/>,
+                  enabling the symmetric key to be encoded using the format defined
+                  by any of the derived identities.</li>
+                <li>The "choice" statement enables the private key data to be plain-text,
+                  encrypted, or hidden, as follows:
+                  <ul spacing="compact">
+                    <li>The "key" node can encode any plain-text key value.</li>
+                    <li>The "hidden-key" node is of type "empty" as the real
+                      value cannot be presented via the management interface.</li>
+                    <li>The "encrypted-key" node's structure is discussed in
+                      <xref target="encrypted-key-value-grouping"/>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
+            <section title="The &quot;public-key-grouping&quot; Grouping" anchor="public-key-grouping">
+              <t>The following tree diagram <xref target="RFC8340"/> illustrates the
+                "public-key-grouping" grouping:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-public-key-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>The "public-key-format" node is an identity-reference to the "public-key-format"
+                  abstract base identity discussed in <xref target="identities"/>,
+                  enabling the public key to be encoded using the format defined by any of
+                  the derived identities.</li>
+                <li>The "public-key" node is the public key data in the selected format.
+                  No "choice" statement is used to hide or encrypt the public key data
+                  because it is unecessary to do so for public keys.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;asymmetric-key-pair-grouping&quot; Grouping" anchor="asymmetric-key-pair-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "asymmetric-key-pair-grouping" grouping. The first tree diagram does 
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "public-key-grouping" grouping is discussed in
+                      <xref target="public-key-grouping"/>.</li>
+                    <li>The "encrypted-key-value-grouping" grouping is discussed in
+                      <xref target="encrypted-key-value-grouping"/>.</li>
+                  </ul>
+                </li>
+                <li>The "private-key-format" node is an identity-reference to the "private-key-format"
+                  abstract base identity discussed in <xref target="identities"/>,
+                  enabling the private key to be encoded using the format defined by
+                  any of the derived identities.</li>
+                <li>The "choice" statement enables the private key data to be plain-text,
+                  encrypted, or hidden, as follows:
+                  <ul spacing="compact">
+                    <li>The "private-key" node can encode any plain-text key value.</li>
+                    <li>The "hidden-private-key" node is of type "empty" as the real
+                      value cannot be presented via the management interface.</li>
+                    <li>The "encrypted-private-key" node's structure is discussed in
+                      <xref target="encrypted-key-value-grouping"/>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
+            <section title="The &quot;certificate-expiration-grouping&quot; Grouping" anchor="certificate-expiration-grouping">
+              <t>The following tree diagram <xref target="RFC8340"/> illustrates the
+                "certificate-expiration-grouping" grouping:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-certificate-expiration-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>This grouping's only purpose is to define the "certificate-expiration"
+                  notification statement, used by the groupings defined in
+                  <xref target="trust-anchor-cert-grouping"/> and
+                  <xref target="end-entity-cert-grouping"/>.</li>
+                <li>The "certificate-expiration" notification enables servers to
+                  notify clients when certificates are nearing expiration.</li>
+                <li>The "expiration-date" node indicates when the designated 
+                  certificate will (or did) expire.</li>
+                <li>Identification of the certificate that is expiring is built
+                  into the notification itself.  For an example, please see
+                  <xref target="cert-exp-notif-ex"/>.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;trust-anchor-cert-grouping&quot; Grouping" anchor="trust-anchor-cert-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "trust-anchor-cert-grouping" grouping.  The first tree diagram does 
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-trust-anchor-cert-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-trust-anchor-cert-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "certificate-expiration-grouping" grouping is discussed in
+                      <xref target="certificate-expiration-grouping"/>.</li>
+                  </ul>
+                </li>
+                <li>The "cert-data" node contains a chain of one or more certificates encoded
+                  using a "signed-data-cms" typedef discussed in <xref target="typedefs"/>.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;end-entity-cert-grouping&quot; Grouping" anchor="end-entity-cert-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "end-entity-cert-grouping" grouping.  The first tree diagram does 
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-end-entity-cert-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-end-entity-cert-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "certificate-expiration-grouping" grouping is discussed in
+                      <xref target="certificate-expiration-grouping"/>.</li>
+                  </ul>
+                </li>
+                <li>The "cert-data" node contains a chain of one or more certificates encoded
+                  using a "signed-data-cms" typedef discussed in <xref target="typedefs"/>.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;generate-csr-grouping&quot; Grouping" anchor="generate-csr-grouping">
+              <t>The following tree diagram <xref target="RFC8340"/> illustrates the
+                "generate-csr-grouping" grouping:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-generate-csr-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>This grouping's only purpose is to define the "generate-certificate-signing-request"
+                  action statement, used by the groupings defined in <xref target="asymmetric-key-pair-with-cert-grouping"/>
+                  and <xref target="asymmetric-key-pair-with-certs-grouping"/>.</li>
+                <li>This action takes as input a "csr-info" type and returns a
+                  "csr" type, both of which are discussed in <xref target="typedefs"/>.</li>
+                <li>For an example, please see <xref target="gcsr-action"/>.</li>
+              </ul>
+            </section>
+
+            <section title="The &quot;asymmetric-key-pair-with-cert-grouping&quot; Grouping" anchor="asymmetric-key-pair-with-cert-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "asymmetric-key-pair-with-cert-grouping" grouping.  The first tree diagram does 
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-cert-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-cert-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>This grouping defines an asymmetric key with at most one associated
+                  certificate, a commonly needed combination in protocol models.</li>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "asymmetric-key-pair-grouping" grouping is discussed in
+                      <xref target="asymmetric-key-pair-grouping"/>.</li>
+                    <li>The "end-entity-cert-grouping" grouping is discussed in
+                      <xref target="end-entity-cert-grouping"/>.</li>
+                    <li>The "generate-csr-grouping" grouping is discussed in
+                      <xref target="generate-csr-grouping"/>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
+            <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping" anchor="asymmetric-key-pair-with-certs-grouping">
+              <t>This section presents two tree diagrams <xref target="RFC8340"/> illustrating the
+                "asymmetric-key-pair-with-certs-grouping" grouping. The first tree diagram does
+                not expand the internally used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-certs-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>The following tree diagram expands the internally used grouping statement(s),
+                enabling the grouping's full structure to be seen:</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-certs-grouping.expanded.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>This grouping defines an asymmetric key with one or more
+                  associated certificates, a commonly needed combination in
+                  configuration models.</li>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "asymmetric-key-pair-grouping" grouping is discussed in
+                      <xref target="asymmetric-key-pair-grouping"/>.</li>
+                    <li>The "end-entity-cert-grouping" grouping is discussed in
+                      <xref target="end-entity-cert-grouping"/>.</li>
+                    <li>The "generate-csr-grouping" grouping is discussed in
+                      <xref target="generate-csr-grouping"/>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+          <section title="Protocol-accessible Nodes" toc="exclude">
+            <t>The "ietf-crypto-types" module does not contain any protocol-accessible nodes,
+              but the module needs to be "implemented", as described in <relref
+              section="5.6.5" target="RFC7950"/>, in order for the identities in
+              <xref target="identities"/> to be defined.</t>
+          </section>
+
         </section>
+
+
+
+        <section title="Example Usage" anchor="crypto-types-examples">
+
+          <section title="The &quot;symmetric-key-grouping&quot; and
+            &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping" anchor="ct-usage" toc="exclude">
+          <t>The following non-normative module is constructed in order to illustrate the
+            use of the "symmetric-key-grouping" (<xref target="symmetric-key-grouping"/>) and the
+            "asymmetric-key-pair-with-certs-grouping" (<xref target="asymmetric-key-pair-with-certs-grouping"/>)
+            grouping statements:</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
+]]></artwork>
+              </figure>
+            </t>
+            <t>The tree diagram <xref target="RFC8340"/> for this example module follows:</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage-tree.txt)
+]]></artwork>
+              </figure>
+            </t>
+            <t>Finally, the following example illustrates various symmetric and asymmetric keys
+              as they might appear in confugration:</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+
+          <section title="The &quot;generate-certificate-signing-request&quot; Action" anchor="gcsr-action" toc="exclude">
+            <t>The following example illustrates the "generate-certificate-signing-request"
+              action, discussed in <xref target="generate-csr-grouping"/>, with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <preamble>REQUEST</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
+]]></artwork>
+              </figure>
+              <figure>
+                <preamble>RESPONSE</preamble>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+  
+          <section title="The &quot;certificate-expiration&quot; Notification" anchor="cert-exp-notif-ex" toc="exclude">
+            <t>The following example illustrates the "certificate-expiration"
+              notification, discussed in <xref target="certificate-expiration-grouping"/>,
+              with the NETCONF protocol.</t>
+            <t>
+              <figure>
+                <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
+]]></artwork>
+              </figure>
+            </t>
+          </section>
+        </section>
+
         <section title="YANG Module" anchor="crypto-types-yang-module">
           <t>This module has normative references to <xref target="RFC2119"/>,
           <xref target="RFC2986"/>, <xref target="RFC3447"/>, <xref target="RFC4253"/>,
@@ -97,61 +630,6 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </figure>
           </t>
         </section>
-        <section title="Examples" anchor="crypto-types-examples">
-          <section title="The &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping" toc="exclude">
-            <t>The following example module illustrates the use of both the "symmetric-key-grouping"
-              and the "asymmetric-key-pair-with-certs-grouping" groupings defined in the
-              "ietf-crypto-types" module.</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
-]]></artwork>
-              </figure>
-            </t>
-  
-            <t>Given the above example usage module, the following example
-            illustrates some configured keys.</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
-]]></artwork>
-              </figure>
-            </t>
-          </section>
-
-          <section title="The &quot;generate-certificate-signing-request&quot; Action" toc="exclude">
-            <t>The following example illustrates the "generate-certificate-signing-request"
-            action with the NETCONF protocol.</t>
-            <t>
-              <figure>
-                <preamble>REQUEST</preamble>
-                <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc.xml)
-]]></artwork>
-              </figure>
-              <figure>
-                <preamble>RESPONSE</preamble>
-                <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-gcsr-rpc-reply.xml)
-]]></artwork>
-              </figure>
-            </t>
-          </section>
-  
-          <section title="The &quot;certificate-expiration&quot; Notification" toc="exclude">
-            <t>The following example illustrates the "certificate-expiration"
-            notification with the NETCONF protocol.</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
-]]></artwork>
-              </figure>
-            </t>
-          </section>
-        </section>
       </section>
 
       <section title="Security Considerations">
@@ -163,11 +641,32 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
           to support CRMF in the future, a backwards compatible solution can be
           defined at that time.</t>
         </section>
-        <section title="Access to Data Nodes">
+
+        <section title="No Support for Key Generation">
+          <t>Early revisions of this document included "rpc" statements for
+            generating symmetric and asymmetric keys.  There statements were
+            removed due to an inability to obtain consensus for how to 
+            identify the key-algorithm to use.  Thusly, the solution presented
+            in this document only supports keys to be configured via an external
+            client, which does not support Security best practice.</t>
+        </section>
+
+        <section title="Deletion of Cleartext Key Values">
+          <t>This module defines storage for cleartext key values that SHOULD
+            be zeroized when deleted, so as to prevent the remnants of their
+            persisted storage locations from being analyzed in any meaningful
+            way.</t>
+          <t>The cleartext key nodes are the "key" node defined in the
+            "symmetric-key-grouping" grouping (<xref target="symmetric-key-grouping"/>)
+              and the "private-key" node defined in the "asymmetric-key-pair-grouping"
+              grouping ("<xref target="asymmetric-key-pair-grouping"/>).</t>
+        </section>
+
+        <section title="The &quot;ietf-crypto-types&quot; YANG Module">
           <t>The YANG module in this document defines "grouping" statements
             that are designed to be accessed via YANG based management
             protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
-            <xref target="RFC8040"/>. Both of these protocols have
+            <xref target="RFC8040"/>.  Both of these protocols have
             mandatory-to-implement secure transport layers (e.g., SSH, TLS)
             with mutual authentication.</t>
 
@@ -180,59 +679,60 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
             these considerations are primarily for the designers of other
             modules that use these groupings.</t>
 
-          <t>There are a number of data nodes defined by the grouping
-            statements that are writable/creatable/deletable (i.e., config
-            true, which is the default).  Some of these data nodes may be
-            considered sensitive or vulnerable in some network environments.
-            Write operations (e.g., edit-config) to these data nodes
-            without proper protection can have a negative effect on
-            network operations.  These are the subtrees and data nodes
-            and their sensitivity/vulnerability:
-            <list hangIndent="6" style="hanging">
-              <t hangText="   *:">All of the data nodes defined by 
-                all the groupings are considered sensitive to write
-                operations.  For instance, the modification of a
-                public key or a certificate can dramatically alter
-                the implemented security policy.  For this reason,
-                the NACM extension "default-deny-write" has been
-                applied to all the data nodes defined by all the
-                groupings.</t>
-            </list>
-          </t>
-
-          <t>Some of the readable data nodes in the YANG module may
-            be considered sensitive or vulnerable in some network
+          <t>Some of the readable data nodes defined in this YANG module
+            may be considered sensitive or vulnerable in some network
             environments. It is thus important to control read access
             (e.g., via get, get-config, or notification) to these
             data nodes. These are the subtrees and data nodes and
             their sensitivity/vulnerability: 
-            <list hangIndent="6" style="hanging">
-              <t hangText="   /private-key:">The "private-key" node
-                defined in the "asymmetric-key-pair-grouping" grouping
-                is additionally sensitive to read operations such that,
-                in normal use cases, it should never be returned to a
-                client.  For this reason, the NACM extension
-                "default-deny-all" has been applied to it here.</t>
+            <list style="symbols">
+              <t>The "key" node:
+                <ul empty="true">
+                  <li>The cleartext "key" node defined in the "symmetric-key-grouping"
+                    grouping is additionally sensitive to read operations such that,
+                    in normal use cases, it should never be returned to a client.
+                    For this reason, the NACM extension "default-deny-all" has been
+                    applied to it.</li>
+                </ul>
+              </t>
+              <t>The "private-key" node:
+                <ul empty="true">
+                  <li>The cleartext "private-key" node defined in the "asymmetric-key-pair-grouping"
+                    grouping is additionally sensitive to read operations such that, in
+                    normal use cases, it should never be returned to a client.  For this
+                    reason, the NACM extension "default-deny-all" has been applied.</li>
+                </ul>
+              </t>
             </list>
           </t>
+
+          <t>All of the writable data nodes defined by all the groupings defined
+            in this module may be considered sensitive or vulnerable in
+            some network environments.  For instance, even the modification
+            of a public key or a certificate can dramatically alter the
+            implemented security policy.  For this reason, the NACM extension
+            "default-deny-write" has been applied to all the data nodes
+            defined in the module.</t>
 
           <t>Some of the operations in this YANG module may be considered
             sensitive or vulnerable in some network environments. It is
             thus important to control access to these operations. These
             are the operations and their sensitivity/vulnerability:
-            <list style="hanging" hangIndent="6">
-              <t hangText="   *:">All of the "action" statements defined by
-                groupings SHOULD only be executed by authorized users.  For
-                this reason, the NACM extension "default-deny-all" has been
-                applied to all of them.  Note that NACM uses "default-deny-all"
-                to protect "RPC" and "action" statements; it does not define,
-                e.g., an extension called "default-deny-execute".</t>
-              <t hangText="   generate-certificate-signing-request:">For
-                this action, it is RECOMMENDED that implementations assert
-                channel binding <xref target="RFC5056"/>, so as to ensure
-                that the application layer that sent the request is the same
-                as the device authenticated when the secure transport layer
-                was established.</t>
+            <list style="symbols">
+              <t>generate-certificate-signing-request:
+                <ul empty="true">
+                  <li>This "action" statement SHOULD only be executed by authorized
+                    users.  For this reason, the NACM extension "default-deny-all"
+                    has been applied.  Note that NACM uses "default-deny-all"
+                    to protect "RPC" and "action" statements; it does not define,
+                    e.g., an extension called "default-deny-execute".</li>
+                  <li>For this action, it is RECOMMENDED that implementations assert
+                    channel binding <xref target="RFC5056"/>, so as to ensure
+                    that the application layer that sent the request is the same
+                    as the device authenticated when the secure transport layer
+                    was established.</li>
+                </ul>
+              </t>
             </list>
           </t>
         </section>
@@ -302,9 +802,18 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
         <!--<?rfc include="reference.RFC.8422.xml"?>
         <?rfc include="reference.RFC.8446.xml"?>-->
 
-        <!-- THE FOLLOWING LINE DOESN'T RESOLVE BECAUSE _reference.ITU.X744.1996.xml
-             DOES NOT EXIST HERE: http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/
-             <?rfc include="reference.ITU.X690.2015.xml"?> -->
+        <reference anchor="ITU.X680.2015" target="https://www.itu.int/rec/T-REC-X.680/">
+          <front>
+            <title>Information technology - Abstract Syntax Notation One (ASN.1):
+              Specification of basic notation
+            </title>
+            <author>
+              <organization>International Telecommunication Union</organization>
+            </author>
+            <date month="August" year="2015"/>
+          </front>
+          <seriesInfo name="ITU-T Recommendation X.680," value="ISO/IEC 8824-1:2015"/>
+	    </reference>
         <reference anchor="ITU.X690.2015" target="https://www.itu.int/rec/T-REC-X.690/">
           <front>
             <title>Information Technology - ASN.1 encoding rules: Specification of Basic
@@ -315,7 +824,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
             </author>
             <date month="August" year="2015"/>
           </front>
-          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1"/>
+          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1:2015"/>
 	    </reference>
       </references>
       <references title="Informative References">
@@ -325,7 +834,6 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
         <?rfc include="reference.RFC.4211.xml"?>
         <!--<?rfc include="reference.RFC.4493.xml"?>-->
         <?rfc include="reference.RFC.5056.xml"?>
-        <?rfc include="reference.RFC.5226.xml"?>
         <?rfc include="reference.RFC.5915.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
         <?rfc include="reference.RFC.6125.xml"?>
@@ -338,9 +846,19 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
         <?rfc include="reference.RFC.8040.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
         <!--<?rfc include="reference.RFC.8439.xml"?>-->
+        <?rfc include="reference.RFC.8342.xml"?>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-ssh-client-server.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-tls-client-server.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
       </references>
 
-      <section title="Change Log">
+      <section title="Change Log" removeInRFC="true" anchor="change-log">
         <section title="I-D to 00">
           <t>
             <list style="symbols">
@@ -544,7 +1062,14 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
               <t>Removed 'trust-anchor-certs-grouping' as it was no longer being used
                 after modifying 'local-or-truststore-certs-grouping' to use lists (not
                 leaf-lists).</t>
-              <t>Other Editorial cleanup items found in WGLC.</t>
+              <t>Renamed "cert" to "cert-data" in trust-anchor-cert-grouping.</t>
+              <t>Added "csr-info" typedef, to complement the existing "csr" typedef.</t>
+              <t>Added "ocsp-request" and "ocsp-response" typedefs, to complement
+                the existing "crl" typedef.</t>
+              <t>Added "encrypted" cases to both symmetric-key-grouping and
+                asymmetric-key-pair-grouping (Moved from Keystore draft).</t>
+              <t>Expanded "Data Model Overview section(s) [remove "wall" of tree diagrams].</t>
+              <t>Updated the Security Considerations section.</t>
             </list>
           </t>
         </section>

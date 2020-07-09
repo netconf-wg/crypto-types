@@ -60,16 +60,16 @@ module ietf-crypto-types {
   /*   Features   */
   /****************/
 
-  feature one-asymmetric-key-format {
-    description
-      "Indicates that the server supports the
-       'one-asymmetric-key-format' identity.";
-  }
-
   feature one-symmetric-key-format {
     description
       "Indicates that the server supports the
        'one-symmetric-key-format' identity.";
+  }
+
+  feature one-asymmetric-key-format {
+    description
+      "Indicates that the server supports the
+       'one-asymmetric-key-format' identity.";
   }
 
   feature encrypted-one-symmetric-key-format {
@@ -95,16 +95,16 @@ module ietf-crypto-types {
   /*   Base Identities for Key Format Structures   */
   /*************************************************/
 
+  identity symmetric-key-format {
+    description "Base key-format identity for symmetric keys.";
+  }
+
   identity public-key-format {
     description "Base key-format identity for public keys.";
   }
 
   identity private-key-format {
     description "Base key-format identity for private keys.";
-  }
-
-  identity symmetric-key-format {
-    description "Base key-format identity for symmetric keys.";
   }
 
 
@@ -259,12 +259,28 @@ module ietf-crypto-types {
   /*   Typedefs for ASN.1 structures from RFC 2986   */
   /***************************************************/
 
+  typedef csr-info {
+    type binary;
+    description
+      "A CertificationRequestInfo structure, as defined in
+       RFC 2986, encoded using ASN.1 distinguished encoding
+       rules (DER), as specified in ITU-T X.690.";
+    reference
+      "RFC 2986: PKCS #10: Certification Request Syntax
+                 Specification Version 1.7
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
+  }
+
   typedef csr {
     type binary;
     description
-      "A CertificationRequest structure, as specified in RFC 2986,
-       encoded using ASN.1 distinguished encoding rules (DER), as
-       specified in ITU-T X.690.";
+      "A CertificationRequest structure, as specified in
+       RFC 2986, encoded using ASN.1 distinguished encoding
+       rules (DER), as specified in ITU-T X.690.";
     reference
       "RFC 2986:
          PKCS #10: Certification Request Syntax Specification
@@ -307,6 +323,45 @@ module ietf-crypto-types {
       "RFC 5280:
          Internet X.509 Public Key Infrastructure Certificate
          and Certificate Revocation List (CRL) Profile
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
+  }
+
+
+  /***************************************************/
+  /*   Typedefs for ASN.1 structures from RFC 6960   */
+  /***************************************************/
+
+  typedef oscp-request {
+    type binary;
+    description
+      "A OCSPRequest structure, as specified in RFC 6960,
+       encoded using ASN.1 distinguished encoding rules
+       (DER), as specified in ITU-T X.690.";
+    reference
+      "RFC 6960:
+         X.509 Internet Public Key Infrastructure Online
+         Certificate Status Protocol - OCSP
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER).";
+  }
+
+  typedef oscp-response {
+    type binary;
+    description
+      "A OCSPResponse structure, as specified in RFC 6960,
+       encoded using ASN.1 distinguished encoding rules
+       (DER), as specified in ITU-T X.690.";
+    reference
+      "RFC 6960:
+         X.509 Internet Public Key Infrastructure Online
+         Certificate Status Protocol - OCSP
        ITU-T X.690:
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
@@ -480,6 +535,29 @@ module ietf-crypto-types {
   /*   Groupings for keys and/or certificates   */
   /**********************************************/
 
+  grouping encrypted-key-value-grouping {
+    description
+      "A reusable grouping for a value that has been encrypted by
+       a symmetric or asymmetric key in the Keystore.";
+    container encrypted-by {
+      nacm:default-deny-write;
+      description
+        "An empty container enabling references to other keys that
+         encrypt these keys to be augmented in.  The referenced key
+         MAY be a symmetric or an asymmetric key.";
+    }
+    leaf encrypted-value {
+      nacm:default-deny-write;
+      type binary;
+      must "../encrypted-by";
+      mandatory true;
+      description
+        "The key data, encrypted using the referenced symmetric
+         or asymmetric key.  The format of the encrypted value
+         is identicated by the associated key format identity.";
+    }
+  }
+
   grouping symmetric-key-grouping {
     description
       "A symmetric key.";
@@ -491,24 +569,36 @@ module ietf-crypto-types {
       description "Identifies the symmetric key's format.";
     }
     choice key-type {
+      nacm:default-deny-write;
       mandatory true;
       description
         "Choice between key types.";
-      leaf key {
-        nacm:default-deny-all;
-        type binary;
-        must "../key-format";
-        description
-          "The binary value of the key.  The interpretation of
-           the value is defined by the 'key-format' field.";
+      case key {
+        leaf key {
+          nacm:default-deny-all;
+          type binary;
+          must "../key-format";
+          description
+            "The binary value of the key.  The interpretation of
+             the value is defined by the 'key-format' field.";
+        }
       }
-      leaf hidden-key {
-        nacm:default-deny-write;
-        type empty;
-        must "not(../key-format)";
-        description
-          "A permanently hidden key.  How such keys are created
-           is outside the scope of this module.";
+      case hidden-key {
+        leaf hidden-key {
+          type empty;
+          must "not(../key-format)";
+          description
+            "A hidden key.  How such keys are created is outside
+             the scope of this module.";
+        }
+      }
+      case encrypted-key {
+        container encrypted-key {
+          must "../key-format";
+          description
+            "A container for the encrypted symmetric key value.";
+          uses encrypted-key-value-grouping;
+        }
       }
     }
   }
@@ -546,24 +636,58 @@ module ietf-crypto-types {
       description "Identifies the key's format.";
     }
     choice private-key-type {
+      nacm:default-deny-write;
       mandatory true;
       description
         "Choice between key types.";
-      leaf private-key {
-        nacm:default-deny-all;
-        type binary;
-        must "../private-key-format";
-        description
-          "The value of the binary key  The key's value is
-           interpreted by the 'private-key-format' field.";
+      case private-key {
+        leaf private-key {
+          nacm:default-deny-all;
+          type binary;
+          must "../private-key-format";
+          description
+            "The value of the binary key  The key's value is
+             interpreted by the 'private-key-format' field.";
+        }
       }
-      leaf hidden-private-key {
-        nacm:default-deny-write;
-        type empty;
-        must "not(../private-key-format)";
+      case hidden-private-key {
+        leaf hidden-private-key {
+          type empty;
+          must "not(../private-key-format)";
+          description
+            "A hidden key.  How such keys are created is
+             outside the scope of this module.";
+        }
+      }
+      case encrypted-private-key {
+        container encrypted-private-key {
+          must "../private-key-format";
+          description
+           "A container for the encrypted asymmetric private
+             key value.";
+          uses encrypted-key-value-grouping;
+        }
+      }
+    }
+  }
+
+  grouping certificate-expiration-grouping {
+    description
+      "A notification for when a certificate is about to, or
+      already has, expired.";
+    notification certificate-expiration {
+      description
+        "A notification indicating that the configured certificate
+         is either about to expire or has already expired.  When to
+         send notifications is an implementation specific decision,
+         but it is RECOMMENDED that a notification be sent once a
+         month for 3 months, then once a week for four weeks, and
+         then once a day thereafter until the issue is resolved.";
+      leaf expiration-date {
+        type yang:date-and-time;
+        mandatory true;
         description
-          "A permanently hidden key.  How such keys are created
-           is outside the scope of this module.";
+          "Identifies the expiration date on the certificate.";
       }
     }
   }
@@ -572,7 +696,7 @@ module ietf-crypto-types {
     description
       "A trust anchor certificate, and a notification for when
        it is about to (or already has) expire.";
-    leaf cert {
+    leaf cert-data {
       nacm:default-deny-write;
       type trust-anchor-cert-cms;
       description
@@ -580,21 +704,7 @@ module ietf-crypto-types {
       reference
         "RFC YYYY: Common YANG Data Types for Cryptography";
     }
-    notification certificate-expiration {
-      description
-        "A notification indicating that the configured certificate
-         is either about to expire or has already expired.  When to
-         send notifications is an implementation specific decision,
-         but it is RECOMMENDED that a notification be sent once a
-         month for 3 months, then once a week for four weeks, and
-         then once a day thereafter until the issue is resolved.";
-      leaf expiration-date {
-        type yang:date-and-time;
-        mandatory true;
-        description
-          "Identifies the expiration date on the certificate.";
-      }
-    }
+    uses certificate-expiration-grouping;
   }
 
   grouping end-entity-cert-grouping {
@@ -603,7 +713,7 @@ module ietf-crypto-types {
        it is about to (or already has) expire.  Implementations
        SHOULD assert that, where used, the end entity certificate
        contains the expected public key.";
-    leaf cert {
+    leaf cert-data {
       nacm:default-deny-write;
       type end-entity-cert-cms;
       description
@@ -611,21 +721,7 @@ module ietf-crypto-types {
       reference
         "RFC YYYY: Common YANG Data Types for Cryptography";
     }
-    notification certificate-expiration {
-      description
-        "A notification indicating that the configured certificate
-         is either about to expire or has already expired.  When to
-         send notifications is an implementation specific decision,
-         but it is RECOMMENDED that a notification be sent once a
-         month for 3 months, then once a week for four weeks, and
-         then once a day thereafter until the issue is resolved.";
-      leaf expiration-date {
-        type yang:date-and-time;
-        mandatory true;
-        description
-          "Identifies the expiration date on the certificate.";
-      }
-    }
+    uses certificate-expiration-grouping;
   }
 
   grouping generate-csr-grouping {
@@ -649,38 +745,27 @@ module ietf-crypto-types {
           Infrastructure Using X.509 (PKIX) Certificates in the
           Context of Transport Layer Security (TLS)";
       input {
-        leaf subject {
-          type binary;
+        leaf csr-info {
+          type ct:csr-info;
           mandatory true;
           description
-            "The 'subject' field per the CertificationRequestInfo
-              structure as specified by RFC 2986, Section 4.1
-              encoded using the ASN.1 distinguished encoding
-              rules (DER), as specified in ITU-T X.690.";
+            "A CertificationRequestInfo structure, as defined in
+             RFC 2986.
+            
+             Enables the client to provide a fully-populated
+             CertificationRequestInfo structure that the server
+             only needs to sign in order to generate the complete
+             'CertificationRequest' structure to return in the
+             'output'.
+
+             The 'AlgorithmIdentifier' field contained inside
+             the 'SubjectPublicKeyInfo' field MUST be one known
+             to be supported by the device.";
           reference
-            "RFC 2986: PKCS #10: Certification Request Syntax
-                       Specification Version 1.7.
-             ITU-T X.690:
-               Information technology - ASN.1 encoding rules:
-               Specification of Basic Encoding Rules (BER),
-               Canonical Encoding Rules (CER) and Distinguished
-               Encoding Rules (DER).";
-        }
-        leaf attributes {
-          type binary;
-          description
-            "The 'attributes' field from the structure
-             CertificationRequestInfo as specified by RFC 2986,
-             Section 4.1 encoded using the ASN.1 distinguished
-             encoding rules (DER), as specified in ITU-T X.690.";
-          reference
-            "RFC 2986: PKCS #10: Certification Request Syntax
-                       Specification Version 1.7.
-             ITU-T X.690:
-               Information technology - ASN.1 encoding rules:
-               Specification of Basic Encoding Rules (BER),
-               Canonical Encoding Rules (CER) and Distinguished
-               Encoding Rules (DER).";
+            "RFC 2986:
+               PKCS #10: Certification Request Syntax Specification
+             RFC AAAA:
+               YANG Data Types and Groupings for Cryptography";
         }
       }
       output {
@@ -688,7 +773,13 @@ module ietf-crypto-types {
           type ct:csr;
           mandatory true;
           description
-            "The requested certificate signing request structure.";
+            "A CertificationRequest structure, as defined in
+             RFC 2986.";
+          reference
+            "RFC 2986:
+               PKCS #10: Certification Request Syntax Specification
+             RFC AAAA:
+               YANG Data Types and Groupings for Cryptography";
         }
       }
     }
@@ -730,7 +821,7 @@ module ietf-crypto-types {
              then the 'cert' node MUST NOT be configured.";
         }
         uses end-entity-cert-grouping {
-          refine cert {
+          refine cert-data {
             mandatory true;
           }
         }

@@ -6,8 +6,7 @@
       <asymmetric-key>
         <name>ex-key-sect571r1</name>
         <generate-certificate-signing-request>
-          <subject>base64encodedvalue==</subject>
-          <attributes>base64encodedvalue==</attributes>
+          <csr-info>base64encodedvalue==</csr-info>
         </generate-certificate-signing-request>
       </asymmetric-key>
     </asymmetric-keys>

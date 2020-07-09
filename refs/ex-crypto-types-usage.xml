@@ -18,7 +18,12 @@
   <symmetric-key>
     <name>ex-encrypted-one-symmetric-based-symmetric-key</name>
     <key-format>ct:encrypted-one-symmetric-key-format</key-format>
-    <key>base64encodedvalue==</key>
+    <encrypted-key>
+      <encrypted-by>
+        <asymmetric-key-ref>ex-hidden-asymmetric-key</asymmetric-key-ref>
+      </encrypted-by>
+      <encrypted-value>base64encodedvalue==</encrypted-value>
+    </encrypted-key>
   </symmetric-key>
 </symmetric-keys>
 
@@ -34,8 +39,8 @@
     <hidden-private-key/>
     <certificates>
       <certificate>
-        <name>ex-hidden-key-cert</name>
-        <cert>base64encodedvalue==</cert>
+        <name>ex-hidden-asymmetric-key-cert</name>
+        <cert-data>base64encodedvalue==</cert-data>
       </certificate>
     </certificates>
   </asymmetric-key>
@@ -52,7 +57,7 @@
     <certificates>
       <certificate>
         <name>ex-cert</name>
-        <cert>base64encodedvalue==</cert>
+        <cert-data>base64encodedvalue==</cert-data>
       </certificate>
     </certificates>
   </asymmetric-key>
@@ -76,6 +81,11 @@
     <private-key-format>
       ct:encrypted-one-asymmetric-key-format
     </private-key-format>
-    <private-key>base64encodedvalue==</private-key>
+    <encrypted-private-key>
+      <encrypted-by>
+        <symmetric-key-ref>ex-encrypted-one-symmetric-based-symmetric-key</symmetric-key-ref>
+      </encrypted-by>
+      <encrypted-value>base64encodedvalue==</encrypted-value>
+    </encrypted-private-key>
   </asymmetric-key>
 </asymmetric-keys>

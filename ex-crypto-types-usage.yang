@@ -10,16 +10,13 @@ module ex-crypto-types-usage {
       "RFC AAAA: Common YANG Data Types for Cryptography";
   }
 
-  organization
-   "Example Corporation";
-
-  contact
-   "Author: YANG Designer <mailto:yang.designer@example.com>";
+  organization "Example Corporation";
+  contact      "YANG Designer <mailto:yang.designer@example.com>";
 
   description
-   "This module illustrates the grouping
-    defined in the crypto-types draft called 
-    'asymmetric-key-pair-with-certs-grouping'.";
+   "This module illustrates the 'symmetric-key-grouping'
+    and 'asymmetric-key-grouping' groupings defined in
+    the 'ietf-crypto-types' module defined in RFC AAAA.";
 
   revision "YYYY-MM-DD" {
     description
@@ -27,6 +24,7 @@ module ex-crypto-types-usage {
     reference
      "RFC AAAA: Common YANG Data Types for Cryptography";
   }
+
 
   container symmetric-keys {
     description
@@ -40,9 +38,19 @@ module ex-crypto-types-usage {
         description
           "An arbitrary name for this key.";
       }
-      uses ct:symmetric-key-grouping;
+      uses ct:symmetric-key-grouping {
+        augment "key-type/encrypted-key/encrypted-key/"
+                + "encrypted-by" {
+          description
+            "Augments in a choice statement enabling the
+             encrypting key to be any other symmetric or
+             asymmetric key.";
+          uses encrypted-by-choice-grouping;
+        }
+      }
     }
   }
+
   container asymmetric-keys {
     description
       "A container of asymmetric keys.";
@@ -53,9 +61,49 @@ module ex-crypto-types-usage {
         description
           "An arbitrary name for this key.";
       }
-      uses ct:asymmetric-key-pair-with-certs-grouping;
+      uses ct:asymmetric-key-pair-with-certs-grouping {
+        augment "private-key-type/encrypted-private-key/"
+                + "encrypted-private-key/encrypted-by" {
+          description
+            "Augments in a choice statement enabling the
+             encrypting key to be any other symmetric or
+             asymmetric key.";
+          uses encrypted-by-choice-grouping;
+        }
+      }
       description
         "An asymmetric key pair with associated certificates.";
+    }
+  }
+
+  grouping encrypted-by-choice-grouping {
+    description
+      "A grouping that defines a choice enabling references
+       to other keys.";
+    choice encrypted-by-choice {
+      mandatory true;
+      description
+        "A choice amongst other symmetric or asymmetric keys.";
+      case symmetric-key-ref {
+        leaf symmetric-key-ref {
+          type leafref {
+            path "/ectu:symmetric-keys/ectu:symmetric-key/"
+                 + "ectu:name";
+          }
+          description
+           "Identifies the symmetric key used to encrypt this key.";
+        }
+      }
+      case asymmetric-key-ref {
+        leaf asymmetric-key-ref {
+          type leafref {
+            path "/ectu:asymmetric-keys/ectu:asymmetric-key/"
+                 + "ectu:name";
+          }
+          description
+           "Identifies the asymmetric key used to encrypt this key.";
+        }
+      }
     }
   }
 }
