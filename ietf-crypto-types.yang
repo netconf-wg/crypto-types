@@ -52,7 +52,7 @@ module ietf-crypto-types {
     description
       "Initial version";
     reference
-      "RFC AAAA: Common YANG Data Types for Cryptography";
+      "RFC AAAA: YANG Data Types and Groupings for Cryptography";
   }
 
 
@@ -573,8 +573,8 @@ module ietf-crypto-types {
       mandatory true;
       description
         "Choice between key types.";
-      case key {
-        leaf key {
+      case cleartext-key {
+        leaf cleartext-key {
           nacm:default-deny-all;
           type binary;
           must "../key-format";
@@ -640,8 +640,8 @@ module ietf-crypto-types {
       mandatory true;
       description
         "Choice between key types.";
-      case private-key {
-        leaf private-key {
+      case cleartext-private-key {
+        leaf cleartext-private-key {
           nacm:default-deny-all;
           type binary;
           must "../private-key-format";
@@ -701,8 +701,6 @@ module ietf-crypto-types {
       type trust-anchor-cert-cms;
       description
         "The binary certificate data for this certificate.";
-      reference
-        "RFC YYYY: Common YANG Data Types for Cryptography";
     }
     uses certificate-expiration-grouping;
   }
@@ -718,8 +716,6 @@ module ietf-crypto-types {
       type end-entity-cert-cms;
       description
         "The binary certificate data for this certificate.";
-      reference
-        "RFC YYYY: Common YANG Data Types for Cryptography";
     }
     uses certificate-expiration-grouping;
   }

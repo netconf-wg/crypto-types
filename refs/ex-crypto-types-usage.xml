@@ -8,12 +8,12 @@
   <symmetric-key>
     <name>ex-octet-string-based-symmetric-key</name>
     <key-format>ct:octet-string-key-format</key-format>
-    <key>base64encodedvalue==</key>
+    <cleartext-key>base64encodedvalue==</cleartext-key>
   </symmetric-key>
   <symmetric-key>
     <name>ex-one-symmetric-based-symmetric-key</name>
     <key-format>ct:one-symmetric-key-format</key-format>
-    <key>base64encodedvalue==</key>
+    <cleartext-key>base64encodedvalue==</cleartext-key>
   </symmetric-key>
   <symmetric-key>
     <name>ex-encrypted-one-symmetric-based-symmetric-key</name>
@@ -53,7 +53,7 @@
     <private-key-format>
       ct:rsa-private-key-format
     </private-key-format>
-    <private-key>base64encodedvalue==</private-key>
+    <cleartext-private-key>base64encodedvalue==</cleartext-private-key>
     <certificates>
       <certificate>
         <name>ex-cert</name>
@@ -70,7 +70,7 @@
     <private-key-format>
       ct:one-asymmetric-key-format
     </private-key-format>
-    <private-key>base64encodedvalue==</private-key>
+    <cleartext-private-key>base64encodedvalue==</cleartext-private-key>
   </asymmetric-key>
   <asymmetric-key>
     <name>ex-encrypted-one-asymmetric-based-symmetric-key</name>
