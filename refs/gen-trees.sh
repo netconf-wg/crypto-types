@@ -28,6 +28,7 @@ extract_grouping() {
 }
 
 extract_grouping encrypted-key-value-grouping
+extract_grouping password-grouping
 extract_grouping symmetric-key-grouping
 extract_grouping public-key-grouping
 extract_grouping asymmetric-key-pair-grouping
