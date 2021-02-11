@@ -3,7 +3,7 @@
 echo "Generating tree diagrams..."
 
 pyang -p ../ -f tree --tree-line-length 69 --tree-print-groupings ../ietf-crypto-types@*.yang > ietf-crypto-types-tree.txt
-pyang -p ../ -f tree --tree-line-length 69 --tree-print-groupings ../ex-crypto-types-usage@*.yang > ex-crypto-types-usage-tree.txt
+pyang -p ../ -f tree --tree-line-length 69 ../ex-crypto-types-usage@*.yang > ex-crypto-types-usage-tree.txt
 
 
 extract_grouping_with_params() {
@@ -27,7 +27,7 @@ extract_grouping() {
   extract_grouping_with_params "$1" "--tree-no-expand-uses" "tree-$1.no-expand.txt"
 }
 
-extract_grouping encrypted-key-value-grouping
+extract_grouping encrypted-value-grouping
 extract_grouping password-grouping
 extract_grouping symmetric-key-grouping
 extract_grouping public-key-grouping

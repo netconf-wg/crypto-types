@@ -76,6 +76,32 @@ module ex-crypto-types-usage {
     }
   }
 
+  container passwords {
+    description
+      "A container of passwords.";
+    list password {
+      key name;
+      leaf name {
+        type string;
+        description
+          "An arbitrary name for this password.";
+      }
+      uses ct:password-grouping {
+        augment "password-type/encrypted-password/"
+                + "encrypted-password/encrypted-by" {
+          description
+            "Augments in a choice statement enabling the
+             encrypting key to be any symmetric or
+             asymmetric key.";
+          uses encrypted-by-choice-grouping;
+        }
+      }
+      description
+        "A password.";
+    }
+  }
+
+
   grouping encrypted-by-choice-grouping {
     description
       "A grouping that defines a choice enabling references
@@ -106,4 +132,5 @@ module ex-crypto-types-usage {
       }
     }
   }
+
 }

@@ -17,11 +17,14 @@
   </symmetric-key>
   <symmetric-key>
     <name>ex-encrypted-one-symmetric-based-symmetric-key</name>
-    <key-format>ct:encrypted-one-symmetric-key-format</key-format>
+    <key-format>ct:one-symmetric-key-format</key-format>
     <encrypted-key>
       <encrypted-by>
         <asymmetric-key-ref>ex-hidden-asymmetric-key</asymmetric-key-ref>
       </encrypted-by>
+      <encrypted-value-format>
+        ct:cms-enveloped-data-format
+      </encrypted-value-format>
       <encrypted-value>base64encodedvalue==</encrypted-value>
     </encrypted-key>
   </symmetric-key>
@@ -45,7 +48,7 @@
     </certificates>
   </asymmetric-key>
   <asymmetric-key>
-    <name>ex-subject-public-info-based-asymmetric-key</name>
+    <name>ex-rsa-based-asymmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
@@ -62,7 +65,7 @@
     </certificates>
   </asymmetric-key>
   <asymmetric-key>
-    <name>ex-one-asymmetric-based-symmetric-key</name>
+    <name>ex-one-asymmetric-based-asymmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
@@ -73,19 +76,43 @@
     <cleartext-private-key>base64encodedvalue==</cleartext-private-key>
   </asymmetric-key>
   <asymmetric-key>
-    <name>ex-encrypted-one-asymmetric-based-symmetric-key</name>
+    <name>ex-encrypted-rsa-based-asymmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
     <public-key>base64encodedvalue==</public-key>
     <private-key-format>
-      ct:encrypted-one-asymmetric-key-format
+      ct:rsa-private-key-format
     </private-key-format>
     <encrypted-private-key>
       <encrypted-by>
         <symmetric-key-ref>ex-encrypted-one-symmetric-based-symmetric-key</symmetric-key-ref>
       </encrypted-by>
+      <encrypted-value-format>
+        ct:cms-encrypted-data-format
+      </encrypted-value-format>
       <encrypted-value>base64encodedvalue==</encrypted-value>
     </encrypted-private-key>
   </asymmetric-key>
 </asymmetric-keys>
+
+<passwords
+  xmlns="http://example.com/ns/example-crypto-types-usage"
+  xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
+  <password>
+    <name>ex-cleartext-password</name>
+    <cleartext-password>super-secret</cleartext-password>
+  </password>
+  <password>
+    <name>ex-encrypted-password</name>
+    <encrypted-password>
+      <encrypted-by>
+        <symmetric-key-ref>ex-encrypted-one-symmetric-based-symmetric-key</symmetric-key-ref>
+      </encrypted-by>
+      <encrypted-value-format>
+        ct:cms-encrypted-data-format
+      </encrypted-value-format>
+      <encrypted-value>base64encodedvalue==</encrypted-value>
+    </encrypted-password>
+  </password>
+</passwords>
