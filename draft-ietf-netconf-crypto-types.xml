@@ -69,7 +69,7 @@
 INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
         <section title="Adherence to the NMDA">
-          <t>This document in compliant with the Network Management Datastore
+          <t>This document is compliant with the Network Management Datastore
             Architecture (NMDA) <xref target="RFC8342"/>. It does not define
             any protocol accessible nodes that are "config false".</t>
         </section>
@@ -80,13 +80,13 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
         <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
           "ietf-crypto-types".  A high-level overview of the module is provided in
-          <xref target="crypto-types-overview"/>. Examples illustatrating the module's use
+          <xref target="crypto-types-overview"/>. Examples illustrating the module's use
           are provided in <xref target="crypto-types-examples">Examples</xref>. The YANG
           module itself is defined in <xref target="crypto-types-yang-module"/>.</t>
 
          <section title="Data Model Overview" anchor="crypto-types-overview">
            <t>This section provides an overview of the "ietf-crypto-types" module
-              in terms of its features, indentities, typedefs, and groupings.</t>
+              in terms of its features, identities, typedefs, and groupings.</t>
 
           <section title="Features" anchor="features" toc="exclude">
             <t>The following diagram lists all the "feature" statements
@@ -154,7 +154,7 @@ Identities:
                 first three identities are used to indicate the format that key
                 data, while the fourth identity is used to indicate the format
                 for encrypted values.  The base identities are "abstract",
-                in the object orientied programming sense, in that they only
+                in the object oriented programming sense, in that they only
                 define a "class" of formats, rather than a specific format.</li>
               <li>The various "leaf" identities define specific encoding
                 formats.  The derived identities defined in this document are
@@ -206,7 +206,7 @@ Typedefs:
               <li>Additionally, all the typedefs define a type for encoding an ASN.1
                 <xref target="ITU.X680.2015"/> structure using DER <xref target="ITU.X690.2015"/>.</li>
               <li>The "trust-anchor-*" and "end-entity-*" typedefs are syntactically
-                identical to their base typedefs and only distiguish themselves
+                identical to their base typedefs and only distinguish themselves
                 by the expected nature of their content.  These typedefs are
                 defined to facilitate common modeling needs.</li>
             </ul>
@@ -367,7 +367,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-public-key-grouping.no-expand.txt)
                   the derived identities.</li>
                 <li>The "public-key" node is the public key data in the selected format.
                   No "choice" statement is used to hide or encrypt the public key data
-                  because it is unecessary to do so for public keys.</li>
+                  because it is unnecessary to do so for public keys.</li>
               </ul>
             </section>
 
@@ -646,7 +646,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage-tree.txt)
               </figure>
             </t>
             <t>Finally, the following example illustrates various symmetric and asymmetric keys
-              as they might appear in configration:</t>
+              as they might appear in configuration:</t>
             <t>
               <figure>
                 <artwork><![CDATA[
@@ -766,7 +766,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             the "cms-encrypted-data-format" format.  This format uses the CMS
             EncryptedData structure, which allows any encryption algorithm
             to be used.</t>
-          <t>In order to thrawt rainbow attacks, algorithms that result
+          <t>In order to thwart rainbow attacks, algorithms that result
             in a unique output for the same input SHOULD be used.  For instance,
             AES using "EBC" SHOULD NOT be used to encrypt passwords, whereas "CBC"
             mode is okay since it a unique initialization vector (IV) should
@@ -1226,8 +1226,16 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
-        <!--
         <section title="19 to 20">
+          <t>
+            <list style="symbols">
+              <t>Nits found via YANG Doctors reviews.</t>
+              <t>Aligned modules with `pyang -f` formatting.</t>
+            </list>
+          </t>
+        </section>
+        <!--
+        <section title="20 to 21">
           <t>
             <list style="symbols">
               <t>SUBMISSION PENDING</t>
@@ -1245,7 +1253,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           Eric Voit,
           Juergen Schoenwaelder,
           Liang Xia,
-          Martin Bjorklund,
+          Martin Björklund,
           Nick Hancock,
           Rich Salz,
           Rob Wilton,

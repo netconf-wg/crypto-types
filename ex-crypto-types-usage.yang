@@ -1,36 +1,36 @@
 module ex-crypto-types-usage {
   yang-version 1.1;
-
   namespace "http://example.com/ns/example-crypto-types-usage";
-  prefix "ectu";
+  prefix ectu;
 
   import ietf-crypto-types {
     prefix ct;
-    reference 
+    reference
       "RFC AAAA: YANG Data Types and Groupings for Cryptography";
   }
 
-  organization "Example Corporation";
-  contact      "YANG Designer <mailto:yang.designer@example.com>";
+  organization
+    "Example Corporation";
+  contact
+    "YANG Designer <mailto:yang.designer@example.com>";
 
   description
-   "This module illustrates the 'symmetric-key-grouping'
-    and 'asymmetric-key-grouping' groupings defined in
-    the 'ietf-crypto-types' module defined in RFC AAAA.";
+    "This module illustrates the 'symmetric-key-grouping'
+     and 'asymmetric-key-grouping' groupings defined in
+     the 'ietf-crypto-types' module defined in RFC AAAA.";
 
-  revision "YYYY-MM-DD" {
+  revision YYYY-MM-DD {
     description
-     "Initial version";
+      "Initial version";
     reference
-     "RFC AAAA: Common YANG Data Types for Cryptography";
+      "RFC AAAA: Common YANG Data Types for Cryptography";
   }
-
 
   container symmetric-keys {
     description
       "A container of symmetric keys.";
     list symmetric-key {
-      key name;
+      key "name";
       description
         "A symmetric key";
       leaf name {
@@ -40,7 +40,7 @@ module ex-crypto-types-usage {
       }
       uses ct:symmetric-key-grouping {
         augment "key-type/encrypted-key/encrypted-key/"
-                + "encrypted-by" {
+              + "encrypted-by" {
           description
             "Augments in a choice statement enabling the
              encrypting key to be any other symmetric or
@@ -50,12 +50,11 @@ module ex-crypto-types-usage {
       }
     }
   }
-
   container asymmetric-keys {
     description
       "A container of asymmetric keys.";
     list asymmetric-key {
-      key name;
+      key "name";
       leaf name {
         type string;
         description
@@ -63,7 +62,7 @@ module ex-crypto-types-usage {
       }
       uses ct:asymmetric-key-pair-with-certs-grouping {
         augment "private-key-type/encrypted-private-key/"
-                + "encrypted-private-key/encrypted-by" {
+              + "encrypted-private-key/encrypted-by" {
           description
             "Augments in a choice statement enabling the
              encrypting key to be any other symmetric or
@@ -75,12 +74,11 @@ module ex-crypto-types-usage {
         "An asymmetric key pair with associated certificates.";
     }
   }
-
   container passwords {
     description
       "A container of passwords.";
     list password {
-      key name;
+      key "name";
       leaf name {
         type string;
         description
@@ -88,7 +86,7 @@ module ex-crypto-types-usage {
       }
       uses ct:password-grouping {
         augment "password-type/encrypted-password/"
-                + "encrypted-password/encrypted-by" {
+              + "encrypted-password/encrypted-by" {
           description
             "Augments in a choice statement enabling the
              encrypting key to be any symmetric or
@@ -100,7 +98,6 @@ module ex-crypto-types-usage {
         "A password.";
     }
   }
-
 
   grouping encrypted-by-choice-grouping {
     description
@@ -114,23 +111,22 @@ module ex-crypto-types-usage {
         leaf symmetric-key-ref {
           type leafref {
             path "/ectu:symmetric-keys/ectu:symmetric-key/"
-                 + "ectu:name";
+               + "ectu:name";
           }
           description
-           "Identifies the symmetric key used to encrypt this key.";
+            "Identifies the symmetric key that encrypts this key.";
         }
       }
       case asymmetric-key-ref {
         leaf asymmetric-key-ref {
           type leafref {
             path "/ectu:asymmetric-keys/ectu:asymmetric-key/"
-                 + "ectu:name";
+               + "ectu:name";
           }
           description
-           "Identifies the asymmetric key used to encrypt this key.";
+            "Identifies the asymmetric key that encrypts this key.";
         }
       }
     }
   }
-
 }
