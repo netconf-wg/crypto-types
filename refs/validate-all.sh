@@ -49,19 +49,19 @@ printf "okay.\n"
 
 
 printf "Testing ex-crypto-types-gcsr-rpc.xml..."
-command="yanglint -s -t auto ../ex-crypto-types-usage\@*.yang ex-crypto-types-gcsr-rpc.xml"
+command="yanglint -t rpc ../ex-crypto-types-usage\@*.yang ex-crypto-types-gcsr-rpc.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
 printf "Testing ex-crypto-types-gcsr-rpc-reply.xml..."
-command="yanglint -s -t auto ../ex-crypto-types-usage\@*.yang ex-crypto-types-gcsr-rpc-reply.xml ex-crypto-types-gcsr-rpc.xml"
+command="yanglint -t reply ../ex-crypto-types-usage\@*.yang ex-crypto-types-gcsr-rpc-reply.xml ex-crypto-types-gcsr-rpc.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
 
 printf "Testing ex-crypto-types-ce-notification.xml..."
 echo -e 'setns a=urn:ietf:params:xml:ns:netconf:notification:1.0\nsetns b=http://example.com/ns/example-crypto-types-usage\ncat //a:notification/b:asymmetric-keys' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
-command="yanglint -s -t notif -r ex-crypto-types-usage.xml ../ex-crypto-types-usage\@*.yang  ../ietf-crypto-types\@20*.yang yanglint-notification.xml"
+command="yanglint -t notif -r ex-crypto-types-usage.xml ../ex-crypto-types-usage\@*.yang  ../ietf-crypto-types\@20*.yang yanglint-notification.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 rm yanglint-notification.xml

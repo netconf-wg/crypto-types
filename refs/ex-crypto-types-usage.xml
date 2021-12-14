@@ -8,12 +8,12 @@
   <symmetric-key>
     <name>ex-octet-string-based-symmetric-key</name>
     <key-format>ct:octet-string-key-format</key-format>
-    <cleartext-key>base64encodedvalue==</cleartext-key>
+    <cleartext-key>BASE64VALUE=</cleartext-key>
   </symmetric-key>
   <symmetric-key>
     <name>ex-one-symmetric-based-symmetric-key</name>
     <key-format>ct:one-symmetric-key-format</key-format>
-    <cleartext-key>base64encodedvalue==</cleartext-key>
+    <cleartext-key>BASE64VALUE=</cleartext-key>
   </symmetric-key>
   <symmetric-key>
     <name>ex-encrypted-one-symmetric-based-symmetric-key</name>
@@ -25,7 +25,7 @@
       <encrypted-value-format>
         ct:cms-enveloped-data-format
       </encrypted-value-format>
-      <encrypted-value>base64encodedvalue==</encrypted-value>
+      <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-key>
   </symmetric-key>
 </symmetric-keys>
@@ -38,12 +38,12 @@
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
-    <public-key>base64encodedvalue==</public-key>
+    <public-key>BASE64VALUE=</public-key>
     <hidden-private-key/>
     <certificates>
       <certificate>
         <name>ex-hidden-asymmetric-key-cert</name>
-        <cert-data>base64encodedvalue==</cert-data>
+        <cert-data>BASE64VALUE=</cert-data>
       </certificate>
     </certificates>
   </asymmetric-key>
@@ -52,15 +52,15 @@
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
-    <public-key>base64encodedvalue==</public-key>
+    <public-key>BASE64VALUE=</public-key>
     <private-key-format>
       ct:rsa-private-key-format
     </private-key-format>
-    <cleartext-private-key>base64encodedvalue==</cleartext-private-key>
+    <cleartext-private-key>BASE64VALUE=</cleartext-private-key>
     <certificates>
       <certificate>
         <name>ex-cert</name>
-        <cert-data>base64encodedvalue==</cert-data>
+        <cert-data>BASE64VALUE=</cert-data>
       </certificate>
     </certificates>
   </asymmetric-key>
@@ -69,18 +69,18 @@
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
-    <public-key>base64encodedvalue==</public-key>
+    <public-key>BASE64VALUE=</public-key>
     <private-key-format>
       ct:one-asymmetric-key-format
     </private-key-format>
-    <cleartext-private-key>base64encodedvalue==</cleartext-private-key>
+    <cleartext-private-key>BASE64VALUE=</cleartext-private-key>
   </asymmetric-key>
   <asymmetric-key>
     <name>ex-encrypted-rsa-based-asymmetric-key</name>
     <public-key-format>
       ct:subject-public-key-info-format
     </public-key-format>
-    <public-key>base64encodedvalue==</public-key>
+    <public-key>BASE64VALUE=</public-key>
     <private-key-format>
       ct:rsa-private-key-format
     </private-key-format>
@@ -91,7 +91,7 @@
       <encrypted-value-format>
         ct:cms-encrypted-data-format
       </encrypted-value-format>
-      <encrypted-value>base64encodedvalue==</encrypted-value>
+      <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-private-key>
   </asymmetric-key>
 </asymmetric-keys>
@@ -112,7 +112,7 @@
       <encrypted-value-format>
         ct:cms-encrypted-data-format
       </encrypted-value-format>
-      <encrypted-value>base64encodedvalue==</encrypted-value>
+      <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-password>
   </password>
 </passwords>
