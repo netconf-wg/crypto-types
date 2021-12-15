@@ -1267,13 +1267,11 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             <list style="symbols">
               <t>Replaced "base64encodedvalue==" with "BASE64VALUE=".</t>
               <t>Accommodated SecDir review by Valery Smyslov.</t>
-
-              <t>SUBMISSION PENDING</t>
             </list>
           </t>
         </section>
         <!--
-        <section title="20 to 21">
+        <section title="21 to 22">
           <t>
             <list style="symbols">
               <t>SUBMISSION PENDING</t>
