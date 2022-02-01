@@ -1270,8 +1270,15 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
-        <!--
         <section title="21 to 22">
+          <t>
+            <list style="symbols">
+              <t>SUBMISSION PENDING</t>
+            </list>
+          </t>
+        </section>
+        <!--
+        <section title="22 to 23">
           <t>
             <list style="symbols">
               <t>SUBMISSION PENDING</t>
