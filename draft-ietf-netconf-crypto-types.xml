@@ -1273,6 +1273,8 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <section title="21 to 22">
           <t>
             <list style="symbols">
+              <t>fixup the 'WG Web' and 'WG List' lines in YANG module(s)</t>
+              <t>fixup copyright (i.e., s/Simplified/Revised/) in YANG module(s)</t>
               <t>SUBMISSION PENDING</t>
             </list>
           </t>
