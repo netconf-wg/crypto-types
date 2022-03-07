@@ -103,14 +103,18 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
               <figure>
                 <artwork><![CDATA[
 Features:
+  +-- hidden-keys
+  +-- password-encryption
+  +-- private-key-encryption
+  +-- symmetric-key-encryption
   +-- one-symmetric-key-format
   +-- one-asymmetric-key-format
-  +-- certificate-signing-request-generation
+  +-- cms-encrypted-data-format
+  +-- cms-enveloped-data-format
   +-- certificate-expiration-notification
   +-- symmetrically-encrypted-value-format
   +-- asymmetrically-encrypted-value-format
-  +-- cms-encrypted-data-format
-  +-- cms-enveloped-data-format
+  +-- certificate-signing-request-generation
 ]]></artwork>
               </figure>
             </t>
@@ -148,7 +152,6 @@ Identities:
         |      {asymmetrically-encrypted-value-format}?
         +-- cms-enveloped-data-format
                {cms-enveloped-data-format}?
-
 ]]></artwork>
               </figure>
             </t>
@@ -1275,7 +1278,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             <list style="symbols">
               <t>fixup the 'WG Web' and 'WG List' lines in YANG module(s)</t>
               <t>fixup copyright (i.e., s/Simplified/Revised/) in YANG module(s)</t>
-              <t>SUBMISSION PENDING</t>
+              <t>added 'hidden-keys' feature.</t>
             </list>
           </t>
         </section>

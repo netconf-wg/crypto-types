@@ -107,6 +107,11 @@ module ietf-crypto-types {
        'certificate-expiration' notification.";
   }
 
+  feature hidden-keys {
+    description
+      "Indicates that the server supports hidden keys.";
+  }
+
   feature password-encryption {
     description
       "Indicates that the server supports password
@@ -712,6 +717,7 @@ module ietf-crypto-types {
         }
       }
       case hidden-key {
+        if-feature "hidden-keys";
         leaf hidden-key {
           type empty;
           must 'not(../key-format)';
@@ -792,6 +798,7 @@ module ietf-crypto-types {
         }
       }
       case hidden-private-key {
+        if-feature "hidden-keys";
         leaf hidden-private-key {
           type empty;
           must 'not(../private-key-format)';
