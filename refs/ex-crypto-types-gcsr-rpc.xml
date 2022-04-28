@@ -4,7 +4,7 @@
     <asymmetric-keys
       xmlns="http://example.com/ns/example-crypto-types-usage">
       <asymmetric-key>
-        <name>ex-key-sect571r1</name>
+        <name>ex-hidden-asymmetric-key</name>
         <generate-certificate-signing-request>
           <csr-info>BASE64VALUE=</csr-info>
         </generate-certificate-signing-request>

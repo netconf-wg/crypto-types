@@ -22,9 +22,7 @@
       <encrypted-by>
         <asymmetric-key-ref>ex-hidden-asymmetric-key</asymmetric-key-ref>
       </encrypted-by>
-      <encrypted-value-format>
-        ct:cms-enveloped-data-format
-      </encrypted-value-format>
+      <encrypted-value-format>ct:cms-enveloped-data-format</encrypted-value-format>
       <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-key>
   </symmetric-key>
@@ -35,9 +33,7 @@
   xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
   <asymmetric-key>
     <name>ex-hidden-asymmetric-key</name>
-    <public-key-format>
-      ct:subject-public-key-info-format
-    </public-key-format>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>BASE64VALUE=</public-key>
     <hidden-private-key/>
     <certificates>
@@ -49,13 +45,9 @@
   </asymmetric-key>
   <asymmetric-key>
     <name>ex-rsa-based-asymmetric-key</name>
-    <public-key-format>
-      ct:subject-public-key-info-format
-    </public-key-format>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>BASE64VALUE=</public-key>
-    <private-key-format>
-      ct:rsa-private-key-format
-    </private-key-format>
+    <private-key-format>ct:rsa-private-key-format</private-key-format>
     <cleartext-private-key>BASE64VALUE=</cleartext-private-key>
     <certificates>
       <certificate>
@@ -66,31 +58,21 @@
   </asymmetric-key>
   <asymmetric-key>
     <name>ex-one-asymmetric-based-asymmetric-key</name>
-    <public-key-format>
-      ct:subject-public-key-info-format
-    </public-key-format>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>BASE64VALUE=</public-key>
-    <private-key-format>
-      ct:one-asymmetric-key-format
-    </private-key-format>
+    <private-key-format>ct:one-asymmetric-key-format</private-key-format>
     <cleartext-private-key>BASE64VALUE=</cleartext-private-key>
   </asymmetric-key>
   <asymmetric-key>
     <name>ex-encrypted-rsa-based-asymmetric-key</name>
-    <public-key-format>
-      ct:subject-public-key-info-format
-    </public-key-format>
+    <public-key-format>ct:subject-public-key-info-format</public-key-format>
     <public-key>BASE64VALUE=</public-key>
-    <private-key-format>
-      ct:rsa-private-key-format
-    </private-key-format>
+    <private-key-format>ct:rsa-private-key-format</private-key-format>
     <encrypted-private-key>
       <encrypted-by>
         <symmetric-key-ref>ex-encrypted-one-symmetric-based-symmetric-key</symmetric-key-ref>
       </encrypted-by>
-      <encrypted-value-format>
-        ct:cms-encrypted-data-format
-      </encrypted-value-format>
+      <encrypted-value-format>ct:cms-encrypted-data-format</encrypted-value-format>
       <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-private-key>
   </asymmetric-key>
@@ -109,9 +91,7 @@
       <encrypted-by>
         <symmetric-key-ref>ex-encrypted-one-symmetric-based-symmetric-key</symmetric-key-ref>
       </encrypted-by>
-      <encrypted-value-format>
-        ct:cms-encrypted-data-format
-      </encrypted-value-format>
+      <encrypted-value-format>ct:cms-encrypted-data-format</encrypted-value-format>
       <encrypted-value>BASE64VALUE=</encrypted-value>
     </encrypted-password>
   </password>
