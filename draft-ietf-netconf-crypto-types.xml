@@ -1282,6 +1282,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
+        <section title="22 to 23">
+          <t>
+            <list style="symbols">
+              <t>Fixed an example to reference correct key.</t>
+              <t>Fixed an example to not have line-returns around the encoding for a binary value.</t>
+            </list>
+          </t>
+        </section>
         <!--
         <section title="22 to 23">
           <t>

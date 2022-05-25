@@ -6,7 +6,7 @@
       <name>ex-hidden-asymmetric-key</name>
       <certificates>
         <certificate>
-          <name>ex-hidden-asymmetric-key</name>
+          <name>ex-hidden-asymmetric-key-cert</name>
           <certificate-expiration>
             <expiration-date>2018-08-05T14:18:53-05:00</expiration-date>
           </certificate-expiration>
