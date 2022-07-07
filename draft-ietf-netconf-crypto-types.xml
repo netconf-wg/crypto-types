@@ -1290,15 +1290,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
-        <!--
-        <section title="22 to 23">
+        <section title="23 to 24">
           <t>
             <list style="symbols">
-              <t>SUBMISSION PENDING</t>
+              <t>Added mandatory leaf "csr-format" to action "generate-csr".</t>
+              <t>s/certificate-signing-request/csr/g in the YANG module.</t>
             </list>
           </t>
         </section>
-        -->
       </section>
 
       <section title="Acknowledgements" numbered="no">
