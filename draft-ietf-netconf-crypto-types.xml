@@ -587,30 +587,36 @@ INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-certs-grouping.no-expan
               has been used to encrypt a symmetric key (ex-encrypted-one-symmetric-based-symmetric-key)
               that has been used to encrypt another asymmetric key (ex-encrypted-rsa-based-asymmetric-key).
               Additionally, the symmetric key is also used to encrypt a password (ex-encrypted-password).</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
+            <section title="Example Module" toc="exclude">
+              <t>
+                <figure>
+                  <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(ex-crypto-types-usage@YYYY-MM-DD.yang)
 ]]></artwork>
-              </figure>
-            </t>
-            <t>The tree diagram <xref target="RFC8340"/> for this example module follows:</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
+                </figure>
+              </t>
+            </section>
+            <section title="Tree Diagram for the Example Module" toc="exclude">
+              <t>The tree diagram <xref target="RFC8340"/> for this example module follows:</t>
+              <t>
+                <figure>
+                  <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage-tree.txt)
 ]]></artwork>
-              </figure>
-            </t>
-            <t>Finally, the following example illustrates various symmetric and asymmetric keys
-              as they might appear in configuration:</t>
-            <t>
-              <figure>
-                <artwork><![CDATA[
+                </figure>
+              </t>
+            </section>
+            <section title="Usage Example for the Example Module" toc="exclude">
+              <t>Finally, the following example illustrates various symmetric and asymmetric keys
+                as they might appear in configuration:</t>
+              <t>
+                <figure>
+                  <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-usage.xml)
 ]]></artwork>
-              </figure>
-            </t>
+                </figure>
+              </t>
+            </section>
           </section>
 
           <section title="The &quot;generate-certificate-signing-request&quot; Action" anchor="gcsr-action" toc="exclude">
