@@ -223,7 +223,7 @@ Typedefs:
               <li>All the typedefs defined in the "ietf-crypto-types" module
                 extend the "binary" type defined in <xref target="RFC7950"/>.</li>
               <li>Additionally, all the typedefs define a type for encoding an ASN.1
-                <xref target="ITU.X680.2015"/> structure using DER <xref target="ITU.X690.2015"/>.</li>
+                <xref target="ITU.X680.2021"/> structure using DER <xref target="ITU.X690.2021"/>.</li>
               <li>The "trust-anchor-*" and "end-entity-*" typedefs are syntactically
                 identical to their base typedefs and only distinguish themselves
                 by the expected nature of their content.  These typedefs are
@@ -653,7 +653,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
           <xref target="RFC5958"/>, <xref target="RFC6031"/>, <xref target="RFC6125"/>,
           <xref target="RFC6960"/>, <xref target="RFC6991"/>, <xref target="RFC7093"/>,
           <xref target="RFC8174"/>, <xref target="RFC8341"/>,
-          and <xref target="ITU.X690.2015"/>.</t>
+          and <xref target="ITU.X690.2021"/>.</t>
           
           <t>
             <figure>
@@ -904,7 +904,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <!--<?rfc include="reference.RFC.8422.xml"?>
         <?rfc include="reference.RFC.8446.xml"?>-->
 
-        <reference anchor="ITU.X680.2015" target="https://www.itu.int/rec/T-REC-X.680/">
+        <reference anchor="ITU.X680.2021" target="https://www.itu.int/rec/T-REC-X.680-202102-I">
           <front>
             <title>Information technology - Abstract Syntax Notation One (ASN.1):
               Specification of basic notation
@@ -912,11 +912,11 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             <author>
               <organization>International Telecommunication Union</organization>
             </author>
-            <date month="August" year="2015"/>
+            <date month="February" year="2021"/>
           </front>
-          <seriesInfo name="ITU-T Recommendation X.680," value="ISO/IEC 8824-1:2015"/>
+          <seriesInfo name="ITU-T Recommendation X.680," value="ISO/IEC 8824-1:2021"/>
 	    </reference>
-        <reference anchor="ITU.X690.2015" target="https://www.itu.int/rec/T-REC-X.690/">
+        <reference anchor="ITU.X690.2021" target="https://www.itu.int/rec/T-REC-X.690-202102-I">
           <front>
             <title>Information Technology - ASN.1 encoding rules: Specification of Basic
             Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished
@@ -924,9 +924,9 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             <author>
               <organization>International Telecommunication Union</organization>
             </author>
-            <date month="August" year="2015"/>
+            <date month="February" year="2021"/>
           </front>
-          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1:2015"/>
+          <seriesInfo name="ITU-T Recommendation X.690," value="ISO/IEC 8825-1:2021"/>
 	    </reference>
       </references>
       <references title="Informative References">

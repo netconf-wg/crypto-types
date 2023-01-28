@@ -196,7 +196,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /***************************************************/
@@ -231,7 +231,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /******************************************************/
@@ -265,7 +265,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /*************************************************/
@@ -306,7 +306,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   identity cms-enveloped-data-format {
@@ -343,7 +343,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /*********************************************************/
@@ -386,7 +386,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   typedef p10-csr {
@@ -403,7 +403,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /***************************************************/
@@ -424,7 +424,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   typedef crl {
@@ -441,7 +441,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /***************************************************/
@@ -462,7 +462,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   typedef oscp-response {
@@ -479,7 +479,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   /***********************************************/
@@ -499,7 +499,7 @@ module ietf-crypto-types {
          Information technology - ASN.1 encoding rules:
          Specification of Basic Encoding Rules (BER),
          Canonical Encoding Rules (CER) and Distinguished
-         Encoding Rules (DER).";
+         Encoding Rules (DER) 02/2021.";
   }
 
   typedef data-content-cms {
