@@ -651,8 +651,10 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
           <xref target="RFC2986"/>, <xref target="RFC3447"/>, <xref target="RFC4253"/>,
           <xref target="RFC5280"/>, <xref target="RFC5652"/>, <xref target="RFC5915"/>,
           <xref target="RFC5958"/>, <xref target="RFC6031"/>, <xref target="RFC6125"/>,
-          <xref target="RFC6991"/>, <xref target="RFC7093"/>, <xref target="RFC8174"/>,
-          <xref target="RFC8341"/>, and <xref target="ITU.X690.2015"/>.</t>
+          <xref target="RFC6960"/>, <xref target="RFC6991"/>, <xref target="RFC7093"/>,
+          <xref target="RFC8174"/>, <xref target="RFC8341"/>,
+          and <xref target="ITU.X690.2015"/>.</t>
+          
           <t>
             <figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-crypto-types@YYYY-MM-DD.yang"</preamble>
@@ -890,6 +892,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.5958.xml"?>
         <?rfc include="reference.RFC.6031.xml"?>
         <!--<?rfc include="reference.RFC.6187.xml"?>-->
+        <?rfc include="reference.RFC.6960.xml"?>
         <?rfc include="reference.RFC.6991.xml"?>
         <?rfc include="reference.RFC.7093.xml"?>
         <!--<?rfc include="reference.RFC.7919.xml"?>-->
