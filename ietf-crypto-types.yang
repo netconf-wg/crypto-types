@@ -103,7 +103,7 @@ module ietf-crypto-types {
 
   feature p10-based-csrs {
     description
-      "Indicates that the erver implements support
+      "Indicates that the server implements support
        for generating P10-based CSRs, as defined
        in RFC 2986.";
     reference
@@ -245,9 +245,9 @@ module ietf-crypto-types {
        The length of the octet string MUST be appropriate for
        the associated algorithm's block size.
 
-       How the associated algorithm is known is outside the
-       scope of this module.  This statement also applies when
-       the octet string has been encrypted.";
+        The identity of the associated algorithm is outside the
+        scope of this specification.  This is also true when
+        the octet string has been encrypted.";
   }
 
   identity one-symmetric-key-format {
@@ -987,7 +987,7 @@ module ietf-crypto-types {
   grouping asymmetric-key-pair-with-cert-grouping {
     description
       "A private/public key pair and an associated certificate.
-       Implementations SHOULD assert that certificates contain
+       Implementations SHOULD assert that the certificate contains
        the matching public key.";
     uses asymmetric-key-pair-grouping;
     uses end-entity-cert-grouping;
@@ -996,9 +996,9 @@ module ietf-crypto-types {
 
   grouping asymmetric-key-pair-with-certs-grouping {
     description
-      "A private/public key pair and associated certificates.
-       Implementations SHOULD assert that certificates contain
-       the matching public key.";
+      "A private/public key pair and a list of associated
+       certificates.  Implementations SHOULD assert that
+       certificates contain the matching public key.";
     uses asymmetric-key-pair-grouping;
     container certificates {
       nacm:default-deny-write;

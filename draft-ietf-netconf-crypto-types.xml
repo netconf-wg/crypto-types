@@ -128,13 +128,14 @@ Features:
             </t>
             <!--<aside>-->
               <t>The diagram above uses syntax that is similar to but not
-                defined in <xref target="RFC8340"/>.</t>
+                the same as that in <xref target="RFC8340"/>.</t>
             <!--</aside>-->
           </section>
 
           <section title="Identities" anchor="identities" toc="exclude">
-            <t>The following diagram illustrates the relationship amongst the
-              "identity" statements defined in the "ietf-crypto-types" module:</t>
+            <t>The following diagram illustrates the hierarchal relationship
+              amongst the "identity" statements defined in the "ietf-crypto-types"
+              module:</t>
             <t>
               <figure>
                <artwork><![CDATA[
@@ -165,7 +166,7 @@ Identities:
             </t>
             <!--<aside>-->
               <t>The diagram above uses syntax that is similar to but not
-                defined in <xref target="RFC8340"/>.</t>
+                the same as that in <xref target="RFC8340"/>.</t>
             <!--</aside>-->
             <t>Comments:</t>
             <ul>
@@ -216,7 +217,7 @@ Typedefs:
             </t>
             <!--<aside>-->
               <t>The diagram above uses syntax that is similar to but not
-                defined in <xref target="RFC8340"/>.</t>
+                the same as that in <xref target="RFC8340"/>.</t>
             <!--</aside>-->
             <t>Comments:</t>
             <ul>
@@ -1264,6 +1265,13 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           <t>
             <list style="symbols">
               <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
+            </list>
+          </t>
+        </section>
+        <section title="26 to 27">
+          <t>
+            <list style="symbols">
+              <t>Updated per Tom Petch review.</t>
             </list>
           </t>
         </section>
