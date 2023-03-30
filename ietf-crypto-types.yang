@@ -27,7 +27,7 @@ module ietf-crypto-types {
     "This module defines common YANG types for cryptographic
      applications.
 
-     Copyright (c) 2022 IETF Trust and the persons identified
+     Copyright (c) 2023 IETF Trust and the persons identified
      as authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with
@@ -95,13 +95,7 @@ module ietf-crypto-types {
        'cms-encrypted-data-format' identity.";
   }
 
-  feature csr-generation {
-    description
-      "Indicates that the server implements the
-       'generate-csr' action.";
-  }
-
-  feature p10-based-csrs {
+  feature p10-csr-format {
     description
       "Indicates that the server implements support
        for generating P10-based CSRs, as defined
@@ -111,30 +105,59 @@ module ietf-crypto-types {
                  Specification Version 1.7";
   }
 
+  feature csr-generation {
+    description
+      "Indicates that the server implements the
+       'generate-csr' action.";
+  }
+
   feature certificate-expiration-notification {
     description
       "Indicates that the server implements the
        'certificate-expiration' notification.";
   }
 
-  feature hidden-keys {
+  feature cleartext-passwords {
     description
-      "Indicates that the server supports hidden keys.";
+      "Indicates that the server supports cleartext
+       passwords.";
   }
 
-  feature password-encryption {
+  feature encrypted-passwords {
     description
       "Indicates that the server supports password
        encryption.";
   }
 
-  feature symmetric-key-encryption {
+  feature cleartext-symmetric-keys {
+    description
+      "Indicates that the server supports cleartext
+       symmetric keys.";
+  }
+
+  feature hidden-symmetric-keys {
+    description
+      "Indicates that the server supports hidden keys.";
+  }
+
+  feature encrypted-symmetric-keys {
     description
       "Indicates that the server supports encryption
        of symmetric keys.";
   }
 
-  feature private-key-encryption {
+  feature cleartext-private-keys {
+    description
+      "Indicates that the server supports cleartext
+       private keys.";
+  }
+
+  feature hidden-private-keys {
+    description
+      "Indicates that the server supports hidden keys.";
+  }
+
+  feature encrypted-private-keys {
     description
       "Indicates that the server supports encryption
        of private keys.";
@@ -166,20 +189,35 @@ module ietf-crypto-types {
   identity rsa-private-key-format {
     base private-key-format;
     description
-      "Indicates that the private key value is encoded
-       as an RSAPrivateKey (from RFC 3447).";
+      "Indicates that the private key value is encoded as
+       an RSAPrivateKey (from RFC 3447), encoded using ASN.1
+       distinguished encoding rules (DER), as specified in
+       ITU-T X.690.";
     reference
-      "RFC 3447: PKCS #1: RSA Cryptography
-                 Specifications Version 2.2";
+      "RFC 3447:
+         PKCS #1: RSA Cryptography Specifications Version 2.2
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER) 02/2021.";
   }
 
   identity ec-private-key-format {
     base private-key-format;
     description
-      "Indicates that the private key value is encoded
-       as an ECPrivateKey (from RFC 5915)";
+      "Indicates that the private key value is encoded as
+       an ECPrivateKey (from RFC 5915), encoded using ASN.1
+       distinguished encoding rules (DER), as specified in
+       ITU-T X.690.";
     reference
-      "RFC 5915: Elliptic Curve Private Key Structure";
+      "RFC 5915:
+         Elliptic Curve Private Key Structure
+       ITU-T X.690:
+         Information technology - ASN.1 encoding rules:
+         Specification of Basic Encoding Rules (BER),
+         Canonical Encoding Rules (CER) and Distinguished
+         Encoding Rules (DER) 02/2021.";
   }
 
   identity one-asymmetric-key-format {
@@ -357,8 +395,8 @@ module ietf-crypto-types {
        by future efforts.";
   }
 
-  identity p10-csr {
-    if-feature "p10-based-csrs";
+  identity p10-csr-format {
+    if-feature "p10-csr-format";
     base csr-format;
     description
       "Indicates the 'CertificationRequest' structure
@@ -593,7 +631,7 @@ module ietf-crypto-types {
 
        The CMS MUST contain only a single chain of certificates.
        The client or end-entity certificate MUST only authenticate
-       to last intermediate CA certificate listed in the chain.
+       to the last intermediate CA certificate listed in the chain.
 
        In all cases, the chain MUST include a self-signed root
        certificate.  In the case where the root certificate is
@@ -606,12 +644,15 @@ module ietf-crypto-types {
        verify the revocation status of the certificates.
 
        This CMS encodes the degenerate form of the SignedData
-       structure that is commonly used to disseminate X.509
-       certificates and revocation objects (RFC 5280).";
+       structure (RFC 5652, Section 5.2) that is commonly used
+       to disseminate X.509 certificates and revocation objects
+       (RFC 5280).";
     reference
       "RFC 5280:
          Internet X.509 Public Key Infrastructure Certificate
-         and Certificate Revocation List (CRL) Profile.";
+         and Certificate Revocation List (CRL) Profile.
+       RFC 5652:
+         Cryptographic Message Syntax (CMS)";
   }
 
   typedef end-entity-cert-cms {
@@ -632,12 +673,16 @@ module ietf-crypto-types {
        verify the revocation status of the certificates.
 
        This CMS encodes the degenerate form of the SignedData
-       structure that is commonly used to disseminate X.509
-       certificates and revocation objects (RFC 5280).";
+       structure (RFC 5652, Section 5.2) that is commonly
+       used to disseminate X.509 certificates and revocation
+       objects (RFC 5280).";
+
     reference
       "RFC 5280:
          Internet X.509 Public Key Infrastructure Certificate
-         and Certificate Revocation List (CRL) Profile.";
+         and Certificate Revocation List (CRL) Profile.
+       RFC 5652:
+         Cryptographic Message Syntax (CMS)";
   }
 
   /*****************/
@@ -660,7 +705,8 @@ module ietf-crypto-types {
          via a leaf node called 'asymmetric-key-ref'.
 
          The leaf nodes MUST be direct descendants in the data tree,
-         and MAY be direct descendants in the schema tree.";
+         and MAY be direct descendants in the schema tree (e.g.,
+         choice/case statements are allowed, but not a container).";
     }
     leaf encrypted-value-format {
       type identityref {
@@ -693,13 +739,14 @@ module ietf-crypto-types {
 
   grouping password-grouping {
     description
-      "A password that MAY be encrypted.";
+      "A password that may be encrypted.";
     choice password-type {
       nacm:default-deny-write;
       mandatory true;
       description
         "Choice between password types.";
       case cleartext-password {
+        if-feature "cleartext-passwords";
         leaf cleartext-password {
           nacm:default-deny-all;
           type string;
@@ -708,7 +755,7 @@ module ietf-crypto-types {
         }
       }
       case encrypted-password {
-        if-feature "password-encryption";
+        if-feature "encrypted-passwords";
         container encrypted-password {
           description
             "A container for the encrypted password value.";
@@ -731,8 +778,9 @@ module ietf-crypto-types {
          SHOULD ensure that the incoming symmetric key value is
          encoded in the specified format.
 
-         For encrypted keys, the value is the same as it would
-         have been if the key were not encrypted.";
+         For encrypted keys, the value is the decrypted key's
+         format (i.e., the 'encrypted-value-format' conveys the
+         encrypted key's format.";
     }
     choice key-type {
       nacm:default-deny-write;
@@ -741,6 +789,7 @@ module ietf-crypto-types {
         "Choice between key types.";
       case cleartext-key {
         leaf cleartext-key {
+          if-feature "cleartext-symmetric-keys";
           nacm:default-deny-all;
           type binary;
           must '../key-format';
@@ -750,7 +799,7 @@ module ietf-crypto-types {
         }
       }
       case hidden-key {
-        if-feature "hidden-keys";
+        if-feature "hidden-symmetric-keys";
         leaf hidden-key {
           type empty;
           must 'not(../key-format)';
@@ -760,7 +809,7 @@ module ietf-crypto-types {
         }
       }
       case encrypted-key {
-        if-feature "symmetric-key-encryption";
+        if-feature "encrypted-symmetric-keys";
         container encrypted-key {
           must '../key-format';
           description
@@ -812,8 +861,9 @@ module ietf-crypto-types {
          ensure that the incoming private key value is encoded in the
          specified format.
 
-         For encrypted keys, the value is the same as it would have
-         been if the key were not encrypted.";
+         For encrypted keys, the value is the decrypted key's
+         format (i.e., the 'encrypted-value-format' conveys the
+         encrypted key's format.";
     }
     choice private-key-type {
       nacm:default-deny-write;
@@ -821,6 +871,7 @@ module ietf-crypto-types {
       description
         "Choice between key types.";
       case cleartext-private-key {
+        if-feature "cleartext-private-keys";
         leaf cleartext-private-key {
           nacm:default-deny-all;
           type binary;
@@ -831,7 +882,7 @@ module ietf-crypto-types {
         }
       }
       case hidden-private-key {
-        if-feature "hidden-keys";
+        if-feature "hidden-private-keys";
         leaf hidden-private-key {
           type empty;
           must 'not(../private-key-format)';
@@ -841,7 +892,7 @@ module ietf-crypto-types {
         }
       }
       case encrypted-private-key {
-        if-feature "private-key-encryption";
+        if-feature "encrypted-private-keys";
         container encrypted-private-key {
           must '../private-key-format';
           description
@@ -933,7 +984,7 @@ module ietf-crypto-types {
           }
           mandatory true;
           description
-            "Specifies the format for the returned certifiacte.";
+            "Specifies the format for the returned certificate.";
         }
         leaf csr-info {
           type csr-info;

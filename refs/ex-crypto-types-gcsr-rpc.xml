@@ -7,7 +7,7 @@
       <asymmetric-key>
         <name>ex-hidden-asymmetric-key</name>
         <generate-csr>
-          <csr-format>ct:p10-csr</csr-format>
+          <csr-format>ct:p10-csr-format</csr-format>
           <csr-info>BASE64VALUE=</csr-info>
         </generate-csr>
       </asymmetric-key>

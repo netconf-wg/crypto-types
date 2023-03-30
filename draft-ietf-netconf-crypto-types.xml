@@ -1,5 +1,4 @@
 <?xml version='1.0'?>
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
 
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
@@ -20,6 +19,7 @@
      category="std"
      consensus="true"
      ipr="trust200902"
+     submissionType="IETF"
      docName="draft-ietf-netconf-crypto-types-latest">
     <front>
       <title abbrev="YANG Data Types and Groupings for Crypto">YANG Data Types and Groupings for Cryptography</title>
@@ -59,7 +59,7 @@
           The text is not wrong as is, but it may be improved by stating more directly how
           many modules are defined.</t>
         <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
-        a self-reference to this draft, along with a corresponding Informative Reference in
+          a self-reference to this draft, along with a corresponding Informative Reference in
           the Appendix.</t>
         <t>The following Appendix section is to be removed prior to publication:
           <list style="symbols">
@@ -111,18 +111,23 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
               <figure>
                 <artwork><![CDATA[
 Features:
-  +-- hidden-keys
-  +-- password-encryption
-  +-- private-key-encryption
-  +-- symmetric-key-encryption
   +-- one-symmetric-key-format
   +-- one-asymmetric-key-format
-  +-- cms-encrypted-data-format
-  +-- cms-enveloped-data-format
-  +-- certificate-expiration-notification
   +-- symmetrically-encrypted-value-format
   +-- asymmetrically-encrypted-value-format
-  +-- certificate-signing-request-generation
+  +-- cms-enveloped-data-format
+  +-- cms-encrypted-data-format
+  +-- p10-csr-format
+  +-- csr-generation
+  +-- certificate-expiration-notification
+  +-- cleartext-passwords
+  +-- encrypted-passwords
+  +-- cleartext-symmetric-keys
+  +-- hidden-symmetric-keys
+  +-- encrypted-symmetric-keys
+  +-- cleartext-private-keys
+  +-- hidden-private-keys
+  +-- encrypted-private-keys
 ]]></artwork>
               </figure>
             </t>
@@ -153,14 +158,16 @@ Identities:
   |  +-- one-symmetric-key-format
   |            {one-symmetric-key-format}?
   +-- encrypted-value-format
-     +-- symmetrically-encrypted-value-format
-     |  |      {symmetrically-encrypted-value-format}?
-     |  +-- cms-encrypted-data-format
-     |         {cms-encrypted-data-format}?
-     +-- asymmetrically-encrypted-value-format
-        |      {asymmetrically-encrypted-value-format}?
-        +-- cms-enveloped-data-format
-               {cms-enveloped-data-format}?
+  |  +-- symmetrically-encrypted-value-format
+  |  |  |      {symmetrically-encrypted-value-format}?
+  |  |  +-- cms-encrypted-data-format
+  |  |         {cms-encrypted-data-format}?
+  |  +-- asymmetrically-encrypted-value-format
+  |     |      {asymmetrically-encrypted-value-format}?
+  |     +-- cms-enveloped-data-format
+  |            {cms-enveloped-data-format}?
+  +-- csr-format
+        +-- p10-csr-format {p10-csr-format?}
 ]]></artwork>
               </figure>
             </t>
@@ -176,7 +183,7 @@ Identities:
                 for encrypted values.  The base identities are "abstract",
                 in the object oriented programming sense, in that they only
                 define a "class" of formats, rather than a specific format.</li>
-              <li>The various "leaf" identities define specific encoding
+              <li>The various terminal identities define specific encoding
                 formats.  The derived identities defined in this document are
                 sufficient for the effort described in <xref target="collective-effort"/>
                 but, by nature of them being identities, additional derived
@@ -336,8 +343,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-symmetric-key-grouping.no-expand.txt)
                 </li>
                 <li>The "key-format" node is an identity-reference to the "symmetric-key-format"
                   abstract base identity discussed in <xref target="identities"/>,
-                  enabling the symmetric key to be encoded using the format defined
-                  by any of the derived identities.</li>
+                    enabling the symmetric key to be encoded using any of the formats
+                    defined by the derived identities.</li>
                 <li>The "choice" statement enables the private key data to be cleartext,
                   encrypted, or hidden, as follows:
                   <ul spacing="compact">
@@ -366,8 +373,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-public-key-grouping.no-expand.txt)
               <ul>
                 <li>The "public-key-format" node is an identity-reference to the "public-key-format"
                   abstract base identity discussed in <xref target="identities"/>,
-                  enabling the public key to be encoded using the format defined by any of
-                  the derived identities.</li>
+                  enabling the public key to be encoded using any of the formats
+                  defined by the derived identities.  </li>
                 <li>The "public-key" node is the public key data in the selected format.
                   No "choice" statement is used to hide or encrypt the public key data
                   because it is unnecessary to do so for public keys.</li>
@@ -396,9 +403,9 @@ INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-grouping.no-expand.txt)
                   </ul>
                 </li>
                 <li>The "private-key-format" node is an identity-reference to the "private-key-format"
-                  abstract base identity discussed in <xref target="identities"/>,
-                  enabling the private key to be encoded using the format defined by
-                  any of the derived identities.</li>
+                    abstract base identity discussed in <xref target="identities"/>,
+                    enabling the private key to be encoded using any of the formats
+                    defined by the derived identities.</li>
                 <li>The "choice" statement enables the private key data to be cleartext,
                   encrypted, or hidden, as follows:
                   <ul spacing="compact">
@@ -509,7 +516,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-generate-csr-grouping.no-expand.txt)
 
             <section title="The &quot;asymmetric-key-pair-with-cert-grouping&quot; Grouping" anchor="asymmetric-key-pair-with-cert-grouping">
               <t>This section presents a tree diagram <xref target="RFC8340"/> illustrating the
-                "asymmetric-key-pair-with-cert-grouping" grouping.  The this diagram does
+                "asymmetric-key-pair-with-cert-grouping" grouping.  This tree diagram does
                 not expand the internally used grouping statement(s):</t>
               <t>
                 <figure>
@@ -578,13 +585,14 @@ INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-certs-grouping.no-expan
 
         <section title="Example Usage" anchor="crypto-types-examples">
 
-          <section title="The &quot;symmetric-key-grouping&quot; and
-            &quot;asymmetric-key-pair-with-certs-grouping&quot; Grouping" anchor="ct-usage" toc="exclude">
+          <section title="The &quot;symmetric-key-grouping&quot;,
+            &quot;asymmetric-key-pair-with-certs-grouping&quot;, and &quot;password-grouping&quot; Groupings" anchor="ct-usage" toc="exclude">
             <t>The following non-normative module is constructed in order to illustrate the
               use of the "symmetric-key-grouping" (<xref target="symmetric-key-grouping"/>), the
               "asymmetric-key-pair-with-certs-grouping" (<xref target="asymmetric-key-pair-with-certs-grouping"/>),
               and the "password-grouping" (<xref target="password-grouping"/>) grouping statements.</t>
-            <t>Notably, this example illustrates a hidden asymmetric key (ex-hidden-asymmetric-key)
+            <t>Notably, this example module and associated configuration data illustrates that
+              a hidden asymmetric key (ex-hidden-asymmetric-key)
               has been used to encrypt a symmetric key (ex-encrypted-one-symmetric-based-symmetric-key)
               that has been used to encrypt another asymmetric key (ex-encrypted-rsa-based-asymmetric-key).
               Additionally, the symmetric key is also used to encrypt a password (ex-encrypted-password).</t>
@@ -688,9 +696,12 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           <t>Early revisions of this document included "rpc" statements for
             generating symmetric and asymmetric keys.  These statements were
             removed due to an inability to obtain consensus for how to
-            identify the key-algorithm to use.  Thusly, the solution presented
-            in this document only supports keys to be configured via an external
-            client, which does not support Security best practice.</t>
+            generically identify the key-algorithm to use.  Thusly, the
+            solution presented in this document only supports keys to be
+            configured via an external client.  Separate protocol-specific
+            modules can present protocol-specific key-generation RPCs (e.g.,
+            "generate-public-key" in <xref target="I-D.ietf-netconf-ssh-client-server"/>
+            and <xref target="I-D.ietf-netconf-tls-client-server"/>).</t>
         </section>
 
         <section title="Unconstrained Public Key Usage">
@@ -702,8 +713,8 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             "public-key-grouping" grouping, and carries the same traits.</t>
           <t>The "asymmetric-key-pair-with-cert-grouping" grouping uses the
             aforementioned "asymmetric-key-pair-grouping" grouping, whereby
-            each certificate may constrain the usage of the public key
-            according to local policy.</t>
+            associated certificates may constrain the usage of the public
+            key according to local policy.</t>
         </section>
 
         <section title="Unconstrained Private Key Usage">
@@ -1170,7 +1181,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               <t>Updated draft title (refer to "Groupings" too).</t>
               <t>Removed 'end-entity-certs-grouping' as it wasn't being used anywhere.</t>
               <t>Removed 'trust-anchor-certs-grouping' as it was no longer being used
-                after modifying 'local-or-truststore-certs-grouping' to use lists (not
+                after modifying 'inline-or-truststore-certs-grouping' to use lists (not
                 leaf-lists).</t>
               <t>Renamed "cert" to "cert-data" in trust-anchor-cert-grouping.</t>
               <t>Added "csr-info" typedef, to complement the existing "csr" typedef.</t>
@@ -1271,7 +1282,15 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <section title="26 to 27">
           <t>
             <list style="symbols">
-              <t>Updated per Tom Petch review.</t>
+              <t>Updated per Tom Petch and AD reviews.</t>
+              <t>Renamed numerous "feature" statements and some "grouping" statements (in YANG)</t>
+              <t>Added "csr-format" and "p10-csr-format" identities to doc (they were already in YANG)</t>
+              <t>Clarified that the 'rsa-private-key-format' and 'ec-private-key-format' formats must be encoded using DER</t>
+              <t>Added 'if-feature cleartext-passwords' statement to 'case cleartext-password' in grouping 'password-grouping'.</t>
+              <t>Added 'if-feature cleartext-keys' statement to 'case cleartext-key' in grouping 'symmetric-key-grouping'.</t>
+              <t>Added 'if-feature cleartext-cleartext-private-keys' statement to 'case cleartext-private-key' in grouping 'asymmetric-key-grouping'.</t>
+              <t>Updated Section titles</t>
+              <t>Clarified Security Considerations about the "generate-public-key" RPCs.</t>
             </list>
           </t>
         </section>

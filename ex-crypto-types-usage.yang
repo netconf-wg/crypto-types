@@ -15,9 +15,9 @@ module ex-crypto-types-usage {
     "YANG Designer <mailto:yang.designer@example.com>";
 
   description
-    "This module illustrates the 'symmetric-key-grouping'
-     and 'asymmetric-key-grouping' groupings defined in
-     the 'ietf-crypto-types' module defined in RFC AAAA.";
+    "This example module illustrates the 'symmetric-key-grouping'
+     and 'asymmetric-key-grouping' groupings defined in the
+    'ietf-crypto-types' module defined in RFC AAAA.";
 
   revision YYYY-MM-DD {
     description
