@@ -1289,7 +1289,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               <t>Added 'if-feature cleartext-passwords' statement to 'case cleartext-password' in grouping 'password-grouping'.</t>
               <t>Added 'if-feature cleartext-keys' statement to 'case cleartext-key' in grouping 'symmetric-key-grouping'.</t>
               <t>Added 'if-feature cleartext-cleartext-private-keys' statement to 'case cleartext-private-key' in grouping 'asymmetric-key-grouping'.</t>
-              <t>Updated Section titles</t>
+              <t>Updated Section titles.</t>
               <t>Clarified Security Considerations about the "generate-public-key" RPCs.</t>
             </list>
           </t>
