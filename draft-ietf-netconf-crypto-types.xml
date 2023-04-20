@@ -258,7 +258,7 @@ Typedefs:
             </ul>
             <t>Each of these groupings are presented in the following subsections.</t>
 
-            <section title="The &quot;encrypted-value-grouping&quot; Grouping" anchor="encrypted-value-grouping">
+            <section title='The "encrypted-value-grouping" Grouping' anchor="encrypted-value-grouping">
               <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "encrypted-value-grouping" grouping:</t>
               <t>
@@ -860,7 +860,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
       </section>
 
       <section title="IANA Considerations">
-        <section title="The &quot;IETF XML&quot; Registry">
+        <section title='The "IETF XML" Registry'>
           <t>This document registers one URI in the "ns" subregistry
           of the "IETF XML" registry <xref target="RFC3688"/>.  Following
           the format in <xref target="RFC3688"/>, the following
@@ -875,7 +875,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </figure>
           </t>
         </section>
-        <section title="The &quot;YANG Module Names&quot; Registry">
+        <section title='The "YANG Module Names" Registry'>
           <t>This document registers one YANG module in the
           "YANG Module Names" registry <xref target="RFC6020"/>.
           Following the format in <xref target="RFC6020"/>, the
