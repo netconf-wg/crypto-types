@@ -177,12 +177,14 @@ Identities:
             <!--</aside>-->
             <t>Comments:</t>
             <ul>
-              <li>The diagram shows that there are four base identities.  The
+              <li>The diagram shows that there are five base identities.  The
                 first three identities are used to indicate the format for the
                 key data, while the fourth identity is used to indicate the format
-                for encrypted values.  The base identities are "abstract",
-                in the object oriented programming sense, in that they only
-                define a "class" of formats, rather than a specific format.</li>
+                for encrypted values.  The fifth identity is used to indicate the
+                format for a certificate signing request.  The base identities are
+                "abstract", in the object oriented programming sense, in that
+                they only define a "class" of formats, rather than a specific
+                format.</li>
               <li>The various terminal identities define specific encoding
                 formats.  The derived identities defined in this document are
                 sufficient for the effort described in <xref target="collective-effort"/>
@@ -247,6 +249,7 @@ Typedefs:
               <li>symmetric-key-grouping</li>
               <li>public-key-grouping</li>
               <li>asymmetric-key-pair-grouping</li>
+              <li>certificate-expiration-grouping</li>
               <li>trust-anchor-cert-grouping</li>
               <li>end-entity-cert-grouping</li>
               <li>generate-csr-grouping</li>
