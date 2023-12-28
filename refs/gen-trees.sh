@@ -31,6 +31,7 @@ extract_grouping encrypted-value-grouping
 extract_grouping password-grouping
 extract_grouping symmetric-key-grouping
 extract_grouping public-key-grouping
+extract_grouping private-key-grouping
 extract_grouping asymmetric-key-pair-grouping
 extract_grouping certificate-expiration-grouping
 extract_grouping trust-anchor-cert-grouping

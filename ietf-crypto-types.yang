@@ -846,11 +846,9 @@ module ietf-crypto-types {
     }
   }
 
-  grouping asymmetric-key-pair-grouping {
+  grouping private-key-grouping {
     description
-      "A private key and its associated public key.  Implementations
-       SHOULD ensure that the two keys are a matching pair.";
-    uses public-key-grouping;
+      "A private key.";
     leaf private-key-format {
       nacm:default-deny-write;
       type identityref {
@@ -903,6 +901,22 @@ module ietf-crypto-types {
         }
       }
     }
+  }
+
+  grouping asymmetric-key-pair-grouping {
+    description
+      "A private key and, optionally, its associated public key.
+       Implementations SHOULD ensure that the two keys, when both
+       are specified, are a matching pair.";
+    uses public-key-grouping {
+      refine public-key-format {
+        mandatory false;
+      }
+      refine public-key {
+        mandatory false;
+      }
+    }
+    uses private-key-grouping;
   }
 
   grouping certificate-expiration-grouping {

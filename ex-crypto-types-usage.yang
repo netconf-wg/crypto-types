@@ -45,7 +45,7 @@ module ex-crypto-types-usage {
             "Augments in a choice statement enabling the
              encrypting key to be any other symmetric or
              asymmetric key.";
-          uses encrypted-by-choice-grouping;
+          uses encrypted-by-grouping;
         }
       }
     }
@@ -67,7 +67,7 @@ module ex-crypto-types-usage {
             "Augments in a choice statement enabling the
              encrypting key to be any other symmetric or
              asymmetric key.";
-          uses encrypted-by-choice-grouping;
+          uses encrypted-by-grouping;
         }
       }
       description
@@ -91,7 +91,7 @@ module ex-crypto-types-usage {
             "Augments in a choice statement enabling the
              encrypting key to be any symmetric or
              asymmetric key.";
-          uses encrypted-by-choice-grouping;
+          uses encrypted-by-grouping;
         }
       }
       description
@@ -99,11 +99,11 @@ module ex-crypto-types-usage {
     }
   }
 
-  grouping encrypted-by-choice-grouping {
+  grouping encrypted-by-grouping {
     description
       "A grouping that defines a choice enabling references
        to other keys.";
-    choice encrypted-by-choice {
+    choice encrypted-by {
       mandatory true;
       description
         "A choice amongst other symmetric or asymmetric keys.";

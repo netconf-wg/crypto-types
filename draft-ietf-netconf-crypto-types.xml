@@ -59,8 +59,15 @@
           The text is not wrong as is, but it may be improved by stating more directly how
           many modules are defined.</t>
         <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
-          a self-reference to this draft, along with a corresponding Informative Reference in
-          the Appendix.</t>
+          a self-reference to this draft, along with a corresponding reference in
+          the Appendix.  Please replace the self-reference in this section with "This RFC"
+          (or similar) and remove the self-reference in the "Normative/Informative References"
+          section, whichever it is in.</t>
+        <t>Tree-diagrams in this draft may use the '/' line-folding mode defined in RFC 8792.
+          However, nicer-to-the-eye is when the '//' line-folding mode is used.  The AD suggested
+          suggested putting a request here for the RFC Editor to help convert "ugly" '/' folded
+          examples to use the '//' folding mode.  "Help convert" may be interpreted as, identify
+          what looks ugly and ask the authors to make the adjustment.</t>
         <t>The following Appendix section is to be removed prior to publication:
           <list style="symbols">
             <t><xref target="change-log"/>.  Change Log</t>
@@ -248,6 +255,7 @@ Typedefs:
               <li>password-grouping</li>
               <li>symmetric-key-grouping</li>
               <li>public-key-grouping</li>
+              <li>private-key-grouping</li>
               <li>asymmetric-key-pair-grouping</li>
               <li>certificate-expiration-grouping</li>
               <li>trust-anchor-cert-grouping</li>
@@ -384,6 +392,42 @@ INSERT_TEXT_FROM_FILE(refs/tree-public-key-grouping.no-expand.txt)
               </ul>
             </section>
 
+            <section title="The &quot;private-key-grouping&quot; Grouping" anchor="private-key-grouping">
+              <t>This section presents a tree diagram <xref target="RFC8340"/> illustrating the
+                "private-key-grouping" grouping. This tree diagram does not expand the internally
+                used grouping statement(s):</t>
+              <t>
+                <figure>
+                 <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/tree-private-key-grouping.no-expand.txt)
+]]></artwork>
+                </figure>
+              </t>
+              <t>Comments:</t>
+              <ul>
+                <li>For the referenced grouping statement(s):
+                  <ul spacing="compact">
+                    <li>The "encrypted-value-grouping" grouping is discussed in
+                      <xref target="encrypted-value-grouping"/>.</li>
+                  </ul>
+                </li>
+                <li>The "private-key-format" node is an identity-reference to the "private-key-format"
+                    abstract base identity discussed in <xref target="identities"/>,
+                    enabling the private key to be encoded using any of the formats
+                    defined by the derived identities.</li>
+                <li>The "choice" statement enables the private key data to be cleartext,
+                  encrypted, or hidden, as follows:
+                  <ul spacing="compact">
+                    <li>The "cleartext-private-key" node can encode any cleartext key value.</li>
+                    <li>The "hidden-private-key" node is of type "empty" as the real
+                      value cannot be presented via the management interface.</li>
+                    <li>The "encrypted-private-key" node's structure is discussed in
+                      <xref target="encrypted-value-grouping"/>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
             <section title="The &quot;asymmetric-key-pair-grouping&quot; Grouping" anchor="asymmetric-key-pair-grouping">
               <t>This section presents a tree diagram <xref target="RFC8340"/> illustrating the
                 "asymmetric-key-pair-grouping" grouping. This tree diagram does
@@ -401,22 +445,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-grouping.no-expand.txt)
                   <ul spacing="compact">
                     <li>The "public-key-grouping" grouping is discussed in
                       <xref target="public-key-grouping"/>.</li>
-                    <li>The "encrypted-value-grouping" grouping is discussed in
-                      <xref target="encrypted-value-grouping"/>.</li>
-                  </ul>
-                </li>
-                <li>The "private-key-format" node is an identity-reference to the "private-key-format"
-                    abstract base identity discussed in <xref target="identities"/>,
-                    enabling the private key to be encoded using any of the formats
-                    defined by the derived identities.</li>
-                <li>The "choice" statement enables the private key data to be cleartext,
-                  encrypted, or hidden, as follows:
-                  <ul spacing="compact">
-                    <li>The "cleartext-private-key" node can encode any cleartext key value.</li>
-                    <li>The "hidden-private-key" node is of type "empty" as the real
-                      value cannot be presented via the management interface.</li>
-                    <li>The "encrypted-private-key" node's structure is discussed in
-                      <xref target="encrypted-value-grouping"/>.</li>
+                    <li>The "private-key-grouping" grouping is discussed in
+                      <xref target="private-key-grouping"/>.</li>
                   </ul>
                 </li>
               </ul>
@@ -699,11 +729,12 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           <t>Early revisions of this document included "rpc" statements for
             generating symmetric and asymmetric keys.  These statements were
             removed due to an inability to obtain consensus for how to
-            generically identify the key-algorithm to use.  Thusly, the
+            generically identify the key-algorithm to use.  Hence, the
             solution presented in this document only supports keys to be
-            configured via an external client.  Separate protocol-specific
-            modules can present protocol-specific key-generation RPCs (e.g.,
-            "generate-public-key" in <xref target="I-D.ietf-netconf-ssh-client-server"/>
+            configured via an external client.</t>
+          <t>Separate protocol-specific modules can present protocol-specific
+            key-generating RPCs (e.g., the "generate-public-key" RPC in 
+            <xref target="I-D.ietf-netconf-ssh-client-server"/>
             and <xref target="I-D.ietf-netconf-tls-client-server"/>).</t>
         </section>
 
@@ -741,21 +772,32 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             infeasible to break a 128-bit symmetric key using a classical computer,
             and thus the concern for conveying higher-strength keys begins to lose
             its allure.</t>
+        </section>
+
+        <section title="Use of Recommended Ciphersuites">
           <t>Implementations SHOULD only use secure transport protocols
             meeting local policy.  A reasonable policy may, e.g., state that
             only ciphersuites listed as "recommended" by the IETF be used
             (e.g., <xref target="RFC7525"/> for TLS).</t>
         </section>
 
-        <section title="Encrypting Passwords">
-          <t>The module contained within this document enables passwords to be
-            encrypted.  Passwords may be encrypted via a symmetric key using
+        <section title="Cleartext Passwords and Keys">
+          <t>The module contained within this document enables, only when
+          specific "feature" statements are enabled, for the cleartext
+          value of passwords and keys to be stored in the configuration
+          database.  Storing cleartext values for passwords and keys is
+            NOT RECOMMENDED.</t>
+        </section>
+
+        <section title="Encrypting Passwords and Keys">
+          <t>The module contained within this document enables passwords and keys to be
+            encrypted.  Passwords and keys may be encrypted via a symmetric key using
             the "cms-encrypted-data-format" format.  This format uses the CMS
             EncryptedData structure, which allows any encryption algorithm
             to be used.</t>
           <t>In order to thwart rainbow attacks, algorithms that result
             in a unique output for the same input SHOULD NOT be used.  For
-            instance, AES using "ECB" SHOULD NOT be used to encrypt passwords,
+            instance, AES using "ECB" SHOULD NOT be used to encrypt values,
             whereas "CBC" mode is permissible since an unpredictable
             initialization vector (IV) MUST be used for each use.</t>
         </section>
@@ -795,6 +837,15 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             data nodes. These are the subtrees and data nodes and
             their sensitivity/vulnerability:
             <list style="symbols">
+              <t>The "cleartext-password" node:
+                <ul empty="true">
+                  <li>The "cleartext-password" node defined in the "password-grouping"
+                    grouping is additionally sensitive to read operations such that,
+                    in normal use cases, it should never be returned to a client.
+                    For this reason, the NACM extension "default-deny-all" has been
+                    applied to it.</li>
+                </ul>
+              </t>
               <t>The "cleartext-key" node:
                 <ul empty="true">
                   <li>The "cleartext-key" node defined in the "symmetric-key-grouping"
@@ -1294,6 +1345,18 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               <t>Added 'if-feature cleartext-cleartext-private-keys' statement to 'case cleartext-private-key' in grouping 'asymmetric-key-grouping'.</t>
               <t>Updated Section titles.</t>
               <t>Clarified Security Considerations about the "generate-public-key" RPCs.</t>
+            </list>
+          </t>
+        </section>
+        <section title="27 to 28">
+          <t>
+            <list style="symbols">
+              <t>Mostly addresses AD review comments.</t>
+              <t>Also addresses on-list comment regarding public-keys being "mandatory true."</t>
+              <t>Added note to Editor to fix line foldings.</t>
+              <t>Factored 'private-key-grouping' from 'asymmetric-key-pair-grouping'.</t>
+              <t>Made public-key in 'asymmetric-key-pair-grouping' be "mandatory false".</t>
+              <t>Renamed 'encrypted-by-choice-grouping' to 'encrypted-by-grouping'.</t>
             </list>
           </t>
         </section>
