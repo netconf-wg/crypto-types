@@ -985,12 +985,6 @@ module ietf-crypto-types {
          This action statement is only available when the
          associated 'public-key-format' node's value is
          'subject-public-key-info-format'.";
-      reference
-        "RFC 6125:
-          Representation and Verification of Domain-Based
-          Application Service Identity within Internet Public Key
-          Infrastructure Using X.509 (PKIX) Certificates in the
-          Context of Transport Layer Security (TLS)";
       input {
         leaf csr-format {
           type identityref {

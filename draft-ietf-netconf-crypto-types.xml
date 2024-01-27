@@ -63,10 +63,10 @@
           the Appendix.  Please replace the self-reference in this section with "This RFC"
           (or similar) and remove the self-reference in the "Normative/Informative References"
           section, whichever it is in.</t>
-        <t>Tree-diagrams in this draft may use the '/' line-folding mode defined in RFC 8792.
-          However, nicer-to-the-eye is when the '//' line-folding mode is used.  The AD suggested
-          suggested putting a request here for the RFC Editor to help convert "ugly" '/' folded
-          examples to use the '//' folding mode.  "Help convert" may be interpreted as, identify
+        <t>Tree-diagrams in this draft may use the '&#92;' line-folding mode defined in RFC 8792.
+          However, nicer-to-the-eye is when the '&#92;&#92;' line-folding mode is used.  The AD suggested
+          suggested putting a request here for the RFC Editor to help convert "ugly" '&#92;' folded
+          examples to use the '&#92;&#92;' folding mode.  "Help convert" may be interpreted as, identify
           what looks ugly and ask the authors to make the adjustment.</t>
         <t>The following Appendix section is to be removed prior to publication:
           <list style="symbols">
@@ -90,9 +90,9 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
         </section>
 
         <section title="Conventions">
-          <t>Various examples used in this document use a placeholder
-            value for binary data that has been base64 encoded (e.g.,
-            "BASE64VALUE=").  This placeholder value is used as real
+          <t>Various examples in this document use "BASE64VALUE=" as a
+            placeholder value for binary data has has been base64
+            encoded.  This placeholder value is used as real
             base64 encoded structures are often many lines long and
             hence distracting to the example being presented.</t>
         </section>
@@ -1360,6 +1360,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
+        <section title="27 to 28">
+          <t>
+            <list style="symbols">
+              <t>Addresses Gen-ART review by Dale Worley.</t>
+              <t>Addresses review by Tom Petch.</t>
+            </list>
+          </t>
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
@@ -1367,6 +1375,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         lively discussions on list and in the halls (ordered
           by first name):
           Balázs Kovács,
+          Dale Worley,
           Eric Voit,
           Juergen Schoenwaelder,
           Liang Xia,
