@@ -3,7 +3,7 @@
   xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">
   <action xmlns="urn:ietf:params:xml:ns:yang:1">
     <asymmetric-keys
-      xmlns="http://example.com/ns/example-crypto-types-usage">
+      xmlns="https://example.com/ns/example-crypto-types-usage">
       <asymmetric-key>
         <name>ex-hidden-asymmetric-key</name>
         <generate-csr>

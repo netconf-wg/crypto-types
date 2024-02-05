@@ -91,10 +91,11 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
         <section title="Conventions">
           <t>Various examples in this document use "BASE64VALUE=" as a
-            placeholder value for binary data has has been base64
-            encoded.  This placeholder value is used as real
-            base64 encoded structures are often many lines long and
-            hence distracting to the example being presented.</t>
+            placeholder value for binary data that has been base64
+            encoded (per <xref section="9.8" target="RFC7950"/>).  This
+            placeholder value is used because real base64 encoded structures
+            are often many lines long and hence distracting to the example
+            being presented.</t>
         </section>
 
       </section>
@@ -145,7 +146,7 @@ Features:
           </section>
 
           <section title="Identities" anchor="identities" toc="exclude">
-            <t>The following diagram illustrates the hierarchal relationship
+            <t>The following diagram illustrates the hierarchical relationship
               amongst the "identity" statements defined in the "ietf-crypto-types"
               module:</t>
             <t>
@@ -316,6 +317,10 @@ INSERT_TEXT_FROM_FILE(refs/tree-password-grouping.no-expand.txt)
               </t>
               <t>Comments:</t>
               <ul>
+                <li>The "password-grouping" enables configuration of credentials needed to
+                  authenticate to a remote system.  The 'ianach:crypt-hash' typedef from
+                  <xref target="RFC7317"/> should be used instead when needing to
+                  configure a password to authencate a local account.</li>
                 <li>For the referenced grouping statement(s):
                   <ul spacing="compact">
                     <li>The "encrypted-value-grouping" grouping is discussed in
@@ -359,10 +364,10 @@ INSERT_TEXT_FROM_FILE(refs/tree-symmetric-key-grouping.no-expand.txt)
                 <li>The "choice" statement enables the private key data to be cleartext,
                   encrypted, or hidden, as follows:
                   <ul spacing="compact">
-                    <li>The "cleartext-key" node can encode any cleartext key value.</li>
-                    <li>The "hidden-key" node is of type "empty" as the real
+                    <li>The "cleartext-symmetric-key" node can encode any cleartext key value.</li>
+                    <li>The "hidden-symmetric-key" node is of type "empty" as the real
                       value cannot be presented via the management interface.</li>
-                    <li>The "encrypted-key" node's structure is discussed in
+                    <li>The "encrypted-symmetric-key" node's structure is discussed in
                       <xref target="encrypted-value-grouping"/>.</li>
                   </ul>
                 </li>
@@ -497,8 +502,9 @@ INSERT_TEXT_FROM_FILE(refs/tree-trust-anchor-cert-grouping.no-expand.txt)
                       <xref target="certificate-expiration-grouping"/>.</li>
                   </ul>
                 </li>
-                <li>The "cert-data" node contains a chain of one or more certificates encoded
-                  using a "signed-data-cms" typedef discussed in <xref target="typedefs"/>.</li>
+                <li>The "cert-data" node contains a chain of one or more certificates
+                  containing at most one self-signed certificates (the “root” certificate),
+                  encoded using a "signed-data-cms" typedef discussed in <xref target="typedefs"/>.</li>
               </ul>
             </section>
 
@@ -521,8 +527,10 @@ INSERT_TEXT_FROM_FILE(refs/tree-end-entity-cert-grouping.no-expand.txt)
                       <xref target="certificate-expiration-grouping"/>.</li>
                   </ul>
                 </li>
-                <li>The "cert-data" node contains a chain of one or more certificates encoded
-                  using a "signed-data-cms" typedef discussed in <xref target="typedefs"/>.</li>
+                <li>The "cert-data" node contains a chain of one or more certificates
+                  containing at most one certificate that is neither self-signed nor
+                  having Basic constraint "CA true”, encoded using a "signed-data-cms"
+                  typedef discussed in <xref target="typedefs"/>.</li>
               </ul>
             </section>
 
@@ -625,9 +633,9 @@ INSERT_TEXT_FROM_FILE(refs/tree-asymmetric-key-pair-with-certs-grouping.no-expan
               "asymmetric-key-pair-with-certs-grouping" (<xref target="asymmetric-key-pair-with-certs-grouping"/>),
               and the "password-grouping" (<xref target="password-grouping"/>) grouping statements.</t>
             <t>Notably, this example module and associated configuration data illustrates that
-              a hidden asymmetric key (ex-hidden-asymmetric-key)
+              a hidden private key (ex-hidden-asymmetric-key)
               has been used to encrypt a symmetric key (ex-encrypted-one-symmetric-based-symmetric-key)
-              that has been used to encrypt another asymmetric key (ex-encrypted-rsa-based-asymmetric-key).
+              that has been used to encrypt another private key (ex-encrypted-rsa-based-asymmetric-key).
               Additionally, the symmetric key is also used to encrypt a password (ex-encrypted-password).</t>
             <section title="Example Module" toc="exclude">
               <t>
@@ -696,10 +704,10 @@ INSERT_TEXT_FROM_FILE(refs/ex-crypto-types-ce-notification.xml)
 
         <section title="YANG Module" anchor="crypto-types-yang-module">
           <t>This module has normative references to <xref target="RFC2119"/>,
-          <xref target="RFC2986"/>, <xref target="RFC3447"/>, <xref target="RFC4253"/>,
-          <xref target="RFC5280"/>, <xref target="RFC5652"/>, <xref target="RFC5915"/>,
-          <xref target="RFC5958"/>, <xref target="RFC6031"/>, <xref target="RFC6125"/>,
-          <xref target="RFC6960"/>, <xref target="RFC6991"/>, <xref target="RFC7093"/>,
+          <xref target="RFC2986"/>, <xref target="RFC4253"/>, <xref target="RFC5280"/>,
+          <xref target="RFC5652"/>, <xref target="RFC5915"/>, <xref target="RFC5958"/>,
+          <xref target="RFC6031"/>, <xref target="RFC6960"/>,
+          <xref target="RFC6991"/>, <xref target="RFC7093"/>, <xref target="RFC8017"/>, 
           <xref target="RFC8174"/>, <xref target="RFC8341"/>,
           and <xref target="ITU.X690.2021"/>.</t>
           
@@ -747,7 +755,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             "public-key-grouping" grouping, and carries the same traits.</t>
           <t>The "asymmetric-key-pair-with-cert-grouping" grouping uses the
             aforementioned "asymmetric-key-pair-grouping" grouping, whereby
-            associated certificates may constrain the usage of the public
+            associated certificates MUST constrain the usage of the public
             key according to local policy.</t>
         </section>
 
@@ -763,22 +771,12 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         </section>
 
         <section title="Strength of Keys Conveyed">
-          <t>When accessing key values, it is desireable that implementations
+          <t>When accessing key values, implementations SHOULD
             ensure that the strength of the keys being accessed is not greater
             than the strength of the underlying secure transport connection
             over which the keys are conveyed.  However, comparing key strengths
-            can be complicated and difficult to implement in practice.</t>
-          <t>That said, expert Security opinion suggests that already it is
-            infeasible to break a 128-bit symmetric key using a classical computer,
-            and thus the concern for conveying higher-strength keys begins to lose
-            its allure.</t>
-        </section>
-
-        <section title="Use of Recommended Ciphersuites">
-          <t>Implementations SHOULD only use secure transport protocols
-            meeting local policy.  A reasonable policy may, e.g., state that
-            only ciphersuites listed as "recommended" by the IETF be used
-            (e.g., <xref target="RFC7525"/> for TLS).</t>
+            of different algorithms can be complicated and difficult to
+            implement in practice.</t>
         </section>
 
         <section title="Cleartext Passwords and Keys">
@@ -786,20 +784,23 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
           specific "feature" statements are enabled, for the cleartext
           value of passwords and keys to be stored in the configuration
           database.  Storing cleartext values for passwords and keys is
-            NOT RECOMMENDED.</t>
+          NOT RECOMMENDED.</t>
         </section>
 
         <section title="Encrypting Passwords and Keys">
-          <t>The module contained within this document enables passwords and keys to be
-            encrypted.  Passwords and keys may be encrypted via a symmetric key using
-            the "cms-encrypted-data-format" format.  This format uses the CMS
-            EncryptedData structure, which allows any encryption algorithm
-            to be used.</t>
-          <t>In order to thwart rainbow attacks, algorithms that result
-            in a unique output for the same input SHOULD NOT be used.  For
-            instance, AES using "ECB" SHOULD NOT be used to encrypt values,
-            whereas "CBC" mode is permissible since an unpredictable
-            initialization vector (IV) MUST be used for each use.</t>
+          <t>The module contained within this document enables cleartext
+            passwords and keys to be encrypted via another key, either
+            symmetric or asymmetric.  Both formats use a CMS structure
+            (EncryptedData and EnvelopedData respectively), which allows
+            any encryption algorithm to be used.</t>
+          <t>To securely encrypt a password or key with a symmetric key, a
+            proper block cipher mode such as an AEAD or CBC MUST be used. This
+            ensures that a random IV is part of the input, which guarantees
+            that the output for encrypting the same password or key still
+            produces a different unpredictable ciphertext. This avoids leaking
+            that some encrypted keys or passwords are the same and makes it
+            much harder to pre-generate rainbow tables to brute force attack
+            weak passwords. The ECB block cipher mode MUST NOT be used.</t>
         </section>
 
         <section title="Deletion of Cleartext Key Values">
@@ -807,13 +808,14 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             be zeroized when deleted, so as to prevent the remnants of their
             persisted storage locations from being analyzed in any meaningful
             way.</t>
-          <t>The cleartext key values are the "cleartext-key" node defined in the
+          <t>The cleartext key values are the "cleartext-symmetric-key" node defined in the
             "symmetric-key-grouping" grouping (<xref target="symmetric-key-grouping"/>)
               and the "cleartext-private-key" node defined in the "asymmetric-key-pair-grouping"
               grouping ("<xref target="asymmetric-key-pair-grouping"/>).</t>
         </section>
 
-        <section title="The &quot;ietf-crypto-types&quot; YANG Module">
+        <section title="Template for the &quot;ietf-crypto-types&quot; YANG Module">
+          <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
           <t>The YANG module in this document defines "grouping" statements
             that are designed to be accessed via YANG based management
             protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -834,8 +836,8 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             may be considered sensitive or vulnerable in some network
             environments. It is thus important to control read access
             (e.g., via get, get-config, or notification) to these
-            data nodes. These are the subtrees and data nodes and
-            their sensitivity/vulnerability:
+            data nodes. The following subtrees and data nodes have particular
+            sensitivity/vulnerability:
             <list style="symbols">
               <t>The "cleartext-password" node:
                 <ul empty="true">
@@ -846,9 +848,9 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
                     applied to it.</li>
                 </ul>
               </t>
-              <t>The "cleartext-key" node:
+              <t>The "cleartext-symmetric-key" node:
                 <ul empty="true">
-                  <li>The "cleartext-key" node defined in the "symmetric-key-grouping"
+                  <li>The "cleartext-symmetric-key" node defined in the "symmetric-key-grouping"
                     grouping is additionally sensitive to read operations such that,
                     in normal use cases, it should never be returned to a client.
                     For this reason, the NACM extension "default-deny-all" has been
@@ -948,7 +950,6 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
       <references title="Normative References">
         <?rfc include="reference.RFC.2119.xml"?>
         <!--<?rfc include="reference.RFC.2404.xml"?>-->
-        <?rfc include="reference.RFC.3447.xml"?>
         <!--<?rfc include="reference.RFC.3565.xml"?>
         <?rfc include="reference.RFC.3686.xml"?>
         <?rfc include="reference.RFC.4106.xml"?>-->
@@ -969,6 +970,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.7093.xml"?>
         <!--<?rfc include="reference.RFC.7919.xml"?>-->
         <?rfc include="reference.RFC.7950.xml"?>
+        <?rfc include="reference.RFC.8017.xml"?>
         <?rfc include="reference.RFC.8174.xml"?>
         <!--<?rfc include="reference.RFC.8268.xml"?>
         <?rfc include="reference.RFC.8332.xml"?>-->
@@ -1010,16 +1012,15 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <?rfc include="reference.RFC.5056.xml"?>
         <?rfc include="reference.RFC.5915.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
-        <?rfc include="reference.RFC.6125.xml"?>
         <!--<?rfc include="reference.RFC.6234.xml"?>-->
         <?rfc include="reference.RFC.6241.xml"?>
         <!--<?rfc include="reference.RFC.6239.xml"?>
         <?rfc include="reference.RFC.6507.xml"?>
-        <?rfc include="reference.RFC.8017.xml"?>
         <?rfc include="reference.RFC.8032.xml"?>-->
-        <?rfc include="reference.RFC.7525.xml"?>
+        <?rfc include="reference.RFC.7317.xml"?>
         <?rfc include="reference.RFC.8040.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
+        <?rfc include="reference.RFC.8407.xml"?>
         <!--<?rfc include="reference.RFC.8439.xml"?>-->
         <?rfc include="reference.RFC.8342.xml"?>
         <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
@@ -1360,13 +1361,20 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t>
         </section>
-        <section title="27 to 28">
+        <section title="28 to 29">
           <t>
             <list style="symbols">
               <t>Addresses Gen-ART review by Dale Worley.</t>
               <t>Addresses review by Tom Petch.</t>
             </list>
           </t>
+        </section>
+        <section title="29 to 30">
+          <t>  
+            <list style="symbols">
+              <t>Addresses 1st-round of IESG reviews.</t>
+            </list>
+          </t> 
         </section>
       </section>
 
@@ -1375,20 +1383,31 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         lively discussions on list and in the halls (ordered
           by first name):
           Balázs Kovács,
+          Carsten Bormann,
           Dale Worley,
           Eric Voit,
-          Juergen Schoenwaelder,
+          Éric Vyncke,
+          Francesca Palombini,
+          Jürgen Schönwälder,
+          Lars Eggert,
           Liang Xia,
           Martin Björklund,
           Mahesh Jethanandani,
+          Murray Kucherawy,
           Nick Hancock,
+          Orie Steele,
+          Paul Wouters,
           Rich Salz,
+          Rifaat Shekh-Yusef,
           Rob Wilton,
+          Roman Danyliw,
           Russ Housley,
           Sandra Murphy,
           Tom Petch,
           Valery Smyslov,
-          and Wang Haiguang.
+          Wang Haiguang,
+          Warren Kumari,
+          and Zaheduzzaman Sarker.
        </t>
      </section>
 

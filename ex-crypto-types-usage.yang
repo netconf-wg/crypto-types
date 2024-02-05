@@ -1,6 +1,6 @@
 module ex-crypto-types-usage {
   yang-version 1.1;
-  namespace "http://example.com/ns/example-crypto-types-usage";
+  namespace "https://example.com/ns/example-crypto-types-usage";
   prefix ectu;
 
   import ietf-crypto-types {
@@ -39,8 +39,8 @@ module ex-crypto-types-usage {
           "An arbitrary name for this key.";
       }
       uses ct:symmetric-key-grouping {
-        augment "key-type/encrypted-key/encrypted-key/"
-              + "encrypted-by" {
+        augment "key-type/encrypted-symmetric-key/"
+              + "encrypted-symmetric-key/encrypted-by" {
           description
             "Augments in a choice statement enabling the
              encrypting key to be any other symmetric or

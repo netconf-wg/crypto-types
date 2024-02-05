@@ -60,7 +60,7 @@ run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 
 printf "Testing ex-crypto-types-ce-notification.xml..."
-echo -e 'setns a=urn:ietf:params:xml:ns:netconf:notification:1.0\nsetns b=http://example.com/ns/example-crypto-types-usage\ncat //a:notification/b:asymmetric-keys' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
+echo -e 'setns a=urn:ietf:params:xml:ns:netconf:notification:1.0\nsetns b=https://example.com/ns/example-crypto-types-usage\ncat //a:notification/b:asymmetric-keys' | xmllint --shell ex-crypto-types-ce-notification.xml | sed -e '/^\/.*/d' -e '/^ *$/d' > yanglint-notification.xml
 command="yanglint -t notif -O ex-crypto-types-usage.xml ../ietf-crypto-types\@*.yang ../ex-crypto-types-usage\@*.yang yanglint-notification.xml"
 run_unix_cmd $LINENO "$command" 0
 rm yanglint-notification.xml

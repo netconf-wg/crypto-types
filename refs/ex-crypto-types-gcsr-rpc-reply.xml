@@ -1,4 +1,4 @@
 <rpc-reply message-id="101"
   xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <p10-csr xmlns="http://example.com/ns/example-crypto-types-usage">BASE64VALUE=</p10-csr>
+  <p10-csr xmlns="https://example.com/ns/example-crypto-types-usage">BASE64VALUE=</p10-csr>
 </rpc-reply>
