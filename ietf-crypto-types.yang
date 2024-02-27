@@ -27,7 +27,7 @@ module ietf-crypto-types {
     "This module defines common YANG types for cryptographic
      applications.
 
-     Copyright (c) 2023 IETF Trust and the persons identified
+     Copyright (c) 2024 IETF Trust and the persons identified
      as authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with
@@ -946,7 +946,11 @@ module ietf-crypto-types {
          send notifications is an implementation specific decision,
          but it is RECOMMENDED that a notification be sent once a
          month for 3 months, then once a week for four weeks, and
-         then once a day thereafter until the issue is resolved.";
+         then once a day thereafter until the issue is resolved.
+
+         If the certificate's Issuer maintains a Certificate
+         Revocation List (CRL), the expiration notification MAY
+         be sent if the CRL is about to expire.";
       leaf expiration-date {
         type yang:date-and-time;
         mandatory true;
@@ -961,7 +965,7 @@ module ietf-crypto-types {
       "A trust anchor certificate, and a notification for when
        it is about to (or already has) expire.";
     leaf cert-data {
-      nacm:default-deny-write;
+      nacm:default-deny-all;
       type trust-anchor-cert-cms;
       description
         "The binary certificate data for this certificate.";
@@ -976,7 +980,7 @@ module ietf-crypto-types {
        SHOULD assert that, where used, the end entity certificate
        contains the expected public key.";
     leaf cert-data {
-      nacm:default-deny-write;
+      nacm:default-deny-all;
       type end-entity-cert-cms;
       description
         "The binary certificate data for this certificate.";

@@ -770,15 +770,6 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             key according to local policy.</t>
         </section>
 
-        <section title="Strength of Keys Conveyed">
-          <t>When accessing key values, implementations SHOULD
-            ensure that the strength of the keys being accessed is not greater
-            than the strength of the underlying secure transport connection
-            over which the keys are conveyed.  However, comparing key strengths
-            of different algorithms can be complicated and difficult to
-            implement in practice.</t>
-        </section>
-
         <section title="Cleartext Passwords and Keys">
           <t>The module contained within this document enables, only when
           specific "feature" statements are enabled, for the cleartext
@@ -814,7 +805,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
               grouping ("<xref target="asymmetric-key-pair-grouping"/>).</t>
         </section>
 
-        <section title="Template for the &quot;ietf-crypto-types&quot; YANG Module">
+        <section title="Considerations for the &quot;ietf-crypto-types&quot; YANG Module">
           <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
           <t>The YANG module in this document defines "grouping" statements
             that are designed to be accessed via YANG based management
@@ -869,12 +860,11 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
                 <ul empty="true">
                   <li>The "cert-data" node, defined in both the "trust-anchor-cert-grouping"
                     and "end-entity-cert-grouping" groupings, is additionally sensitive to
-                    read operations, as certificates sometimes convey personally identifying
-                    information (especially end-entity certificates).  However, as it is
-                    commonly understood that certificates are "public", the NACM extension 
-                    "nacm:default-deny-write" (not "default-deny-all") has been applied. It
-                    is RECOMMENDED that implementations adjust read-access to certificates
-                    to comply with local policy.</li>
+                    read operations, as certificates may provide insight into which other
+                    resources/applications/servers this particular server communicates with,
+                    as well as potentially  divulge personally identifying information (e.g.,
+                    end-entity certificates).  For this reason, the NACM extension
+                    "default-deny-all" has been applied.</li>
                 </ul>
               </t>
             </list>
@@ -1034,7 +1024,7 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
         <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
       </references>
 
-      <section title="Change Log" removeInRFC="true" anchor="change-log">
+      <section title="Change Log" anchor="change-log">
         <section title="I-D to 00">
           <t>
             <list style="symbols">
@@ -1376,10 +1366,20 @@ INSERT_TEXT_FROM_FILE(ietf-crypto-types@YYYY-MM-DD.yang)
             </list>
           </t> 
         </section>
+        <section title="30 to 32">
+          <t>  
+            <list style="symbols">
+              <t>Addresses issues found in OpsDir of the ssh-client-server draft.</t>
+              <t>Removed "Strength of Keys Conveyed" section.</t>
+              <t>Renamed Security Considerations section s/Template for/Considerations for/</t>
+              <t>Improved Security Consideration for 'cert-data' node.</t>
+            </list>
+          </t> 
+        </section>
       </section>
 
       <section title="Acknowledgements" numbered="no">
-        <t>The authors would like to thank for following for
+        <t>The authors would like to thank the following for
         lively discussions on list and in the halls (ordered
           by first name):
           Balázs Kovács,
